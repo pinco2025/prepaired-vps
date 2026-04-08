@@ -57,32 +57,32 @@
     "_comment": "Statement-based set, supports BOTH exams — Folder: pinco2025/tests/tree/main/anr. TODO: confirm file names/encryption.",
     "subjects": {
       "physics": {
-        "url": "https://github.com/pinco2025/tests/blob/main/anr/Physics_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Physics_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       },
       "chemistry": {
-        "url": "https://github.com/pinco2025/tests/blob/main/anr/Chemistry_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Chemistry_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       },
       "maths": {
-        "url": "https://github.com/pinco2025/tests/blob/main/anr/Maths_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Maths_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       },
       "botany": {
-        "url": "https://github.com/pinco2025/tests/blob/main/anr/Botany_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Botany_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       },
       "zoology": {
-        "url": "https://github.com/pinco2025/tests/blob/main/anr/Zoology_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Zoology_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       }
@@ -93,50 +93,20 @@
     "_comment": "JEE last-resort set — Folder: pinco2025/tests/tree/main/Last-Resort. TODO: confirm file names/encryption.",
     "subjects": {
       "physics": {
-        "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Physics_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Physics_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       },
       "chemistry": {
-        "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Chemistry_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Chemistry_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       },
       "maths": {
-        "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Maths_questions.enc",
-        "encrypted": true,
-        "questions_key": "questions",
-        "id_field": "id"
-      }
-    }
-  },
-
-  "ncert-line": {
-    "_comment": "NEET NCERT-line set — Folder: pinco2025/tests/tree/main/NCERT-Line. TODO: confirm file names/encryption.",
-    "subjects": {
-      "physics": {
-        "url": "https://github.com/pinco2025/tests/blob/main/NCERT-Line/Physics_questions.enc",
-        "encrypted": true,
-        "questions_key": "questions",
-        "id_field": "id"
-      },
-      "chemistry": {
-        "url": "https://github.com/pinco2025/tests/blob/main/NCERT-Line/Chemistry_questions.enc",
-        "encrypted": true,
-        "questions_key": "questions",
-        "id_field": "id"
-      },
-      "botany": {
-        "url": "https://github.com/pinco2025/tests/blob/main/NCERT-Line/Botany_questions.enc",
-        "encrypted": true,
-        "questions_key": "questions",
-        "id_field": "id"
-      },
-      "zoology": {
-        "url": "https://github.com/pinco2025/tests/blob/main/NCERT-Line/Zoology_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Maths_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       }
@@ -147,20 +117,20 @@
     "_comment": "UNI sufficient set — Folder: pinco2025/tests/tree/main/sufficient. TODO: confirm file names/encryption.",
     "subjects": {
       "physics": {
-        "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Physics_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Physics_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       },
       "chemistry": {
-        "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Chemistry_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Chemistry_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       },
       "maths": {
-        "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Maths_questions.enc",
-        "encrypted": true,
+        "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Maths_questions.json",
+        "encrypted": false,
         "questions_key": "questions",
         "id_field": "id"
       }
