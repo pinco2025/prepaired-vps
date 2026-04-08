@@ -5,19 +5,19 @@
     "_comment": "Encrypted .enc files. encrypted=true triggers XOR decrypt.",
     "subjects": {
       "physics": {
-        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/Physics_questions.enc",
+        "url": "https://github.com/pinco2025/tests/blob/main/condensed/Physics_questions.enc",
         "encrypted": true,
         "questions_key": "questions",
         "id_field": "id"
       },
       "chemistry": {
-        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/Chemistry_questions.enc",
+        "url": "https://github.com/pinco2025/tests/blob/main/condensed/Chemistry_questions.enc",
         "encrypted": true,
         "questions_key": "questions",
         "id_field": "id"
       },
-      "biology": {
-        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/Biology_questions.enc",
+      "mathematics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/condensed/Mathematics_questions.enc",
         "encrypted": true,
         "questions_key": "questions",
         "id_field": "id"

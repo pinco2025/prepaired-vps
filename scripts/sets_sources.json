@@ -1,0 +1,316 @@
+{
+  "_comment": "Generated from question_set_rows.csv + tests_rows.csv. Never commit this file — add to .gitignore.",
+
+  "condensed": {
+    "_comment": "JEE condensed set — encrypted .enc files per subject. Folder: pinco2025/tests/tree/main/condensed",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/condensed/Physics_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "chemistry": {
+        "url": "https://github.com/pinco2025/tests/blob/main/condensed/Chemistry_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "maths": {
+        "url": "https://github.com/pinco2025/tests/blob/main/condensed/Maths_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "neet-phy": {
+    "_comment": "NEET physics set — Folder: pinco2025/tests/tree/main/neet-phy",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/neet-phy/physics/exported_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "uuid"
+      }
+    }
+  },
+
+  "super-30": {
+    "_comment": "JEE Super-30 free set — Folder: pinco2025/tests/tree/main/super-30",
+    "subjects": {
+      "pyq": {
+        "url": "https://github.com/pinco2025/tests/blob/main/super-30/PYQ.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "ipq": {
+        "url": "https://github.com/pinco2025/tests/blob/main/super-30/IPQ.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "anr": {
+    "_comment": "Statement-based set, supports BOTH exams — Folder: pinco2025/tests/tree/main/anr. TODO: confirm file names/encryption.",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Physics_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "chemistry": {
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Chemistry_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "maths": {
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Maths_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "botany": {
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Botany_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "zoology": {
+        "url": "https://github.com/pinco2025/tests/blob/main/anr/Zoology_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "last-resort": {
+    "_comment": "JEE last-resort set — Folder: pinco2025/tests/tree/main/Last-Resort. TODO: confirm file names/encryption.",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Physics_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "chemistry": {
+        "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Chemistry_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "maths": {
+        "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Maths_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "ncert-line": {
+    "_comment": "NEET NCERT-line set — Folder: pinco2025/tests/tree/main/NCERT-Line. TODO: confirm file names/encryption.",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/NCERT-Line/Physics_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "chemistry": {
+        "url": "https://github.com/pinco2025/tests/blob/main/NCERT-Line/Chemistry_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "botany": {
+        "url": "https://github.com/pinco2025/tests/blob/main/NCERT-Line/Botany_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "zoology": {
+        "url": "https://github.com/pinco2025/tests/blob/main/NCERT-Line/Zoology_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "sufficient": {
+    "_comment": "UNI sufficient set — Folder: pinco2025/tests/tree/main/sufficient. TODO: confirm file names/encryption.",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Physics_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "chemistry": {
+        "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Chemistry_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "maths": {
+        "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Maths_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "AIPT-01": {
+    "_comment": "JEE full mock test — questions embedded in the test JSON itself.",
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/AIPT/AIPT-01.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "AIPT-02": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/AIPT/AIPT-02.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "AIPT-03": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/AIPT/AIPT-03.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "AIPT-04": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/AIPT/AIPT-04.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "AIPT-05": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/AIPT/AIPT-05.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "AIPT-06": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/AIPT/AIPT-06.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "NAIPT-01": {
+    "_comment": "NEET full mock test.",
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/NAIPT/NAIPT-01.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "NAIPT-02": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/NAIPT/NAIPT-02.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "NAIPT-03": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/NAIPT/NAIPT-03.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "NAIPT-04": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/NAIPT/NAIPT-04.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "NAIPT-05": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/NAIPT/NAIPT-05.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "NAIPT-06": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/NAIPT/NAIPT-06.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "NAIPT-07": {
+    "subjects": {
+      "_all": {
+        "url": "https://raw.githubusercontent.com/pinco2025/tests/refs/heads/main/NAIPT/NAIPT-07.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  }
+}
