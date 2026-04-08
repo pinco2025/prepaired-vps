@@ -1,6 +1,4 @@
 {
-  "_comment": "Generated from question_set_rows.csv + tests_rows.csv. Never commit this file — add to .gitignore.",
-
   "condensed": {
     "_comment": "JEE condensed set — encrypted .enc files per subject. Folder: pinco2025/tests/tree/main/condensed",
     "subjects": {

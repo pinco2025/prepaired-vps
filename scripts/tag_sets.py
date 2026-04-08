@@ -185,6 +185,8 @@ async def main(sources_path: str, dry_run: bool) -> None:
     all_unmatched: dict[str, list[str]] = {}
 
     for set_id, set_config in config.items():
+        if set_id.startswith("_"):
+            continue
         print(f"── Set: {set_id} {'─'*(40-len(set_id))}")
 
         # A set may have multiple subjects, each with its own URL
