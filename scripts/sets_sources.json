@@ -14,7 +14,7 @@
         "questions_key": "questions",
         "id_field": "id"
       },
-      "maths": {
+      "mathematics": {
         "url": "https://github.com/pinco2025/tests/blob/main/condensed/Maths_questions.enc",
         "encrypted": true,
         "questions_key": "questions",
@@ -68,7 +68,7 @@
         "questions_key": "questions",
         "id_field": "id"
       },
-      "maths": {
+      "mathematics": {
         "url": "https://github.com/pinco2025/tests/blob/main/anr/Maths_questions.json",
         "encrypted": false,
         "questions_key": "questions",
@@ -104,7 +104,7 @@
         "questions_key": "questions",
         "id_field": "id"
       },
-      "maths": {
+      "mathematics": {
         "url": "https://github.com/pinco2025/tests/blob/main/Last-Resort/Maths_questions.json",
         "encrypted": false,
         "questions_key": "questions",
@@ -128,7 +128,7 @@
         "questions_key": "questions",
         "id_field": "id"
       },
-      "maths": {
+      "mathematics": {
         "url": "https://github.com/pinco2025/tests/blob/main/sufficient/Maths_questions.json",
         "encrypted": false,
         "questions_key": "questions",
