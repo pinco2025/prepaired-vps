@@ -3,7 +3,7 @@ from typing import List
 
 
 class Settings(BaseSettings):
-    model_config = SettingsConfigDict(env_file=".env", env_ignore_empty=True)
+    model_config = SettingsConfigDict(env_file=".env", env_ignore_empty=True, extra="ignore")
 
     # ── Database ──────────────────────────────────────────────────────────────
     # Dedicated PostgreSQL DB explicitly for questions, solutions, and content.
