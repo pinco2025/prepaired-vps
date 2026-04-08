@@ -12,9 +12,12 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.core.deps import get_optional_user
 from app.core.security import TokenPayload
-from app.schemas.question import QuestionDetailOut, QuestionSetOut
+from app.schemas.question import JEEMTestOut, QuestionDetailOut, QuestionSetOut
 from app.services.question_service import (
     check_chapter_exists,
+    get_jeem_test,
+    get_neet_test,
+    get_set_test,
     get_question_by_id,
     get_question_set,
 )
@@ -76,6 +79,71 @@ async def list_questions(
         is_paid=paid,
     )
     return result
+
+
+_SUPPORTED_OUTPUT_TYPES = {"JEEM", "NEET", "SET", "JEEA"}
+
+
+@router.get("/test/{test_id}", response_model=JEEMTestOut)
+async def get_structured_test(
+    test_id: str,
+    output_type: str = Query(..., description="Output format: JEEM | NEET | SET | JEEA"),
+    title: Optional[str] = Query(None, description="Override test title"),
+    duration: Optional[int] = Query(None, description="Override duration in seconds (default 10800 for JEEM)"),
+    db: AsyncSession = Depends(get_db),
+    user: Optional[TokenPayload] = Depends(get_optional_user),
+):
+    """
+    Return a fully structured test JSON for the given test_id and output_type.
+
+    JEEM — JEE Main format:
+      3 subjects (Physics / Chemistry / Mathematics), each with:
+        Section A: 20 MCQ questions (div1), +4 / -1
+        Section B:  5 Integer questions (div2), +4 / 0
+      Total: 75 questions, 300 marks, 3 hours
+
+    The response shape matches the Test interface in client/src/utils/testData.ts
+    so you can store the endpoint URL directly as tests.url in Supabase — no
+    frontend or score-service changes required.
+
+    Example Supabase tests.url value:
+        https://backend.prepaired.site/api/v1/questions/test/jeem-mock-01?output_type=JEEM
+    """
+    if output_type not in _SUPPORTED_OUTPUT_TYPES:
+        raise HTTPException(
+            status_code=400,
+            detail=f"Unsupported output_type '{output_type}'. Supported: {sorted(_SUPPORTED_OUTPUT_TYPES)}",
+        )
+
+    if output_type == "JEEM":
+        return await get_jeem_test(
+            db,
+            test_id=test_id,
+            test_title=title or "JEE Main Mock Test",
+            duration=duration or 10800,
+        )
+
+    if output_type == "NEET":
+        return await get_neet_test(
+            db,
+            test_id=test_id,
+            test_title=title or "NEET Mock Test",
+            duration=duration or 12000,
+        )
+
+    if output_type == "SET":
+        return await get_set_test(
+            db,
+            test_id=test_id,
+            test_title=title or "Practice Set",
+            duration=duration or 3600,
+        )
+
+    # JEEA — scaffolded, not yet implemented.
+    raise HTTPException(
+        status_code=501,
+        detail=f"output_type '{output_type}' is recognised but not yet implemented.",
+    )
 
 
 @router.get("/{question_id}", response_model=QuestionDetailOut)

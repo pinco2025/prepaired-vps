@@ -85,3 +85,55 @@ class QuestionDetailOut(BaseModel):
     """Full single-question response with embedded solution."""
     question: QuestionOut
     solution: Optional[SolutionOut] = None
+
+
+# ── JEEM (JEE Main) structured test output ───────────────────────────────────
+# Matches the Test interface in client/src/utils/testData.ts exactly so that
+# fetchTestData() and score_service.calculate_score() both work without changes.
+
+class JEEMSectionConfig(BaseModel):
+    """One section row in the top-level sections[] array."""
+    name: str
+    marksPerQuestion: int
+    negativeMarksPerQuestion: int
+
+
+class JEEMQuestionTags(BaseModel):
+    tag1: str = ""   # source_code (source material reference)
+    tag2: str = ""   # chapter code — used by score_service for chapter breakdown
+    tag3: str = ""
+    tag4: str = ""   # source_q_no
+    type: str = ""   # "MCQ" | "Integer"
+    year: str = ""
+
+
+class JEEMQuestionOut(BaseModel):
+    """
+    Per-question shape inside the JEEM test response.
+    Extends the base question fields with fields the score service reads.
+    """
+    id: str
+    uuid: str
+    text: str
+    image: Optional[str] = None
+    options: List[Dict[str, Any]]
+    correctAnswer: Optional[str] = None
+    marks: int
+    section: str                           # e.g. "Physics - Section A"
+    chapterCode: Optional[str] = None
+    difficulty: Optional[str] = None       # "E" | "M" | "H"
+    tags: JEEMQuestionTags = JEEMQuestionTags()
+
+
+class JEEMTestOut(BaseModel):
+    """
+    Top-level JEEM test response — mirrors the Test interface in testData.ts.
+    Served at GET /api/v1/questions/test/{testId}?output_type=JEEM.
+    Store this endpoint URL as tests.url in Supabase for seamless integration.
+    """
+    testId: str
+    title: str
+    duration: int                          # seconds — 3 hours = 10800
+    totalMarks: int                        # 300 for standard JEEM
+    sections: List[JEEMSectionConfig]
+    questions: List[JEEMQuestionOut]

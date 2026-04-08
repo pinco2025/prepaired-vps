@@ -8,8 +8,11 @@ Design principles:
 - Output normalisation: converts ORM rows → Pydantic shapes expected by frontend
 """
 
+import logging
 import random
-from typing import Dict, List, Optional, Tuple
+from typing import Dict, List, NamedTuple, Optional
+
+logger = logging.getLogger(__name__)
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -19,6 +22,10 @@ from app.core.config import settings
 from app.models.question import Question, Solution
 from app.schemas.question import (
     Flags,
+    JEEMQuestionOut,
+    JEEMQuestionTags,
+    JEEMSectionConfig,
+    JEEMTestOut,
     OptionContent,
     QuestionDetailOut,
     QuestionOut,
@@ -179,6 +186,333 @@ async def check_chapter_exists(
     )
     result = await db.execute(stmt)
     return result.scalar_one_or_none() is not None
+
+
+# ── JEEM output shaping ────────────────────────────────────────────────────────
+
+class _DivSpec(NamedTuple):
+    suffix: str       # "Section A" | "Section B"
+    q_type: str       # "MCQ" | "Integer"
+    marks: int        # positive marks per question
+    neg_marks: int    # negative marks per question (0 or negative)
+    expected: int     # expected question count — used for data-quality warnings
+
+
+# Section definitions for JEE Main output type.
+# Order determines the render order in the test UI.
+_JEEM_SUBJECTS: List[str] = ["physics", "chemistry", "mathematics"]
+_JEEM_SUBJECT_LABELS: Dict[str, str] = {
+    "physics": "Physics",
+    "chemistry": "Chemistry",
+    "mathematics": "Mathematics",
+}
+_JEEM_DIV_CONFIG: Dict[str, _DivSpec] = {
+    "div1": _DivSpec(suffix="Section A", q_type="MCQ",     marks=4, neg_marks=-1, expected=20),
+    "div2": _DivSpec(suffix="Section B", q_type="Integer", marks=4, neg_marks=0,  expected=5),
+}
+
+# Built once at import time — purely derived from the constants above.
+_JEEM_SECTIONS: List[JEEMSectionConfig] = [
+    JEEMSectionConfig(
+        name=f"{_JEEM_SUBJECT_LABELS[subj]} - {spec.suffix}",
+        marksPerQuestion=spec.marks,
+        negativeMarksPerQuestion=spec.neg_marks,
+    )
+    for subj in _JEEM_SUBJECTS
+    for spec in (_JEEM_DIV_CONFIG["div1"], _JEEM_DIV_CONFIG["div2"])
+]
+
+
+def _normalise_div(raw: Optional[str]) -> Optional[str]:
+    """Map section_type raw values to canonical div keys (div1 / div2)."""
+    if not raw:
+        return None
+    v = raw.strip().lower()
+    if v in ("div1", "d1", "section_a", "sec_a", "sectiona"):
+        return "div1"
+    if v in ("div2", "d2", "section_b", "sec_b", "sectionb"):
+        return "div2"
+    if v.startswith("div1") or v.startswith("d1"):
+        return "div1"
+    if v.startswith("div2") or v.startswith("d2"):
+        return "div2"
+    return None
+
+
+def _orm_to_jeem_question_out(
+    q: Question,
+    section_name: str,
+    question_type: str,
+    marks: int,
+) -> JEEMQuestionOut:
+    question_json = q.question or {}
+    options_json: Dict = q.options or {}
+    source_info = q.source_info or {}
+
+    options_list = []
+    for key in ("A", "B", "C", "D"):
+        opt = options_json.get(key) or {}
+        if opt.get("text") or opt.get("image_url"):
+            options_list.append({
+                "id": key.lower(),
+                "text": opt.get("text", ""),
+                "image": opt.get("image_url"),
+            })
+
+    return JEEMQuestionOut(
+        id=q.legacy_id or q.id,
+        uuid=q.legacy_id or q.id,
+        text=question_json.get("text", ""),
+        image=question_json.get("image_url"),
+        options=options_list,
+        correctAnswer=q.answer,           # always exposed — score service needs it
+        marks=marks,
+        section=section_name,
+        chapterCode=q.chapter,
+        difficulty=source_info.get("difficulty"),
+        tags=JEEMQuestionTags(
+            tag1=source_info.get("source_code", "") or "",
+            tag2=q.chapter or "",          # score_service reads tags.tag2 for chapter breakdown
+            tag3="",
+            tag4=source_info.get("source_q_no", "") or "",
+            type=question_type,
+            year=str(q.year or ""),
+        ),
+    )
+
+
+async def get_jeem_test(
+    db: AsyncSession,
+    *,
+    test_id: str,
+    test_title: str = "JEE Main Mock Test",
+    duration: int = 10800,             # 3 hours in seconds
+) -> JEEMTestOut:
+    """
+    Fetch all questions for a JEE Main test (identified by test_id in used_in[])
+    and structure them into the 6-section JEEM format:
+        Physics A (20 MCQ) | Physics B (5 Integer)
+        Chemistry A (20 MCQ) | Chemistry B (5 Integer)
+        Mathematics A (20 MCQ) | Mathematics B (5 Integer)
+
+    section_type in source_info determines div1 (Section A) vs div2 (Section B).
+    Output matches the Test interface in client/src/utils/testData.ts — store the
+    endpoint URL as tests.url in Supabase for seamless frontend/scorer integration.
+    """
+    stmt = (
+        select(Question)
+        .where(Question.used_in.contains([test_id]))
+        .where(Question.verification_status == "verified")
+    )
+    result = await db.execute(stmt)
+    all_questions: List[Question] = list(result.scalars().all())
+
+    # ── Bucket questions into (subject, div) slots ────────────────────────────
+    buckets: Dict[str, Dict[str, List[Question]]] = {
+        subj: {"div1": [], "div2": []} for subj in _JEEM_SUBJECTS
+    }
+
+    ungrouped: List[Question] = []
+    for q in all_questions:
+        subj = (q.subject or "").strip().lower()
+        div = _normalise_div((q.source_info or {}).get("section_type"))
+        if subj in buckets and div in buckets[subj]:
+            buckets[subj][div].append(q)
+        else:
+            ungrouped.append(q)
+
+    if ungrouped:
+        logger.warning(
+            "JEEM shaping: %d questions had unrecognised subject/div and were excluded. "
+            "test_id=%s", len(ungrouped), test_id
+        )
+
+    # ── Build ordered question list; track marks in one pass ─────────────────
+    questions_out: List[JEEMQuestionOut] = []
+    total_marks = 0
+
+    for subj in _JEEM_SUBJECTS:
+        label = _JEEM_SUBJECT_LABELS[subj]
+        for div_key in ("div1", "div2"):
+            spec = _JEEM_DIV_CONFIG[div_key]
+            section_name = f"{label} - {spec.suffix}"
+            section_qs = buckets[subj][div_key]
+
+            if len(section_qs) != spec.expected:
+                logger.warning(
+                    "JEEM shaping: %s has %d questions, expected %d. test_id=%s",
+                    section_name, len(section_qs), spec.expected, test_id,
+                )
+
+            for q in section_qs:
+                questions_out.append(
+                    _orm_to_jeem_question_out(q, section_name, spec.q_type, spec.marks)
+                )
+                total_marks += spec.marks
+
+    return JEEMTestOut(
+        testId=test_id,
+        title=test_title,
+        duration=duration,
+        totalMarks=total_marks,
+        sections=_JEEM_SECTIONS,
+        questions=questions_out,
+    )
+
+
+# ── NEET output shaping ────────────────────────────────────────────────────────
+
+_NEET_SUBJECTS: List[str] = ["physics", "chemistry", "zoology", "botany"]
+_NEET_SUBJECT_LABELS: Dict[str, str] = {
+    "physics": "Physics",
+    "chemistry": "Chemistry",
+    "zoology": "Zoology",
+    "botany": "Botany",
+}
+# NEET has only MCQ (div1), 45 per subject, +4/-1
+_NEET_SPEC = _DivSpec(suffix="", q_type="MCQ", marks=4, neg_marks=-1, expected=45)
+
+_NEET_SECTIONS: List[JEEMSectionConfig] = [
+    JEEMSectionConfig(
+        name=_NEET_SUBJECT_LABELS[subj],
+        marksPerQuestion=_NEET_SPEC.marks,
+        negativeMarksPerQuestion=_NEET_SPEC.neg_marks,
+    )
+    for subj in _NEET_SUBJECTS
+]
+
+
+async def get_neet_test(
+    db: AsyncSession,
+    *,
+    test_id: str,
+    test_title: str = "NEET Mock Test",
+    duration: int = 12000,              # 200 minutes in seconds
+) -> JEEMTestOut:
+    """
+    Fetch all questions for a NEET test and structure into 4 sections:
+        Physics (45 MCQ) | Chemistry (45 MCQ) | Zoology (45 MCQ) | Botany (45 MCQ)
+
+    All NEET questions are MCQ (div1). Bucketed by subject only — no div split.
+    Total: 180 questions, 720 marks, 200 minutes.
+    """
+    stmt = (
+        select(Question)
+        .where(Question.used_in.contains([test_id]))
+        .where(Question.verification_status == "verified")
+    )
+    result = await db.execute(stmt)
+    all_questions: List[Question] = list(result.scalars().all())
+
+    buckets: Dict[str, List[Question]] = {subj: [] for subj in _NEET_SUBJECTS}
+    ungrouped: List[Question] = []
+
+    for q in all_questions:
+        subj = (q.subject or "").strip().lower()
+        if subj in buckets:
+            buckets[subj].append(q)
+        else:
+            ungrouped.append(q)
+
+    if ungrouped:
+        logger.warning(
+            "NEET shaping: %d questions had unrecognised subject and were excluded. "
+            "test_id=%s", len(ungrouped), test_id
+        )
+
+    questions_out: List[JEEMQuestionOut] = []
+    total_marks = 0
+
+    for subj in _NEET_SUBJECTS:
+        label = _NEET_SUBJECT_LABELS[subj]
+        section_qs = buckets[subj]
+
+        if len(section_qs) != _NEET_SPEC.expected:
+            logger.warning(
+                "NEET shaping: %s has %d questions, expected %d. test_id=%s",
+                label, len(section_qs), _NEET_SPEC.expected, test_id,
+            )
+
+        for q in section_qs:
+            questions_out.append(
+                _orm_to_jeem_question_out(q, label, _NEET_SPEC.q_type, _NEET_SPEC.marks)
+            )
+            total_marks += _NEET_SPEC.marks
+
+    return JEEMTestOut(
+        testId=test_id,
+        title=test_title,
+        duration=duration,
+        totalMarks=total_marks,
+        sections=_NEET_SECTIONS,
+        questions=questions_out,
+    )
+
+
+# ── SET output shaping ─────────────────────────────────────────────────────────
+
+_SET_DIV_CONFIG: Dict[str, _DivSpec] = {
+    "div1": _DivSpec(suffix="MCQ",     q_type="MCQ",     marks=4, neg_marks=-1, expected=0),
+    "div2": _DivSpec(suffix="Integer", q_type="Integer", marks=4, neg_marks=0,  expected=0),
+}
+
+# Built once — 2 sections (MCQ then Integer); no subject grouping for SETs.
+_SET_SECTIONS: List[JEEMSectionConfig] = [
+    JEEMSectionConfig(
+        name=spec.suffix,
+        marksPerQuestion=spec.marks,
+        negativeMarksPerQuestion=spec.neg_marks,
+    )
+    for spec in (_SET_DIV_CONFIG["div1"], _SET_DIV_CONFIG["div2"])
+]
+
+
+async def get_set_test(
+    db: AsyncSession,
+    *,
+    test_id: str,
+    test_title: str = "Practice Set",
+    duration: int = 3600,               # 1 hour default
+) -> JEEMTestOut:
+    """
+    Fetch all questions for a practice SET and bucket into 2 sections by div type:
+        MCQ (div1, +4/-1) | Integer (div2, +4/0)
+
+    No subject grouping — section_type in source_info drives placement.
+    Questions with missing/unrecognised section_type default to div1 (MCQ).
+    """
+    stmt = (
+        select(Question)
+        .where(Question.used_in.contains([test_id]))
+        .where(Question.verification_status == "verified")
+    )
+    result = await db.execute(stmt)
+    all_questions: List[Question] = list(result.scalars().all())
+
+    buckets: Dict[str, List[Question]] = {"div1": [], "div2": []}
+
+    for q in all_questions:
+        div = _normalise_div((q.source_info or {}).get("section_type")) or "div1"
+        buckets[div].append(q)
+
+    questions_out: List[JEEMQuestionOut] = []
+    total_marks = 0
+
+    for div_key, spec in _SET_DIV_CONFIG.items():
+        for q in buckets[div_key]:
+            questions_out.append(
+                _orm_to_jeem_question_out(q, spec.suffix, spec.q_type, spec.marks)
+            )
+            total_marks += spec.marks
+
+    return JEEMTestOut(
+        testId=test_id,
+        title=test_title,
+        duration=duration,
+        totalMarks=total_marks,
+        sections=_SET_SECTIONS,
+        questions=questions_out,
+    )
 
 
 async def get_diagnostic_questions(
