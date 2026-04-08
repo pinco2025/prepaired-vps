@@ -1,0 +1,94 @@
+{
+  "_comment": "Copy this file to sets_sources.json and fill in your GitHub URLs. Never commit sets_sources.json.",
+
+  "condensed": {
+    "_comment": "Encrypted .enc files. encrypted=true triggers XOR decrypt.",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/Physics_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "chemistry": {
+        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/Chemistry_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "biology": {
+        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/Biology_questions.enc",
+        "encrypted": true,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "neet-phy": {
+    "_comment": "NEET physics — exported_questions.json per subject folder. id_field is 'uuid' for this format.",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/physics/exported_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "uuid"
+      }
+    }
+  },
+
+  "super-30": {
+    "_comment": "super-30 has PYQ.json and IPQ.json at the root. Add each as a separate subject entry.",
+    "subjects": {
+      "pyq": {
+        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/PYQ.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "ipq": {
+        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/IPQ.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "pyq-2026": {
+    "_comment": "2026 PYQs — plain JSON. One file per subject or all in one.",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/Physics_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "chemistry": {
+        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/Chemistry_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      },
+      "biology": {
+        "url": "https://github.com/YOUR_ORG/YOUR_REPO/blob/main/PATH/Biology_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  },
+
+  "_local_example": {
+    "_comment": "Use local=true + a file path for offline/testing. Remove this entry when done.",
+    "subjects": {
+      "all": {
+        "url": "/tmp/my_set_questions.json",
+        "local": true,
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "id"
+      }
+    }
+  }
+}

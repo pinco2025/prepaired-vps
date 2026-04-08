@@ -1,0 +1,120 @@
+"""
+Score calculation endpoints — replaces Render backend.
+
+POST /api/v1/scores/{student_test_id}/calculate
+"""
+
+import logging
+from typing import Any, Dict
+import httpx
+
+from fastapi import APIRouter, Depends, HTTPException, status
+from pydantic import BaseModel
+
+from app.core.deps import get_current_user
+from app.core.security import TokenPayload
+from app.services.score_service import score_service
+from app.services.supabase_client import sb_select, sb_update, SupabaseError
+
+logger = logging.getLogger(__name__)
+router = APIRouter(prefix="/scores", tags=["scores"])
+
+
+class CalculateScoreIn(BaseModel):
+    # Depending on frontend, it might pass answers or we can rely on DB. 
+    # Legacy didn't need it, but scaffold had this, so we make it optional to support both.
+    answers: Dict[str, Any] | None = None
+
+
+@router.post("/{student_test_id}/calculate", status_code=status.HTTP_200_OK)
+async def calculate_score(
+    student_test_id: str,
+    body: CalculateScoreIn | None = None,
+    user: TokenPayload = Depends(get_current_user),
+) -> Dict[str, Any]:
+    """
+    Calculate and persist the score for a submitted test.
+    Ported from the legacy Render backend.
+    """
+    try:
+        # 1. Fetch student_tests row
+        student_tests = await sb_select("student_tests", {"id": f"eq.{student_test_id}"})
+        if not student_tests:
+            raise HTTPException(status_code=404, detail="Student test not found")
+        student_test = student_tests[0]
+        
+        # 2. Verify user ownership
+        if student_test.get("user_id") != user.sub: # sub is the user ID in Supabase JWT
+            raise HTTPException(status_code=403, detail="Not authorized to access this test")
+            
+        # 3. Return existing if already calculated
+        existing_result_url = student_test.get("result_url")
+        if existing_result_url:
+            logger.info(f"Score already calculated for {student_test_id}. Returning existing URL.")
+            return {"student_test_id": student_test_id, "github_url": existing_result_url}
+            
+        test_id = student_test.get("test_id")
+        # Use answers from body if provided, else from DB
+        answers = (body.answers if body and body.answers else student_test.get("answers")) or {}
+        
+        if not test_id:
+            raise HTTPException(status_code=400, detail="Test ID missing in student test record")
+            
+        # 4. Fetch tests row
+        tests = await sb_select("tests", {"testID": f"eq.{test_id}"})
+        if not tests:
+            raise HTTPException(status_code=404, detail="Test definition not found")
+        test_record = tests[0]
+        
+        test_url = test_record.get("url")
+        if not test_url:
+            raise HTTPException(status_code=400, detail="Test URL missing in test record")
+            
+        # 5. Fetch test JSON from GitHub raw URL
+        ppt_data = {}
+        try:
+            async with httpx.AsyncClient() as client:
+                resp = await client.get(test_url)
+                resp.raise_for_status()
+                ppt_data = resp.json()
+        except Exception as e:
+            logger.error(f"Error fetching test JSON from {test_url}: {e}")
+            raise HTTPException(status_code=502, detail="Error fetching test definition from external source")
+            
+        # 6. Calculate scores
+        try:
+            result = score_service.calculate_score(ppt_data, answers)
+        except Exception as e:
+            logger.error(f"Error calculating score: {e}")
+            raise HTTPException(status_code=500, detail="Error calculating score")
+            
+        # 7. Push to GitHub
+        try:
+            filename = f"{student_test_id}.json"
+            github_url = await score_service.push_to_github(result, filename)
+        except Exception as e:
+            logger.error(f"Error pushing results to GitHub: {e}")
+            raise HTTPException(status_code=502, detail=f"Error pushing results to GitHub: {str(e)}")
+            
+        # 8. Update student_tests with result_url
+        try:
+            await sb_update("student_tests", {"id": f"eq.{student_test_id}"}, {"result_url": github_url})
+        except SupabaseError as e:
+            logger.error(f"Error updating student_tests with result URL: {e}")
+            
+        # Note: Trigger Analytics omitted here; wait until analytics_service is implemented
+        # or implement a placeholder in a future phase.
+        
+        return {
+            "student_test_id": student_test_id, 
+            "github_url": github_url
+        }
+
+    except HTTPException:
+        raise
+    except SupabaseError as e:
+        logger.error(f"Supabase error: {e}")
+        raise HTTPException(status_code=500, detail="Database integration error")
+    except Exception as e:
+        logger.error(f"Unexpected error: {e}")
+        raise HTTPException(status_code=500, detail="An unexpected error occurred")

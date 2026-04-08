@@ -1,0 +1,1711 @@
+{
+  "Physics": [
+    {
+      "code": "VEP",
+      "name": "Vector Algebra",
+      "level": 2,
+      "topics": {
+        "1": "circumcenter",
+        "2": "projection",
+        "3": "bisector",
+        "4": "area",
+        "5": "collinearity"
+      }
+    },
+    {
+      "code": "UNM",
+      "name": "Units and Measurements",
+      "level": 2,
+      "topics": {
+        "1": "Units of measurements",
+        "2": "System of units and SI Units",
+        "3": "Fundamental and derived units",
+        "4": "Least count",
+        "5": "Significant figures",
+        "6": "Errors in measurements",
+        "7": "Dimensions of physical quantities",
+        "8": "Dimensional analysis and applications",
+        "9": "Screw gauge",
+        "10": "Vernier Calliper",
+        "11": "Test-Topic"
+      }
+    },
+    {
+      "code": "MSL",
+      "name": "Motion in a Straight Line",
+      "level": 2,
+      "topics": {
+        "1": "Frame of reference",
+        "2": "Motion in a straight line",
+        "3": "Speed and velocity",
+        "4": "Uniform and non-uniform motion",
+        "5": "Average speed and instantaneous velocity",
+        "6": "Uniformly accelerated motion",
+        "7": "Velocity-time and position-time graphs",
+        "8": "Relations for uniformly accelerated motion",
+        "9": "free fall"
+      }
+    },
+    {
+      "code": "MPN",
+      "name": "Motion in a Plane",
+      "level": 4,
+      "topics": {
+        "1": "Relative velocity",
+        "2": "Motion in a plane",
+        "3": "Projectile motion",
+        "4": "Uniform circular motion",
+        "5": "Minimum Distance of approach",
+        "6": "kkk",
+        "7": "Motion in space"
+      }
+    },
+    {
+      "code": "CPM",
+      "name": "Circular Motion",
+      "level": 1,
+      "topics": {
+        "1": "Centripetal Force"
+      }
+    },
+    {
+      "code": "LOM",
+      "name": "Laws of Motion",
+      "level": 1,
+      "topics": {
+        "1": "Force and inertia",
+        "2": "lami's Theoram",
+        "3": "Newton's first law of motion",
+        "4": "Momentum",
+        "5": "Newton's second law of motion",
+        "6": "Impulse",
+        "7": "Newton's third law of motion",
+        "8": "Law of conservation of linear momentum",
+        "9": "Equilibrium of concurrent forces",
+        "10": "Static and kinetic friction",
+        "11": "Laws of friction",
+        "12": "Rolling friction",
+        "13": "Dynamics of uniform circular motion",
+        "14": "Centripetal force",
+        "15": "Vehicle on level circular road",
+        "16": "Vehicle on banked road",
+        "17": "Simple Pendulum",
+        "18": "Constrained Motion",
+        "19": "Wedge-block constrained motion",
+        "20": "spring systems"
+      }
+    },
+    {
+      "code": "WEP",
+      "name": "Work Energy and Power",
+      "level": 3,
+      "topics": {
+        "1": "Work done by constant and variable force",
+        "2": "Kinetic and potential energies",
+        "3": "Work-energy theorem",
+        "4": "Power",
+        "5": "Potential energy of a spring",
+        "6": "Conservation of mechanical energy",
+        "7": "Conservative and non-conservative forces",
+        "8": "Motion in a vertical circle",
+        "9": "kinetic Energy - momentum relation",
+        "10": "potential Energy - Force"
+      }
+    },
+    {
+      "code": "COM",
+      "name": "Center of Mass",
+      "level": 3,
+      "topics": {
+        "1": "Elastic collisions",
+        "2": "Inelastic collisions",
+        "3": "Calcuation of COM",
+        "4": "Velocity & other quantities of COM",
+        "5": "Centre of mass (two-particle system and rigid body)",
+        "6": "System of Variable Mass",
+        "7": "splitting of a body",
+        "8": "Conservation of Momentum",
+        "9": "Conservation of Momentum & Energy",
+        "10": "Linear Impulse",
+        "11": "Linear Momemtum",
+        "12": "General Collision"
+      }
+    },
+    {
+      "code": "ROT",
+      "name": "Rotational Motion",
+      "level": 3,
+      "topics": {
+        "1": "Basic concepts of rotational motion",
+        "2": "Moment of force and torque",
+        "3": "Rotational Equilibrium",
+        "4": "Rolling of geometries from Theta inclined plane",
+        "5": "Angular Impulse",
+        "6": "Toppling",
+        "7": "Conservation of Rotational Energy",
+        "8": "Angular momentum",
+        "9": "Conservation of angular momentum",
+        "10": "Moment of inertia",
+        "11": "Radius of gyration",
+        "12": "Moments of inertia for simple geometrical objects",
+        "13": "Parallel and perpendicular axes theorems",
+        "14": "Equilibrium of rigid bodies",
+        "15": "Rigid body rotation",
+        "16": "Equations of rotational motion",
+        "17": "Comparison of linear and rotational motions",
+        "18": "pure rolling",
+        "19": "conservation of angular momentum and Rotational Energy"
+      }
+    },
+    {
+      "code": "GRV",
+      "name": "Gravitation",
+      "level": 1,
+      "topics": {
+        "1": "Universal law of gravitation",
+        "2": "Acceleration due to gravity",
+        "3": "Variation with altitude and depth",
+        "4": "Kepler's laws of planetary motion",
+        "5": "Gravitational potential energy",
+        "6": "Gravitational potential",
+        "7": "Escape velocity",
+        "8": "Motion of a satellite",
+        "9": "Orbital velocity, time period and energy of satellite"
+      }
+    },
+    {
+      "code": "MPS",
+      "name": "Mechanical Properties of Solids",
+      "level": 4,
+      "topics": {
+        "1": "Elastic behaviour",
+        "2": "Stress-strain relationship",
+        "3": "Hooke's Law",
+        "4": "Young's modulus",
+        "5": "Poisson's Ratio",
+        "6": "Bulk Modulus",
+        "7": "Modulus of Rigidity",
+        "8": "Energy"
+      }
+    },
+    {
+      "code": "MPF",
+      "name": "Mechanical Properties of Fluids",
+      "level": 2,
+      "topics": {
+        "1": "Pressure due to fluid column",
+        "2": "Pascal's law and applications",
+        "3": "Effect of gravity on fluid pressure",
+        "4": "Viscosity",
+        "5": "Stoke's law",
+        "6": "Terminal velocity",
+        "7": "Streamline and turbulent flow",
+        "8": "Critical velocity",
+        "9": "Bernoulli's principle and applications",
+        "10": "Surface energy and surface tension",
+        "11": "Angle of contact",
+        "12": "Excess pressure across curved surface",
+        "13": "drops & bubbles",
+        "14": "Capillary rise",
+        "15": "Meniscus, Adhesion, Cohesion"
+      }
+    },
+    {
+      "code": "TPM",
+      "name": "Thermal Properties of Matter",
+      "level": 4,
+      "topics": {
+        "1": "Steady State",
+        "2": "Heat and temperature",
+        "3": "Thermal expansion",
+        "4": "Specific heat capacity",
+        "5": "Calorimetry",
+        "6": "Change of state and latent heat",
+        "7": "conduction",
+        "8": "Heat circuits",
+        "9": "Loss of Energy in Heat",
+        "10": "Newton's law of Cooling",
+        "11": "convection",
+        "12": "radiation",
+        "13": "stephan's law"
+      }
+    },
+    {
+      "code": "THD",
+      "name": "Thermodynamics",
+      "level": 2,
+      "topics": {
+        "1": "Internal Energy",
+        "2": "Thermal equilibrium",
+        "3": "Concept of temperature",
+        "4": "Zeroth law of thermodynamics",
+        "5": "Heat, work and internal energy",
+        "6": "First law of thermodynamics",
+        "7": "Carnot Engine",
+        "8": "Isothermal and adiabatic processes",
+        "9": "Second law of thermodynamics",
+        "10": "Reversible and irreversible processes"
+      }
+    },
+    {
+      "code": "KNT",
+      "name": "Kinetic Theory",
+      "level": 3,
+      "topics": {
+        "1": "Equation of state of perfect gas",
+        "2": "Work done on compressing a gas",
+        "3": "Kinetic theory assumptions",
+        "4": "Concept of pressure",
+        "5": "Kinetic interpretation of temperature",
+        "6": "RMS speed of gas molecules",
+        "7": "Degrees of freedom",
+        "8": "Law of equipartition of energy",
+        "9": "Applications to specific heat capacities",
+        "10": "Mean free path",
+        "11": "Avogadro's number"
+      }
+    },
+    {
+      "code": "OSC",
+      "name": "Oscillations",
+      "level": 4,
+      "topics": {
+        "1": "Oscillations and periodic motion",
+        "2": "Time period and frequency",
+        "3": "Displacement as function of time",
+        "4": "Periodic functions",
+        "5": "Simple harmonic motion (S.H.M.)",
+        "6": "Phase",
+        "7": "Oscillations of a spring",
+        "8": "Restoring force and force constant",
+        "9": "Energy in S.H.M. (kinetic and potential)",
+        "10": "Simple pendulum and time period"
+      }
+    },
+    {
+      "code": "WAV",
+      "name": "Waves",
+      "level": 3,
+      "topics": {
+        "1": "Wave motion",
+        "2": "Longitudinal and transverse waves",
+        "3": "Speed of travelling wave",
+        "4": "Displacement relation for progressive wave",
+        "5": "Principle of superposition",
+        "6": "Reflection of waves",
+        "7": "Standing waves in strings",
+        "8": "organ pipes",
+        "9": "Resonance (vibrating air columns)",
+        "10": "Fundamental mode and harmonics",
+        "11": "Doppler's Effect",
+        "12": "Newton's & Laplace Equation",
+        "13": "Beats",
+        "14": "sonometer"
+      }
+    },
+    {
+      "code": "ECF",
+      "name": "Electric Charges and Fields",
+      "level": 1,
+      "topics": {
+        "1": "Electric charges and conservation of charge",
+        "2": "Coulomb's law",
+        "3": "Forces between point charges and multiple charges",
+        "4": "Superposition principle",
+        "5": "Continuous charge distribution",
+        "6": "Electric field due to point charge",
+        "7": "Electric field lines",
+        "8": "Electric dipole",
+        "9": "Electric field due to dipole",
+        "10": "Torque on dipole in uniform electric field",
+        "11": "Electric flux",
+        "12": "Gauss's law and applications",
+        "13": "Electric potential and calculation for point charge, dipole, system of charges",
+        "14": "Potential difference",
+        "15": "Equipotential surfaces",
+        "16": "Electrical potential energy",
+        "17": "Conductors and insulators"
+      }
+    },
+    {
+      "code": "EPC",
+      "name": "Electrostatic Potential and Capacitance",
+      "level": 3,
+      "topics": {
+        "1": "Dielectrics and electric polarization",
+        "2": "Capacitors and capacitance",
+        "3": "Combination of capacitors (series and parallel)",
+        "4": "Parallel plate capacitor with and without dielectric",
+        "5": "Energy stored in capacitor",
+        "6": "Charging of a Capacitor",
+        "7": "Discharging of Capacitor",
+        "8": "kinematics of charges",
+        "9": "Energy"
+      }
+    },
+    {
+      "code": "CRE",
+      "name": "Current Electricity",
+      "level": 1,
+      "topics": {
+        "1": "Electric current",
+        "2": "Drift velocity and mobility",
+        "3": "Relation with electric current",
+        "4": "Ohm's law",
+        "5": "Electrical resistance",
+        "6": "I-V characteristics (Ohmic and non-ohmic)",
+        "7": "Electrical energy and power",
+        "8": "Electrical resistivity and conductivity",
+        "9": "Series and parallel combinations of resistors",
+        "10": "Temperature dependence of resistance",
+        "11": "Internal resistance of cell",
+        "12": "Potential difference and emf",
+        "13": "Combination of cells (series and parallel)",
+        "14": "Kirchhoff's laws",
+        "15": "Wheatstone bridge",
+        "16": "Metre Bridge"
+      }
+    },
+    {
+      "code": "MCM",
+      "name": "Moving Charges and Magnetism",
+      "level": 1,
+      "topics": {
+        "1": "Biot-Savart law",
+        "2": "Application to current carrying circular loop",
+        "3": "Ampere's law",
+        "4": "Applications to straight wire and solenoid",
+        "5": "Force on moving charge in magnetic and electric fields",
+        "6": "Force on current-carrying conductor",
+        "7": "Force between two parallel current-carrying conductors",
+        "8": "Definition of ampere",
+        "9": "Torque on current loop in magnetic field",
+        "10": "Moving coil galvanometer",
+        "11": "Sensitivity and conversion to ammeter/voltmeter",
+        "12": "Current loop as magnetic dipole",
+        "13": "Magnetic dipole moment",
+        "14": "Bar magnet as equivalent solenoid",
+        "15": "Magnetic field lines",
+        "16": "Magnetic field due to bar magnet",
+        "17": "Torque on magnetic dipole"
+      }
+    },
+    {
+      "code": "MAM",
+      "name": "Magnetism and Matter",
+      "level": 4,
+      "topics": {
+        "1": "Magnetic Suspectibility & Magnetic permeability",
+        "2": "Para-, dia-, and ferromagnetic substances",
+        "3": "Effect of temperature on magnetic properties"
+      }
+    },
+    {
+      "code": "EMI",
+      "name": "Electromagnetic Induction",
+      "level": 4,
+      "topics": {
+        "1": "Electromagnetic induction",
+        "2": "Faraday's law",
+        "3": "Induced emf and current",
+        "4": "Lenz's law",
+        "5": "Eddy currents",
+        "6": "Self and mutual inductance",
+        "7": "Thermal Energy",
+        "8": "transformer",
+        "9": "mettalic conductor",
+        "10": "motional emf"
+      }
+    },
+    {
+      "code": "ALC",
+      "name": "Alternating Current",
+      "level": 2,
+      "topics": {
+        "1": "Peak and RMS values",
+        "2": "Reactance and impedance",
+        "3": "LCR series circuit",
+        "4": "Resonance",
+        "5": "Quality Factor",
+        "6": "Power in AC circuits",
+        "7": "Wattless current",
+        "8": "AC generator and transformer"
+      }
+    },
+    {
+      "code": "EMW",
+      "name": "Electromagnetic Waves",
+      "level": 3,
+      "topics": {
+        "1": "Displacement current",
+        "2": "Electromagnetic waves and characteristics",
+        "3": "Transverse nature",
+        "4": "Ratio of Permeabilities",
+        "5": "Electromagnetic spectrum (radio, microwaves, infrared, visible, UV, X-rays, gamma rays)",
+        "6": "Applications of electromagnetic waves",
+        "7": "Radiation pressure",
+        "8": "Intensity",
+        "9": "Energy"
+      }
+    },
+    {
+      "code": "ROI",
+      "name": "Ray Optics and Optical Instruments",
+      "level": 2,
+      "topics": {
+        "1": "Reflection of light",
+        "2": "Spherical mirrors and mirror formula",
+        "3": "Refraction at plane and spherical surfaces",
+        "4": "Thin lens formula",
+        "5": "Lens maker formula",
+        "6": "Total internal reflection and applications",
+        "7": "Magnification",
+        "8": "Power of lens",
+        "9": "Cutting of lens",
+        "10": "Silvering of Lens",
+        "11": "Medium change in lenses",
+        "12": "Combination of thin lenses in contact",
+        "13": "Refraction through prism",
+        "14": "Minimum Deviation",
+        "15": "Microscope and astronomical telescope",
+        "16": "Magnifying powers",
+        "17": "real & apparent Depth"
+      }
+    },
+    {
+      "code": "WOP",
+      "name": "Wave Optics",
+      "level": 2,
+      "topics": {
+        "1": "Wave optics: wavefront and Huygens' principle",
+        "2": "Laws of reflection and refraction using Huygens principle",
+        "3": "Interference: Young's double-slit experiment",
+        "4": "Fringe width expression",
+        "5": "Coherent sources and sustained interference",
+        "6": "Diffraction due to single slit",
+        "7": "Width of central maximum",
+        "8": "Polarization: plane-polarized light",
+        "9": "Brewster's law",
+        "10": "Uses of plane-polarized light and Polaroids"
+      }
+    },
+    {
+      "code": "DNR",
+      "name": "Dual Nature of Radiation and Matter",
+      "level": 1,
+      "topics": {
+        "1": "Dual nature of radiation",
+        "2": "Photoelectric effect",
+        "3": "Einstein's photoelectric equation",
+        "4": "Particle nature of light",
+        "5": "Wave nature of particle",
+        "6": "de-Broglie relation",
+        "7": "Radiation Pressure"
+      }
+    },
+    {
+      "code": "NUC",
+      "name": "Nuclei",
+      "level": 3,
+      "topics": {
+        "1": "Composition and size of nucleus",
+        "2": "Atomic masses",
+        "3": "Mass-energy relation",
+        "4": "Mass defect",
+        "5": "Binding energy per nucleon",
+        "6": "Variation with mass number",
+        "7": "Nuclear fission and fusion",
+        "8": "Alpha-particle scattering experiment",
+        "9": "Rutherford's model of atom",
+        "10": "Bohr model",
+        "11": "Energy levels",
+        "12": "Hydrogen spectrum"
+      }
+    },
+    {
+      "code": "SME",
+      "name": "Semiconductor Electronics",
+      "level": 2,
+      "topics": {
+        "1": "Semiconductors",
+        "2": "Semiconductor diode: I-V characteristics (forward and reverse bias)",
+        "3": "Diode as rectifier",
+        "4": "I-V characteristics of LED, photodiode, solar cell",
+        "5": "Zener diode",
+        "6": "Zener diode as voltage regulator",
+        "7": "Logic gates (OR, AND, NOT, NAND, NOR)",
+        "8": "p-n junction diode characteristics",
+        "9": "Zener diode characteristics",
+        "10": "Identification of electronic components"
+      }
+    }
+  ],
+  "Chemistry": [
+    {
+      "code": "SBC",
+      "name": "Some Basic Concepts of Chemistry",
+      "level": 3,
+      "topics": {
+        "1": "Matter and its nature",
+        "2": "Dalton's atomic theory",
+        "3": "Concept of atom, molecule, element, compound",
+        "4": "Laws of chemical combination",
+        "5": "Atomic and molecular masses",
+        "6": "Mole concept",
+        "7": "Molar mass",
+        "8": "Percentage composition",
+        "9": "Empirical and molecular formulae",
+        "10": "Chemical equations and stoichiometry",
+        "11": "% purity",
+        "12": "concentration Terms"
+      }
+    },
+    {
+      "code": "SOA",
+      "name": "Structure of Atom",
+      "level": 1,
+      "topics": {
+        "1": "Nature of electromagnetic radiation",
+        "2": "Photoelectric effect",
+        "3": "Spectrum of hydrogen atom",
+        "4": "Bohr model and postulates",
+        "5": "Derivation of energy and radii relations",
+        "6": "Limitations of Bohr's model",
+        "7": "Dual nature of matter",
+        "8": "de Broglie's relationship",
+        "9": "Heisenberg uncertainty principle",
+        "10": "Quantum mechanics elementary ideas",
+        "11": "Quantum mechanical model of atom",
+        "12": "Atomic orbitals as wave functions",
+        "13": "Variation of Ïˆ and ÏˆÂ² with r",
+        "14": "Quantum numbers (principal, angular momentum, magnetic)",
+        "15": "Shapes of s, p, d orbitals",
+        "16": "Electron spin and spin quantum number",
+        "17": "Aufbau principle",
+        "18": "Pauli's exclusion principle",
+        "19": "Hund's rule",
+        "20": "Electronic configuration",
+        "21": "Stability of half-filled and filled orbitals"
+      }
+    },
+    {
+      "code": "CEP",
+      "name": "Classification of Elements and Periodicity in Properties",
+      "level": 3,
+      "topics": {
+        "1": "Modern periodic law",
+        "2": "Present form of periodic table",
+        "3": "s, p, d, f block elements",
+        "4": "Periodic trends (atomic and ionic radii, ionization enthalpy, electron gain enthalpy, valence, oxidation states, chemical reactivity)",
+        "5": "oxides"
+      }
+    },
+    {
+      "code": "CBM",
+      "name": "Chemical Bonding and Molecular Structure",
+      "level": 1,
+      "topics": {
+        "1": "Kossel-Lewis approach",
+        "2": "Ionic and covalent bonds",
+        "3": "Formation of ionic bonds",
+        "4": "Factors affecting ionic bond formation",
+        "5": "Lattice enthalpy calculation",
+        "6": "Electronegativity concept",
+        "7": "Fajan's rule",
+        "8": "Dipole moment",
+        "9": "VSEPR theory",
+        "10": "Shapes of simple molecules",
+        "11": "Valence bond theory",
+        "12": "Hybridization (s, p, d orbitals)",
+        "13": "Resonance",
+        "14": "Molecular Orbital Theory",
+        "15": "LCAOs",
+        "16": "Types of molecular orbitals (bonding, antibonding)",
+        "17": "Sigma and pi-bonds",
+        "18": "MO electronic configurations of homonuclear diatomic molecules",
+        "19": "Bond order, length, energy",
+        "20": "Metallic bonding",
+        "21": "Hydrogen bonding and applications"
+      }
+    },
+    {
+      "code": "CTD",
+      "name": "Thermodynamics",
+      "level": 2,
+      "topics": {
+        "1": "System and surroundings",
+        "2": "Extensive and intensive properties",
+        "3": "State functions",
+        "4": "Entropy",
+        "5": "Types of processes",
+        "6": "First law of thermodynamics",
+        "7": "Work, heat, internal energy, enthalpy",
+        "8": "Heat capacity and molar heat capacity",
+        "9": "Bomb's Calorimeter",
+        "10": "Hess's law",
+        "11": "Enthalpies (bond dissociation, combustion, formation, atomization, sublimation, phase transition, hydration, ionization, solution)",
+        "12": "Second law of thermodynamics",
+        "13": "Spontaneity of processes",
+        "14": "Î”S of universe and Î”G of system",
+        "15": "Standard Gibbs energy change and equilibrium constant"
+      }
+    },
+    {
+      "code": "CQL",
+      "name": "Chemical Equilibrium",
+      "level": 4,
+      "topics": {
+        "1": "Dynamic equilibrium concept",
+        "2": "Physical equilibria (solid-liquid, liquid-gas, gas-gas, solid-gas)",
+        "3": "Henry's law",
+        "4": "Chemical equilibrium",
+        "5": "Law of chemical equilibrium",
+        "6": "Equilibrium constants (Kp and Kc)",
+        "7": "Significance of Î”G and Î”GÂ°",
+        "8": "Factors affecting equilibrium",
+        "9": "Le Chatelier's principle",
+        "10": "degree of dissociation"
+      }
+    },
+    {
+      "code": "IQL",
+      "name": "Ionic Equilibrium",
+      "level": 4,
+      "topics": {
+        "1": "Weak and strong electrolytes",
+        "2": "Ionization of electrolytes",
+        "3": "Acids and bases concepts (Arrhenius, Bronsted-Lowry, Lewis)",
+        "4": "Acid-base equilibria",
+        "5": "Ionization constants",
+        "6": "Ionization of water",
+        "7": "pH scale",
+        "8": "Common ion effect",
+        "9": "Hydrolysis of salts",
+        "10": "Solubility of sparingly soluble salts",
+        "11": "Solubility products",
+        "12": "Buffer solutions",
+        "13": "ph of mixture"
+      }
+    },
+    {
+      "code": "RDX",
+      "name": "Redox Reactions",
+      "level": 3,
+      "topics": {
+        "1": "Electronic concepts of oxidation and reduction",
+        "2": "Redox reactions",
+        "3": "Oxidation number",
+        "4": "Rules for assigning oxidation number",
+        "5": "Balancing redox reactions",
+        "6": "Oxidising/ Reducing Agent"
+      }
+    },
+    {
+      "code": "PBE",
+      "name": "The p-Block Elements",
+      "level": 4,
+      "topics": {
+        "1": "General introduction",
+        "2": "Electronic configuration",
+        "3": "Physical and chemical properties trends",
+        "4": "Unique behaviour of first element in each group",
+        "5": "Theory",
+        "6": "chalcogen"
+      }
+    },
+    {
+      "code": "OCP",
+      "name": "Organic Chemistry Some Basic Principles and Techniques",
+      "level": 1,
+      "topics": {
+        "1": "Tetravalency of carbon",
+        "2": "Shapes of simple molecules",
+        "3": "Hybridization (s and p)",
+        "4": "Classification based on functional groups",
+        "5": "Homologous series",
+        "6": "Isomerism (structural and stereoisomerism)",
+        "7": "Nomenclature (Trivial and IUPAC)",
+        "8": "Covalent bond fission (homolytic and heterolytic)",
+        "9": "Electrophiles and nucleophiles",
+        "10": "Common organic reactions (substitution, addition, elimination, rearrangement)",
+        "11": "Stability of carbocation",
+        "12": "Stability of carbanion",
+        "13": "Stability of radicals",
+        "14": "Stability of carbene, nitrene, benzyne",
+        "15": "Acidity & Basicity",
+        "16": "Resonance",
+        "17": "hyperconjugation",
+        "18": "Isomeric Effect",
+        "19": "Purification methods: crystallization, sublimation, distillation, differential extraction, chromatography"
+      }
+    },
+    {
+      "code": "POC",
+      "name": "Practical Organic Chemistry",
+      "level": 1,
+      "topics": {
+        "1": "Qualitative analysis: detection of nitrogen, sulphur, phosphorus, halogens",
+        "2": "Quantitative analysis: estimation of carbon, hydrogen, nitrogen, halogens, sulphur, phosphorus",
+        "3": "Calculations of empirical and molecular formulae",
+        "4": "Numerical problems",
+        "5": "test to distinguish",
+        "6": "Iodoform Reaction"
+      }
+    },
+    {
+      "code": "HCB",
+      "name": "Hydrocarbons",
+      "level": 1,
+      "topics": {
+        "1": "Classification, isomerism, IUPAC nomenclature",
+        "2": "General methods of preparation, properties, reactions",
+        "3": "Alkanes: conformations (Sawhorse and Newman projections), halogenation mechanism",
+        "4": "Alkenes: geometrical isomerism, electrophilic addition mechanism, addition reactions, ozonolysis, polymerization",
+        "5": "Alkynes: acidic character, addition reactions, polymerization",
+        "6": "Aromatic hydrocarbons: nomenclature, benzene structure and aromaticity, electrophilic substitution mechanism, halogenation, nitration, Friedel-Craft's alkylation and acylation, directive influence",
+        "7": "Reaction"
+      }
+    },
+    {
+      "code": "SOL",
+      "name": "Solutions",
+      "level": 1,
+      "topics": {
+        "1": "Methods of expressing concentration (molality, molarity, mole fraction, percentage)",
+        "2": "Vapour pressure of solutions",
+        "3": "Raoult's Law",
+        "4": "Ideal and non-ideal solutions",
+        "5": "Vapour pressure-composition plots",
+        "6": "Colligative properties",
+        "7": "Relative lowering of vapour pressure",
+        "8": "Depression of freezing point",
+        "9": "Elevation of boiling point",
+        "10": "Osmotic pressure",
+        "11": "Molecular mass determination",
+        "12": "Abnormal molar mass",
+        "13": "van't Hoff factor"
+      }
+    },
+    {
+      "code": "ELC",
+      "name": "Electrochemistry",
+      "level": 2,
+      "topics": {
+        "1": "Electrolytic and metallic conduction",
+        "2": "Conductance in electrolytic solutions",
+        "3": "Molar conductivities and variation with concentration",
+        "4": "Kohlrausch's law and applications",
+        "5": "Electrochemical cells (Electrolytic and Galvanic)",
+        "6": "Types of electrodes",
+        "7": "Electrode potentials and standard electrode potential",
+        "8": "Half-cell and cell reactions",
+        "9": "emf of Galvanic cell and measurement",
+        "10": "Nernst equation and applications",
+        "11": "Relationship between cell potential and Gibbs energy",
+        "12": "Dry cell and lead accumulator",
+        "13": "Fuel cells",
+        "14": "Faraday law"
+      }
+    },
+    {
+      "code": "CHK",
+      "name": "Chemical Kinetics",
+      "level": 3,
+      "topics": {
+        "1": "Rate of chemical reaction",
+        "2": "Factors affecting rate (concentration, temperature, pressure, catalyst)",
+        "3": "Elementary and complex reactions",
+        "4": "Order and molecularity",
+        "5": "Rate law",
+        "6": "Rate constant and units",
+        "7": "Differential and integral forms of zero and first-order reactions",
+        "8": "Characteristics and half-lives",
+        "9": "Effect of temperature on rate",
+        "10": "Arrhenius theory",
+        "11": "Activation energy and calculation",
+        "12": "Collision theory of bimolecular gaseous reactions",
+        "13": "first order reaction",
+        "14": "decay constant"
+      }
+    },
+    {
+      "code": "DBF",
+      "name": "The d-Block and f-Block Elements",
+      "level": 1,
+      "topics": {
+        "1": "Transition elements: general introduction",
+        "2": "Electronic configuration",
+        "3": "Occurrence and characteristics",
+        "4": "Trends in first-row transition elements",
+        "5": "Physical properties",
+        "6": "Ionization enthalpy",
+        "7": "Oxidation states",
+        "8": "Atomic radii",
+        "9": "Colour and catalytic behaviour",
+        "10": "Magnetic properties",
+        "11": "Complex formation",
+        "12": "Interstitial compounds",
+        "13": "Alloy formation",
+        "14": "Preparation, properties and uses of Kâ‚‚Crâ‚‚Oâ‚‡ and KMnOâ‚„",
+        "15": "Inner transition elements",
+        "16": "Lanthanoids: electronic configuration, oxidation states, lanthanoid contraction",
+        "17": "Actinoids: electronic configuration and oxidation states"
+      }
+    },
+    {
+      "code": "COC",
+      "name": "Coordination Compounds",
+      "level": 1,
+      "topics": {
+        "1": "Introduction to coordination compounds",
+        "2": "Werner's theory",
+        "3": "Ligands",
+        "4": "Coordination number",
+        "5": "Denticity and chelation",
+        "6": "IUPAC nomenclature",
+        "7": "Isomerism",
+        "8": "Bonding: Valence bond approach",
+        "9": "Basic ideas of Crystal field theory",
+        "10": "Colour and magnetic properties",
+        "11": "Importance in qualitative analysis, extraction, biological systems"
+      }
+    },
+    {
+      "code": "HAH",
+      "name": "Haloalkanes and Haloarenes",
+      "level": 1,
+      "topics": {
+        "1": "General methods of preparation",
+        "2": "Properties and reactions",
+        "3": "Nature of C-X bond",
+        "4": "Mechanisms of substitution reactions",
+        "5": "Uses and environmental effects of chloroform, iodoform, freons, DDT",
+        "6": "Nucleophilicity",
+        "7": "SN2",
+        "8": "Named Reactions"
+      }
+    },
+    {
+      "code": "APE",
+      "name": "Alcohols Phenols and Ethers",
+      "level": 2,
+      "topics": {
+        "1": "Alcohols, Phenols, Ethers: identification of primary, secondary, tertiary alcohols, dehydration mechanism, acidic nature of phenols, electrophilic substitution, Reimer-Tiemann reaction, structure of ethers",
+        "2": "Aldehydes and Ketones: nature of carbonyl group, nucleophilic addition to >C=O, relative reactivities, nucleophilic addition reactions, Grignard reagent, oxidation, reduction (Wolff-Kishner, Clemmensen), acidity of Î±-hydrogen, Aldol condensation, Cannizzaro reaction, Haloform reaction, chemical tests",
+        "3": "Carboxylic Acids: acidic strength and factors affecting it",
+        "4": "Tests",
+        "5": "oxidation/reduction",
+        "6": "Preparation of Alcohol/Phenol/Ether",
+        "7": "Hydrolysis"
+      }
+    },
+    {
+      "code": "AKC",
+      "name": "Aldehydes Ketones and Carboxylic Acids",
+      "level": 2,
+      "topics": {
+        "1": "Oxidation/Reduction",
+        "2": "tests'",
+        "3": "named reactions"
+      }
+    },
+    {
+      "code": "AMN",
+      "name": "Amines",
+      "level": 2,
+      "topics": {
+        "1": "Amines: nomenclature, classification, structure, basic character, identification of primary, secondary, tertiary amines",
+        "2": "Diazonium Salts: importance in synthetic organic chemistry",
+        "3": "Basicity",
+        "4": "hydrolysis",
+        "5": "Tests"
+      }
+    },
+    {
+      "code": "BIO",
+      "name": "Biomolecules",
+      "level": 2,
+      "topics": {
+        "1": "General introduction and importance",
+        "2": "Carbohydrates: classification, aldoses and ketoses, monosaccharides (glucose, fructose), oligosaccharides (sucrose, lactose, maltose)",
+        "3": "Proteins: Î±-amino acids, peptide bond, polypeptides, protein structure (primary, secondary, tertiary, quaternary), denaturation, enzymes",
+        "4": "Vitamins: classification and functions",
+        "5": "Nucleic Acids: chemical constitution of DNA and RNA, biological functions",
+        "6": "Hormones: general introduction"
+      }
+    },
+    {
+      "code": "QEL",
+      "name": "Qualitative Analysis",
+      "level": 4,
+      "topics": {
+        "1": "Detection of extra elements in organic compounds",
+        "2": "Detection of functional groups (hydroxyl, carbonyl, carboxyl, amino)",
+        "3": "Preparation of inorganic compounds (Mohr's salt, potash alum)",
+        "4": "Preparation of organic compounds (acetanilide, p-nitroacetanilide, aniline yellow, iodoform)",
+        "5": "Titrimetric exercises",
+        "6": "Qualitative salt analysis (cations and anions)",
+        "7": "Chemical principles in experiments (enthalpy, kinetics, colloids)"
+      }
+    }
+  ],
+  "Mathematics": [
+    {
+      "code": "SET",
+      "name": "Sets",
+      "level": 3,
+      "topics": {
+        "1": "Sets and their representation",
+        "2": "Union, intersection and complement of sets",
+        "3": "Algebraic properties of sets",
+        "4": "Power set",
+        "5": "Relations and types of relations",
+        "6": "Equivalence relations",
+        "7": "Functions (one-one, into, onto)",
+        "8": "Composition of functions",
+        "9": "Cardinality"
+      }
+    },
+    {
+      "code": "RAF",
+      "name": "Relations and Functions",
+      "level": 1,
+      "topics": {
+        "1": "Domain-Rang"
+      }
+    },
+    {
+      "code": "TRF",
+      "name": "Trigonometric Functions",
+      "level": 4,
+      "topics": {
+        "1": "Trigonometrical identities",
+        "2": "Trigonometrical functions",
+        "3": "Inverse trigonometrical functions",
+        "4": "Properties of inverse trigonometrical functions"
+      }
+    },
+    {
+      "code": "TFI",
+      "name": "Trigonometric Functions and Equations",
+      "level": 1
+    },
+    {
+      "code": "CMX",
+      "name": "Complex Numbers",
+      "level": 2,
+      "topics": {
+        "1": "Complex numbers as ordered pairs",
+        "2": "Representation in form a + ib",
+        "3": "Argand diagram",
+        "4": "Algebra of complex numbers",
+        "5": "Conjugate (Properties)",
+        "6": "Modulus (Properties)",
+        "7": "Argument(properties)",
+        "8": "Euler's Formula",
+        "9": "Multiplicative Inverse",
+        "10": "geometry"
+      }
+    },
+    {
+      "code": "QEN1",
+      "name": "Quadratic Equations",
+      "level": 3,
+      "topics": {
+        "1": "Quadratic equations in real and complex systems",
+        "2": "Relations between roots and coefficients",
+        "3": "Nature of roots",
+        "4": "Formation of quadratic equations with given roots",
+        "5": "Newtons' formula",
+        "6": "Inequalites",
+        "7": "no of solution"
+      }
+    },
+    {
+      "code": "PRC",
+      "name": "Permutations and Combinations",
+      "level": 2,
+      "topics": {
+        "1": "Fundamental principle of counting",
+        "2": "Permutations and combinations",
+        "3": "Meaning of P(n, r) and C(n, r)",
+        "4": "Plane with geos, points and figurss",
+        "5": "Exlusion",
+        "6": "Circular Permutation",
+        "7": "Derangement",
+        "8": "Number of Terms",
+        "9": "Word/letter Arrangement/ Dictionaries position/ vowel",
+        "10": "Digit, sum, possible Combination"
+      }
+    },
+    {
+      "code": "BNT",
+      "name": "Binomial Theorem",
+      "level": 1,
+      "topics": {
+        "1": "Awkward remainder",
+        "2": "No of Int/ real / img etc Terms",
+        "3": "Binomial theorem for positive integral index",
+        "4": "Coefficient properties / results/ standards",
+        "5": "Ratio of Terms",
+        "6": "General term, Expansion Properties",
+        "7": "3 cons, coefficients",
+        "8": "Largest term / coefficient etc",
+        "9": "Non Whole idx -> -ve/ fractions",
+        "10": "Sum of 'C' Expansions"
+      }
+    },
+    {
+      "code": "SQS",
+      "name": "Sequences and Series",
+      "level": 1,
+      "topics": {
+        "1": "Special Sequence (infinity) -- breaking",
+        "2": "Arithmetic progressions",
+        "3": "Geometric progressions",
+        "4": "Single Double Sigma",
+        "5": "AP between No",
+        "6": "Insertion of arithmetic means",
+        "7": "Insertion of geometric means",
+        "8": "Relation between A.M and G.M & H.M"
+      }
+    },
+    {
+      "code": "STL",
+      "name": "Straight Lines",
+      "level": 2,
+      "topics": {
+        "1": "Cartesian system of rectangular coordinates",
+        "2": "Distance formula",
+        "3": "Section formula",
+        "4": "Locus and its equation",
+        "5": "Slope of a line",
+        "6": "Parallel and perpendicular lines",
+        "7": "Intercepts on coordinate axes",
+        "8": "Various forms of equations of straight line",
+        "9": "Intersection of lines",
+        "10": "Angles between two lines",
+        "11": "Conditions for concurrence of three lines",
+        "12": "Distance of a point from a line",
+        "13": "Centroid, orthocentre and circumcentre of triangle",
+        "14": "Reflection of a Line",
+        "15": "Rotation of a Line",
+        "16": "Pair of straight line",
+        "17": "orientation of point wrt line"
+      }
+    },
+    {
+      "code": "CIR1",
+      "name": "Circle",
+      "level": 4,
+      "topics": {
+        "1": "Standard form of circle equation",
+        "2": "General form of circle equation",
+        "3": "Radius and centre of circle",
+        "4": "Circle when endpoints of diameter are given",
+        "5": "Points of intersection of line and circle",
+        "6": "System of Circles",
+        "7": "DCT, TCT",
+        "8": "Radical Axis",
+        "9": "Properties",
+        "10": "Tangent",
+        "11": "Normal",
+        "12": "Length of Chord",
+        "13": "inscribed/circumscribed circle"
+      }
+    },
+    {
+      "code": "PAR1",
+      "name": "Parabola",
+      "level": 4,
+      "topics": {
+        "1": "Focus - Directrix",
+        "2": "Area of Regions",
+        "3": "Curve between parabolas",
+        "4": "focus, focal chords",
+        "5": "Intersection of parabolas",
+        "6": "Properties",
+        "7": "Director Circle",
+        "8": "Tangent",
+        "9": "Normal"
+      }
+    },
+    {
+      "code": "ELL1",
+      "name": "Ellipse",
+      "level": 4,
+      "topics": {
+        "1": "Auxillary Circle",
+        "2": "Focus - Directrix",
+        "3": "Area of Regions",
+        "4": "focus, focal chords",
+        "5": "Intersection of parabolas",
+        "6": "Properties",
+        "7": "Director Circle",
+        "8": "Tangent",
+        "9": "Normal",
+        "10": "chord"
+      }
+    },
+    {
+      "code": "HYB1",
+      "name": "Hyperbola",
+      "level": 4,
+      "topics": {
+        "1": "Focus - Directrix",
+        "2": "Conjugate Hyperbola",
+        "3": "focus, focal chords",
+        "4": "Intersection of parabolas",
+        "5": "Properties",
+        "6": "Director Circle",
+        "7": "Tangent",
+        "8": "Normal",
+        "9": "Rectangular Hyperbola",
+        "10": "Properties"
+      }
+    },
+    {
+      "code": "LMD",
+      "name": "Limits and Derivatives",
+      "level": 3,
+      "topics": {
+        "1": "Real-valued functions",
+        "2": "Algebra of functions",
+        "3": "Polynomial, rational, trigonometric, logarithmic and exponential functions",
+        "4": "Inverse functions",
+        "5": "Graphs of simple functions",
+        "6": "Limits and continuity",
+        "7": "Differentiability"
+      }
+    },
+    {
+      "code": "DIF",
+      "name": "Differentiation",
+      "level": 2,
+      "topics": {
+        "1": "Differentiation of sum, difference, product and quotient",
+        "2": "Differentiation of trigonometric functions",
+        "3": "Differentiation of inverse trigonometric functions",
+        "4": "Differentiation of logarithmic and exponential functions",
+        "5": "Differentiation of composite and implicit functions",
+        "6": "Derivatives of order up to two"
+      }
+    },
+    {
+      "code": "STA",
+      "name": "Statistics",
+      "level": 2,
+      "topics": {
+        "1": "Measures of dispersion",
+        "2": "Mean, median, mode (grouped and ungrouped data)",
+        "3": "Standard deviation",
+        "4": "Variance",
+        "5": "Mean deviation"
+      }
+    },
+    {
+      "code": "PRB",
+      "name": "Probability",
+      "level": 2,
+      "topics": {
+        "1": "Probability of an event",
+        "2": "Addition and multiplication theorems of probability",
+        "3": "Baye's theorem",
+        "4": "Probability distribution of random variable"
+      }
+    },
+    {
+      "code": "ITF",
+      "name": "Inverse Trigonometric Functions",
+      "level": 4,
+      "topics": {
+        "1": "Domain - Range",
+        "2": "solution",
+        "3": "value based"
+      }
+    },
+    {
+      "code": "MTX",
+      "name": "Matrices",
+      "level": 2,
+      "topics": {
+        "1": "Matrices and algebra of matrices",
+        "2": "Types of matrices",
+        "3": "Determinants of order 2 and 3",
+        "4": "Evaluation of determinants",
+        "5": "Area of triangles using determinants",
+        "6": "Adjoint and inverse of square matrix",
+        "7": "Test of consistency",
+        "8": "Solution of simultaneous linear equations using matrices",
+        "9": "Adjoint Properties"
+      }
+    },
+    {
+      "code": "CAD",
+      "name": "Continuity and Differentiability",
+      "level": 4,
+      "topics": {
+        "1": "limits & basics"
+      }
+    },
+    {
+      "code": "AOD",
+      "name": "Application of Derivatives",
+      "level": 2,
+      "topics": {
+        "1": "Rate of change of quantities",
+        "2": "Monotonic increasing and decreasing functions",
+        "3": "Maxima and minima of functions",
+        "4": "Intermediate value Theorem",
+        "5": "Rolle's Theorem",
+        "6": "Mean Value Theorem",
+        "7": "Cauchy's Mean Value Theorem",
+        "8": "Lagrange's Mean Value Theorem"
+      }
+    },
+    {
+      "code": "INT1",
+      "name": "Indefinite Integrals",
+      "level": 4,
+      "topics": {
+        "1": "Integral as anti-derivative",
+        "2": "Fundamental integrals (algebraic, trigonometric, exponential, logarithmic)",
+        "3": "Integration by substitution",
+        "4": "Integration by parts",
+        "5": "Integration by partial fractions",
+        "6": "Integration using trigonometric identities"
+      }
+    },
+    {
+      "code": "INT2",
+      "name": "Definite Integrals",
+      "level": 1,
+      "topics": {
+        "1": "Fundamental theorem of calculus",
+        "2": "King's rule",
+        "3": "Cyclic Rule -> Even Odd Function -> piecwise Continuous",
+        "4": "Wallis Rule",
+        "5": "2a -> a Property",
+        "6": "Basic Properties",
+        "7": "Integration as a limit",
+        "8": "Evaluation of definite integrals"
+      }
+    },
+    {
+      "code": "AOI",
+      "name": "Application of Integrals",
+      "level": 4,
+      "topics": {
+        "1": "Areas bounded by simple curves"
+      }
+    },
+    {
+      "code": "DFE",
+      "name": "Differential Equations",
+      "level": 1,
+      "topics": {
+        "1": "Ordinary differential equations",
+        "2": "Order and degree",
+        "3": "Solution by separation of variables",
+        "4": "Homogeneous differential equations",
+        "5": "Linear differential equations of type dy/dx + P(x)y = Q(x)"
+      }
+    },
+    {
+      "code": "VEC",
+      "name": "Vector Algebra",
+      "level": 1,
+      "topics": {
+        "1": "Vectors and scalars",
+        "2": "Addition of vectors",
+        "3": "Components of a vector in 2D and 3D",
+        "4": "Scalar product",
+        "5": "Vector product"
+      }
+    },
+    {
+      "code": "TDG",
+      "name": "Three Dimensional Geometry",
+      "level": 1,
+      "topics": {
+        "1": "Coordinates of a point in space",
+        "2": "Distance between two points",
+        "3": "Section formula",
+        "4": "Direction ratios and direction cosines",
+        "5": "Angle between two intersecting lines",
+        "6": "Equation of a line",
+        "7": "Skew lines",
+        "8": "Shortest distance between skew lines"
+      }
+    }
+  ],
+  "Botany": [
+    {
+      "code": "TLW",
+      "name": "The Living World",
+      "level": 1,
+      "topics": {
+        "1": "What is living?",
+        "2": "Taxonomic categories",
+        "3": "Taxonomical Aids"
+      }
+    },
+    {
+      "code": "BCL",
+      "name": "Biological Classification",
+      "level": 2,
+      "topics": {
+        "1": "Monera",
+        "2": "Protista",
+        "3": "Fungi",
+        "4": "Viruses, Viroids and Lichens"
+      }
+    },
+    {
+      "code": "PKD",
+      "name": "Plant Kingdom",
+      "level": 2,
+      "topics": {
+        "1": "Algae",
+        "2": "Bryophytes",
+        "3": "Pteridophytes",
+        "4": "Gymnosperms",
+        "5": "Angiosperms"
+      }
+    },
+    {
+      "code": "MFP",
+      "name": "Morphology of Flowering Plants",
+      "level": 3,
+      "topics": {
+        "1": "The Root",
+        "2": "The Stem",
+        "3": "The Leaf",
+        "4": "Inflorescence",
+        "5": "The Flower",
+        "6": "The Fruit and Seed"
+      }
+    },
+    {
+      "code": "AFP",
+      "name": "Anatomy of Flowering Plants",
+      "level": 3,
+      "topics": {
+        "1": "The Tissues",
+        "2": "The Tissue System",
+        "3": "Anatomy of Dicot and Monocot Plants",
+        "4": "Secondary Growth"
+      }
+    },
+    {
+      "code": "CUL",
+      "name": "Cell: The Unit of Life",
+      "level": 1,
+      "topics": {
+        "1": "What is a Cell?",
+        "2": "Cell Theory",
+        "3": "Prokaryotic Cells",
+        "4": "Eukaryotic Cells"
+      }
+    },
+    {
+      "code": "BML",
+      "name": "Biomolecules",
+      "level": 3,
+      "topics": {
+        "1": "Primary and Secondary Metabolites",
+        "2": "Biomacromolecules",
+        "3": "Proteins, Polysaccharides, Nucleic Acids",
+        "4": "Enzymes"
+      }
+    },
+    {
+      "code": "CCD",
+      "name": "Cell Cycle and Cell Division",
+      "level": 2,
+      "topics": {
+        "1": "Cell Cycle",
+        "2": "M Phase",
+        "3": "Significance of Mitosis",
+        "4": "Meiosis"
+      }
+    },
+    {
+      "code": "PHP",
+      "name": "Photosynthesis in Higher Plants",
+      "level": 3,
+      "topics": {
+        "1": "Light Reaction",
+        "2": "The Electron Transport",
+        "3": "C3 and C4 Pathways",
+        "4": "Photorespiration"
+      }
+    },
+    {
+      "code": "RIP",
+      "name": "Respiration in Plants",
+      "level": 3,
+      "topics": {
+        "1": "Glycolysis",
+        "2": "Fermentation",
+        "3": "Aerobic Respiration",
+        "4": "Amphibolic Pathway"
+      }
+    },
+    {
+      "code": "PGD",
+      "name": "Plant Growth and Development",
+      "level": 2,
+      "topics": {
+        "1": "Growth Rates",
+        "2": "Differentiation and Dedifferentiation",
+        "3": "Plant Growth Regulators",
+        "4": "Photoperiodism"
+      }
+    },
+    {
+      "code": "RIO",
+      "name": "Reproduction in Organisms",
+      "level": 1,
+      "topics": {
+        "1": "Asexual Reproduction",
+        "2": "Sexual Reproduction"
+      }
+    },
+    {
+      "code": "SRF",
+      "name": "Sexual Reproduction in Flowering Plants",
+      "level": 2,
+      "topics": {
+        "1": "Pre-fertilization: Structures and Events",
+        "2": "Double Fertilization",
+        "3": "Post-fertilization: Structures and Events",
+        "4": "Apomixis and Polyembryony"
+      }
+    },
+    {
+      "code": "MBI",
+      "name": "Molecular Basis of Inheritance",
+      "level": 4,
+      "topics": {
+        "1": "The DNA",
+        "2": "The Search for Genetic Material",
+        "3": "RNA World",
+        "4": "Replication",
+        "5": "Transcription",
+        "6": "Genetic Code",
+        "7": "Translation"
+      }
+    },
+    {
+      "code": "MHW",
+      "name": "Microbes in Human Welfare",
+      "level": 1,
+      "topics": {
+        "1": "Microbes in Household/Industrial Products",
+        "2": "Microbes in Sewage Treatment",
+        "3": "Microbes as Biofertilisers"
+      }
+    },
+    {
+      "code": "BPP",
+      "name": "Biotechnology: Principles and Processes",
+      "level": 3,
+      "topics": {
+        "1": "Principles of Biotechnology",
+        "2": "Tools of Recombinant DNA Technology",
+        "3": "Processes of Recombinant DNA Technology"
+      }
+    },
+    {
+      "code": "BTA",
+      "name": "Biotechnology and Its Applications",
+      "level": 3,
+      "topics": {
+        "1": "Biotechnological Applications in Agriculture",
+        "2": "Biotechnological Applications in Medicine",
+        "3": "Transgenic Animals",
+        "4": "Ethical Issues"
+      }
+    },
+    {
+      "code": "OAP",
+      "name": "Organisms and Populations",
+      "level": 2,
+      "topics": {
+        "1": "Organism and Its Environment",
+        "2": "Populations: Attributes, Growth, and Interactions"
+      }
+    },
+    {
+      "code": "ECO",
+      "name": "Ecosystem",
+      "level": 2,
+      "topics": {
+        "1": "Ecosystem–Structure and Function",
+        "2": "Productivity and Decomposition",
+        "3": "Energy Flow",
+        "4": "Ecological Pyramids"
+      }
+    },
+    {
+      "code": "BAC",
+      "name": "Biodiversity and Conservation",
+      "level": 1,
+      "topics": {
+        "1": "Patterns of Biodiversity",
+        "2": "Importance of Species Diversity",
+        "3": "Loss of Biodiversity",
+        "4": "Biodiversity Conservation"
+      }
+    },
+    {
+      "code": "PIV",
+      "name": "Principles of Inheritance and Variation",
+      "level": 4,
+      "topics": {
+        "1": "Mendel’s Laws of Inheritance",
+        "2": "Inheritance of One Gene",
+        "3": "Inheritance of Two Genes",
+        "4": "Sex Determination",
+        "5": "Genetic Disorders"
+      }
+    }
+  ],
+  "Zoology": [
+    {
+      "code": "AKD",
+      "name": "Animal Kingdom",
+      "level": 3,
+      "topics": {
+        "1": "Basis of Classification",
+        "2": "Classification of Animals (Phylum wise)"
+      }
+    },
+    {
+      "code": "SOI",
+      "name": "Structural Organisation in Animals",
+      "level": 2,
+      "topics": {
+        "1": "Animal Tissues",
+        "2": "Organ and Organ System",
+        "3": "Earthworm, Cockroach, Frogs"
+      }
+    },
+    {
+      "code": "BEG",
+      "name": "Breathing and Exchange of Gases",
+      "level": 2,
+      "topics": {
+        "1": "Respiratory Organs",
+        "2": "Mechanism of Breathing",
+        "3": "Exchange and Transport of Gases",
+        "4": "Regulation of Respiration"
+      }
+    },
+    {
+      "code": "BFC",
+      "name": "Body Fluids and Circulation",
+      "level": 3,
+      "topics": {
+        "1": "Blood",
+        "2": "Lymph",
+        "3": "Circulatory Pathways",
+        "4": "Double Circulation",
+        "5": "Regulation of Cardiac Activity"
+      }
+    },
+    {
+      "code": "EPE",
+      "name": "Excretory Products and Their Elimination",
+      "level": 3,
+      "topics": {
+        "1": "Human Excretory System",
+        "2": "Urine Formation",
+        "3": "Function of the Tubules",
+        "4": "Regulation of Kidney Function"
+      }
+    },
+    {
+      "code": "LAM",
+      "name": "Locomotion and Movement",
+      "level": 2,
+      "topics": {
+        "1": "Types of Movement",
+        "2": "Muscle",
+        "3": "Skeletal System",
+        "4": "Joints"
+      }
+    },
+    {
+      "code": "NCC",
+      "name": "Neural Control and Coordination",
+      "level": 4,
+      "topics": {
+        "1": "Neural System",
+        "2": "Human Neural System",
+        "3": "Neuron as Structural and Functional Unit",
+        "4": "Central Nervous System",
+        "5": "Reflex Action and Reflex Arc"
+      }
+    },
+    {
+      "code": "CCI",
+      "name": "Chemical Coordination and Integration",
+      "level": 2,
+      "topics": {
+        "1": "Endocrine Glands and Hormones",
+        "2": "Human Endocrine System",
+        "3": "Hormones of Heart, Kidney and Gastrointestinal Tract",
+        "4": "Mechanism of Hormone Action"
+      }
+    },
+    {
+      "code": "HRP",
+      "name": "Human Reproduction",
+      "level": 3,
+      "topics": {
+        "1": "Male and Female Reproductive Systems",
+        "2": "Gametogenesis",
+        "3": "Menstrual Cycle",
+        "4": "Fertilization and Implantation",
+        "5": "Pregnancy and Embryonic Development"
+      }
+    },
+    {
+      "code": "RHT",
+      "name": "Reproductive Health",
+      "level": 1,
+      "topics": {
+        "1": "Reproductive Health - Problems and Strategies",
+        "2": "Population Explosion and Birth Control",
+        "3": "Medical Termination of Pregnancy",
+        "4": "Sexually Transmitted Diseases",
+        "5": "Infertility"
+      }
+    },
+    {
+      "code": "EVO",
+      "name": "Evolution",
+      "level": 3,
+      "topics": {
+        "1": "Origin of Life",
+        "2": "Evolution of Life Forms - A Theory",
+        "3": "Evidence for Evolution",
+        "4": "Adaptive Radiation",
+        "5": "Hardy-Weinberg Principle"
+      }
+    },
+    {
+      "code": "HHD",
+      "name": "Human Health and Disease",
+      "level": 2,
+      "topics": {
+        "1": "Common Diseases in Humans",
+        "2": "Immunity",
+        "3": "AIDS and Cancer",
+        "4": "Drugs and Alcohol Abuse"
+      }
+    }
+  ]
+}

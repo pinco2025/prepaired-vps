@@ -1,0 +1,3 @@
+backend.prepaired.site {
+    reverse_proxy api:8000
+}
