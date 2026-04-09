@@ -7,7 +7,6 @@ GET /api/v1/questions/{uuid}     — single question (for SEO / review)
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
-from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
@@ -22,24 +21,26 @@ from app.services.question_service import (
     get_question_by_id,
     get_mcq_set,
 )
+from app.services.supabase_client import sb_select
 
 router = APIRouter(prefix="/questions", tags=["questions"])
 
 PAID_TIERS = {"lite", "ipft-01-2026"}
 
 
-async def _is_paid(user: Optional[TokenPayload], db: AsyncSession) -> bool:
-    """Look up subscription_tier from the users table using the JWT sub (UUID)."""
+async def _is_paid(user: Optional[TokenPayload]) -> bool:
+    """Look up subscription_tier from Supabase users table using the JWT sub (UUID)."""
     if not user:
         return False
-    result = await db.execute(
-        text("SELECT subscription_tier FROM public.users WHERE id = :uid"),
-        {"uid": user.sub},
+    rows = await sb_select(
+        "users",
+        {"id": f"eq.{user.sub}"},
+        select_cols="subscription_tier",
+        limit=1,
     )
-    row = result.one_or_none()
-    if not row:
+    if not rows:
         return False
-    return (row[0] or "").lower() in PAID_TIERS
+    return (rows[0].get("subscription_tier") or "").lower() in PAID_TIERS
 
 
 @router.get("", response_model=QuestionSetOut)
@@ -72,7 +73,7 @@ async def list_questions(
         raise HTTPException(status_code=400, detail="Provide setId, testId, or chapterCode")
 
     group_id = setId or testId
-    paid = await _is_paid(user, db)
+    paid = await _is_paid(user)
     # Chapter-only queries (no setId) return MCQ div1 questions only
     chapter_only = bool(chapterCode and not setId and not testId)
 
