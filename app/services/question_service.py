@@ -219,8 +219,12 @@ _JEEM_SUBJECT_LABELS: Dict[str, str] = {
     "mathematics": "Mathematics",
 }
 _JEEM_DIV_CONFIG: Dict[str, _DivSpec] = {
-    "div1": _DivSpec(suffix="Section A", q_type="MCQ",     marks=4, neg_marks=-1, expected=20),
-    "div2": _DivSpec(suffix="Section B", q_type="Integer", marks=4, neg_marks=0,  expected=5),
+    "div1": _DivSpec(suffix="Section A", q_type="MCQ",          marks=4, neg_marks=-1, expected=20),
+    "div2": _DivSpec(suffix="Section B", q_type="Integer",      marks=4, neg_marks=0,  expected=5),
+    "div3": _DivSpec(suffix="Section B", q_type="Decimal",      marks=4, neg_marks=0,  expected=0),  # decimal/numerical — same section as div2
+    "div4": _DivSpec(suffix="Section D", q_type="MatrixMatch",  marks=4, neg_marks=-1, expected=0),  # matrix matching
+    "div5": _DivSpec(suffix="Section A", q_type="Paragraph",    marks=4, neg_marks=-1, expected=0),  # paragraph-based — same section as div1
+    "div8": _DivSpec(suffix="Section C", q_type="MultiCorrect", marks=4, neg_marks=-2, expected=0),
 }
 
 # Built once at import time — purely derived from the constants above.
@@ -236,7 +240,7 @@ _JEEM_SECTIONS: List[JEEMSectionConfig] = [
 
 
 def _normalise_div(raw: Optional[str]) -> Optional[str]:
-    """Map section_type raw values to canonical div keys (div1 / div2)."""
+    """Map section_type raw values to canonical div keys (div1 / div2 / div3 / div4 / div5 / div8)."""
     if not raw:
         return None
     v = raw.strip().lower()
@@ -244,10 +248,26 @@ def _normalise_div(raw: Optional[str]) -> Optional[str]:
         return "div1"
     if v in ("div2", "d2", "section_b", "sec_b", "sectionb"):
         return "div2"
+    if v in ("div3", "d3", "decimal", "numerical", "section_c", "sec_c"):
+        return "div3"
+    if v in ("div4", "d4", "matrix", "matrix_match", "matrix_matching", "matching"):
+        return "div4"
+    if v in ("div5", "d5", "paragraph", "comprehension", "para"):
+        return "div5"
+    if v in ("div8", "d8", "multi_correct", "multicorrect", "multiple_correct"):
+        return "div8"
     if v.startswith("div1") or v.startswith("d1"):
         return "div1"
     if v.startswith("div2") or v.startswith("d2"):
         return "div2"
+    if v.startswith("div3") or v.startswith("d3"):
+        return "div3"
+    if v.startswith("div4") or v.startswith("d4"):
+        return "div4"
+    if v.startswith("div5") or v.startswith("d5"):
+        return "div5"
+    if v.startswith("div8") or v.startswith("d8"):
+        return "div8"
     return None
 
 
@@ -282,6 +302,7 @@ def _orm_to_jeem_question_out(
         section=section_name,
         chapterCode=q.chapter,
         difficulty=source_info.get("difficulty"),
+        questionType=question_type,       # "MCQ" | "Integer" | "MultiCorrect" — read by score_service
         tags=JEEMQuestionTags(
             tag1=source_info.get("source_code", "") or "",
             tag2=q.chapter or "",          # score_service reads tags.tag2 for chapter breakdown
@@ -464,18 +485,23 @@ async def get_neet_test(
 # ── SET output shaping ─────────────────────────────────────────────────────────
 
 _SET_DIV_CONFIG: Dict[str, _DivSpec] = {
-    "div1": _DivSpec(suffix="MCQ",     q_type="MCQ",     marks=4, neg_marks=-1, expected=0),
-    "div2": _DivSpec(suffix="Integer", q_type="Integer", marks=4, neg_marks=0,  expected=0),
+    "div1": _DivSpec(suffix="MCQ",          q_type="MCQ",         marks=4, neg_marks=-1, expected=0),
+    "div2": _DivSpec(suffix="Integer",      q_type="Integer",     marks=4, neg_marks=0,  expected=0),
+    "div3": _DivSpec(suffix="Integer",      q_type="Decimal",     marks=4, neg_marks=0,  expected=0),  # decimal — same section/marks as div2
+    "div4": _DivSpec(suffix="MCQ",          q_type="MatrixMatch", marks=4, neg_marks=-1, expected=0),  # matrix matching — same section/marks as div1
+    "div5": _DivSpec(suffix="MCQ",          q_type="Paragraph",   marks=4, neg_marks=-1, expected=0),  # paragraph — same section/marks as div1
+    "div8": _DivSpec(suffix="MultiCorrect", q_type="MultiCorrect",marks=4, neg_marks=-2, expected=0),
 }
 
-# Built once — 2 sections (MCQ then Integer); no subject grouping for SETs.
+# Built once — 3 unique sections (MCQ, Integer, MultiCorrect).
+# div3 shares Integer, div4/div5 share MCQ — no duplicate sections created.
 _SET_SECTIONS: List[JEEMSectionConfig] = [
     JEEMSectionConfig(
         name=spec.suffix,
         marksPerQuestion=spec.marks,
         negativeMarksPerQuestion=spec.neg_marks,
     )
-    for spec in (_SET_DIV_CONFIG["div1"], _SET_DIV_CONFIG["div2"])
+    for spec in (_SET_DIV_CONFIG["div1"], _SET_DIV_CONFIG["div2"], _SET_DIV_CONFIG["div8"])
 ]
 
 
@@ -501,7 +527,7 @@ async def get_set_test(
     result = await db.execute(stmt)
     all_questions: List[Question] = list(result.scalars().all())
 
-    buckets: Dict[str, List[Question]] = {"div1": [], "div2": []}
+    buckets: Dict[str, List[Question]] = {"div1": [], "div2": [], "div3": [], "div4": [], "div5": [], "div8": []}
 
     for q in all_questions:
         div = _normalise_div((q.source_info or {}).get("section_type")) or "div1"
