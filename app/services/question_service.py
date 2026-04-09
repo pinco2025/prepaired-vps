@@ -19,7 +19,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from sqlalchemy.orm import selectinload
 
 from app.core.config import settings
-from app.models.question import Question, Solution
+from app.models.question import Paragraph, Question, Solution
 from app.schemas.question import (
     Flags,
     JEEMQuestionOut,
@@ -67,6 +67,7 @@ def _orm_to_question_out(q: Question, expose_answer: bool = False) -> QuestionOu
         subject=q.subject,
         flags=Flags(**(q.flags or {})) if q.flags else None,
         source_info=SourceInfo(**(q.source_info or {})) if q.source_info else None,
+        paragraph_id=q.paragraph_id,
     )
 
 
@@ -79,6 +80,74 @@ def _orm_to_solution_out(s: Optional[Solution]) -> Optional[SolutionOut]:
     )
 
 
+# ── Paragraph helpers ─────────────────────────────────────────────────────────
+
+async def _expand_paragraph_siblings(
+    db: AsyncSession,
+    questions: List[Question],
+) -> List[Question]:
+    """
+    For any question in the list that has a paragraph_id, fetch all sibling
+    questions sharing that paragraph_id that are not already in the list.
+    Returns a new list with siblings inserted immediately after the first
+    member of their group that appears in the input.
+    """
+    para_ids = {q.paragraph_id for q in questions if q.paragraph_id}
+    if not para_ids:
+        return questions
+
+    existing_ids = {q.id for q in questions}
+    stmt = (
+        select(Question)
+        .options(selectinload(Question.solution))
+        .where(Question.paragraph_id.in_(para_ids))
+        .where(Question.id.notin_(existing_ids))
+        .where(Question.verification_status == "verified")
+    )
+    result = await db.execute(stmt)
+    siblings: List[Question] = list(result.scalars().all())
+
+    if not siblings:
+        return questions
+
+    sibling_map: Dict[str, List[Question]] = {}
+    for s in siblings:
+        sibling_map.setdefault(s.paragraph_id, []).append(s)
+
+    result_list: List[Question] = []
+    seen_para_ids: set = set()
+    for q in questions:
+        result_list.append(q)
+        if q.paragraph_id and q.paragraph_id not in seen_para_ids:
+            seen_para_ids.add(q.paragraph_id)
+            result_list.extend(sibling_map.get(q.paragraph_id, []))
+
+    return result_list
+
+
+def _shuffle_preserving_paragraphs(questions: List[Question]) -> List[Question]:
+    """
+    Shuffle questions while keeping paragraph siblings contiguous.
+    Each paragraph group (or individual non-paragraph question) is treated as
+    a single unit for shuffling purposes.
+    """
+    groups: List[List[Question]] = []
+    para_groups: Dict[str, List[Question]] = {}
+
+    for q in questions:
+        if q.paragraph_id:
+            if q.paragraph_id not in para_groups:
+                group: List[Question] = []
+                para_groups[q.paragraph_id] = group
+                groups.append(group)
+            para_groups[q.paragraph_id].append(q)
+        else:
+            groups.append([q])
+
+    random.shuffle(groups)
+    return [q for group in groups for q in group]
+
+
 # ── Public service functions ───────────────────────────────────────────────────
 
 async def get_mcq_set(
@@ -87,6 +156,7 @@ async def get_mcq_set(
     group_id: Optional[str] = None,
     subject: Optional[str] = None,
     chapter_code: Optional[str] = None,
+    chapter_codes: Optional[List[str]] = None,
     is_paid: bool = False,
     div1_only: bool = False,
 ) -> QuestionSetOut:
@@ -95,10 +165,12 @@ async def get_mcq_set(
     combination.  Paid users get all questions shuffled; free users get the
     first FREE_QUESTION_LIMIT in original order.
 
-    group_id  — any set identifier; matched against the used_in TEXT[] column
-                using array containment (used_in @> ARRAY[group_id]).
-    div1_only — when True, strips div2 (Integer) questions by checking
-                source_info.section_type; used for chapter-based practice sets.
+    group_id     — any set identifier; matched against the used_in TEXT[] column
+                   using array containment (used_in @> ARRAY[group_id]).
+    chapter_codes — list of chapter codes for section-level practice (e.g. ADV sections).
+                   Takes precedence over chapter_code when both are provided.
+    div1_only    — when True, strips div2 (Integer) questions by checking
+                   source_info.section_type; used for chapter-based practice sets.
     """
     stmt = (
         select(Question)
@@ -108,7 +180,9 @@ async def get_mcq_set(
     # ── Filtering ──────────────────────────────────────────────────────────────
     if group_id:
         stmt = stmt.where(Question.used_in.contains([group_id]))
-    if chapter_code:
+    if chapter_codes:
+        stmt = stmt.where(Question.chapter.in_(chapter_codes))
+    elif chapter_code:
         stmt = stmt.where(Question.chapter == chapter_code)
     if subject:
         stmt = stmt.where(Question.subject == subject.lower())
@@ -126,13 +200,25 @@ async def get_mcq_set(
             if _normalise_div((q.source_info or {}).get("section_type")) != "div2"
         ]
 
+    # Expand paragraph groups: if any div5 question is present, fetch its siblings
+    all_questions = await _expand_paragraph_siblings(db, all_questions)
+
     total_count = len(all_questions)
 
     # ── Tier enforcement ───────────────────────────────────────────────────────
     if is_paid:
-        selected = random.sample(all_questions, len(all_questions))  # shuffle
+        selected = _shuffle_preserving_paragraphs(all_questions)
     else:
-        selected = all_questions[: settings.FREE_QUESTION_LIMIT]
+        # Slice to free limit, but extend to include the complete last paragraph group
+        limit = settings.FREE_QUESTION_LIMIT
+        selected = all_questions[:limit]
+        if selected and selected[-1].paragraph_id:
+            last_para_id = selected[-1].paragraph_id
+            for q in all_questions[limit:]:
+                if q.paragraph_id == last_para_id:
+                    selected.append(q)
+                else:
+                    break
 
     selected_ids = {q.id for q in selected}
 
@@ -527,11 +613,17 @@ async def get_set_test(
     result = await db.execute(stmt)
     all_questions: List[Question] = list(result.scalars().all())
 
+    # Expand paragraph siblings before bucketing
+    all_questions = await _expand_paragraph_siblings(db, all_questions)
+
     buckets: Dict[str, List[Question]] = {"div1": [], "div2": [], "div3": [], "div4": [], "div5": [], "div8": []}
 
     for q in all_questions:
         div = _normalise_div((q.source_info or {}).get("section_type")) or "div1"
         buckets[div].append(q)
+
+    # Sort div5 bucket so paragraph siblings appear consecutive (stable sort by paragraph_id)
+    buckets["div5"].sort(key=lambda q: (q.paragraph_id or "", q.id))
 
     questions_out: List[JEEMQuestionOut] = []
     total_marks = 0

@@ -26,6 +26,29 @@ from sqlalchemy.orm import Mapped, mapped_column, relationship
 from app.core.database import Base
 
 
+class Paragraph(Base):
+    """
+    Grouping key for paragraph/comprehension (div5) questions.
+    Each row represents one unique passage; related questions point here via
+    paragraph_id FK.  Passage text is embedded in each question's own text field.
+    """
+    __tablename__ = "paragraphs"
+
+    id: Mapped[str] = mapped_column(
+        UUID(as_uuid=False),
+        primary_key=True,
+        default=lambda: str(uuid6.uuid7()),
+    )
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True), server_default=func.now()
+    )
+
+    # Relationship back to member questions
+    questions: Mapped[List["Question"]] = relationship(
+        "Question", back_populates="paragraph", lazy="select"
+    )
+
+
 class Question(Base):
     __tablename__ = "questions"
 
@@ -79,6 +102,17 @@ class Question(Base):
     cluster_assignment: Mapped[Optional[str]] = mapped_column(Text)
     links: Mapped[Optional[str]] = mapped_column(Text)
 
+    # ── Paragraph grouping ─────────────────────────────────────────────────────
+    # Set by populate_paragraph_ids.py after discovering connected components in
+    # the legacy `links` graph.  All questions sharing a paragraph point to the
+    # same Paragraph row.  NULL means this question is not div5 / not yet grouped.
+    paragraph_id: Mapped[Optional[str]] = mapped_column(
+        UUID(as_uuid=False),
+        ForeignKey("paragraphs.id", ondelete="SET NULL"),
+        nullable=True,
+        index=True,
+    )
+
     created_at: Mapped[datetime] = mapped_column(
         DateTime(timezone=True), server_default=func.now()
     )
@@ -89,6 +123,9 @@ class Question(Base):
     # ── Relationships ──────────────────────────────────────────────────────────
     solution: Mapped[Optional["Solution"]] = relationship(
         "Solution", back_populates="question", uselist=False, lazy="select"
+    )
+    paragraph: Mapped[Optional["Paragraph"]] = relationship(
+        "Paragraph", back_populates="questions"
     )
 
 

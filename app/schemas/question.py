@@ -71,6 +71,7 @@ class QuestionOut(BaseModel):
     subject: Optional[str] = None
     flags: Optional[Flags] = None
     source_info: Optional[SourceInfo] = None
+    paragraph_id: Optional[str] = None         # non-null for div5 questions once grouped
 
 
 class QuestionSetOut(BaseModel):

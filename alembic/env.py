@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(__file__)))
 from app.core.config import settings
 from app.core.database import Base
 # Import all models here so Alembic can discover them
-from app.models.question import Question, Solution
+from app.models.question import Question, Solution, Paragraph
 
 target_metadata = Base.metadata
 

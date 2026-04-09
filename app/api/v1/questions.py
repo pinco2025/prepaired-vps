@@ -49,6 +49,7 @@ async def list_questions(
     testId: Optional[str] = Query(None, description="Mock test identifier — matched against used_in[]"),
     subject: Optional[str] = Query(None),
     chapterCode: Optional[str] = Query(None),
+    chapterCodes: Optional[str] = Query(None, description="Comma-separated chapter codes for section-level fetch"),
     check: Optional[int] = Query(None, description="Set to 1 for existence-only check"),
     db: AsyncSession = Depends(get_db),
     user: Optional[TokenPayload] = Depends(get_optional_user),
@@ -59,6 +60,7 @@ async def list_questions(
     Free users get the first FREE_QUESTION_LIMIT questions; paid users get all, shuffled.
 
     Pass either setId or testId — both are matched 1-to-1 against the used_in TEXT[] column.
+    Use chapterCodes (comma-separated) to filter by multiple chapters (e.g. section-level practice).
     """
     # Chapter existence check (lightweight, no full data fetch)
     if check == 1:
@@ -69,19 +71,22 @@ async def list_questions(
             return {"questions": [], "solutions": {}, "totalCount": 0, "isPaid": False, "exists": True}
         raise HTTPException(status_code=404, detail="Chapter not found")
 
-    if not setId and not testId and not chapterCode:
-        raise HTTPException(status_code=400, detail="Provide setId, testId, or chapterCode")
+    chapter_codes_list = [c.strip() for c in chapterCodes.split(',')] if chapterCodes else None
+
+    if not setId and not testId and not chapterCode and not chapter_codes_list:
+        raise HTTPException(status_code=400, detail="Provide setId, testId, chapterCode, or chapterCodes")
 
     group_id = setId or testId
     paid = await _is_paid(user)
     # Chapter-only queries (no setId) return MCQ div1 questions only
-    chapter_only = bool(chapterCode and not setId and not testId)
+    chapter_only = bool((chapterCode or chapter_codes_list) and not setId and not testId)
 
     result = await get_mcq_set(
         db,
         group_id=group_id,
         subject=subject,
         chapter_code=chapterCode,
+        chapter_codes=chapter_codes_list,
         is_paid=paid,
         div1_only=chapter_only,
     )
