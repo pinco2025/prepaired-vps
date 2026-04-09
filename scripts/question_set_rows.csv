@@ -1,9 +1,0 @@
-set_id,url,exam,type,tier,title,description,totalQuestions,markingScheme
-anr,https://github.com/pinco2025/tests/tree/main/anr,BOTH,SET,lite,Statement Based Set,,180,+4/-1
-condensed,https://github.com/pinco2025/tests/tree/main/condensed,JEE,SET,lite,,,,+4/-1
-last-resort,https://github.com/pinco2025/tests/tree/main/Last-Resort,JEE,SET,lite,,,,+4/-1
-ncert-line,https://github.com/pinco2025/tests/tree/main/NCERT-Line,NEET,SET,lite,,,,+4/-1
-neet-phy,https://github.com/pinco2025/tests/tree/main/neet-phy,NEET,SET,lite,,,,+4/-1
-recommend,https://github.com/pinco2025/tests/tree/main/recommend,,RECOMMEND,,,,,
-sufficient,https://github.com/pinco2025/tests/tree/main/sufficient,UNI,SET,lite,,,,+4/-1
-super-30,https://github.com/pinco2025/tests/tree/main/super-30,JEE,SET,free,Super - 30,Super-30 Question Set,30,+4/-1
