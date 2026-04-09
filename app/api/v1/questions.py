@@ -19,7 +19,7 @@ from app.services.question_service import (
     get_neet_test,
     get_set_test,
     get_question_by_id,
-    get_question_set,
+    get_mcq_set,
 )
 
 router = APIRouter(prefix="/questions", tags=["questions"])
@@ -70,13 +70,16 @@ async def list_questions(
 
     group_id = setId or testId
     paid = _is_paid(user)
+    # Chapter-only queries (no setId) return MCQ div1 questions only
+    chapter_only = bool(chapterCode and not setId and not testId)
 
-    result = await get_question_set(
+    result = await get_mcq_set(
         db,
         group_id=group_id,
         subject=subject,
         chapter_code=chapterCode,
         is_paid=paid,
+        div1_only=chapter_only,
     )
     return result
 

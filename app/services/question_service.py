@@ -81,21 +81,24 @@ def _orm_to_solution_out(s: Optional[Solution]) -> Optional[SolutionOut]:
 
 # ── Public service functions ───────────────────────────────────────────────────
 
-async def get_question_set(
+async def get_mcq_set(
     db: AsyncSession,
     *,
     group_id: Optional[str] = None,
     subject: Optional[str] = None,
     chapter_code: Optional[str] = None,
     is_paid: bool = False,
+    div1_only: bool = False,
 ) -> QuestionSetOut:
     """
-    Fetch questions (and their solutions) for the given group/subject/chapter
+    Fetch MCQ-type questions (and their solutions) for the given group/subject/chapter
     combination.  Paid users get all questions shuffled; free users get the
     first FREE_QUESTION_LIMIT in original order.
 
-    group_id — any set or test identifier; matched against the used_in TEXT[]
-               column using array containment (used_in @> ARRAY[group_id]).
+    group_id  — any set identifier; matched against the used_in TEXT[] column
+                using array containment (used_in @> ARRAY[group_id]).
+    div1_only — when True, strips div2 (Integer) questions by checking
+                source_info.section_type; used for chapter-based practice sets.
     """
     stmt = (
         select(Question)
@@ -115,6 +118,14 @@ async def get_question_set(
 
     result = await db.execute(stmt)
     all_questions: List[Question] = list(result.scalars().all())
+
+    # For chapter-based sets, exclude Integer/div2 questions — only MCQ (div1)
+    if div1_only:
+        all_questions = [
+            q for q in all_questions
+            if _normalise_div((q.source_info or {}).get("section_type")) != "div2"
+        ]
+
     total_count = len(all_questions)
 
     # ── Tier enforcement ───────────────────────────────────────────────────────
@@ -182,6 +193,7 @@ async def check_chapter_exists(
         select(Question.id)
         .where(Question.chapter == chapter_code)
         .where(Question.subject == subject.lower())
+        .where(Question.verification_status == "verified")
         .limit(1)
     )
     result = await db.execute(stmt)
