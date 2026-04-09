@@ -1,5 +1,5 @@
 from app.services.question_service import (
-    get_question_set,
+    get_mcq_set as get_question_set,
     get_question_by_id,
     check_chapter_exists,
     get_diagnostic_questions,
