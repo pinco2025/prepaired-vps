@@ -122,6 +122,7 @@ class JEEMQuestionOut(BaseModel):
     section: str                           # e.g. "Physics - Section A"
     chapterCode: Optional[str] = None
     difficulty: Optional[str] = None       # "E" | "M" | "H"
+    questionType: Optional[str] = None     # "MCQ" | "Integer" | "MultiCorrect" — read by score_service
     tags: JEEMQuestionTags = JEEMQuestionTags()
 
 

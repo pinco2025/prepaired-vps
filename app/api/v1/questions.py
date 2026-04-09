@@ -7,6 +7,7 @@ GET /api/v1/questions/{uuid}     — single question (for SEO / review)
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
+from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
@@ -27,16 +28,18 @@ router = APIRouter(prefix="/questions", tags=["questions"])
 PAID_TIERS = {"lite", "ipft-01-2026"}
 
 
-def _is_paid(user: Optional[TokenPayload]) -> bool:
-    """
-    Paid status is encoded in the Supabase JWT's `app_metadata.subscription_tier`.
-    For now we detect it by reading the raw `role` claim — this is a placeholder
-    until the JWT is enriched with subscription data post-migration.
-    """
+async def _is_paid(user: Optional[TokenPayload], db: AsyncSession) -> bool:
+    """Look up subscription_tier from the users table using the JWT sub (UUID)."""
     if not user:
         return False
-    # TODO: once JWT contains subscription_tier, read user.app_metadata["subscription_tier"]
-    return user.role in PAID_TIERS
+    result = await db.execute(
+        text("SELECT subscription_tier FROM public.users WHERE id = :uid"),
+        {"uid": user.sub},
+    )
+    row = result.one_or_none()
+    if not row:
+        return False
+    return (row[0] or "").lower() in PAID_TIERS
 
 
 @router.get("", response_model=QuestionSetOut)
@@ -69,7 +72,7 @@ async def list_questions(
         raise HTTPException(status_code=400, detail="Provide setId, testId, or chapterCode")
 
     group_id = setId or testId
-    paid = _is_paid(user)
+    paid = await _is_paid(user, db)
     # Chapter-only queries (no setId) return MCQ div1 questions only
     chapter_only = bool(chapterCode and not setId and not testId)
 

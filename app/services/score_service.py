@@ -73,7 +73,7 @@ class ScoreService:
         # Initialize score aggregators
         for sec_name in sections_config:
             section_scores[sec_name] = {
-                'score': 0, 'correct': 0, 'incorrect': 0, 'unattempted': 0, 'total_questions': 0
+                'score': 0, 'correct': 0, 'incorrect': 0, 'unattempted': 0, 'partial': 0, 'total_questions': 0
             }
 
         questions = ppt_data.get('questions', [])
@@ -105,7 +105,7 @@ class ScoreService:
 
             if chapter_tag not in chapter_scores:
                 chapter_scores[chapter_tag] = {
-                    'score': 0, 'correct': 0, 'incorrect': 0, 'unattempted': 0, 'total_questions': 0
+                    'score': 0, 'correct': 0, 'incorrect': 0, 'unattempted': 0, 'partial': 0, 'total_questions': 0
                 }
 
             if section_name in section_scores:
@@ -113,16 +113,49 @@ class ScoreService:
             chapter_scores[chapter_tag]['total_questions'] += 1
             total_questions_count += 1
 
-            if user_ans is not None:
-                if str(user_ans).strip() == str(correct_ans).strip():
+            # Detect question type — prefer explicit questionType field, fall back to tags.type
+            q_type = q.get('questionType') or (q.get('tags') or {}).get('type', '')
+            is_multi_correct = (q_type == 'MultiCorrect')
+
+            if is_multi_correct:
+                # div8 partial marking algorithm
+                correct_set = set(str(correct_ans).upper().replace(' ', '').split(',')) if correct_ans else set()
+
+                # User answer may arrive as a list (JSONB array) or comma-separated string
+                if isinstance(user_ans, list):
+                    user_set = set(a.upper().strip() for a in user_ans if a)
+                elif user_ans:
+                    user_set = set(str(user_ans).upper().replace(' ', '').split(','))
+                else:
+                    user_set = set()
+
+                if not user_set:
+                    status = 'Unattempted'
+                    marks = 0
+                elif user_set - correct_set:
+                    # Any wrong option selected → full negative
+                    status = 'Incorrect'
+                    marks = section_cfg['negative']
+                elif user_set == correct_set:
+                    # All correct options selected, no wrong → full marks
                     status = 'Correct'
                     marks = section_cfg['positive']
                 else:
-                    status = 'Incorrect'
-                    marks = section_cfg['negative']
+                    # Partial: subset of correct options only, no wrong → +1 per correct selected
+                    status = 'Partial'
+                    marks = len(user_set & correct_set)
             else:
-                status = 'Unattempted'
-                marks = 0
+                # div1 (MCQ) and div2 (Integer): exact string comparison
+                if user_ans is not None:
+                    if str(user_ans).strip() == str(correct_ans).strip():
+                        status = 'Correct'
+                        marks = section_cfg['positive']
+                    else:
+                        status = 'Incorrect'
+                        marks = section_cfg['negative']
+                else:
+                    status = 'Unattempted'
+                    marks = 0
 
             if section_name in section_scores:
                 section_scores[section_name]['score'] += marks
@@ -130,6 +163,8 @@ class ScoreService:
                     section_scores[section_name]['correct'] += 1
                 elif status == 'Incorrect':
                     section_scores[section_name]['incorrect'] += 1
+                elif status == 'Partial':
+                    section_scores[section_name]['partial'] += 1
                 else:
                     section_scores[section_name]['unattempted'] += 1
 
@@ -138,6 +173,8 @@ class ScoreService:
                 chapter_scores[chapter_tag]['correct'] += 1
             elif status == 'Incorrect':
                 chapter_scores[chapter_tag]['incorrect'] += 1
+            elif status == 'Partial':
+                chapter_scores[chapter_tag]['partial'] += 1
             else:
                 chapter_scores[chapter_tag]['unattempted'] += 1
 
@@ -146,6 +183,8 @@ class ScoreService:
                 total_correct += 1
             elif status == 'Incorrect':
                 total_incorrect += 1
+            elif status == 'Partial':
+                total_correct += 1   # count partial as attempted-correct for totals
             else:
                 total_unattempted += 1
 
@@ -156,6 +195,7 @@ class ScoreService:
                 "question_id": q_id,
                 "section": section_name,
                 "chapter_tag": chapter_tag,
+                "question_type": q_type or "MCQ",
                 "user_response": user_ans,
                 "correct_response": correct_ans,
                 "status": status,
