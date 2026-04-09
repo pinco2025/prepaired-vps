@@ -137,7 +137,7 @@ async def get_mcq_set(
     selected_ids = {q.id for q in selected}
 
     # ── Build response ─────────────────────────────────────────────────────────
-    questions_out = [_orm_to_question_out(q, expose_answer=False) for q in selected]
+    questions_out = [_orm_to_question_out(q, expose_answer=True) for q in selected]
 
     solutions_out: Dict[str, SolutionOut] = {}
     for q in selected:
