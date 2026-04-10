@@ -4,6 +4,8 @@ GET /api/v1/questions/check      — chapter existence check
 GET /api/v1/questions/{uuid}     — single question (for SEO / review)
 """
 
+import asyncio
+import logging
 from typing import Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query, status
@@ -12,6 +14,11 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.core.database import get_db
 from app.core.deps import get_optional_user
 from app.core.security import TokenPayload
+from app.core.subscription_access import (
+    get_user_subscription_tier,
+    normalize_subscription_tier,
+    user_can_access_tier,
+)
 from app.schemas.question import JEEMTestOut, QuestionDetailOut, QuestionSetOut
 from app.services.question_service import (
     check_chapter_exists,
@@ -24,23 +31,53 @@ from app.services.question_service import (
 from app.services.supabase_client import sb_select
 
 router = APIRouter(prefix="/questions", tags=["questions"])
+logger = logging.getLogger(__name__)
 
-PAID_TIERS = {"lite", "ipft-01-2026"}
 
-
-async def _is_paid(user: Optional[TokenPayload]) -> bool:
-    """Look up subscription_tier from Supabase users table using the JWT sub (UUID)."""
+async def _get_user_tier(user: Optional[TokenPayload]) -> Optional[str]:
+    """Return the user's canonical subscription tier or None for unauthenticated/free users."""
     if not user:
-        return False
+        return None
+    return await get_user_subscription_tier(user.sub)
+
+
+async def _get_set_tier(group_id: Optional[str]) -> Optional[str]:
+    """
+    Return the required tier for a question set or test (lowercased), or None when
+    there is no restriction (any subscribed user may access).
+    Checks question_set first, falls back to tests.
+    """
+    if not group_id:
+        return None
     rows = await sb_select(
-        "users",
-        {"id": f"eq.{user.sub}"},
-        select_cols="subscription_tier",
+        "question_set",
+        {"set_id": f"eq.{group_id}"},
+        select_cols="tier",
         limit=1,
     )
-    if not rows:
-        return False
-    return (rows[0].get("subscription_tier") or "").lower() in PAID_TIERS
+    if rows:
+        return normalize_subscription_tier(rows[0].get("tier"))
+    rows = await sb_select(
+        "tests",
+        {"testID": f"eq.{group_id}"},
+        select_cols="tier",
+        limit=1,
+    )
+    if rows:
+        return normalize_subscription_tier(rows[0].get("tier"))
+    return None
+
+
+def _user_can_access_set(user_tier: Optional[str], set_tier: Optional[str]) -> bool:
+    """
+    True when the user may access the full question set (not limited to the free preview).
+
+    Rules — tier values come from the DB, no names hardcoded here:
+      set_tier == 'free' → everyone passes, no subscription needed
+      set_tier is None   → any subscribed user (non-null user_tier) passes
+      set_tier is set    → user_tier must exactly equal set_tier
+    """
+    return user_can_access_tier(user_tier, set_tier)
 
 
 @router.get("", response_model=QuestionSetOut)
@@ -77,7 +114,20 @@ async def list_questions(
         raise HTTPException(status_code=400, detail="Provide setId, testId, chapterCode, or chapterCodes")
 
     group_id = setId or testId
-    paid = await _is_paid(user)
+    # Fetch user tier and set tier in parallel — no extra latency vs. the old single lookup
+    user_tier, set_tier = await asyncio.gather(
+        _get_user_tier(user),
+        _get_set_tier(group_id),
+    )
+    paid = _user_can_access_set(user_tier, set_tier)
+    logger.info(
+        "Question entitlement resolved user_id=%s group_id=%s user_tier=%s set_tier=%s paid=%s",
+        getattr(user, "sub", None),
+        group_id,
+        user_tier,
+        set_tier,
+        paid,
+    )
     # Chapter-only queries (no setId) return MCQ div1 questions only
     chapter_only = bool((chapterCode or chapter_codes_list) and not setId and not testId)
 
