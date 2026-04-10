@@ -13,10 +13,17 @@ from app.core.config import settings
 
 
 class TokenPayload:
-    def __init__(self, sub: str, email: Optional[str], role: Optional[str]):
+    def __init__(
+        self,
+        sub: str,
+        email: Optional[str],
+        role: Optional[str],
+        raw_payload: Optional[dict] = None,
+    ):
         self.sub = sub          # user UUID (Supabase user ID)
         self.email = email
         self.role = role        # "authenticated", "anon", etc.
+        self.raw_payload = raw_payload or {}  # full decoded JWT claims
 
 
 def _decode_jwt_secret() -> Union[str, bytes]:
@@ -50,4 +57,5 @@ def verify_token(token: str) -> TokenPayload:
         sub=payload["sub"],
         email=payload.get("email"),
         role=payload.get("role"),
+        raw_payload=payload,
     )

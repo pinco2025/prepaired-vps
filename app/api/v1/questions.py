@@ -48,7 +48,10 @@ async def _get_user_tier(user: Optional[TokenPayload]) -> Optional[str]:
     """Return the user's canonical subscription tier or None for unauthenticated/free users."""
     if not user:
         return None
-    return await get_user_subscription_tier(user.sub)
+    return await get_user_subscription_tier(
+        user.sub,
+        jwt_payload=getattr(user, "raw_payload", None),
+    )
 
 
 async def _get_set_tier(group_id: Optional[str]) -> Optional[str]:
@@ -133,7 +136,7 @@ async def list_questions(
         _get_set_tier(group_id),
     )
     paid = _user_can_access_set(user_tier, set_tier)
-    logger.info(
+    logger.warning(
         "Question entitlement resolved user_id=%s group_id=%s user_tier=%s set_tier=%s paid=%s",
         getattr(user, "sub", None),
         group_id,
