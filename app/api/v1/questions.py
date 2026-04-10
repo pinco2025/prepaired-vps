@@ -8,7 +8,7 @@ import asyncio
 import logging
 from typing import Optional
 
-from fastapi import APIRouter, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Depends, HTTPException, Query, Response, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
@@ -32,6 +32,16 @@ from app.services.supabase_client import sb_select
 
 router = APIRouter(prefix="/questions", tags=["questions"])
 logger = logging.getLogger(__name__)
+
+
+def _set_dynamic_cache_headers(response: Response) -> None:
+    """
+    Prevent browsers/CDNs from reusing a cached free-tier response for an
+    authenticated user. The questions payload changes based on Authorization.
+    """
+    response.headers["Cache-Control"] = "private, no-store, max-age=0"
+    response.headers["Pragma"] = "no-cache"
+    response.headers["Vary"] = "Authorization"
 
 
 async def _get_user_tier(user: Optional[TokenPayload]) -> Optional[str]:
@@ -82,6 +92,7 @@ def _user_can_access_set(user_tier: Optional[str], set_tier: Optional[str]) -> b
 
 @router.get("", response_model=QuestionSetOut)
 async def list_questions(
+    response: Response,
     setId: Optional[str] = Query(None, description="Practice set identifier — matched against used_in[]"),
     testId: Optional[str] = Query(None, description="Mock test identifier — matched against used_in[]"),
     subject: Optional[str] = Query(None),
@@ -99,6 +110,8 @@ async def list_questions(
     Pass either setId or testId — both are matched 1-to-1 against the used_in TEXT[] column.
     Use chapterCodes (comma-separated) to filter by multiple chapters (e.g. section-level practice).
     """
+    _set_dynamic_cache_headers(response)
+
     # Chapter existence check (lightweight, no full data fetch)
     if check == 1:
         if not chapterCode or not subject:
