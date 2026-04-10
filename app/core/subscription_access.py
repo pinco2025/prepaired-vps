@@ -56,21 +56,10 @@ async def get_user_subscription_tier(
     if not user_id:
         return None
 
-    # ── 1. JWT metadata (fastest — already decoded, no network) ────────────────
-    if jwt_payload:
-        for meta_key in ("app_metadata", "user_metadata"):
-            meta: Dict[str, Any] = jwt_payload.get(meta_key) or {}
-            for col in ("subscription_tier", "subscription_type"):
-                raw = meta.get(col)
-                if isinstance(raw, str) and raw.strip():
-                    tier = normalize_subscription_tier(raw.strip())
-                    logger.debug(
-                        "get_user_subscription_tier: user_id=%s found tier=%s in jwt.%s.%s",
-                        user_id, tier, meta_key, col,
-                    )
-                    return tier
-
-    # ── 2 & 3. Supabase DB lookup (single query for both columns) ──────────────
+    # ── DB lookup (single query for both columns) ──────────────────────────────
+    # The users table is the authoritative source for subscription tier.
+    # JWT metadata is intentionally NOT used — it can be stale (e.g. old
+    # Supabase auth metadata that was set independently from the users table).
     try:
         rows = await sb_select(
             "users",
