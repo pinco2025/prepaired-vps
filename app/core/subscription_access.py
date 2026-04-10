@@ -52,6 +52,11 @@ async def get_user_subscription_tier(user_id: Optional[str]) -> Optional[str]:
         if value:
             return normalize_subscription_tier(value)
 
+    logger.warning(
+        "get_user_subscription_tier: user_id=%s has no subscription_tier or subscription_type — "
+        "will be treated as free. Check the users table in Supabase.",
+        user_id,
+    )
     return None
 
 

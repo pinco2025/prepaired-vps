@@ -2,6 +2,7 @@
 FastAPI dependency functions for auth + DB injection.
 """
 
+import logging
 from typing import Optional
 
 from fastapi import Depends, Header, HTTPException, status
@@ -10,6 +11,8 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
 from app.core.security import TokenPayload, verify_token
+
+logger = logging.getLogger(__name__)
 
 
 # ── Auth dependencies ──────────────────────────────────────────────────────────
@@ -51,5 +54,8 @@ async def get_optional_user(
         return None
     try:
         return verify_token(token)
-    except PyJWTError:
+    except PyJWTError as exc:
+        # A token was sent but rejected — log it so we can diagnose
+        # "paid user getting free treatment" bugs without guessing.
+        logger.warning("Optional-auth: JWT present but invalid — treating as anonymous. error=%s", exc)
         return None
