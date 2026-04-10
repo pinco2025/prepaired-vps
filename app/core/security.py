@@ -3,7 +3,8 @@ JWT verification using PyJWT + the Supabase JWT secret.
 No HTTP roundtrip to /auth/v1/user — purely local crypto.
 """
 
-from typing import Optional
+import base64
+from typing import Optional, Union
 
 import jwt
 from jwt.exceptions import PyJWTError
@@ -18,6 +19,22 @@ class TokenPayload:
         self.role = role        # "authenticated", "anon", etc.
 
 
+def _decode_jwt_secret() -> Union[str, bytes]:
+    """
+    Supabase stores the JWT secret as a base64-encoded value in the dashboard.
+    Decode it to raw bytes so PyJWT uses the same key Supabase signed with.
+    Falls back to the raw string if it isn't valid base64.
+    """
+    raw = settings.SUPABASE_JWT_SECRET
+    try:
+        return base64.b64decode(raw)
+    except Exception:
+        return raw
+
+
+_JWT_SECRET = _decode_jwt_secret()
+
+
 def verify_token(token: str) -> TokenPayload:
     """
     Decode and verify a Supabase-issued JWT.
@@ -25,7 +42,7 @@ def verify_token(token: str) -> TokenPayload:
     """
     payload = jwt.decode(
         token,
-        settings.SUPABASE_JWT_SECRET,
+        _JWT_SECRET,
         algorithms=["HS256"],
         options={"verify_aud": False},  # Supabase JWTs have audience = "authenticated"
     )
