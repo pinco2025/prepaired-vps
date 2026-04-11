@@ -16,7 +16,7 @@ jobs:
           username: ${{ secrets.DEPLOY_USER }}
           key: ${{ secrets.DEPLOY_SSH_KEY }}
           script: |
-            cd ${{ secrets.DEPLOY_PATH }}/backend
+            cd ${{ secrets.DEPLOY_PATH }}
             git pull origin main
             docker compose up --build -d
             docker image prune -f
