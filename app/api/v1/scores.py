@@ -6,11 +6,12 @@ POST /api/v1/scores/{student_test_id}/calculate
 
 import logging
 from typing import Any, Dict
-import httpx
 
 from fastapi import APIRouter, Depends, HTTPException, status
 from pydantic import BaseModel
+from sqlalchemy import text
 
+from app.core.database import AsyncSessionLocal
 from app.core.deps import get_current_user
 from app.core.security import TokenPayload
 from app.services.score_service import score_service
@@ -56,39 +57,87 @@ async def calculate_score(
         test_id = student_test.get("test_id")
         # Use answers from body if provided, else from DB
         answers = (body.answers if body and body.answers else student_test.get("answers")) or {}
-        
+
         if not test_id:
             raise HTTPException(status_code=400, detail="Test ID missing in student test record")
-            
-        # 4. Fetch tests row
+
+        if not answers:
+            raise HTTPException(status_code=400, detail="No answers found — test has not been submitted")
+
+        # 4. Fetch section_config from Supabase tests table (marking scheme)
         tests = await sb_select("tests", {"testID": f"eq.{test_id}"})
         if not tests:
             raise HTTPException(status_code=404, detail="Test definition not found")
-        test_record = tests[0]
-        
-        test_url = test_record.get("url")
-        if not test_url:
-            raise HTTPException(status_code=400, detail="Test URL missing in test record")
-            
-        # 5. Fetch test JSON from GitHub raw URL
-        ppt_data = {}
-        try:
-            async with httpx.AsyncClient() as client:
-                resp = await client.get(test_url)
-                resp.raise_for_status()
-                ppt_data = resp.json()
-        except Exception as e:
-            logger.error(f"Error fetching test JSON from {test_url}: {e}")
-            raise HTTPException(status_code=502, detail="Error fetching test definition from external source")
-            
-        # 6. Calculate scores
+        section_config: Dict[str, Any] = tests[0].get("section_config") or {}
+        if not section_config:
+            raise HTTPException(status_code=400, detail="Test section_config not configured — populate tests.section_config before scoring")
+
+        # 5. Fetch questions from Postgres by submitted answer keys
+        #    answers.keys() == all question UUIDs the student saw (including unattempted as null)
+        question_uuids = list(answers.keys())
+
+        async with AsyncSessionLocal() as db:
+            rows = await db.execute(
+                text("""
+                    SELECT
+                        legacy_id,
+                        answer,
+                        chapter,
+                        type                                AS question_type,
+                        subject,
+                        source_info->>'section_type'        AS section_type,
+                        source_info->>'difficulty'          AS difficulty,
+                        flags->>'scary'                     AS scary
+                    FROM questions
+                    WHERE legacy_id = ANY(:ids)
+                """),
+                {"ids": question_uuids},
+            )
+            q_rows = rows.fetchall()
+
+        # 6. Reconstruct ppt_data-compatible dict — score_service.calculate_score unchanged
+        #    Section key = "{subject}-{section_type}" e.g. "Physics-div1"
+        sections_map: Dict[str, Any] = {}
+        questions_out = []
+        for r in q_rows:
+            section_key = (
+                f"{r.subject}-{r.section_type}"
+                if r.subject and r.section_type
+                else (r.section_type or "unknown")
+            )
+            sec = section_config.get(section_key, {})
+            section_name = sec.get("name", section_key)
+
+            if section_name not in sections_map:
+                sections_map[section_name] = {
+                    "name": section_name,
+                    "marksPerQuestion": float(sec.get("pos", 0)),
+                    "negativeMarksPerQuestion": float(sec.get("neg", 0)),
+                }
+
+            questions_out.append({
+                "uuid": r.legacy_id,
+                "section": section_name,
+                "correctAnswer": r.answer,
+                "chapterCode": r.chapter,
+                "questionType": r.question_type,
+                "difficulty": r.difficulty,
+                "scary": r.scary,
+            })
+
+        ppt_data = {
+            "sections": list(sections_map.values()),
+            "questions": questions_out,
+        }
+
+        # 7. Calculate scores — algorithm unchanged
         try:
             result = score_service.calculate_score(ppt_data, answers)
         except Exception as e:
             logger.error(f"Error calculating score: {e}")
             raise HTTPException(status_code=500, detail="Error calculating score")
             
-        # 7. Push to GitHub
+        # 8. Push to GitHub
         try:
             filename = f"{student_test_id}.json"
             github_url = await score_service.push_to_github(result, filename)
@@ -96,7 +145,7 @@ async def calculate_score(
             logger.error(f"Error pushing results to GitHub: {e}")
             raise HTTPException(status_code=502, detail=f"Error pushing results to GitHub: {str(e)}")
             
-        # 8. Update student_tests with result_url
+        # 9. Update student_tests with result_url
         try:
             await sb_update("student_tests", {"id": f"eq.{student_test_id}"}, {"result_url": github_url})
         except SupabaseError as e:

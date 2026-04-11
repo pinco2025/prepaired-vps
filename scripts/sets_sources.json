@@ -23,11 +23,83 @@
     }
   },
 
-  "neet-phy": {
+  "neet-phy-1": {
     "_comment": "NEET physics set — Folder: pinco2025/tests/tree/main/neet-phy",
     "subjects": {
       "physics": {
-        "url": "https://github.com/pinco2025/tests/blob/main/neet-phy/physics/exported_questions.json",
+        "url": "https://github.com/pinco2025/tests/blob/main/neet-phy/1/exported_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "uuid"
+      }
+    }
+  },
+
+  "neet-phy-2": {
+    "_comment": "NEET physics set — Folder: pinco2025/tests/tree/main/neet-phy",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/neet-phy/2/exported_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "uuid"
+      }
+    }
+  },
+
+  "neet-phy-3": {
+    "_comment": "NEET physics set — Folder: pinco2025/tests/tree/main/neet-phy",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/neet-phy/3/exported_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "uuid"
+      }
+    }
+  },
+
+  "neet-phy-4": {
+    "_comment": "NEET physics set — Folder: pinco2025/tests/tree/main/neet-phy",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/neet-phy/4/exported_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "uuid"
+      }
+    }
+  },
+
+  "neet-phy-5": {
+    "_comment": "NEET physics set — Folder: pinco2025/tests/tree/main/neet-phy",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/neet-phy/5/exported_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "uuid"
+      }
+    }
+  },
+
+  "neet-phy-6": {
+    "_comment": "NEET physics set — Folder: pinco2025/tests/tree/main/neet-phy",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/neet-phy/6/exported_questions.json",
+        "encrypted": false,
+        "questions_key": "questions",
+        "id_field": "uuid"
+      }
+    }
+  },
+
+  "neet-phy-7": {
+    "_comment": "NEET physics set — Folder: pinco2025/tests/tree/main/neet-phy",
+    "subjects": {
+      "physics": {
+        "url": "https://github.com/pinco2025/tests/blob/main/neet-phy/7/exported_questions.json",
         "encrypted": false,
         "questions_key": "questions",
         "id_field": "uuid"

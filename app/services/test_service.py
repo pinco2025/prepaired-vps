@@ -8,9 +8,13 @@ from typing import List, Optional
 from app.schemas.test import (
     AttemptOut,
     StartTestOut,
+    StudentTestByIdOut,
     SubmitTestOut,
+    SubmissionSummary,
     TestMetaOut,
     TestResultOut,
+    TestsAndSubmissionsOut,
+    TestsByPrefixOut,
 )
 from app.services.supabase_client import sb_insert, sb_select, sb_update
 
@@ -107,3 +111,64 @@ async def get_meta(test_id: str) -> Optional[TestMetaOut]:
     if not rows:
         return None
     return TestMetaOut(percentile_99=rows[0].get("99ile"))
+
+
+async def get_tests_and_submissions(user_id: str) -> TestsAndSubmissionsOut:
+    """Parallel fetch: all tests (ordered by testID) + user's submitted student_tests."""
+    import asyncio
+
+    tests_task = sb_select("tests", {}, order="testID")
+    subs_task = sb_select(
+        "student_tests",
+        {
+            "user_id": f"eq.{user_id}",
+            "submitted_at": "not.is.null",
+        },
+        select_cols="id,test_id,result_url,submitted_at",
+        order="submitted_at.desc",
+    )
+    tests_rows, subs_rows = await asyncio.gather(tests_task, subs_task)
+
+    return TestsAndSubmissionsOut(
+        tests=tests_rows,
+        submissions=[SubmissionSummary(**r) for r in subs_rows],
+    )
+
+
+async def get_tests_by_prefix(prefix: str, user_id: Optional[str]) -> TestsByPrefixOut:
+    """Tests whose testID matches the ilike pattern, plus user's submissions for those tests."""
+    tests_rows = await sb_select(
+        "tests",
+        {"testID": f"ilike.{prefix}"},
+        order="testID",
+    )
+
+    submissions: List[SubmissionSummary] = []
+    if user_id and tests_rows:
+        test_ids = [str(t["testID"]) for t in tests_rows]
+        ids_csv = ",".join(test_ids)
+        subs_rows = await sb_select(
+            "student_tests",
+            {
+                "user_id": f"eq.{user_id}",
+                "test_id": f"in.({ids_csv})",
+                "submitted_at": "not.is.null",
+            },
+            select_cols="id,test_id,result_url,submitted_at",
+        )
+        submissions = [SubmissionSummary(**r) for r in subs_rows]
+
+    return TestsByPrefixOut(tests=tests_rows, submissions=submissions)
+
+
+async def get_student_tests_by_ids(ids: List[str]) -> List[StudentTestByIdOut]:
+    """Batch-fetch student_test records by a list of IDs."""
+    if not ids:
+        return []
+    ids_csv = ",".join(ids)
+    rows = await sb_select(
+        "student_tests",
+        {"id": f"in.({ids_csv})"},
+        select_cols="id,test_id",
+    )
+    return [StudentTestByIdOut(**r) for r in rows]

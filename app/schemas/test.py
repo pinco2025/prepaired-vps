@@ -1,6 +1,6 @@
 """Pydantic schemas for test sessions (student_tests table via Supabase REST)."""
 
-from typing import Any, Dict, Optional
+from typing import Any, Dict, List, Optional
 
 from pydantic import BaseModel
 
@@ -39,3 +39,25 @@ class TestResultOut(BaseModel):
     submitted_at: Optional[str] = None
     started_at: Optional[str] = None
     result_url: Optional[str] = None
+
+
+class SubmissionSummary(BaseModel):
+    id: str
+    test_id: str
+    result_url: Optional[str] = None
+    submitted_at: Optional[str] = None
+
+
+class TestsAndSubmissionsOut(BaseModel):
+    tests: List[Dict[str, Any]]
+    submissions: List[SubmissionSummary]
+
+
+class StudentTestByIdOut(BaseModel):
+    id: str
+    test_id: str
+
+
+class TestsByPrefixOut(BaseModel):
+    tests: List[Dict[str, Any]]
+    submissions: List[SubmissionSummary]

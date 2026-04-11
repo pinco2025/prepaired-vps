@@ -20,15 +20,49 @@ from app.schemas.test import (
     AttemptOut,
     SaveAnswersIn,
     StartTestOut,
+    StudentTestByIdOut,
     SubmitTestIn,
     SubmitTestOut,
     TestMetaOut,
     TestResultOut,
+    TestsAndSubmissionsOut,
+    TestsByPrefixOut,
 )
 from app.services import test_service
 
 router = APIRouter(prefix="/tests", tags=["tests"])
 
+
+# ── Static-path routes (must appear before /{param} routes) ──────────────────
+
+@router.get("/submissions", response_model=TestsAndSubmissionsOut)
+async def get_submissions(
+    user: TokenPayload = Depends(get_current_user),
+):
+    """All tests + the current user's submitted attempts."""
+    return await test_service.get_tests_and_submissions(user.sub)
+
+
+@router.get("/by-prefix", response_model=TestsByPrefixOut)
+async def get_by_prefix(
+    prefix: str = Query(..., description="PostgREST ilike pattern, e.g. 'AIPT-%'"),
+    user: TokenPayload = Depends(get_current_user),
+):
+    """Tests whose testID matches the given ilike pattern, plus user submissions."""
+    return await test_service.get_tests_by_prefix(prefix, user.sub)
+
+
+@router.get("/by-ids", response_model=list[StudentTestByIdOut])
+async def get_by_ids(
+    ids: str = Query(..., description="Comma-separated student_test UUIDs"),
+    user: TokenPayload = Depends(get_current_user),
+):
+    """Batch-fetch student_test records (id + test_id) by a comma-separated list of IDs."""
+    id_list = [i.strip() for i in ids.split(",") if i.strip()]
+    return await test_service.get_student_tests_by_ids(id_list)
+
+
+# ── Parameterised routes ──────────────────────────────────────────────────────
 
 @router.post("/{test_id}/start", response_model=StartTestOut)
 async def start_test(
