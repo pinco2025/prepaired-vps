@@ -331,17 +331,23 @@ def _normalise_div(raw: Optional[str]) -> Optional[str]:
     if not raw:
         return None
     v = raw.strip().lower()
-    if v in ("div1", "d1", "section_a", "sec_a", "sectiona"):
+    if v in ("div1", "d1", "section_a", "sec_a", "sectiona",
+             "mcq", "single", "single_correct", "sc", "sca", "singlechoice", "single_choice"):
         return "div1"
-    if v in ("div2", "d2", "section_b", "sec_b", "sectionb"):
+    if v in ("div2", "d2", "section_b", "sec_b", "sectionb",
+             "integer", "int", "integer_type", "integertype"):
         return "div2"
-    if v in ("div3", "d3", "decimal", "numerical", "section_c", "sec_c"):
+    if v in ("div3", "d3", "decimal", "numerical", "section_c", "sec_c",
+             "dec", "numeric"):
         return "div3"
-    if v in ("div4", "d4", "matrix", "matrix_match", "matrix_matching", "matching"):
+    if v in ("div4", "d4", "matrix", "matrix_match", "matrix_matching", "matching",
+             "matrixmatch", "match"):
         return "div4"
-    if v in ("div5", "d5", "paragraph", "comprehension", "para"):
+    if v in ("div5", "d5", "paragraph", "comprehension", "para",
+             "passage", "reading", "rc"):
         return "div5"
-    if v in ("div8", "d8", "multi_correct", "multicorrect", "multiple_correct"):
+    if v in ("div8", "d8", "multi_correct", "multicorrect", "multiple_correct",
+             "multi", "mc", "msq", "multiple", "multiple_choice", "multiplechoice"):
         return "div8"
     if v.startswith("div1") or v.startswith("d1"):
         return "div1"
@@ -725,7 +731,9 @@ async def get_jeea_test(
     tests_rows = await sb_select("tests", {"testID": f"eq.{test_id}"})
     if not tests_rows:
         raise ValueError(f"No test found in Supabase with testID={test_id!r}")
-    section_config: Dict[str, Any] = tests_rows[0].get("section_config") or {}
+    section_config: Dict[str, Any] = {
+        k.lower(): v for k, v in (tests_rows[0].get("section_config") or {}).items()
+    }
     if not section_config:
         raise ValueError(
             f"tests.section_config is empty for testID={test_id!r}. "
