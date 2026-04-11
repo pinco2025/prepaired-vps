@@ -10,7 +10,7 @@ Design principles:
 
 import logging
 import random
-from typing import Dict, List, NamedTuple, Optional
+from typing import Any, Dict, List, NamedTuple, Optional
 
 logger = logging.getLogger(__name__)
 
@@ -20,6 +20,7 @@ from sqlalchemy.orm import selectinload
 
 from app.core.config import settings
 from app.models.question import Paragraph, Question, Solution
+from app.services.supabase_client import sb_select
 from app.schemas.question import (
     Flags,
     JEEMQuestionOut,
@@ -670,6 +671,168 @@ async def get_set_test(
         duration=duration,
         totalMarks=total_marks,
         sections=_SET_SECTIONS,
+        questions=questions_out,
+        solutions=solutions_out,
+    )
+
+
+# ── JEEA output shaping ────────────────────────────────────────────────────────
+
+# Maps normalised div keys to the question type string read by score_service.
+_DIV_TO_QTYPE: Dict[str, str] = {
+    "div1": "MCQ",
+    "div2": "Integer",
+    "div3": "Decimal",
+    "div4": "MatrixMatch",
+    "div5": "Paragraph",
+    "div8": "MultiCorrect",
+}
+
+# Preferred div ordering within each subject for rendering.
+# Every div listed here gets its own section (no merging).
+_JEEA_SUBJECTS: List[str] = ["physics", "chemistry", "mathematics"]
+_JEEA_SUBJECT_LABELS: Dict[str, str] = {
+    "physics": "Physics",
+    "chemistry": "Chemistry",
+    "mathematics": "Mathematics",
+}
+_JEEA_DIV_ORDER: List[str] = ["div1", "div5", "div8", "div4", "div2", "div3"]
+
+
+async def get_jeea_test(
+    db: AsyncSession,
+    *,
+    test_id: str,
+    test_title: str = "JEE Advanced Mock Test",
+    duration: int = 10800,
+    include_solutions: bool = False,
+) -> JEEMTestOut:
+    """
+    Fetch all questions for a JEE Advanced test and structure them using the
+    section_config stored in the Supabase tests table.
+
+    Unlike JEEM/NEET (which use hardcoded div configs), JEEA reads section names
+    and marks directly from Supabase section_config — the same source used by
+    score_service during scoring, ensuring consistency.
+
+    Every div type (div1 MCQ, div5 Paragraph, div8 MultiCorrect, div4 MatrixMatch,
+    div2 Integer, div3 Decimal) is its own section. Empty sections are omitted.
+
+    section_config keys follow the pattern: "{subject}-{div}" e.g. "physics-div8"
+    section_config values: {"name": "Physics - Multi Correct", "pos": 4, "neg": -2}
+    """
+    # 1. Fetch section_config from Supabase (same pattern as scores.py:68-71)
+    tests_rows = await sb_select("tests", {"testID": f"eq.{test_id}"})
+    if not tests_rows:
+        raise ValueError(f"No test found in Supabase with testID={test_id!r}")
+    section_config: Dict[str, Any] = tests_rows[0].get("section_config") or {}
+    if not section_config:
+        raise ValueError(
+            f"tests.section_config is empty for testID={test_id!r}. "
+            "Populate it before fetching the JEEA test."
+        )
+
+    # 2. Fetch questions from Postgres
+    stmt = select(Question).where(
+        Question.used_in.contains([test_id]),
+        Question.verification_status == "verified",
+    )
+    if include_solutions:
+        stmt = stmt.options(selectinload(Question.solution))
+    result = await db.execute(stmt)
+    all_questions: List[Question] = list(result.scalars().all())
+
+    # Expand paragraph siblings so every div5 paragraph is complete
+    all_questions = await _expand_paragraph_siblings(db, all_questions)
+
+    # 3. Build buckets keyed by section_name (from section_config)
+    #    Also track section metadata (marks, negMarks) by name.
+    section_meta: Dict[str, Dict[str, Any]] = {}   # name → {pos, neg, q_type}
+    buckets: Dict[str, List[Question]] = {}         # section_name → questions
+    ungrouped: List[Question] = []
+
+    for q in all_questions:
+        subj = (q.subject or "").strip().lower()
+        raw_div = (q.source_info or {}).get("section_type")
+        div = _normalise_div(raw_div)
+        if not div:
+            ungrouped.append(q)
+            continue
+
+        section_key = f"{subj}-{div}"
+        sec = section_config.get(section_key)
+        if not sec:
+            # Try subject-only fallback for unknown subjects
+            ungrouped.append(q)
+            logger.warning(
+                "JEEA shaping: no section_config entry for key %r — question excluded. "
+                "test_id=%s", section_key, test_id
+            )
+            continue
+
+        section_name: str = sec.get("name", section_key)
+        if section_name not in buckets:
+            buckets[section_name] = []
+            section_meta[section_name] = {
+                "pos": float(sec.get("pos", 0)),
+                "neg": float(sec.get("neg", 0)),
+                "q_type": _DIV_TO_QTYPE.get(div, "MCQ"),
+            }
+        buckets[section_name].append(q)
+
+    if ungrouped:
+        logger.warning(
+            "JEEA shaping: %d questions had unrecognised subject/div or missing "
+            "section_config and were excluded. test_id=%s",
+            len(ungrouped), test_id,
+        )
+
+    # 4. Determine section render order: group by subject, within subject by div order
+    ordered_section_names: List[str] = []
+    for subj in _JEEA_SUBJECTS:
+        for div_key in _JEEA_DIV_ORDER:
+            sec_cfg = section_config.get(f"{subj}-{div_key}")
+            if not sec_cfg:
+                continue
+            sec_name = sec_cfg.get("name", f"{subj}-{div_key}")
+            if sec_name in buckets and sec_name not in ordered_section_names:
+                ordered_section_names.append(sec_name)
+
+    # 5. Build output
+    sections_out: List[JEEMSectionConfig] = []
+    questions_out: List[JEEMQuestionOut] = []
+    total_marks = 0
+
+    for sec_name in ordered_section_names:
+        meta = section_meta[sec_name]
+        pos = int(meta["pos"])
+        q_type = meta["q_type"]
+
+        sections_out.append(JEEMSectionConfig(
+            name=sec_name,
+            marksPerQuestion=pos,
+            negativeMarksPerQuestion=int(meta["neg"]),
+        ))
+
+        for q in buckets[sec_name]:
+            questions_out.append(
+                _orm_to_jeem_question_out(q, sec_name, q_type, pos)
+            )
+            total_marks += pos
+
+    solutions_out: Dict[str, SolutionOut] = {}
+    if include_solutions:
+        for q in all_questions:
+            sol = _orm_to_solution_out(q.solution)
+            if sol:
+                solutions_out[q.legacy_id or q.id] = sol
+
+    return JEEMTestOut(
+        testId=test_id,
+        title=test_title,
+        duration=duration,
+        totalMarks=total_marks,
+        sections=sections_out,
         questions=questions_out,
         solutions=solutions_out,
     )

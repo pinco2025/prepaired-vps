@@ -23,6 +23,7 @@ from app.schemas.question import JEEMTestOut, QuestionDetailOut, QuestionSetOut
 from app.services.question_service import (
     check_chapter_exists,
     get_jeem_test,
+    get_jeea_test,
     get_neet_test,
     get_set_test,
     get_question_by_id,
@@ -221,11 +222,17 @@ async def get_structured_test(
             include_solutions=include_solutions,
         )
 
-    # JEEA — scaffolded, not yet implemented.
-    raise HTTPException(
-        status_code=501,
-        detail=f"output_type '{output_type}' is recognised but not yet implemented.",
-    )
+    if output_type == "JEEA":
+        try:
+            return await get_jeea_test(
+                db,
+                test_id=test_id,
+                test_title=title or "JEE Advanced Mock Test",
+                duration=duration or 10800,
+                include_solutions=include_solutions,
+            )
+        except ValueError as e:
+            raise HTTPException(status_code=400, detail=str(e))
 
 
 @router.get("/{question_id}", response_model=QuestionDetailOut)
