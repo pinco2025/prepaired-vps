@@ -72,11 +72,11 @@ async def calculate_score(
         if not section_config:
             raise HTTPException(status_code=400, detail="Test section_config not configured — populate tests.section_config before scoring")
 
-        # 5. Fetch questions from Postgres by submitted answer keys.
-        #    Answer keys are question.uuid from the test JSON = legacy_id if set, else actual UUID.
-        #    We match on BOTH columns so questions without legacy_id are not missed.
-        question_ids = list(answers.keys())
-        answer_keys_set = set(question_ids)
+        # 5. Fetch ALL questions for this test from Postgres.
+        #    We use the used_in[] column to get every question in the test,
+        #    not just the ones the student answered — so unattempted questions
+        #    appear in attempt_comparison with status "Unattempted".
+        answer_keys_set = set(answers.keys())
 
         async with AsyncSessionLocal() as db:
             rows = await db.execute(
@@ -92,10 +92,10 @@ async def calculate_score(
                         source_info->>'difficulty'          AS difficulty,
                         flags->>'scary'                     AS scary
                     FROM questions
-                    WHERE legacy_id = ANY(:ids)
-                       OR id::text  = ANY(:ids)
+                    WHERE :test_id = ANY(used_in)
+                      AND verification_status = 'verified'
                 """),
-                {"ids": question_ids},
+                {"test_id": test_id},
             )
             q_rows = rows.fetchall()
 
