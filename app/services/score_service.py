@@ -41,22 +41,35 @@ class ScoreService:
             logger.error(f"Error loading chapters.json: {e}")
             return {}
 
+    @staticmethod
+    def _infer_section_type(name: str) -> str:
+        """Derive question type from section name (e.g. 'Physics - Multi Correct' → 'MultiCorrect')."""
+        n = (name or '').lower()
+        if 'multi correct' in n:
+            return 'MultiCorrect'
+        if 'numerical' in n:
+            return 'Numerical'
+        if 'matrix match' in n:
+            return 'MatrixMatch'
+        return 'MCQ'
+
     def calculate_score(self, ppt_data: dict, response_data: dict) -> dict:
         """
         Calculates scores based on the provided PPT data and user response data.
         """
-        # Process sections to get marking scheme
+        # Process sections to get marking scheme and inferred question type
         sections_config = {}
         for section in ppt_data.get('sections', []):
             name = section.get('name')
             positive_marks = section.get('marksPerQuestion', 0)
             negative_marks = section.get('negagiveMarksPerQuestion', 0)
-            if not negative_marks: 
+            if not negative_marks:
                  negative_marks = section.get('negativeMarksPerQuestion', 0)
 
             sections_config[name] = {
                 'positive': positive_marks,
-                'negative': negative_marks
+                'negative': negative_marks,
+                'type': self._infer_section_type(name),
             }
 
         attempt_comparison = []
@@ -113,9 +126,13 @@ class ScoreService:
             chapter_scores[chapter_tag]['total_questions'] += 1
             total_questions_count += 1
 
-            # Detect question type — prefer explicit questionType field, fall back to tags.type
+            # Detect question type — explicit questionType takes precedence,
+            # then fall back to the type inferred from the section name in the JSON.
             q_type = q.get('questionType') or (q.get('tags') or {}).get('type', '')
-            is_multi_correct = (q_type == 'MultiCorrect')
+            is_multi_correct = (
+                q_type == 'MultiCorrect'
+                or section_cfg.get('type') == 'MultiCorrect'
+            )
 
             if is_multi_correct:
                 # div8 partial marking algorithm
