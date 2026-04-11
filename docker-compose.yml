@@ -31,6 +31,8 @@ services:
       ALLOWED_ORIGINS: ${ALLOWED_ORIGINS}
       ENVIRONMENT: production
       FREE_QUESTION_LIMIT: ${FREE_QUESTION_LIMIT:-10}
+      GITHUB_TOKEN: ${GITHUB_TOKEN}
+      GITHUB_REPO: ${GITHUB_REPO}
     # Runs migrations then starts the server. Migrations are idempotent so
     # this is safe on every restart (alembic upgrade head is a no-op if current).
     command: >
