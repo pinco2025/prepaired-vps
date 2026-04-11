@@ -72,14 +72,17 @@ async def calculate_score(
         if not section_config:
             raise HTTPException(status_code=400, detail="Test section_config not configured — populate tests.section_config before scoring")
 
-        # 5. Fetch questions from Postgres by submitted answer keys
-        #    answers.keys() == all question UUIDs the student saw (including unattempted as null)
-        question_uuids = list(answers.keys())
+        # 5. Fetch questions from Postgres by submitted answer keys.
+        #    Answer keys are question.uuid from the test JSON = legacy_id if set, else actual UUID.
+        #    We match on BOTH columns so questions without legacy_id are not missed.
+        question_ids = list(answers.keys())
+        answer_keys_set = set(question_ids)
 
         async with AsyncSessionLocal() as db:
             rows = await db.execute(
                 text("""
                     SELECT
+                        id::text                            AS db_id,
                         legacy_id,
                         answer,
                         chapter,
@@ -90,8 +93,9 @@ async def calculate_score(
                         flags->>'scary'                     AS scary
                     FROM questions
                     WHERE legacy_id = ANY(:ids)
+                       OR id::text  = ANY(:ids)
                 """),
-                {"ids": question_uuids},
+                {"ids": question_ids},
             )
             q_rows = rows.fetchall()
 
@@ -100,6 +104,9 @@ async def calculate_score(
         sections_map: Dict[str, Any] = {}
         questions_out = []
         for r in q_rows:
+            # Use whichever key the student actually submitted answers under
+            answer_key = r.legacy_id if (r.legacy_id and r.legacy_id in answer_keys_set) else r.db_id
+
             section_key = (
                 f"{r.subject}-{r.section_type}"
                 if r.subject and r.section_type
@@ -116,7 +123,8 @@ async def calculate_score(
                 }
 
             questions_out.append({
-                "uuid": r.legacy_id,
+                "uuid": answer_key,     # must match the key in answers dict
+                "id": answer_key,       # kept for parity with test JSON shape
                 "section": section_name,
                 "correctAnswer": r.answer,
                 "chapterCode": r.chapter,
