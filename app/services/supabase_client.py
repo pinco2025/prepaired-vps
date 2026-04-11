@@ -45,6 +45,8 @@ async def _request(
         resp = await client.request(method, url, params=params, json=body, headers=headers)
     if not resp.is_success:
         raise SupabaseError(resp.status_code, resp.text)
+    if not resp.content:
+        return None
     return resp.json()
 
 
