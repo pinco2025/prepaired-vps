@@ -174,6 +174,32 @@ async def get_tests_by_prefix(prefix: str, user_id: Optional[str]) -> TestsByPre
     return TestsByPrefixOut(tests=tests_rows, submissions=submissions)
 
 
+async def get_tests_by_exam(exam: str, user_id: Optional[str]) -> TestsByPrefixOut:
+    """Tests whose exam column matches the given exam type, ordered by testID (the -XX suffix drives order)."""
+    tests_rows = await sb_select(
+        "tests",
+        {"exam": f"eq.{exam}"},
+        order="testID",
+    )
+
+    submissions: List[SubmissionSummary] = []
+    if user_id and tests_rows:
+        test_ids = [str(t["testID"]) for t in tests_rows]
+        ids_csv = ",".join(test_ids)
+        subs_rows = await sb_select(
+            "student_tests",
+            {
+                "user_id": f"eq.{user_id}",
+                "test_id": f"in.({ids_csv})",
+                "submitted_at": "not.is.null",
+            },
+            select_cols="id,test_id,result_url,submitted_at",
+        )
+        submissions = [SubmissionSummary(**r) for r in subs_rows]
+
+    return TestsByPrefixOut(tests=tests_rows, submissions=submissions)
+
+
 async def get_student_tests_by_ids(ids: List[str]) -> List[StudentTestByIdOut]:
     """Batch-fetch student_test records by a list of IDs."""
     if not ids:

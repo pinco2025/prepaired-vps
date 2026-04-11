@@ -52,6 +52,15 @@ async def get_by_prefix(
     return await test_service.get_tests_by_prefix(prefix, user.sub)
 
 
+@router.get("/by-exam", response_model=TestsByPrefixOut)
+async def get_by_exam(
+    exam: str = Query(..., description="Exam type, e.g. 'JEE', 'NEET', 'JEEA'"),
+    user: TokenPayload = Depends(get_current_user),
+):
+    """Tests whose exam column matches the given type, ordered by testID, plus user submissions."""
+    return await test_service.get_tests_by_exam(exam.upper(), user.sub)
+
+
 @router.get("/by-ids", response_model=list[StudentTestByIdOut])
 async def get_by_ids(
     ids: str = Query(..., description="Comma-separated student_test UUIDs"),
