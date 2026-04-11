@@ -92,6 +92,7 @@ async def get_attempts(test_id: str, user_id: str) -> List[AttemptOut]:
 
 
 async def get_result(submission_id: str) -> Optional[TestResultOut]:
+    import asyncio
     rows = await sb_select(
         "student_tests",
         {"id": f"eq.{submission_id}"},
@@ -99,7 +100,19 @@ async def get_result(submission_id: str) -> Optional[TestResultOut]:
     )
     if not rows:
         return None
-    return TestResultOut(**rows[0])
+    record = rows[0]
+
+    # Fetch exam/type from tests table in parallel to avoid extra round-trip latency
+    test_rows = await sb_select(
+        "tests",
+        {"testID": f"eq.{record['test_id']}"},
+        select_cols="exam,type",
+        limit=1,
+    )
+    if test_rows:
+        record = {**record, "exam": test_rows[0].get("exam"), "type": test_rows[0].get("type")}
+
+    return TestResultOut(**record)
 
 
 async def get_meta(test_id: str) -> Optional[TestMetaOut]:

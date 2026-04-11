@@ -168,6 +168,7 @@ async def get_structured_test(
     output_type: str = Query(..., description="Output format: JEEM | NEET | SET | JEEA"),
     title: Optional[str] = Query(None, description="Override test title"),
     duration: Optional[int] = Query(None, description="Override duration in seconds (default 10800 for JEEM)"),
+    include_solutions: bool = Query(False, description="Include solutions in response (for review mode only)"),
     db: AsyncSession = Depends(get_db),
     user: Optional[TokenPayload] = Depends(get_optional_user),
 ):
@@ -199,6 +200,7 @@ async def get_structured_test(
             test_id=test_id,
             test_title=title or "JEE Main Mock Test",
             duration=duration or 10800,
+            include_solutions=include_solutions,
         )
 
     if output_type == "NEET":
@@ -207,6 +209,7 @@ async def get_structured_test(
             test_id=test_id,
             test_title=title or "NEET Mock Test",
             duration=duration or 12000,
+            include_solutions=include_solutions,
         )
 
     if output_type == "SET":
@@ -215,6 +218,7 @@ async def get_structured_test(
             test_id=test_id,
             test_title=title or "Practice Set",
             duration=duration or 3600,
+            include_solutions=include_solutions,
         )
 
     # JEEA — scaffolded, not yet implemented.

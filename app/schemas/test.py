@@ -39,6 +39,8 @@ class TestResultOut(BaseModel):
     submitted_at: Optional[str] = None
     started_at: Optional[str] = None
     result_url: Optional[str] = None
+    exam: Optional[str] = None
+    type: Optional[str] = None
 
 
 class SubmissionSummary(BaseModel):

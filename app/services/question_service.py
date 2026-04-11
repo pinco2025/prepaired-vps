@@ -406,6 +406,7 @@ async def get_jeem_test(
     test_id: str,
     test_title: str = "JEE Main Mock Test",
     duration: int = 10800,             # 3 hours in seconds
+    include_solutions: bool = False,
 ) -> JEEMTestOut:
     """
     Fetch all questions for a JEE Main test (identified by test_id in used_in[])
@@ -418,11 +419,12 @@ async def get_jeem_test(
     Output matches the Test interface in client/src/utils/testData.ts — store the
     endpoint URL as tests.url in Supabase for seamless frontend/scorer integration.
     """
-    stmt = (
-        select(Question)
-        .where(Question.used_in.contains([test_id]))
-        .where(Question.verification_status == "verified")
+    stmt = select(Question).where(
+        Question.used_in.contains([test_id]),
+        Question.verification_status == "verified",
     )
+    if include_solutions:
+        stmt = stmt.options(selectinload(Question.solution))
     result = await db.execute(stmt)
     all_questions: List[Question] = list(result.scalars().all())
 
@@ -469,6 +471,13 @@ async def get_jeem_test(
                 )
                 total_marks += spec.marks
 
+    solutions_out: Dict[str, SolutionOut] = {}
+    if include_solutions:
+        for q in all_questions:
+            sol = _orm_to_solution_out(q.solution)
+            if sol:
+                solutions_out[q.legacy_id or q.id] = sol
+
     return JEEMTestOut(
         testId=test_id,
         title=test_title,
@@ -476,6 +485,7 @@ async def get_jeem_test(
         totalMarks=total_marks,
         sections=_JEEM_SECTIONS,
         questions=questions_out,
+        solutions=solutions_out,
     )
 
 
@@ -507,6 +517,7 @@ async def get_neet_test(
     test_id: str,
     test_title: str = "NEET Mock Test",
     duration: int = 12000,              # 200 minutes in seconds
+    include_solutions: bool = False,
 ) -> JEEMTestOut:
     """
     Fetch all questions for a NEET test and structure into 4 sections:
@@ -515,11 +526,12 @@ async def get_neet_test(
     All NEET questions are MCQ (div1). Bucketed by subject only — no div split.
     Total: 180 questions, 720 marks, 200 minutes.
     """
-    stmt = (
-        select(Question)
-        .where(Question.used_in.contains([test_id]))
-        .where(Question.verification_status == "verified")
+    stmt = select(Question).where(
+        Question.used_in.contains([test_id]),
+        Question.verification_status == "verified",
     )
+    if include_solutions:
+        stmt = stmt.options(selectinload(Question.solution))
     result = await db.execute(stmt)
     all_questions: List[Question] = list(result.scalars().all())
 
@@ -558,6 +570,13 @@ async def get_neet_test(
             )
             total_marks += _NEET_SPEC.marks
 
+    solutions_out: Dict[str, SolutionOut] = {}
+    if include_solutions:
+        for q in all_questions:
+            sol = _orm_to_solution_out(q.solution)
+            if sol:
+                solutions_out[q.legacy_id or q.id] = sol
+
     return JEEMTestOut(
         testId=test_id,
         title=test_title,
@@ -565,6 +584,7 @@ async def get_neet_test(
         totalMarks=total_marks,
         sections=_NEET_SECTIONS,
         questions=questions_out,
+        solutions=solutions_out,
     )
 
 
@@ -597,6 +617,7 @@ async def get_set_test(
     test_id: str,
     test_title: str = "Practice Set",
     duration: int = 3600,               # 1 hour default
+    include_solutions: bool = False,
 ) -> JEEMTestOut:
     """
     Fetch all questions for a practice SET and bucket into 2 sections by div type:
@@ -605,11 +626,12 @@ async def get_set_test(
     No subject grouping — section_type in source_info drives placement.
     Questions with missing/unrecognised section_type default to div1 (MCQ).
     """
-    stmt = (
-        select(Question)
-        .where(Question.used_in.contains([test_id]))
-        .where(Question.verification_status == "verified")
+    stmt = select(Question).where(
+        Question.used_in.contains([test_id]),
+        Question.verification_status == "verified",
     )
+    if include_solutions:
+        stmt = stmt.options(selectinload(Question.solution))
     result = await db.execute(stmt)
     all_questions: List[Question] = list(result.scalars().all())
 
@@ -635,6 +657,13 @@ async def get_set_test(
             )
             total_marks += spec.marks
 
+    solutions_out: Dict[str, SolutionOut] = {}
+    if include_solutions:
+        for q in all_questions:
+            sol = _orm_to_solution_out(q.solution)
+            if sol:
+                solutions_out[q.legacy_id or q.id] = sol
+
     return JEEMTestOut(
         testId=test_id,
         title=test_title,
@@ -642,6 +671,7 @@ async def get_set_test(
         totalMarks=total_marks,
         sections=_SET_SECTIONS,
         questions=questions_out,
+        solutions=solutions_out,
     )
 
 

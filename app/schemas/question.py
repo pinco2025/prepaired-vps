@@ -139,3 +139,4 @@ class JEEMTestOut(BaseModel):
     totalMarks: int                        # 300 for standard JEEM
     sections: List[JEEMSectionConfig]
     questions: List[JEEMQuestionOut]
+    solutions: Dict[str, SolutionOut] = {}  # keyed by question id/uuid
