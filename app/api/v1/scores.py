@@ -108,7 +108,7 @@ async def calculate_score(
             answer_key = r.legacy_id if (r.legacy_id and r.legacy_id in answer_keys_set) else r.db_id
 
             section_key = (
-                f"{r.subject}-{r.section_type}"
+                f"{r.subject.lower()}-{r.section_type}"
                 if r.subject and r.section_type
                 else (r.section_type or "unknown")
             )

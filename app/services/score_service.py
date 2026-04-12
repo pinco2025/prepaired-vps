@@ -247,6 +247,9 @@ class ScoreService:
             if key != 'questions':
                 output[key] = value
 
+        section_order = {s.get('name'): i for i, s in enumerate(ppt_data.get('sections', []))}
+        attempt_comparison.sort(key=lambda x: section_order.get(x['section'], 999))
+
         output["attempt_comparison"] = attempt_comparison
         output["section_scores"] = section_scores
         output["chapter_scores"] = chapter_scores
