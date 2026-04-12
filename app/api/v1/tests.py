@@ -14,7 +14,7 @@ from typing import Optional
 
 from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 
-from app.core.deps import get_current_user
+from app.core.deps import get_current_user, get_optional_user
 from app.core.security import TokenPayload
 from app.schemas.test import (
     AttemptOut,
@@ -46,19 +46,19 @@ async def get_submissions(
 @router.get("/by-prefix", response_model=TestsByPrefixOut)
 async def get_by_prefix(
     prefix: str = Query(..., description="PostgREST ilike pattern, e.g. 'AIPT-%'"),
-    user: TokenPayload = Depends(get_current_user),
+    user: Optional[TokenPayload] = Depends(get_optional_user),
 ):
-    """Tests whose testID matches the given ilike pattern, plus user submissions."""
-    return await test_service.get_tests_by_prefix(prefix, user.sub)
+    """Tests whose testID matches the given ilike pattern, plus user submissions (auth optional)."""
+    return await test_service.get_tests_by_prefix(prefix, user.sub if user else None)
 
 
 @router.get("/by-exam", response_model=TestsByPrefixOut)
 async def get_by_exam(
     exam: str = Query(..., description="Exam type, e.g. 'JEE', 'NEET', 'JEEA'"),
-    user: TokenPayload = Depends(get_current_user),
+    user: Optional[TokenPayload] = Depends(get_optional_user),
 ):
-    """Tests whose exam column matches the given type, ordered by testID, plus user submissions."""
-    return await test_service.get_tests_by_exam(exam.upper(), user.sub)
+    """Tests whose exam column matches the given type, ordered by testID, plus user submissions (auth optional)."""
+    return await test_service.get_tests_by_exam(exam.upper(), user.sub if user else None)
 
 
 @router.get("/by-ids", response_model=list[StudentTestByIdOut])
