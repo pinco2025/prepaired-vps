@@ -19,4 +19,18 @@ class UpdateAnswersIn(BaseModel):
 
 
 class UpdateTimeIn(BaseModel):
-    time_elapsed: int   # seconds; -1 = closed
+    time_elapsed: int   # seconds; -1 = closed (legacy, kept for admin tooling)
+
+
+class SubmitSetIn(BaseModel):
+    answers: Dict[str, Any]   # final answer dict (in case last save raced)
+
+
+class SetSubmitOut(BaseModel):
+    session_id: str
+    total: int
+    correct: int
+    incorrect: int
+    unattempted: int
+    accuracy: float           # 0.0–100.0, 1 decimal place
+    submitted_at: str         # ISO 8601 timestamp

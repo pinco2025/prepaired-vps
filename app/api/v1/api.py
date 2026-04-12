@@ -4,6 +4,7 @@ from app.api.v1 import (
     diagnostic,
     feedback,
     misc,
+    question_sets,
     questions,
     scores,
     sets,
@@ -18,4 +19,5 @@ api_router.include_router(sets.router)
 api_router.include_router(scores.router)
 api_router.include_router(feedback.router)
 api_router.include_router(diagnostic.router)
+api_router.include_router(question_sets.router)
 api_router.include_router(misc.router)

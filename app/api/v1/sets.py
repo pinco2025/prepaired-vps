@@ -1,22 +1,30 @@
 """
 Practice set session endpoints — replaces setService.ts Supabase calls.
-Critically: closeSessionOnUnload now uses keepalive fetch to this backend
-instead of embedding Supabase credentials in the frontend bundle.
 
 POST   /api/v1/sets/{setId}/start
 GET    /api/v1/sets/{setId}/resume
 PATCH  /api/v1/sets/{sessionId}/answers
 PATCH  /api/v1/sets/{sessionId}/time
-POST   /api/v1/sets/{sessionId}/close    ← keepalive target for onunload
+POST   /api/v1/sets/{sessionId}/submit   ← marks submitted, returns score breakdown
+POST   /api/v1/sets/{sessionId}/close    ← DEPRECATED: kept for admin tooling only
 """
 
 from typing import Optional
 
-from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
+from fastapi import APIRouter, Body, Depends, HTTPException, status
+from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.core.database import get_db
 from app.core.deps import get_current_user
 from app.core.security import TokenPayload
-from app.schemas.set import SetResumeOut, StartSetOut, UpdateAnswersIn, UpdateTimeIn
+from app.schemas.set import (
+    SetResumeOut,
+    SetSubmitOut,
+    StartSetOut,
+    SubmitSetIn,
+    UpdateAnswersIn,
+    UpdateTimeIn,
+)
 from app.services import set_service
 
 router = APIRouter(prefix="/sets", tags=["sets"])
@@ -57,13 +65,28 @@ async def update_time(
     await set_service.update_time(session_id, body.time_elapsed)
 
 
+@router.post("/{session_id}/submit", response_model=SetSubmitOut)
+async def submit_set(
+    session_id: str,
+    body: SubmitSetIn,
+    user: TokenPayload = Depends(get_current_user),
+    db: AsyncSession = Depends(get_db),
+):
+    """
+    Finalise a practice set session. Scores the answers against Postgres question keys
+    and returns a simple breakdown: correct / incorrect / unattempted / accuracy.
+    No marks, no section breakdown — sets are pure practice.
+    """
+    return await set_service.submit_session(db, session_id, user.sub, body.answers)
+
+
 @router.post("/{session_id}/close", status_code=status.HTTP_204_NO_CONTENT)
 async def close_session(
     session_id: str,
     user: TokenPayload = Depends(get_current_user),
 ):
     """
-    Keepalive-compatible endpoint called from `closeSessionOnUnload`.
-    Frontend uses `fetch(..., { keepalive: true })` so this fires even on tab close.
+    DEPRECATED — sessions are now persistent until submit.
+    Kept for admin tooling. Frontend no longer calls this endpoint.
     """
     await set_service.close_session(session_id)

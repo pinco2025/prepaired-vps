@@ -61,6 +61,8 @@ async def user_analytics(user: TokenPayload = Depends(get_current_user)):
     """
     Aggregates student_tests data for the AI Insights page.
     Returns raw data; heavy aggregation will move to a dedicated service later.
+    Each submission includes history_url (aliased from result_url) so the
+    Dashboard can navigate to the result without knowing the internal field name.
     """
     rows = await sb_select(
         "student_tests",
@@ -68,6 +70,10 @@ async def user_analytics(user: TokenPayload = Depends(get_current_user)):
         select_cols="id,test_id,answers,submitted_at,result_url",
         order="submitted_at.desc",
     )
+    # Normalise: expose result_url under both its original name and history_url
+    # so the frontend analyticsService can consume it without field-name gymnastics.
+    for row in rows:
+        row["history_url"] = row.get("result_url")
     return UserAnalyticsOut(data={"submissions": rows})
 
 
