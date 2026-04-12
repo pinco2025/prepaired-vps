@@ -288,7 +288,7 @@ async def main(csv_dir: str) -> None:
     # ── Load CSVs ──────────────────────────────────────────────────────────────
     print(f"Loading {q_path} …")
     q_rows: list[dict] = []
-    with q_path.open(encoding="utf-8") as f:
+    with q_path.open(encoding="utf-8-sig") as f:
         q_rows = list(csv.DictReader(f))
 
     print(f"  {len(q_rows):,} question rows")
@@ -313,7 +313,7 @@ async def main(csv_dir: str) -> None:
               f"(will be NULL): {sorted(unmapped)}")
 
     print(f"Loading {s_path} …")
-    with s_path.open(encoding="utf-8") as f:
+    with s_path.open(encoding="utf-8-sig") as f:
         s_records = [transform_solution(r) for r in csv.DictReader(f)]
     print(f"  {len(s_records):,} solution rows\n")
 
