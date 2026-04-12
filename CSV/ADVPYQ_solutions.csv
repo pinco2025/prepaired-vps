@@ -1,0 +1,2652 @@
+﻿id,explanation,solution_image_url,metadata
+019d6edb-a546-7cd8-adf8-ec6ac560b800,"$\lim_{t \to x} \frac{f(x)t^{10} - x^{10}f(t)}{t^9 - x^9} = 1$ (Using L.H. Rule)
+
+$$\lim_{t \to x} \frac{f(x)10t^9 - x^{10} \cdot f'(t)}{9t^8} = 1$$
+
+$$\Rightarrow \frac{f(x) \times 10x^9 - x^{10} \cdot f'(x)}{9x^8} = 1$$
+
+$$\Rightarrow x^2 f'(x) - 10x f(x) = -9 \Rightarrow f'(x) - \frac{10}{x} f(x) = -\frac{9}{x^2}$$
+
+Integrating factor $e^{-\int \frac{10}{x} dx} = \frac{1}{x^{10}}$
+
+$$\Rightarrow \frac{f(x)}{x^{10}} = \int -\frac{9}{x^2} \times \frac{1}{x^{10}} dx \Rightarrow \frac{f(x)}{x^{10}} = \frac{9}{11x^{11}} + c$$
+
+$$\because f(1) = 2 \Rightarrow 2 = \frac{9}{11} + c \Rightarrow c = \frac{13}{11}$$
+
+$$\Rightarrow f(x) = \frac{9}{11x} + \frac{13}{11}x^{10}$$",,{}
+019d6edb-a56c-7fc5-8df1-7ec493834044,"Consider $A$: student's answer is correct
+$E_1$: He knows the answer.
+$E_2$: He guesses the answer.
+$P(A/E_2) = \frac{1}{2}, P(A/E_1) = 1$
+Let $P(E_1) = 1 - x \Rightarrow P(E_2) = x$
+Given, $P(E_2/A) = \frac{1}{6} = \frac{P(E_2)P(A/E_2)}{P(E_1)P(A/E_1) + P(E_2)P(A/E_2)}$
+$\Rightarrow \frac{1}{6} = \frac{x \cdot \frac{1}{2}}{(1-x) \times 1 + (x)\frac{1}{2}} = \frac{x}{2-x}$
+$\Rightarrow x = \frac{2}{7}$
+$\Rightarrow P(\text{req.}) = \frac{5}{7}$",,{}
+019d6edb-a56e-7746-9bd3-5a4f00c035a8,"$ \cot x=\frac{-5}{\sqrt{11}}, x \in \left( \frac{\pi}{2}, \pi \right) \Rightarrow \cos x=\frac{-5}{6} $
+$ \Rightarrow \sin \frac{x}{2}=\frac{\sqrt{11}}{2\sqrt{3}} $ and $ \cos \frac{x}{2}=\frac{1}{2\sqrt{3}} $
+Now, $ \left( \sin \frac{11x}{2} \right)\left( \sin 6x-\cos 6x \right)+\left( \cos \frac{11x}{2} \right)\left( \sin 6x+\cos 6x \right) $
+$ =\cos \frac{x}{2}+\sin \frac{x}{2}=\frac{\sqrt{11}+1}{2\sqrt{3}} $",,{}
+019d6edb-a571-77e3-ad29-3320c8cc326c,"Let $T$ be $(3\cos\theta, 2\sin\theta)$
+$$\Rightarrow \operatorname{Ar}(\Delta\mathrm{ORT}) = \frac{1}{2} \times 3 \times |2\sin\theta| = \frac{3}{2}$$
+$$\Rightarrow |\sin\theta| = \frac{1}{2}$$
+$$\Rightarrow T\left(\frac{3\sqrt{3}}{2}, -1\right)$$
+Also $q = 2 \Rightarrow S(p, 2)$
+$$T: \frac{\sqrt{3}x}{6} - \frac{y}{4} = 1$$
+$S(p, 2)$ lies on it $\Rightarrow \frac{\sqrt{3}p}{6} - \frac{2}{4} = 1$
+$$p = \frac{3}{2} \times \frac{6}{\sqrt{3}}$$
+$$p = 3\sqrt{3}$$
+$$\Rightarrow p = 3\sqrt{3}, q = 2$$",https://lh3.googleusercontent.com/d/1_d-Z0hgRttIcqWUd3sczKsYB9dEbxWXh=w1200,{}
+019d6edb-a572-7120-8e38-a049b50ff7fb,"(A) $ T_{1} \cup T_{2}=\alpha+\beta \sqrt{2} $ where $ \alpha, \beta \in N $
+So, $ Z \cup T_{1} \cup T_{2} \subset S $
+(B) For some very large N $ T_{1} $ lies in $ \left( 0, \frac{1}{2024} \right) $
+(C) For some large N $ T_{2} > 2024 $
+(D) $ \cos \left( \pi\left( a+b \sqrt{2} \right) \right)+\mathrm{i} \sin \left( \pi\left( a+b \sqrt{2} \right) \right) \in Z $ only if b=0.",,{}
+019d6edb-a575-71b5-90b7-883d7a740869,"Here, locus of $ S\equiv 6x+8z=105 $ i.e. a plane and locus of $ T\equiv 6x+8z=5 $ i.e. a plane. Also, distance between these two planes = 10 units.",,{}
+019d6edb-a575-7a98-9070-011c3852539a,"6. $ax^2 + 2bxy + cy^2 > 0$
+a, $c > 0$, $b^2 < ac$
+(A) $\left(2, \frac{7}{2}, 6\right) \in S$ is incorrect
+(B) $\left(3, b, \frac{1}{12}\right) \in S$ then $|2b| < 1$
+$b^2 < \frac{1}{4} \Rightarrow |2b| < 1$
+(C) $ax + by = 1$
+$bx + cy = -1$
+$\Delta = ac - b^2 \neq 0$
+unique solution.
+(D) $(a + 1)x + by = 0$
+$bx + (c + 1)y = 0$
+$\Delta = \begin{vmatrix} a + 1 & b \\ b & (c + 1) \end{vmatrix}$
+$= (a + 1)(c + 1) - b^2$
+$\Rightarrow at - b^2 + a + c + 1 > 0$
+hence unique solution.",,{}
+019d6edb-a578-7772-b6fa-d956381f0591,"$a = 3\sqrt{2}, b = \frac{1}{5^{1/6}\sqrt{6}}$
+
+$3x + 2y = \log_{\sqrt{18}} 18^{5/4} = \frac{5}{2}$
+
+$2x - y = -\log_{(5^{1/6}\sqrt{6})} \sqrt{1080} = -3$
+
+$\Rightarrow 6x + 4y = 5 \rightarrow (1)$
+
+$2x - y = -3 \rightarrow (2)$
+
+Now, subtract (2) from (1)
+
+$4x + 5y = 8$",,{}
+019d6edb-a578-7bca-bbdb-fd9c69a60de4,"$ 4x^{2}+3ax+2b=4(x^{2}+3) $
+$ \Rightarrow $ a=0 ; b=6
+$ f(x)=x^{4}+6x^{2}+c $
+$ f(1)=7+c=-9 \Rightarrow c=-16 $
+$ \Rightarrow f(x)=x^{4}+6x^{2}-16=(x^{2}+8)(x^{2}-2) $
+$ \Rightarrow $ $ x=\pm2\sqrt{2}i,\pm\sqrt{2} $
+$ \Rightarrow $ $ \left| \alpha_{1} \right|^{2}+\left| \alpha_{2} \right|^{2}+\left| \alpha_{3} \right|^{2}+\left| \alpha_{4} \right|^{2}=20. $",,{}
+019d6edb-a578-7cfc-80d7-fd6e4c7ea9ce,"$\pmb{\text{Step 1: Calculate the Determinant of Matrix A}}$
+
+Expanding $|A|$ along the first row:
+$$|A| = 0(ae - bd) - 1(e - d) + c(b - a)$$
+$$|A| = -(e - d) + c(b - a)$$
+$$|A| = (d - e) + c(b - a)$$
+We are given that $a, b, c, d, e \in \{0, 1\}$ and $|A| \in \{1, -1\}$.
+
+
+
+$\pmb{\text{Step 2: Case 1 - When } (d - e) \neq 0}$
+
+If $d - e = 1$ (where $d=1, e=0$) or $d - e = -1$ (where $d=0, e=1$):
+For $|A|$ to be $\pm 1$, the second term $c(b - a)$ must be $0$.
+$\bullet$ $c(b - a) = 0$ occurs in the following sub-cases:
+1. $c = 0$: Here $(a, b)$ can be $(0,0), (0,1), (1,0), (1,1)$ $\rightarrow$ $\pmb{\text{4 pairs}}$.
+2. $c = 1$: Then $(b - a)$ must be $0$, so $(a, b)$ can be $(0,0), (1,1)$ $\rightarrow$ $\pmb{\text{2 pairs}}$.
+Total pairs for $(a, b, c)$ is $4 + 2 = 6$.
+Since there are $\pmb{\text{2 options}}$ for $(d, e)$, total elements = $2 \times 6 = 12$.
+
+$\pmb{\text{Step 3: Case 2 - When } (d - e) = 0}$
+
+If $d - e = 0$ (where $(d, e) = (0,0)$ or $(1,1)$):
+For $|A|$ to be $\pm 1$, the second term $c(b - a)$ must be $\pm 1$.
+$\bullet$ $c(b - a) = 1 \implies c = 1, b = 1, a = 0$ $\rightarrow$ $\pmb{\text{1 triplet}}$.
+$\bullet$ $c(b - a) = -1 \implies c = 1, b = 0, a = 1$ $\rightarrow$ $\pmb{\text{1 triplet}}$.
+Total triplets for $(a, b, c)$ is $1 + 1 = 2$.
+Since there are $\pmb{\text{2 options}}$ for $(d, e)$, total elements = $2 \times 2 = 4$.
+
+$\pmb{\text{Step 4: Calculate Total Elements}}$
+
+Total number of elements in $S = 12 + 4 = 16$.
+
+$\pmb{\text{Conclusion:}}$
+
+The number of elements in $S$ is $\pmb{16}$, which corresponds to $\pmb{\text{Option B}}$.",,{}
+019d6edb-a57c-7a17-ba93-bfc2689ca5e3,"Case-1: $ S_{2} $ is in team X and $ S_{1} $ is in team Y, $ ^{7} C_{1} \times^{6} C_{2} \times^{4} C_{4}=105 $
+Case-2: $ S_{2} $ is in team X but $ S_{1} $ is not in team Y, $ ^{7} C_{2} \times^{5} C_{2} \times^{3} C_{3}=140 $
+Case-3: $ S_{2} $ is not in team X but $ S_{1} $ is in team Y, $ ^{7} C_{2} \times^{5} C_{2} \times^{3} C_{3}=210 $
+Case-4: $ S_{2} $ is not in team X and $ S_{1} $ is not in team Y, $ ^{7} C_{2} \times^{5} C_{3} \times^{2} C_{2}=210 $
+$ \therefore $ Total ways to form such teams = 105+140+210+210=665",,{}
+019d6edb-a57f-7de0-9072-fda93c03ca7d,"$ (\overrightarrow{OP} \times \overrightarrow{OQ}) \cdot \overrightarrow{OR} = 0 $
+$$ \Rightarrow \left| \begin{array}{c c c} \frac{\alpha-1}{\alpha} & 1 & 1 \\ 1 & \frac{\beta-1}{\beta} & 1 \\ 1 & 1 & \frac{1}{2} \end{array} \right| = 0 \Rightarrow \alpha + \beta = -1 $$
+Also, $ 3\alpha + 3\beta - 2 + l = 0 $
+$$ \Rightarrow l = 5 $$",,{}
+019d6edb-a580-7c14-8775-0d39afc7d577,"Let $ P \left( x_{i} \right)=m x_{i}+c, $ $ i=0, 1, 2, 3, 4 $
+$ \sum_{i=0}^{4} P \left( x_{i} \right)=1 \Rightarrow 2 m+c=\frac{1}{5} $
+$ \sum_{i=0}^{4} x_{i} P \left( x_{i} \right)=\frac{5}{2} \Rightarrow 3 m+c=\frac{1}{4} \Rightarrow m=\frac{1}{2 0}, c=\frac{1}{1 0} $
+$ \Rightarrow \alpha=\sum_{i=0}^{4} x_{i}^{2} P \left( x_{i} \right)-\left( \sum_{i=0}^{4} x_{i} P \left( x_{i} \right) \right)^{2}=8-\frac{2 5}{4}=\frac{7}{4} \Rightarrow 2 4 \alpha=4 2 $",,{}
+019d6edb-a582-7b3c-84ef-be80d6e3ccb5,"$\pmb{\text{Step 1: Simplify the Root Relationship}}$
+
+For the equation $x^2 + x - 1 = 0$, the sum of roots is $\alpha + \beta = -1$. Therefore, $\pmb{1 + \alpha + \beta = 0}$. For any row sum ($R_i$) or column sum ($C_j$) to be zero using elements from $T = \{1, \alpha, \beta\}$, each element in that row or column must be distinct (one $1$, one $\alpha$, and one $\beta$).
+
+$\pmb{\text{Step 2: Analyze Entry (P)}}$
+
+We need $R_i = C_j = 0$. This means each row and each column must be a permutation of $\{1, \alpha, \beta\}$. This is equivalent to counting $3\times3$ $\pmb{\text{Latin Squares}}$.
+$\bullet$ First row: $3! = 6$ ways.
+$\bullet$ Second row: Once the first row is fixed, there are only $2$ valid permutations for the second row that don't repeat elements in columns.
+$\bullet$ Third row: Forced by the previous rows ($1$ way).
+Total matrices $= 6 \times 2 \times 1 = \pmb{12}$. So, $\pmb{(P) \rightarrow (2)}$.
+
+$\pmb{\text{Step 3: Analyze Entry (Q)}}$
+
+For a symmetric matrix ($M = M^T$) where $C_j = 0$:
+$\bullet$ If $C_j = 0$, then $R_i$ is also $0$ due to symmetry.
+$\bullet$ The first row has $3! = 6$ ways. Because $a_{ij} = a_{ji}$, the first column is now fixed. 
+$\bullet$ Detailed counting shows only the permutations of the first row allow for valid symmetric completions. Total $= \pmb{6}$. So, $\pmb{(Q) \rightarrow (4)}$.
+
+$\pmb{\text{Step 4: Analyze Entry (R)}}$ 
+
+$M$ is skew-symmetric, so the diagonal is $0$. The system $MX = V$ becomes:
+$$\begin{bmatrix} 0 & -a_{12} & -a_{13} \\ a_{12} & 0 & -a_{23} \\ a_{13} & a_{23} & 0 \end{bmatrix} \begin{bmatrix} x \\ y \\ z \end{bmatrix} = \begin{bmatrix} a_{12} \\ 0 \\ -a_{23} \end{bmatrix}$$
+Evaluating the determinant of a $3\times3$ skew-symmetric matrix: $|M| = 0$. Since the determinant is zero and the system is consistent (the constants vector is a linear combination of the columns), there are $\pmb{\text{infinite solutions}}$. So, $\pmb{(R) \rightarrow (3)}$.
+
+$\pmb{\text{Step 5: Analyze Entry (S)}}$
+
+If $R_i = 0$ for all $i$, then $a_{i1} + a_{i2} + a_{i3} = 0$. Using the property of determinants, if we replace $C_1$ with $C_1 + C_2 + C_3$, the first column becomes all zeros:
+$$\text{det}(M) = \begin{vmatrix} 0 & a_{12} & a_{13} \\ 0 & a_{22} & a_{23} \\ 0 & a_{32} & a_{33} \end{vmatrix} = \pmb{0}$$
+So, $\pmb{(S) \rightarrow (5)}$.
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (2), (\text{Q}) \rightarrow (4), (\text{R}) \rightarrow (3), (\text{S}) \rightarrow (5)$, which is $\pmb{\text{Option C}}$.",,{}
+019d6edb-a586-7631-a3c0-340ab2f99796,"$\pmb{\text{Step 1: Use the Tangency Condition}}$
+
+The distance from the centre $(0, \alpha)$ to the line $2x - y = 0$ must be equal to the radius $r$:
+$$r = \frac{|2(0) - \alpha|}{\sqrt{2^2 + (-1)^2}} = \frac{\alpha}{\sqrt{5}}$$
+Since $\alpha > 0$, we have $\pmb{\alpha = r\sqrt{5}}$.
+
+
+
+$\pmb{\text{Step 2: Solve for } \alpha \text{ and } r}$
+
+Given the condition $\alpha + r = 5 + \sqrt{5}$, substitute $\alpha = r\sqrt{5}$:
+$$r\sqrt{5} + r = 5 + \sqrt{5}$$
+$$r(1 + \sqrt{5}) = \sqrt{5}(\sqrt{5} + 1)$$
+Dividing both sides by $(1 + \sqrt{5})$:
+$$\pmb{r = \sqrt{5}}$$
+Substituting $r$ back into the first equation:
+$$\alpha = (\sqrt{5})\sqrt{5} = \pmb{5}$$
+So, $\pmb{(P) \rightarrow (4)}$ and $\pmb{(Q) \rightarrow (2)}$.
+
+$\pmb{\text{Step 3: Find the Coordinates of } A_{1}}$
+
+$A_{1}$ is the point of tangency. The line perpendicular to $y = 2x$ (slope $m = 2$) passing through the centre $(0, 5)$ has a slope of $m_{\perp} = -1/2$. 
+Equation of the normal line: $y - 5 = -\frac{1}{2}(x - 0) \implies x + 2y - 10 = 0$.
+To find $A_{1}$, we intersect this normal with the tangent $y = 2x$:
+$$x + 2(2x) - 10 = 0 \implies 5x = 10 \implies x = 2$$
+$$y = 2(2) = 4$$
+Thus, $\pmb{A_{1} = (2, 4)}$, which corresponds to $\pmb{(R) \rightarrow (5)}$.
+
+$\pmb{\text{Step 4: Find the Coordinates of } B_{1}}$
+
+$A_{1}B_{1}$ is a diameter, so the centre $C(0, 5)$ is the midpoint of $A_{1}(2, 4)$ and $B_{1}(x, y)$:
+$$\frac{x + 2}{2} = 0 \implies x = -2$$
+$$\frac{y + 4}{2} = 5 \implies y + 4 = 10 \implies y = 6$$
+Thus, $\pmb{B_{1} = (-2, 6)}$, which corresponds to $\pmb{(S) \rightarrow (3)}$.
+
+
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (4), (\text{Q}) \rightarrow (2), (\text{R}) \rightarrow (5), (\text{S}) \rightarrow (3)$, which is $\pmb{\text{Option C}}$.",,{}
+019d6edb-a589-714c-b2e4-4731a47f9462,"$\pmb{\text{Step 1: Find the Point of Intersection and } \gamma}$
+
+Let a point on $L_1$ be $P_1 = (\lambda - 11, 2\lambda - 21, 3\lambda - 29)$ and a point on $L_2$ be $P_2 = (3\mu - 16, 2\mu - 11, \gamma\mu - 4)$. Since the lines intersect at $R_1$, we equate coordinates:
+1) $\lambda - 11 = 3\mu - 16 \implies \lambda - 3\mu = -5$
+2) $2\lambda - 21 = 2\mu - 11 \implies 2\lambda - 2\mu = 10 \implies \lambda - \mu = 5$
+Solving these equations: $\mu = 5$ and $\lambda = 10$.
+Now equate the $z$-coordinates: $3(10) - 29 = \gamma(5) - 4 \implies 1 = 5\gamma - 4 \implies \pmb{\gamma = 1}$.
+So, $\pmb{(P) \rightarrow (3)}$.
+
+
+
+$\pmb{\text{Step 2: Find the Point } R_1 \text{ and Vector } \overrightarrow{OR_1}}$
+
+Substitute $\lambda = 10$ into $P_1$: $x = 10-11 = -1$, $y = 20-21 = -1$, $z = 30-29 = 1$.
+Intersection point $\pmb{R_1 = (-1, -1, 1)}$.
+Vector $\pmb{\overrightarrow{OR_1} = -\hat{i} - \hat{j} + \hat{k}}$.
+So, $\pmb{(R) \rightarrow (1)}$.
+
+$\pmb{\text{Step 3: Find the Unit Normal Vector } \hat{n}}$
+
+The normal vector $\vec{N}$ is perpendicular to the direction vectors of $L_1$ ($\vec{v_1} = \hat{i} + 2\hat{j} + 3\hat{k}$) and $L_2$ ($\vec{v_2} = 3\hat{i} + 2\hat{j} + \hat{k}$):
+$$\vec{N} = \vec{v_1} \times \vec{v_2} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ 1 & 2 & 3 \\ 3 & 2 & 1 \end{vmatrix} = \hat{i}(2-6) - \hat{j}(1-9) + \hat{k}(2-6) = -4\hat{i} + 8\hat{j} - 4\hat{k}$$
+Unit normal $\hat{n} = \frac{-4\hat{i} + 8\hat{j} - 4\hat{k}}{\sqrt{16+64+16}} = \frac{-4\hat{i} + 8\hat{j} - 4\hat{k}}{\sqrt{96}} = \frac{-4\hat{i} + 8\hat{j} - 4\hat{k}}{4\sqrt{6}} = \frac{-1}{\sqrt{6}}\hat{i} + \frac{2}{\sqrt{6}}\hat{j} - \frac{1}{\sqrt{6}}\hat{k}$.
+Multiplying by $-1$ gives a possible choice: $\pmb{\hat{n} = \frac{1}{\sqrt{6}}\hat{i} - \frac{2}{\sqrt{6}}\hat{j} + \frac{1}{\sqrt{6}}\hat{k}}$.
+So, $\pmb{(Q) \rightarrow (4)}$.
+
+
+
+$\pmb{\text{Step 4: Calculate } |\overrightarrow{OR_1} \cdot \hat{n}|}$
+
+$$\overrightarrow{OR_1} \cdot \hat{n} = (-1)\left(\frac{1}{\sqrt{6}}\right) + (-1)\left(-\frac{2}{\sqrt{6}}\right) + (1)\left(\frac{1}{\sqrt{6}}\right) = -\frac{1}{\sqrt{6}} + \frac{2}{\sqrt{6}} + \frac{1}{\sqrt{6}} = \frac{2}{\sqrt{6}}$$
+$$|\overrightarrow{OR_1} \cdot \hat{n}| = \frac{2}{\sqrt{6}} = \frac{2}{\sqrt{2}\sqrt{3}} = \frac{\sqrt{2}}{\sqrt{3}} = \pmb{\sqrt{\frac{2}{3}}}$$
+So, $\pmb{(S) \rightarrow (5)}$.
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (3), (\text{Q}) \rightarrow (4), (\text{R}) \rightarrow (1), (\text{S}) \rightarrow (5)$, which is $\pmb{\text{Option C}}$.",,{}
+019d6edb-a589-7967-99b3-45943ce5e07e,"$\pmb{\text{Step 1: Analyze Function } f(x)}$
+
+For $x \neq 0$, $f(x) = x|x|\sin(1/x)$. 
+$\bullet$ Continuity: $\lim_{x \to 0} f(x) = 0 = f(0)$, so $f$ is continuous.
+$\bullet$ Differentiability at $x=0$: $f'(0) = \lim_{k \to 0} \frac{k|k|\sin(1/k) - 0}{k} = \lim_{k \to 0} |k|\sin(1/k) = 0$. 
+Since $f'(x)$ exists for all $x \neq 0$ and is $0$ at $x=0$, $\pmb{f(x) \text{ is differentiable on } \mathbb{R}}$. 
+
+Thus, for condition (Q) where $h(x) = f(x)$, $\pmb{(Q) \rightarrow (3)}$.
+
+$\pmb{\text{Step 2: Analyze Entry (P)}}$
+
+If $a=0, b=1, c=0, d=0$, then $h(x) = g(x) + g(1/2 - x)$.
+$\bullet$ If $x \in [0, 1/2]$, then $0 \leq 1/2 - x \leq 1/2$. 
+$h(x) = (1 - 2x) + [1 - 2(1/2 - x)] = 1 - 2x + 1 - 1 + 2x = 1$.
+$\bullet$ If $x < 0$ or $x > 1/2$, both $g(x)$ and $g(1/2 - x)$ are $0$, so $h(x) = 0$.
+Range of $h$ is $\{0, 1\}$. Thus, $\pmb{(P) \rightarrow (5)}$.
+
+$\pmb{\text{Step 3: Analyze Entry (R)}}$
+
+If $a=0, b=0, c=1, d=0$, then $h(x) = x - g(x)$.
+$$h(x) = \begin{cases} x - (1 - 2x) = 3x - 1, & 0 \leq x \leq 1/2 \\ x - 0 = x, & \text{otherwise} \end{cases}$$
+Checking the limits at infinity: $\lim_{x \to \pm\infty} h(x) = \pm\infty$. Despite the jump discontinuities at $x=0$ and $x=1/2$, the function takes all values in $\mathbb{R}$ because the linear pieces cover all output intervals. Thus, $h$ is $\pmb{\text{onto}}$. 
+
+So, $\pmb{(R) \rightarrow (2)}$.
+
+$\pmb{\text{Step 4: Analyze Entry (S)}}$
+
+If $a=0, b=0, c=0, d=1$, then $h(x) = g(x)$.
+By definition, $g(x) = 1-2x$ for $x \in [0, 1/2]$ and $0$ otherwise.
+At $x=0, g(0)=1$; at $x=1/2, g(1/2)=0$. Since $g$ is linear on $[0, 1/2]$, it takes all values in $[0, 1]$. 
+Range of $h$ is $[0, 1]$. Thus, $\pmb{(S) \rightarrow (4)}$.
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (5), (\text{Q}) \rightarrow (3), (\text{R}) \rightarrow (2), (\text{S}) \rightarrow (4)$, which is $\pmb{\text{Option C}}$.",,{}
+019d6edb-a58c-73e0-8c5a-15ff31a99ec0,"$ \mathrm{e}^{\alpha} \varepsilon_{0}^{\beta} \mathrm{h}^{\gamma} \mathrm{c}^{\delta}=\mathrm{k} $
+$ \mathrm{e}^{\alpha} \mathrm{h}^{\gamma} \mathrm{c}^{\delta}=\varepsilon_{0}^{n} $
+$ \left[ \mathrm{A}^{\alpha} \mathrm{T}^{\alpha} \right] \left[ \mathrm{M L}^{2} \mathrm{T}^{-1} \right]^{\gamma} \left[ \mathrm{L T}^{-1} \right]^{\delta}=\left[ \mathrm{A}^{2 n} \mathrm{T}^{4 n} \mathrm{M}^{-n} \mathrm{L}^{-3 n} \right] $
+So, $ \alpha=2 n, \gamma=-n $",,{}
+019d6edb-a58c-7f8a-96da-4980a1975cfe,"$$\oint \vec{B} \cdot \overrightarrow{d\ell}=\int\limits_{0}^{i}\vec{B} \cdot \overrightarrow{d\ell}+\int\limits_{i}^{f}\vec{B} \cdot \overrightarrow{d\ell}+\int\limits_{f}^{0}\vec{B} \cdot \overrightarrow{d\ell}=\mu_{0}\frac{I}{2\pi}\frac{7\pi}{12}
+$$
+So, $ \int\limits_{i}^{f}\vec{B} \cdot \overrightarrow{d\ell}=\frac{7\mu_{0}I}{24} $",https://lh3.googleusercontent.com/d/1yAb8Osp1kYYa1R66grQxk8G_uk61ycr9=w1200,{}
+019d6edb-a58e-7f38-b3ae-102f38d5a3de,"$ \mathrm{S o,} \ a_{t}=\mathrm{t a n g e n t i a l a c c e l e r a t i o n o f b e a d}=\frac{k q^{2} \sin\left(\frac{\theta}{2}\right)}{4 m R^{2} \cos^{2}\left(\frac{\theta}{2}\right)} $
+$ \mathrm{S o,} \ a_{t}\approx\frac{k q^{2}}{4 m R^{2}}\left(\frac{\theta}{2}\right)=\frac{q^{2} x}{3 2 \pi \varepsilon_{0} R^{3} m} $
+$ \mathrm{S o,} \ \omega^{2}=\frac{q^{2}}{3 2 \pi \varepsilon_{0} m R^{3}} $",https://lh3.googleusercontent.com/d/17yPOHiYcAxhddzg8zKRMxBXGODYKgaUt=w1200,{}
+019d6edb-a590-7fcf-905f-49cf54b5bfc8,"$ a=-\frac{20x-10}{5}=-4\left(x-\frac{1}{2}\right) $
+So, $ x=\frac{1}{2}+\frac{1}{2}\cos(2t) $ 
+At $ t=\frac{\pi}{4} $ sec
+$ x=0.5 $ m
+$ v=-\frac{1}{2}\times2=-1 $ m/s
+So, momentum $ P=-5 $ kg-m/s",,{}
+019d6edb-a592-729a-b818-3c3c4768f074,"$L = m \frac{\lambda_1}{2}$ and $2L = n \frac{\lambda_2}{2}$
+So, $\frac{1}{2} = \frac{m}{n} \frac{v_1}{v_2} = 2 \frac{m}{n}$
+So, $\frac{m}{n} = \frac{1}{4} \Rightarrow \lambda_1 = 2L$
+$v_0 = \frac{1}{2L} \sqrt{\frac{T}{\mu}}$
+So, there are total 6 nodes
+So, $L = (2m + 1) \frac{\lambda_1}{4}$
+$2L = (2n + 1) \frac{\lambda_2}{4}$
+
+So, $\frac{2m + 1}{2n + 1} = \frac{1}{4}$
+So, it is not possible",,{}
+019d6edb-a592-7835-a2cd-a76add802f39,"$\frac{mv^2}{r} = kr$
+$v = \sqrt{\frac{k}{m}}r$ and $L = n\hbar = mvr$
+
+So, $r^2 = \frac{n^2\hbar^2}{m^2v^2} = n\hbar \frac{n\hbar}{m^2v^2} = n\hbar \frac{mvr}{m^2v^2}$
+
+So, $r^2 = n\hbar \frac{r}{mv} = n\hbar \frac{1}{mv}v\sqrt{\frac{m}{k}}$
+
+So, $r^2 = n\hbar \sqrt{\frac{1}{mk}}$ Option (A)
+
+$v^2 = \frac{k}{m}r^2 = \frac{k}{m}n\hbar \frac{1}{\sqrt{mk}} = n\hbar \sqrt{\frac{k}{m^3}}$ Option (B)
+
+$\frac{L}{mr^2} = \frac{v}{r} = \sqrt{\frac{k}{m}}$ Option (C)
+
+$E = U + K = \frac{kr^2}{2} + \frac{kr^2}{2} = kr^2$
+
+$E = kn\hbar \sqrt{\frac{1}{mk}} = n\hbar \sqrt{\frac{k}{m}}$",,{}
+019d6edb-a597-7b63-9685-b633877396b6,"$$\frac{1}{f} = (n - 1)\left(\frac{1}{R_1} - \frac{1}{R_2}\right)$$
+$$\frac{1}{f} = (1.6 - 1)\left(\frac{1}{9} - \frac{1}{\infty}\right)$$
+$$f_1 = \frac{9}{0.6} = 15 \text{ cm}$$
+$$\frac{1}{f_2} = (n - 1)\left(\frac{1}{\infty} - \frac{1}{9}\right)$$
+$$f_2 = \frac{-9}{(n - 1)}$$
+$$P = 2P_1 + 2P_2$$
+$$\frac{1}{f_{\text{eq}}} = \frac{2}{15} - \frac{2(n - 1)}{9}$$
+$$\frac{1}{f_{\text{eq}}} = \frac{18 - 2(n - 1) \times 15}{15 \times 9}$$
+$$f_{\text{eq}} = \frac{15 \times 9}{18 - 2(n - 1) \times 15}$$
+
+Image $V = R = 2f_e = \frac{2 \times 15 \times 9}{18 - 2(n - 1) \times 15}$",,{}
+019d6edb-a599-75e3-8e8d-84631b7751e3,"$ \mathrm{d} Q=\mathrm{m S d T} $
+$ \int\mathrm{d} Q=\int 1. \mathrm{K T d T} $
+$ \Delta Q=K \int\limits_{200}^{300} \mathrm{T d T} $
+$ \Delta Q=\frac{K}{2} \left[ T^{2} \right]_{200}^{300} $
+$ \Delta Q=\frac{K}{2} \times\left( 9-4 \right) \times10^{4} $
+$ \Delta Q=25000 \mathrm{K} $
+$ n=25000 $",,{}
+019d6edb-a59a-7089-a260-3b6eb2b9f350,"Angular momentum about fixed axis remains constant.
+
+$$\frac{1}{2}m\frac{R^2}{4}\omega - mR^2\omega' - \frac{1}{2}mR^2\omega' = 0$$
+
+$$\frac{mR^2\omega}{8} = mR^2\omega' + \frac{1}{2}mR^2\omega'$$
+
+$$\frac{\omega}{8} = \frac{3}{2}\omega'$$
+
+$$\frac{\omega}{\omega'} = 12$$",,{}
+019d6edb-a59a-7d81-9a15-bb9170f4bac5,"### Step-by-Step Solution:
+
+1.  **Analyze Velocities:**
+    Velocity of wave in string 1: $v_1 = \sqrt{\frac{T}{\mu}}$
+    Velocity of wave in string 2: $v_2 = \sqrt{\frac{T}{4\mu}} = \frac{1}{2}\sqrt{\frac{T}{\mu}} = \frac{v_1}{2}$
+
+2.  **Case 1: Node at $O$:**
+    For a node at $O$, both segments $PO$ and $OQ$ must separately form standing waves with fixed ends.
+    For $PO$: $L = m \frac{\lambda_1}{2} = \frac{m v_1}{2\nu}$ $\Rightarrow \nu = \frac{m v_1}{2L}$
+    For $OQ$: $2L = n \frac{\lambda_2}{2} = \frac{n v_2}{2\nu}$ $\Rightarrow \nu = \frac{n v_2}{4L} = \frac{n (v_1/2)}{4L} = \frac{n v_1}{8L}$
+    Equating the frequencies: $\frac{m v_1}{2L} = \frac{n v_1}{8L} \Rightarrow \frac{m}{n} = \frac{2}{8} = \frac{1}{4}$.
+    For the minimum frequency, we take the smallest integers: $m=1, n=4$.
+    $\nu_{min} = \frac{1 \cdot v_1}{2L} = \frac{1}{2L}\sqrt{\frac{T}{\mu}} = \nu_0$. **(Statement A is correct)**.
+
+3.  **Count Nodes for Case 1:**
+    In $PO$, $m=1$ means $1$ loop, nodes at $P$ and $O$. 
+    In $OQ$, $n=4$ means $4$ loops, nodes at $O$, $Q$, and $3$ in between.
+    Total nodes = nodes in $PO$ + nodes in $OQ$ - $1$ (shared node at $O$) = $2 + 5 - 1 = 6$. **(Statement C is correct)**.
+
+4.  **Case 2: Antinode at $O$:**
+    For an antinode at $O$, $O$ must be at an odd multiple of $\frac{\lambda}{4}$ from the fixed ends.
+    For $PO$: $L = (2m+1)\frac{\lambda_1}{4} = \frac{(2m+1)v_1}{4\nu}$
+    For $OQ$: $2L = (2n+1)\frac{\lambda_2}{4} = \frac{(2n+1)v_1}{8\nu}$
+    Ratio: $\frac{L}{2L} = \frac{(2m+1)v_1 / 4\nu}{(2n+1)v_1 / 8\nu} = \frac{2(2m+1)}{2n+1}$
+    $\frac{1}{2} = \frac{4m+2}{2n+1} \Rightarrow 2n+1 = 8m+4 \Rightarrow 2n - 8m = 3$.
+    Since the left side $(2n-8m)$ is always even and the right side $(3)$ is odd, there are no integer solutions for $m$ and $n$. **(Statement D is correct; Statement B is incorrect)**.",,{}
+019d6edb-a59c-7ef5-b9a1-6c03b8192da7,"$f_0 = 240 \text{ Hz}$
+$f_1 = \left( \frac{v+u}{v-u} \right) f_0$
+$288 = \left( \frac{v+u}{v-u} \right) 240 \Rightarrow \frac{v+u}{v-u} = \frac{6}{5}$
+$v = 11 \text{ u}$ ..... (i)
+$f_2 = \left( \frac{v-u}{v+u} \right) f_0$
+$f_2 = \frac{5}{6} \times 240 = 200 \text{ Hz}$.",,{}
+019d6edb-a59e-730c-8eef-0b2d9bdd572e,"For tank-1
+$$-A \frac{dy}{dt} = a \sqrt{2gy} \quad \dots(\text{i})$$
+For tank-2
+$$-A \frac{dy}{dt} = a \sqrt{2g(y+H)} \quad \dots(\text{ii})$$
+From -1
+$$-\int_{h}^{0} \frac{dy}{\sqrt{y}} = a \sqrt{2g} \int_{0}^{t_1} dt \Rightarrow t_1 = \frac{2A}{a} \frac{\sqrt{h}}{\sqrt{2g}}$$
+From-2
+$$-\int_{h}^{0} \frac{dy}{\sqrt{y+H}} = a \sqrt{2g} \int_{0}^{t_2} dt \Rightarrow t_2 = \frac{2A \sqrt{h+H}}{a \sqrt{2g}} - \frac{2A \sqrt{H}}{a \sqrt{2g}}$$
+$$\frac{t_1}{t_2} = 3$$",,{}
+019d6edb-a5a0-7186-9bb3-cdc3a626d557,"Conservation of angular momentum about $O$.
+
+$$P \left( L + \frac{L}{2} + x \right) = \left[ \frac{mL^2}{12} + m \left( \frac{3L}{2} \right)^2 \right] \omega$$
+
+$$P \left( \frac{3L}{2} + x \right) = \frac{7}{3} mL^2 \omega \quad \ldots (\text{i})$$
+
+$$v_{\text{cm}} = \frac{3}{2} \omega L \quad \ldots (\text{ii})$$
+
+Conservation of linear momentum
+
+$$P = m v_{\text{cm}} \quad \ldots (\text{iii})$$
+
+$$\frac{P}{m} = \frac{3}{2} \left[ \frac{3}{7} \left\{ P \left( \frac{3L}{2} + x \right) \right\} \frac{1}{mL} \right]$$
+
+$$14L = \frac{9}{2} (3L + 2x)$$
+
+$$\Rightarrow L = 18 x$$
+
+$$x = L/18$$",https://lh3.googleusercontent.com/d/1i66vOqTmSquo12SUtKaogUCu3hdEmaGo=w1200,{}
+019d6edb-a5a3-7381-9edf-e0529a9a3a15,"$\pmb{\text{Step 1: Derive the Formula for Total Deviation (}\alpha\pmb{\text{)}}}$
+
+When a ray enters a sphere, reflects once at the back, and emerges:
+1. Deviation at first refraction: $\delta_1 = \theta_0 - \phi_0$
+2. Deviation at internal reflection: $\delta_2 = 180^{\circ} - 2\phi_0$
+3. Deviation at second refraction: $\delta_3 = \theta_0 - \phi_0$
+Total deviation $\alpha = \delta_1 + \delta_2 + \delta_3 = 180^{\circ} + 2\theta_0 - 4\phi_0$.
+
+
+
+$\pmb{\text{Step 2: Analyze Entry (P)}}$
+
+Given $n=2$ and $\alpha=180^{\circ}$:
+$180^{\circ} = 180^{\circ} + 2\theta_0 - 4\phi_0 \implies 2\theta_0 = 4\phi_0 \implies \theta_0 = 2\phi_0$.
+Using Snell's Law: $\sin \theta_0 = n \sin \phi_0 \implies \sin(2\phi_0) = 2 \sin \phi_0$.
+$2 \sin \phi_0 \cos \phi_0 = 2 \sin \phi_0$.
+This gives $\sin \phi_0 = 0 \implies \theta_0 = 0^{\circ}$ OR $\cos \phi_0 = 1 \implies \phi_0 = 0 \implies \theta_0 = 0^{\circ}$.
+Thus, only $\theta_0 = 0^{\circ}$ is possible. So, $\pmb{(P) \rightarrow (5)}$.
+
+$\pmb{\text{Step 3: Analyze Entry (Q) and (R)}}$
+
+Given $n=\sqrt{3}$ and $\alpha=180^{\circ}$:
+$180^{\circ} = 180^{\circ} + 2\theta_0 - 4\phi_0 \implies \theta_0 = 2\phi_0$.
+Using Snell's Law: $\sin \theta_0 = \sqrt{3} \sin \phi_0 \implies \sin(2\phi_0) = \sqrt{3} \sin \phi_0$.
+$2 \sin \phi_0 \cos \phi_0 = \sqrt{3} \sin \phi_0$.
+Either $\sin \phi_0 = 0 \implies \pmb{\phi_0 = 0^{\circ}, \theta_0 = 0^{\circ}}$.
+Or $\cos \phi_0 = \sqrt{3}/2 \implies \pmb{\phi_0 = 30^{\circ}}$. Then $\theta_0 = 2(30^{\circ}) = \pmb{60^{\circ}}$.
+So, $\pmb{(Q) \rightarrow (2)}$ ($60^{\circ}$ and $0^{\circ}$) and $\pmb{(R) \rightarrow (1)}$ ($30^{\circ}$ and $0^{\circ}$).
+
+$\pmb{\text{Step 4: Analyze Entry (S)}}$
+
+Given $n=\sqrt{2}$ and $\theta_0 = 45^{\circ}$:
+Snell's Law: $\sin 45^{\circ} = \sqrt{2} \sin \phi_0 \implies \frac{1}{\sqrt{2}} = \sqrt{2} \sin \phi_0 \implies \sin \phi_0 = \frac{1}{2} \implies \phi_0 = 30^{\circ}$.
+Calculate deviation $\alpha$:
+$\alpha = 180^{\circ} + 2(45^{\circ}) - 4(30^{\circ}) = 180^{\circ} + 90^{\circ} - 120^{\circ} = 150^{\circ}$.
+So, $\pmb{(S) \rightarrow (4)}$.
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (5), (\text{Q}) \rightarrow (2), (\text{R}) \rightarrow (1), (\text{S}) \rightarrow (4)$, which is $\pmb{\text{Option A}}$.",https://lh3.googleusercontent.com/d/1bf93BA2Ctin4YYYUF1LP3Bq1pnoztTxr=w1200,{}
+019d6edb-a5a3-783c-ae94-5bc3dafb262c,"$\pmb{\text{General Principle:}}$ Each adjacent pair of plates forms a capacitor of capacitance $C_0$. We can model these arrangements as combinations of three individual capacitors: $C_{12}$ (between $S_1, S_2$), $C_{23}$ (between $S_2, S_3$), and $C_{34}$ (between $S_3, S_4$).
+
+
+
+$\pmb{\text{Step 1: Analyze Entry (P)}}$
+
+Capacitance between $S_1$ and $S_4$ with $S_2, S_3$ isolated. Since $S_2$ and $S_3$ are not connected and not grounded, they act as floating potentials. The three capacitors are in $\pmb{\text{series}}$:
+$$\frac{1}{C_{eq}} = \frac{1}{C_0} + \frac{1}{C_0} + \frac{1}{C_0} = \frac{3}{C_0} \implies C_{eq} = \frac{C_0}{3}$$
+So, $\pmb{(P) \rightarrow (3)}$.
+
+$\pmb{\text{Step 2: Analyze Entry (Q)}}$
+
+Capacitance between $S_1$ and $S_4$ with $S_2$ shorted to $S_3$. This effectively creates one middle plate. We have $C_{12}$ and $C_{34}$ in series. Note that $C_{23}$ is shorted out (zero potential difference):
+$$\frac{1}{C_{eq}} = \frac{1}{C_0} + \frac{1}{C_0} = \frac{2}{C_0} \implies C_{eq} = \frac{C_0}{2}$$
+So, $\pmb{(Q) \rightarrow (2)}$.
+
+$\pmb{\text{Step 3: Analyze Entry (R)}}$
+
+Capacitance between $S_1$ and $S_3$ with $S_2$ shorted to $S_4$. 
+$\bullet$ $C_{12}$ is between $S_1$ and $S_2$.
+$\bullet$ $C_{23}$ is between $S_2$ and $S_3$.
+$\bullet$ $C_{34}$ is between $S_3$ and $S_4$.
+Since $S_2$ is shorted to $S_4$, $C_{23}$ and $C_{34}$ are in $\pmb{\text{parallel}}$ (both are between $S_3$ and the $S_2/S_4$ node). Their combination ($2C_0$) is then in $\pmb{\text{series}}$ with $C_{12}$:
+$$C_{eq} = \frac{C_0 \times (2C_0)}{C_0 + 2C_0} = \frac{2C_0^2}{3C_0} = \frac{2C_0}{3}$$
+So, $\pmb{(R) \rightarrow (4)}$.
+
+
+
+$\pmb{\text{Step 4: Analyze Entry (S)}}$
+
+$S_3$ shorted to $S_1$ (Terminal A) and $S_2$ shorted to $S_4$ (Terminal B).
+$\bullet$ $C_{12}$ is between A and B.
+$\bullet$ $C_{23}$ is between B and A.
+$\bullet$ $C_{34}$ is between A and B.
+All three capacitors are in $\pmb{\text{parallel}}$ across the same potential difference:
+$$C_{eq} = C_0 + C_0 + C_0 = 3C_0$$
+So, $\pmb{(S) \rightarrow (1)}$.
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (3), (\text{Q}) \rightarrow (2), (\text{R}) \rightarrow (4), (\text{S}) \rightarrow (1)$, which is $\pmb{\text{Option C}}$.",,{}
+019d6edb-a5a3-7a18-8d20-7704fb932812,"$\pmb{\text{Step 1: Analyze individual processes from the P-T diagram}}$
+
+For 1 mole ($n=1$) of a monatomic gas ($C_V = \frac{3}{2}R$, $C_P = \frac{5}{2}R$):
+$\bullet$ $\pmb{J \to K:}$ Isobaric process ($P = P_0$). Temperature changes from $T_0$ to $3T_0$.
+$\bullet$ $\pmb{K \to L:}$ Isothermal process ($T = 3T_0$). Pressure changes from $P_0$ to $2P_0$.
+$\bullet$ $\pmb{L \to M:}$ Isobaric process ($P = 2P_0$). Temperature changes from $3T_0$ to $T_0$.
+$\bullet$ $\pmb{M \to J:}$ Isothermal process ($T = T_0$). Pressure changes from $2P_0$ to $P_0$.
+
+
+
+$\pmb{\text{Step 2: Calculate specific quantities for List-I}}$
+
+$\bullet$ $\pmb{\text{(Q) Change in internal energy (JK):}}$ 
+$\Delta U_{JK} = n C_V \Delta T = 1 \times \frac{3}{2}R (3T_0 - T_0) = 3RT_0$. 
+So, $\pmb{(Q) \rightarrow (3)}$.
+
+$\bullet$ $\pmb{\text{(S) Change in internal energy (MJ):}}$ 
+Since $M \to J$ is isothermal ($T = T_0$), the internal energy of an ideal gas does not change. 
+$\Delta U_{MJ} = 0$. 
+So, $\pmb{(S) \rightarrow (2)}$.
+
+$\bullet$ $\pmb{\text{(R) Heat given to gas (KL):}}$ 
+For an isothermal process, $\Delta Q = \Delta W = nRT \ln(P_i/P_f)$.
+$Q_{KL} = 1 \times R(3T_0) \ln(P_0 / 2P_0) = 3RT_0 \ln(1/2) = -3RT_0 \ln 2$.
+So, $\pmb{(R) \rightarrow (5)}$.
+
+$\pmb{\text{Step 3: Calculate Total Work Done (P)}}$
+
+$W_{total} = W_{JK} + W_{KL} + W_{LM} + W_{MJ}$
+$W_{JK} = P_0(V_K - V_J) = R(3T_0 - T_0) = 2RT_0$
+$W_{KL} = -3RT_0 \ln 2$
+$W_{LM} = 2P_0(V_M - V_L) = R(T_0 - 3T_0) = -2RT_0$
+$W_{MJ} = RT_0 \ln(2P_0 / P_0) = RT_0 \ln 2$
+$W_{total} = 2RT_0 - 3RT_0 \ln 2 - 2RT_0 + RT_0 \ln 2 = -2RT_0 \ln 2$.
+So, $\pmb{(P) \rightarrow (4)}$.
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (4), (\text{Q}) \rightarrow (3), (\text{R}) \rightarrow (5), (\text{S}) \rightarrow (2)$, which matches $\pmb{\text{Option B}}$.",,{}
+019d6edb-a5a6-700d-8244-c8d9a0f3f87b,"$\pmb{\text{Step 1: Analyze the circuit immediately after } K_1 \text{ is closed (} t = 0^+ \text{)}}$
+
+Initially, the current through the inductor $L$ is zero. Since the current in an inductor cannot change instantaneously, $\pmb{I_L(0^+) = 0}$. At this instant, the inductor acts as an open circuit. Since the battery, resistor $R_0$, and inductor are in series (with $K_2$ open), the current in $R_0$ is:
+$$I_1 = 0 \text{ A}$$
+So, $\pmb{(P) \rightarrow (1)}$.
+
+
+
+$\pmb{\text{Step 2: Analyze the circuit at steady state (} t \to \infty \text{)}}$
+
+After a long time, the inductor acts as a short circuit (zero resistance). The current $I_2$ is limited only by the resistor $R_0$:
+$$I_2 = \frac{V}{R_0} = \frac{20}{5} = 4 \text{ A}$$
+So, $\pmb{(Q) \rightarrow (3)}$.
+
+$\pmb{\text{Step 3: Analyze the LC oscillation after } K_2 \text{ is closed and } K_1 \text{ is opened}}$
+
+When $K_1$ is opened, the battery and $R_0$ are disconnected. The circuit becomes a simple $LC$ oscillator consisting of $L = 25 \text{ mH}$ and $C_0 = 10 \text{ \mu F}$. The initial energy is stored in the inductor as magnetic energy ($U_L = \frac{1}{2}LI_2^2$).
+
+
+
+$\pmb{\text{Angular Frequency (} \omega_0 \text{):}}$
+$$\omega_0 = \frac{1}{\sqrt{LC_0}} = \frac{1}{\sqrt{25 \times 10^{-3} \times 10 \times 10^{-6}}} = \frac{1}{\sqrt{25 \times 10^{-8}}} = \frac{1}{5 \times 10^{-4}} = 2000 \text{ rad/s}$$
+$$\omega_0 = 2 \text{ k-rad/s}$$
+So, $\pmb{(R) \rightarrow (2)}$.
+
+$\pmb{\text{Amplitude of Voltage (} V_0 \text{):}}$
+By conservation of energy, the maximum energy in the inductor equals the maximum energy in the capacitor:
+$$\frac{1}{2} L I_2^2 = \frac{1}{2} C_0 V_0^2 \implies V_0 = I_2 \sqrt{\frac{L}{C_0}}$$
+$$V_0 = 4 \times \sqrt{\frac{25 \times 10^{-3}}{10 \times 10^{-6}}} = 4 \times \sqrt{2500} = 4 \times 50 = 200 \text{ V}$$
+So, $\pmb{(S) \rightarrow (5)}$.
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (1), (\text{Q}) \rightarrow (3), (\text{R}) \rightarrow (2), (\text{S}) \rightarrow (5)$, which corresponds to $\pmb{\text{Option A}}$.",https://lh3.googleusercontent.com/d/1bqwGtACDCvcM7mHQKReb_C9fEf_dbMKP=w1200,{}
+019d6edb-a5a6-76ca-9b6a-d786d88236b6,"$ 2 \times V=\frac{1 0} {M_{x}} \times R \times T $ ...(1)
+$ 4 \times V=\frac{8 0} {M_{y}} \times R \times T $ ...(2)
+$ 2=\frac{8 0 \times M_{x}} {M_{y} \times 1 0} $
+$ \frac{M_{x}}{M_{y}}=\frac{1}{4} $
+$ \frac{\left( V_{rms} \right)_{x}} {\left( V_{rms} \right)_{y}}=\sqrt{\frac{4}{1}}=\frac{2}{1} $",,{}
+019d6edb-a5aa-7212-bb85-4cbf1e591407,$ 3 \mathrm{H N O}_{2} \longrightarrow2 \mathrm{N O}+ \mathrm{N O}_{3}^{-}+ \mathrm{H}_{3} \mathrm{O}^{+} $,,{}
+019d6edb-a5aa-728c-91f6-69899ebb3989,The structure of ASPARTAME (an artificial structure) is:,https://lh3.googleusercontent.com/d/1Pq6s5Wh3H1NqcMEHxalgR7JCbN_9fqXU=w1200,{}
+019d6edb-a5ac-7741-a237-ef8b202c1a54,"$\pmb{\text{Step 1: Analyze Set-I for Geometrical Isomerism}}$
+
+$\pmb{\text{Geometrical isomerism}}$ (cis/trans or fac/mer) occurs when ligands occupy different spatial arrangements around the central metal atom.
+
+$\bullet$ $[\mathrm{Co(NH_{3})}_{3}(\mathrm{NO_{2}})_{3}]$: This is an $MA_{3}B_{3}$ type octahedral complex. It exhibits $\pmb{\text{facial (fac)}}$ and $\pmb{\text{meridional (mer)}}$ isomerism.
+
+
+$\bullet$ $[\mathrm{Co(en)}_{2}\mathrm{Cl}_{2}]^{+}$: This is an $M(AA)_{2}B_{2}$ type octahedral complex. It exhibits $\pmb{\text{cis}}$ and $\pmb{\text{trans}}$ isomerism.
+
+
+In $\pmb{\text{Option C}}$, both complexes in Set-I show geometrical isomerism.
+
+$\pmb{\text{Step 2: Analyze Set-II for Ionization Isomerism}}$
+
+$\pmb{\text{Ionization isomers}}$ have the same molecular formula but produce different ions in solution because the ligand inside the coordination sphere and the counter-ion outside are swapped.
+
+$\bullet$ $[\mathrm{Co(NH_{3})}_{5}\mathrm{Cl}]\mathrm{SO}_{4}$: In aqueous solution, this produces the $\mathrm{SO}_{4}^{2-}$ ion (detected by $\mathrm{BaCl}_{2}$).
+$\bullet$ $[\mathrm{Co(NH_{3})}_{5}(\mathrm{SO}_{4})]\mathrm{Cl}$: In aqueous solution, this produces the $\mathrm{Cl}^{-}$ ion (detected by $\mathrm{AgNO}_{3}$).
+
+
+Since they swap the sulfate and chloride groups between the coordination sphere and the outer sphere, they are ionization isomers.
+
+$\pmb{\text{Step 3: Evaluate other options}}$
+
+$\bullet$ $\pmb{\text{Option A}}$: $[\mathrm{Ni(CO)}_{4}]$ is tetrahedral ($sp^{3}$) and cannot show geometrical isomerism.
+$\bullet$ $\pmb{\text{Option B}}$: Set-II represents $\pmb{\text{coordination isomerism}}$, as the metal-ligand distribution between the cationic and anionic complexes is swapped.
+$\bullet$ $\pmb{\text{Option D}}$: $[\mathrm{Cr(NH_{3})}_{5}\mathrm{Cl}]\mathrm{Cl}_{2}$ is $MA_{5}B$ type and cannot show geometrical isomerism. Set-II represents $\pmb{\text{hydrate isomerism}}$.
+
+$\pmb{\text{Conclusion:}}$ Both conditions are satisfied in $\pmb{\text{Option C}}$.",,{}
+019d6edb-a5ae-7e64-ba17-d9bfc2445f6e,"(A) uncertainty principle rules – out the existence of definite paths for an electron due to wave nature of electron.
+(B) Energy $ \propto -\frac{Z^{2}}{n^{2}} $
+So, $ E_{2s} < E_{\infty} $
+(C) $ E=-\frac{13.6\times Z^{2}}{n^{2}} $
+If n=1
+$ E=-(13.6\times Z^{2}) $ eV is most negative value and therefore most stable.
+(D) $ V=2.186\times10^{6}\times\frac{Z}{n} $
+So, (D) is wrong.",,{}
+019d6edb-a5b2-74c9-9a02-6ffd1e5e2c6d,,https://lh3.googleusercontent.com/d/1lTgwjVh-sTbcaAlo17QD0QfU8E6L26f7=w1200,{}
+019d6edb-a5b4-75a0-becf-4c238ca69a03,"$\pmb{\text{Concept:}}$ The $\pmb{\text{Octet Rule}}$ states that atoms gain, lose, or share electrons to have a full outer shell of eight electrons. Exceptions include $\pmb{\text{incomplete octets}}$ (e.g., Boron), $\pmb{\text{expanded octets}}$ (e.g., Sulfur in $H_2SO_4$), and $\pmb{\text{odd-electron molecules}}$ (e.g., NO, $NO_2$).
+
+
+
+$\pmb{\text{Step-by-Step Analysis of Molecules:}}$
+
+$\bullet$ $\pmb{CO_2}$: Carbon forms two double bonds with Oxygen. All atoms have 8 electrons. (Follows)
+$\bullet$ $\pmb{C_2H_4}$: Both Carbons are double-bonded to each other and single-bonded to Hydrogens. Carbons have 8 electrons. (Follows)
+$\bullet$ $\pmb{HCl}$: Chlorine shares one electron with Hydrogen, completing its octet. (Follows)
+$\bullet$ $\pmb{O_3}$: Ozone consists of one single and one double bond with a coordinate bond. All Oxygens have 8 electrons. (Follows)
+$\bullet$ $\pmb{NO}$: An odd-electron molecule (11 valence electrons). Nitrogen cannot complete its octet. (Exception)
+$\bullet$ $\pmb{NO_2}$: An odd-electron molecule (17 valence electrons). Nitrogen has a lone electron. (Exception)
+$\bullet$ $\pmb{BCl_3}$: Boron has only 6 electrons in its valence shell. (Incomplete Octet Exception)
+$\bullet$ $\pmb{H_2SO_4}$: Sulfur can have 12 electrons due to its valence shell expansion. (Expanded Octet Exception)
+
+
+
+$\pmb{\text{Evaluating Options:}}$
+
+$\bullet$ $\pmb{\text{Option (A):}}$ $CO_2$ (Yes), $C_2H_4$ (Yes), NO (No), HCl (Yes). $\pmb{\text{3 molecules follow.}}$
+$\bullet$ $\pmb{\text{Option (B):}}$ $NO_2$ (No), $O_3$ (Yes), HCl (Yes), $H_2SO_4$ (No). $\pmb{\text{Only 2 follow.}}$
+$\bullet$ $\pmb{\text{Option (C):}}$ $BCl_3$ (No), NO (No), $NO_2$ (No), $H_2SO_4$ (No). $\pmb{\text{0 follow.}}$
+$\bullet$ $\pmb{\text{Option (D):}}$ $CO_2$ (Yes), $BCl_3$ (No), $O_3$ (Yes), $C_2H_4$ (Yes). $\pmb{\text{3 molecules follow.}}$
+
+$\pmb{\text{Conclusion:}}$ Options $\pmb{A}$ and $\pmb{D}$ contain at least three molecules following the octet rule.",,{}
+019d6edb-a5b4-7643-8f51-3eb1a8a16d34,"Since $ X \rightarrow Y $ is an isothermal process (dT = 0).
+So, $ \Delta H_{x-y}=n C_{p,m} d T=0 $
+$ Y \rightarrow Z $ is isochoric.
+$ \Delta U_{y \rightarrow z}=n C_{v,m} d T=5 \times1 2 \times(4 1 5-3 3 5) $
+$ \Delta U_{y \rightarrow z}=4 8 0 0 \ J $
+$ \Delta H_{y \rightarrow z}=\Delta U_{y \rightarrow z}+\Delta(P V) $
+$ =\Delta U_{y \rightarrow z}+n R \Delta T=4 8 0 0+5 \times8. 3 \times8 0=8 1 2 0 \ J $",,{}
+019d6edb-a5b4-7f78-8acf-84b599e6076c,"Net reaction:
+$$2H_2(g) + 2NO(g) \rightarrow N_2(g) + 2H_2O(g)$$
+(i) $2NO(g) \xrightleftharpoons[K_1]{K_{-1}} N_2O_2(g)$ (fast)
+$$\frac{k_1}{k_{-1}} = \frac{[N_2O_2]}{[NO]^2} \quad \dots(1)$$
+(ii) $N_2O_2(g) + H_2(g) \xrightarrow{k_2} N_2O(g) + H_2O(g)$ (slow reaction)
+$$r = k_2 [N_2O_2][H_2]$$
+$$= k_2 \times \frac{k_1}{k_{-1}} [NO]^2 \times [H_2]$$
+$$r = \frac{k_2 k_1}{k_{-1}} [NO]^2 [H_2]$$
+So, order of reaction = 3.",,{}
+019d6edb-a5b8-7b68-90e8-ffe1c182e021,,https://lh3.googleusercontent.com/d/1CUZurXjA4Fcji1ddXaP-44630lSFqVK9=w1200,{}
+019d6edb-a5bb-7269-80d1-7a7b1721078e,,https://lh3.googleusercontent.com/d/1d_shqZZbpx6N59-F22XaHHIIJ0hBPKj1=w1200,{}
+019d6edb-a5bb-7e9c-80a3-86e06748e295,"$ \mathrm{N i(CO)}_{4}=8 4 $
+$ \mathrm{V(CO)}_{6}=1 0 7 $
+$ \mathrm{C r(CO)}_{5}=9 4 $
+$ \mathrm{M n(CO)}_{5}=9 5 $
+$ \mathrm{F e(CO)}_{5}=9 6 $
+$ \left[ \mathrm{C o(CO)}_{3} \right]^{-3}=7 2 $
+$ \left[ \mathrm{C r(CO)}_{4} \right]^{-4}=8 4 \left[ \mathrm{I s o e l e c t r o n i c w i t h N i(CO)}_{4} \right] $
+$ \left[ \mathrm{I r(CO)}_{3} \right]=1 1 9 $",,{}
+019d6edb-a5be-77af-9e99-a446270ef4ba,"1. $ \left[ \mathrm{M n} \left( \mathrm{N H}_{3} \right)_{6} \right]^{+ 3}, $ n=2, Paramagnetic
+2. $ \left[ \mathrm{M n C l}_{6} \right]^{- 3}, $ n=4, Paramagnetic
+3. $ \left[ \mathrm{F e F}_{6} \right]^{- 3}, $ n=5, Paramagnetic
+4. $ \left[ \mathrm{C o F}_{6} \right]^{- 3}, $ n=4, Paramagnetic
+5. $ \left[ \mathrm{F e} \left( \mathrm{N H}_{3} \right)_{6} \right]^{+ 3}, $ n=1, Paramagnetic
+6. $ \left[ \mathrm{C o} \left( \mathrm{e n} \right)_{3} \right]^{+ 3}, $ n=0, Diamagnetic",,{}
+019d6edb-a5c0-7b24-91ea-4b4a6a578a80,"$\pmb{\text{General Principle:}}$ Conductance depends on the number and mobility (ionic conductivity) of ions in the solution. During titration, one ion is replaced by another. If the new ion has higher mobility, conductance increases; if lower, it decreases.
+
+$\pmb{\text{(P) KCl (Titrate) + AgNO}_3 \text{ (Titrant):}}$
+Reaction: $\text{KCl} + \text{AgNO}_3 \to \text{AgCl}(s) + \text{KNO}_3$.
+$\bullet$ $\pmb{\text{Before equivalence:}}$ $\text{Cl}^-$ ions ($\Lambda_0 = 7.6$) are replaced by $\text{NO}_3^-$ ions ($\Lambda_0 = 7.2$). Since the conductivities are nearly equal (slight decrease), the conductance remains almost constant or decreases very slightly.
+$\bullet$ $\pmb{\text{After equivalence:}}$ Excess $\text{AgNO}_3$ ($\text{Ag}^+$ and $\text{NO}_3^-$) is added, increasing the number of ions, so conductance increases sharply.
+$\pmb{\text{Matches Graph (3).}}$
+
+
+
+$\pmb{\text{(Q) AgNO}_3 \text{ (Titrate) + KCl (Titrant):}}$
+Reaction: $\text{AgNO}_3 + \text{KCl} \to \text{AgCl}(s) + \text{KNO}_3$.
+$\bullet$ $\pmb{\text{Before equivalence:}}$ $\text{Ag}^+$ ions ($\Lambda_0 = 6.2$) are replaced by $\text{K}^+$ ions ($\Lambda_0 = 7.4$). Conductance increases slightly because $\text{K}^+$ is more mobile than $\text{Ag}^+$.
+$\bullet$ $\pmb{\text{After equivalence:}}$ Excess $\text{KCl}$ increases ion concentration, leading to a sharper increase in conductance.
+$\pmb{\text{Matches Graph (4).}}$
+
+$\pmb{\text{(R) NaOH (Titrate) + HCl (Titrant):}}$
+Reaction: $\text{NaOH} + \text{HCl} \to \text{NaCl} + \text{H}_2\text{O}$.
+$\bullet$ $\pmb{\text{Before equivalence:}}$ $\text{OH}^-$ ions ($\Lambda_0 = 19.9$) are replaced by $\text{Cl}^-$ ions ($\Lambda_0 = 7.6$). Conductance decreases sharply due to the loss of highly mobile hydroxyl ions.
+$\bullet$ $\pmb{\text{After equivalence:}}$ Excess $\text{HCl}$ adds highly mobile $\text{H}^+$ ions ($\Lambda_0 = 35.0$), causing a very sharp increase.
+$\pmb{\text{Matches Graph (2).}}$
+
+
+
+$\pmb{\text{(S) NaOH (Titrate) + CH}_3\text{COOH (Titrant):}}$
+Reaction: $\text{NaOH} + \text{CH}_3\text{COOH} \to \text{CH}_3\text{COONa} + \text{H}_2\text{O}$.
+$\bullet$ $\pmb{\text{Before equivalence:}}$ Highly mobile $\text{OH}^-$ ions are replaced by less mobile $\text{CH}_3\text{COO}^-$ ions ($\Lambda_0 = 4.1$). Conductance decreases sharply.
+$\bullet$ $\pmb{\text{After equivalence:}}$ Excess weak acid $\text{CH}_3\text{COOH}$ is added. It is poorly ionized, and its ionization is further suppressed by the common ion effect from the acetate salt. Conductance remains nearly constant.
+$\pmb{\text{Matches Graph (5).}}$
+
+
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $\pmb{P \to 3, Q \to 4, R \to 2, S \to 5}$, which corresponds to $\pmb{\text{Option C}}$.",,{}
+019d6edb-a5c2-7f2c-bffe-ba214336ac3d,"$\pmb{\text{General Principle:}}$ According to the VSEPR model, the geometry is determined by the total number of electron pairs (bonding + lone pairs) surrounding the central Xenon atom ($Xe$ has 8 valence electrons).
+
+$\pmb{\text{(P) XeF}_2\text{:}}$
+$\bullet$ Valence electrons of $Xe = 8$.
+$\bullet$ Electrons used for 2 $Xe-F$ bonds $= 2$.
+$\bullet$ Remaining electrons $= 6$, which forms $\pmb{3 \text{ lone pairs}}$.
+$\bullet$ Total electron pairs $= 2 + 3 = 5$. The electron geometry is $\pmb{\text{trigonal bipyramidal}}$. (The shape is linear).
+$\pmb{\text{Matches (5).}}$
+
+
+
+$\pmb{\text{(Q) XeF}_4\text{:}}$
+$\bullet$ Electrons used for 4 $Xe-F$ bonds $= 4$.
+$\bullet$ Remaining electrons $= 4$, which forms $\pmb{2 \text{ lone pairs}}$.
+$\bullet$ Total electron pairs $= 4 + 2 = 6$. The electron geometry is $\pmb{\text{octahedral}}$. (The shape is square planar).
+$\pmb{\text{Matches (3).}}$
+
+
+
+$\pmb{\text{(R) XeO}_3\text{:}}$
+$\bullet$ Oxygen forms double bonds ($Xe=O$). Electrons used for 3 double bonds $= 3 \times 2 = 6$.
+$\bullet$ Remaining electrons $= 2$, which forms $\pmb{1 \text{ lone pair}}$.
+$\bullet$ Total effective electron pairs (considering double bonds as single units) $= 3 + 1 = 4$. The electron geometry is $\pmb{\text{tetrahedral}}$. (The shape is pyramidal).
+$\pmb{\text{Matches (2).}}$
+
+
+
+$\pmb{\text{(S) XeO}_3\text{F}_2\text{:}}$
+$\bullet$ Electrons used for 3 $Xe=O$ bonds ($3 \times 2 = 6$) and 2 $Xe-F$ bonds ($2 \times 1 = 2$). Total $= 8$.
+$\bullet$ Remaining electrons $= 0$, so $\pmb{0 \text{ lone pairs}}$.
+$\bullet$ Total effective electron pairs $= 3 + 2 = 5$. The electron geometry is $\pmb{\text{trigonal bipyramidal}}$.
+$\pmb{\text{Matches (4).}}$
+
+
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $\pmb{P \rightarrow 5, Q \rightarrow 3, R \rightarrow 2, S \rightarrow 4}$, which corresponds to $\pmb{\text{Option B}}$.",,{}
+019d6edb-a5c4-7411-84d2-0bc2e7683b8c,"$\pmb{\text{Analysis of Reaction Sequences:}}$
+
+$\bullet$ $\pmb{\text{Sequence (P):}}$ 
+1. $\pmb{\text{O}_3, \text{ Zn:}}$ Cleaves cyclohexene to adipaldehyde.
+2. $\pmb{\text{aq. NaOH, } \Delta\text{:}}$ Intramolecular aldol condensation forms cyclopent-1-ene-1-carbaldehyde.
+3. $\pmb{\text{Ethylene glycol, PTSA:}}$ Protects the aldehyde as an acetal.
+4. $\pmb{\text{Hydroboration-Oxidation:}}$ Adds -OH anti-Markovnikov across the ring double bond.
+5. $\pmb{\text{H}_3\text{O}^+, \text{ NaBH}_4\text{:}}$ Deprotects the aldehyde and reduces it to a primary alcohol.
+Result: $\pmb{\text{2-(hydroxymethyl)cyclopentan-1-ol}}$ (Structure 3).
+Thus, $\pmb{(P) \rightarrow (3)}$.
+
+
+
+$\bullet$ $\pmb{\text{Sequence (Q):}}$ 
+Similar to P, but starting with 1-methylcyclohexene results in a methyl ketone after aldol condensation. The final reduction of the ketone gives a secondary alcohol on the side chain.
+Result: $\pmb{\text{2-(1-hydroxyethyl)cyclopentan-1-ol}}$ (Structure 5).
+Thus, $\pmb{(Q) \rightarrow (5)}$.
+
+$\bullet$ $\pmb{\text{Sequence (R):}}$ 
+1. $\pmb{\text{Ethylene glycol:}}$ Protects the ketone.
+2. $\pmb{\text{Oxymercuration-Demercuration:}}$ Adds -OH Markovnikov across the double bond (at the carbon with the methyl group).
+3. $\pmb{\text{Deprotection and Reduction:}}$ Forms a diol with two tertiary/secondary alcohol groups.
+Result: $\pmb{\text{1,2-dimethylcyclopentane-1,2-diol}}$ (Structure 4).
+Thus, $\pmb{(R) \rightarrow (4)}$.
+
+
+
+$\bullet$ $\pmb{\text{Sequence (S):}}$ 
+Similar to R, but uses $\pmb{\text{Hydroboration-Oxidation}}$, which adds -OH anti-Markovnikov (away from the methyl group).
+Result: Structure 1.
+Thus, $\pmb{(S) \rightarrow (1)}$.
+
+
+
+$\pmb{\text{Conclusion:}}$
+The correct match is $\pmb{P-3, Q-5, R-4, S-1}$, which corresponds to $\pmb{\text{Option A}}$.",,{}
+019d6edb-a5c6-75bb-941c-d0d99e3d5e7d,,https://lh3.googleusercontent.com/d/1HOjQ1__A39cybF0se9d0bxBXp79eKk_p=w1175,{}
+019d6edb-a5c7-724b-ad14-7b31e1d74668,"$ \tan \left( \sin^{-1} \frac{3}{5}-2\cos^{-1} \frac{2}{\sqrt{5}} \right)=\tan \left( \tan^{-1} \frac{3}{4}-2\tan^{-1} \frac{1}{2} \right) $
+$ =\tan \left( \tan^{-1} \frac{3}{4}-\tan^{-1} \frac{2\times\frac{1}{2}}{1-\left( \frac{1}{2} \right)^{2}} \right)=\tan \left( \tan^{-1} \frac{3}{4}-\tan^{-1} \frac{4}{3} \right) $
+$ =\tan \left( \tan^{-1} \left( \frac{-7}{24} \right) \right)=\frac{-7}{24} $",,{}
+019d6edb-a5c9-73f2-b4e0-7118f1d0ed5c,"$x \geq 0, y \geq 0, y^2 \leq 4x, y^2 \leq 12 - 2x$
+$3y + \sqrt{8}x \leq 5\sqrt{8}$
+$Area = \int_{0}^{2} \sqrt{4x}dx + \frac{1}{2} \times 3 \times 2\sqrt{2}$
+$= \left[ 2 \times \frac{x^{\frac{3}{2}}}{\frac{3}{2}} \right]_{0}^{2} + 3\sqrt{2} = 2 \cdot \frac{2\sqrt{2} \times 2}{3} + 3\sqrt{2}$
+$= 2 \cdot \frac{2\sqrt{2} \times 2}{3} + 3\sqrt{2} = \frac{17\sqrt{2}}{3} \Rightarrow \alpha = \frac{17}{3}$",,{}
+019d6edb-a5cc-7785-92a1-b11e2e10da95,"$ \lim_{x \to 0^{+}} \left( \sin(\sin kx) + \cos x + x \right)^{\frac{2}{x}} = e^{6} $ (it is $ 1^{\infty} $ form)
+$ \Rightarrow e^{2 \lim_{x \to 0^{+}} \frac{\sin(\sin kx) + \cos x + x - 1}{x}} = e^{6} $
+$ = e^{2 \lim_{x \to 0^{+}} \frac{\cos(\sin kx) \times k \cos kx + \sin x + 1}{1}} = e^{6} $ (Using L.H. Rule)
+$ \Rightarrow e^{2(k+1)} = e^{6} $
+$ \Rightarrow k = 2 $",,{}
+019d6edb-a5cc-7d53-b1c5-63ca926d5f0f,"$ x^{2}\sin\left(\frac{\pi}{x^{2}}\right)=0 \Rightarrow\frac{\pi}{x^{2}}=n\pi \Rightarrow x=\pm\frac{1}{\sqrt{n}} $
+$ \frac{1}{\pi^{2}}<\frac{1}{\sqrt{n}}<\frac{1}{\pi}\Rightarrow\pi^{2}<n<\pi^{4} $
+f(x)=0 has more than 25 solutions",,{}
+019d6edb-a5cf-7c31-972a-80cb542f7106,"$\lim_{x \to \infty} \left( \frac{\sin(x^2)(\log_e x)^\alpha \sin\left(\frac{1}{x^2}\right)}{x^{\alpha\beta}(\log_e(1+x))^\beta} \right) = 0$
+
+$\Rightarrow \lim_{x \to \infty} \left( \frac{\sin(x^2)(\log_e x)^\alpha \frac{\sin\left(\frac{1}{x^2}\right)}{\frac{1}{x^2}}}{x^{(\alpha\beta+2)}(\log_e(1+x))^\beta} \right) = 0$
+
+$\Rightarrow \lim_{x \to \infty} \left( \frac{\sin(x^2)(\log_e x)^\alpha}{x^{(\alpha\beta+2)}(\log_e(1+x))^\beta} \right) = 0$
+
+$\Rightarrow \lim_{x \to \infty} \left( \frac{\sin(x^2)(\log_e x)^\alpha}{x^{(\alpha\beta+2)} \left( \log_e x \right)\left( 1 + \frac{\log_e\left(1 + \frac{1}{x}\right)}{\log_e x} \right)^\beta} \right) = 0$
+
+$\Rightarrow \lim_{x \to \infty} \left( \frac{\sin(x^2)(\log_e x)^{\alpha-\beta}}{x^{(\alpha\beta+2)}} \right) = 0 \Rightarrow \alpha\beta + 2 > 0 \Rightarrow (\alpha, \beta) = (-1, 1), (1, -1)$",,{}
+019d6edb-a5d3-794e-9349-3683f4232887,"Equation of line passing through P(1, 3, 2) parallel to the line $ \frac{x-2}{1}=\frac{y-4}{2}=\frac{z-6}{1} $ is $ \frac{x-1}{1}=\frac{y-3}{2}=\frac{z-2}{1} \Rightarrow $ Point Q is (2, 5, 3)
+Line passing through Q(2, 5, 3) and perpendicular to the plane $ L_{1}: x-y+3z=6 $ is $ \frac{x-2}{1}=\frac{y-5}{-1}=\frac{z-3}{3} \Rightarrow $ Point R is (1, 6, 0) $ \Rightarrow $ Length PQ is $ \sqrt{6} $
+$ \Rightarrow $ Centroid of triangle PQR is $ \left( \frac{4}{3}, \frac{14}{3}, \frac{5}{3} \right) $
+$ \Rightarrow $ Perimeter of triangle PQR is $ \sqrt{6}+\sqrt{11}+\sqrt{13} $",,{}
+019d6edb-a5d5-72b9-ac38-1fc7f264c1a4,"$f(x) = kx, g(x) = a^x$
+$f\left(-\frac{3}{5}\right) = 12, g\left(-\frac{1}{3}\right) = 2$
+$-\frac{3k}{3} = 12, a^{-\frac{1}{3}} = 2$
+$k = -20, \frac{1}{a} = 8 \Rightarrow a = \frac{1}{8}$
+$f(x) = -20x, g(x) = \left(\frac{1}{8}\right)^x, g(0) = 1$
+$f\left(\frac{1}{4}\right) = -20 \times \frac{1}{4} = -5, g(-2) = \left(\frac{1}{8}\right)^{-2} = 64$
+$f\left(\frac{1}{4}\right) + g(-2) - 8 = -5 + 64 - 8 = 51$
+$$\left[f\left(\frac{1}{4}\right) + g(-2) - 8\right] = 51$$",,{}
+019d6edb-a5d5-7741-815b-b027a87a2ae8,"Let $OA_{1}$ be $y=mx+c$
+$\Rightarrow 0=-4m+c$ or $c=4m$
+Also, $2=mc$
+$\therefore m=\pm \frac{1}{\sqrt{2}}, c=\pm 2\sqrt{2}$
+$\frac{1}{t}=m$
+$\Rightarrow A_{1}\left(4,4\sqrt{2}\right)$ and $B_{1}\left(4,-4\sqrt{2}\right)$
+Orthocentre is $(0,0)$
+$A_{1}B_{1}=8\sqrt{2}$
+$OA_{1}=4\sqrt{3}$",https://lh3.googleusercontent.com/d/1XtvxBqBUV0GVKQV4opx3moLzm0drK3nP=w1200,{}
+019d6edb-a5d5-7c1a-8791-c17980db899e,"$ P\left(\frac{B_{3}}{W_{1}\cap G_{2}}\right)=P\frac{\left(B_{3}\cap W_{1}\cap G_{2}\right)}{P\left(W_{1}\cap G_{2}\right)}=\frac{2}{9} $
+$ \Rightarrow \frac{\frac{3}{N}\times\frac{N-9}{N-1}\times\frac{6}{N-2}}{\frac{3}{N}\times\frac{6}{N-1}}=\frac{2}{9} $
+$ \Rightarrow \frac{3\times(N-9)\times6}{(N-2)\times18}=\frac{2}{9} $
+$ 9N-81=2N-4 ; 7N=77 \therefore N=11 $",,{}
+019d6edb-a5d8-7bff-badb-d72039da7867,"$ f(x)=\frac{\left(\sin x+2\right)\left(x^{2023}+2024x+2025\right)}{e^{\pi x}\left(x^{2}-x+3\right)}=0 $
+$ \because \sin x+2>0 \ \forall x \in R $
+$ e^{\pi x}>0 \ \forall x \in R $
+$ x^{2}-x+3>0 \ \forall x \in R $
+Now, let $ g(x)=x^{2023}+2024x+2025 $
+$ \because g^{\prime}(x)>0 \ \forall x \in R $ (strictly increasing)
+$ \therefore $ Number of solution of $ f(x)=0 $ is 1
+Solution is $ (x=-1) $",,{}
+019d6edb-a5dc-72f6-8155-c8a5d667fcea,"$\vec{p} = 2\hat{i} + \hat{j} + 3\hat{k}, \vec{q} = \hat{i} - \hat{j} + \hat{k}$
+
+$$\vec{p} \times \vec{q} = \begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ 2 & 1 & 3 \\ 1 & -1 & 1 \end{vmatrix}$$
+
+$$\vec{p} \times \vec{q} = 4\hat{i} + \hat{j} - 3\hat{k}$$
+
+$$2\vec{p} + \vec{q} = 5\hat{i} + \hat{j} + 7\hat{k}$$
+
+$$\vec{p} - 2\vec{q} = 0\hat{i} + 3\hat{j} + \hat{k}$$
+
+Now, $15\hat{i} + 10\hat{j} + 6\hat{k} = \alpha(2\vec{p} + \vec{q}) + \beta(\vec{p} - 2\vec{q}) + \gamma(\vec{p} \times \vec{q})$
+
+$$15\hat{i} + 10\hat{j} + 6\hat{k} = (5\alpha + 4\gamma)\hat{i} + (\alpha + 3\beta + \gamma)\hat{j} + (7\alpha + \beta - 3\gamma)\hat{k}$$
+
+$\Rightarrow 5\alpha + 4\gamma = 15 ; \alpha + 3\beta + \gamma = 10 ; 7\alpha + \beta - 3\gamma = 6$
+
+$\Rightarrow \gamma = 2$",,{}
+019d6edb-a5dc-7ec9-92e0-693af2d7e7b6,"Rotating the axis by an angle of $90^{\circ}$ in clock-wise direction then slope of normal becomes $-\sqrt{6}$ and point $(0, -\alpha)$ becomes $(\alpha, 0)$ and parabola being $y^{2}=4ax$
+$\Rightarrow$ Equation of normal $y=mx-2am-am^{3}$ passes through $(\alpha, 0)$
+$\Rightarrow 0=-\sqrt{6}\alpha+2\sqrt{6}a+6\sqrt{6}a$
+$\Rightarrow \alpha=8a=at^{2}\Rightarrow t=\pm 2\sqrt{2}$
+$\Rightarrow AB=4at=8\sqrt{2}a$
+Now $AB^{2}=64\times 2\times a^{2}$
+$\Rightarrow \frac{r}{s}=\frac{4a}{128a^{2}}=\frac{1}{16}\Rightarrow a=\frac{1}{2}\Rightarrow 24a=12$",https://lh3.googleusercontent.com/d/1BWtSpYXEeGJg_o0VClnVv2rnci_Imf2Z=w1200,{}
+019d6edb-a5de-7103-9226-adcb1fd21068,"$f(x) = \begin{cases} 2 & x = 1 \\ 4 - 2x & 1 < x < 3 \\ -2 & x = 3 \\ 2x - 8 & 3 < x < 5 \\ 2 & x = 5 \\ 12 - 2x & 5 < x < 7 \\ -2 & x = 7 \\ 2x - 16 & 7 < x < 8 \end{cases}$
+
+$g(x) = \int_{1}^{x} f(t) dt = 0$
+
+$\Rightarrow x = 3, 5, 7 \Rightarrow \alpha = 3$
+
+$\beta = \lim_{x \to 1^+} \frac{g(x)}{47} = \lim_{x \to 1^+} \frac{\int_{1}^{x} f(t) dt}{x - 1}$
+
+$= \lim_{x \to 1^+} \frac{f(x)}{1} = f(1) = 2$
+
+$\alpha + \beta = 3 + 2 = 5$",,{}
+019d6edb-a5e3-715d-a069-4bb6d06c55b6,"$\pmb{\text{Step 1: Identify all possible ordered pairs satisfying the condition}}$
+
+A relation $R$ from $S$ to $S$ is a subset of the Cartesian product $S \times S$. The condition $|a - b| \geq 2$ means the first and second elements of each ordered pair $(a, b)$ must differ by at least 2.
+
+Let $R_0$ be the set of all such possible pairs $(a, b)$ in $S \times S$. We list them for each $a \in S$:
+
+$\bullet$ If $a = 1$: $b \in \{3, 4, 5, 6\}$ (4 pairs)
+$\bullet$ If $a = 2$: $b \in \{4, 5, 6\}$ (3 pairs)
+$\bullet$ If $a = 3$: $b \in \{1, 5, 6\}$ (3 pairs)
+$\bullet$ If $a = 4$: $b \in \{1, 2, 6\}$ (3 pairs)
+$\bullet$ If $a = 5$: $b \in \{1, 2, 3\}$ (3 pairs)
+$\bullet$ If $a = 6$: $b \in \{1, 2, 3, 4\}$ (4 pairs)
+
+
+
+$\pmb{\text{Step 2: Calculate the total number of available pairs (m)}}$
+
+The total count of pairs in $R_0$ is:
+$m = 4 + 3 + 3 + 3 + 3 + 4 = 20$.
+
+$\pmb{\text{Step 3: Determine the number of relations in X}}$
+
+Set $X$ consists of all subsets of $R_0$ that have exactly 6 elements. The number of such subsets is the number of ways to choose 6 pairs out of the 20 available pairs:
+$$n(X) = {}^{20}C_{6}$$
+
+$\pmb{\text{Step 4: Find the value of m}}$
+
+We are given $n(X) = {}^{m}C_{6}$. By comparison:
+$${}^{m}C_{6} = {}^{20}C_{6} \implies m = 20$$
+
+$\pmb{\text{Conclusion:}}$
+The value of $m$ is $\pmb{20.00}$.",,{}
+019d6edb-a5e4-79fb-90fe-65610e2dcd19,"$\pmb{\text{Step 1: Determine } n(Y)}$
+
+A relation $R \in Y$ must have exactly 6 elements and a range containing exactly one element, say $\{b\}$. This means all 6 elements of $R$ must be of the form $(a_i, b)$ where $a_i \in S$. Since there are only 6 possible values for $a$ in $S$ and $R$ must have 6 distinct elements, $R$ must be the set $\{(1, b), (2, b), (3, b), (4, b), (5, b), (6, b)\}$.
+
+For $R$ to be in $X$, every pair $(a, b)$ must satisfy $|a - b| \geq 2$. 
+$\bullet$ If $b=1$: $|a-1| \geq 2$ is false for $a=1, 2$.
+$\bullet$ If $b=2$: $|a-2| \geq 2$ is false for $a=1, 2, 3$.
+$\bullet$ If $b=3$: $|a-3| \geq 2$ is false for $a=2, 3, 4$.
+$\dots$
+In general, for any fixed $b$, there will always be values of $a$ (specifically $a=b, b-1, b+1$) that violate the condition $|a-b| \geq 2$. Since $R$ must include all $a \in \{1, \dots, 6\}$, it is impossible to satisfy the condition for all 6 elements.
+Thus, $\pmb{n(Y) = 0}$.
+
+$\pmb{\text{Step 2: Determine } n(Z)}$
+
+$R \in Z$ is a function from $S$ to $S$. For a function with domain $S$ (which has 6 elements) to have exactly 6 elements, every element $a \in S$ must be mapped to exactly one $b \in S$. Thus, for each $a \in \{1, 2, 3, 4, 5, 6\}$, we choose a $b$ such that $|a - b| \geq 2$.
+
+Let's count the choices for each $a$:
+$\bullet$ For $a=1$: $b \in \{3, 4, 5, 6\} \implies 4$ choices.
+$\bullet$ For $a=2$: $b \in \{4, 5, 6\} \implies 3$ choices.
+$\bullet$ For $a=3$: $b \in \{1, 5, 6\} \implies 3$ choices.
+$\bullet$ For $a=4$: $b \in \{1, 2, 6\} \implies 3$ choices.
+$\bullet$ For $a=5$: $b \in \{1, 2, 3\} \implies 3$ choices.
+$\bullet$ For $a=6$: $b \in \{1, 2, 3, 4\} \implies 4$ choices.
+
+
+
+Using the multiplication principle for independent choices:
+$$n(Z) = 4 \times 3 \times 3 \times 3 \times 3 \times 4 = 16 \times 81 = 1296$$
+
+$\pmb{\text{Step 3: Calculate } |k|}$
+
+Given $n(Y) + n(Z) = k^2$:
+$$0 + 1296 = k^2$$
+$$k^2 = 1296$$
+$$|k| = \sqrt{1296} = 36$$
+
+$\pmb{\text{Conclusion:}}$
+The value of $|k|$ is $\pmb{36.00}$.",,{}
+019d6edb-a5e4-7c3a-985e-1ad09033cc4c,"$\pmb{\text{Step 1: Symmetry of the function } g(x)}$
+
+First, let's examine $g(x) = \sqrt{\frac{\pi x}{2} - x^2}$ in the interval $[0, \frac{\pi}{2}]$.
+Using the property $\int_{0}^{a} h(x) dx = \int_{0}^{a} h(a-x) dx$:
+Replace $x$ with $\frac{\pi}{2} - x$ in $g(x)$:
+$$g\left(\frac{\pi}{2} - x\right) = \sqrt{\frac{\pi}{2}\left(\frac{\pi}{2} - x\right) - \left(\frac{\pi}{2} - x\right)^2}$$
+$$g\left(\frac{\pi}{2} - x\right) = \sqrt{\frac{\pi^2}{4} - \frac{\pi x}{2} - \left(\frac{\pi^2}{4} - \pi x + x^2\right)}$$
+$$g\left(\frac{\pi}{2} - x\right) = \sqrt{\frac{\pi x}{2} - x^2} = g(x)$$
+So, $g(x)$ is $\pmb{\text{symmetric}}$ about $x = \frac{\pi}{4}$.
+
+
+
+$\pmb{\text{Step 2: Apply King's Rule to the first integral}}$
+
+Let $I = \int_{0}^{\frac{\pi}{2}} f(x)g(x) dx = \int_{0}^{\frac{\pi}{2}} \sin^2 x \cdot g(x) dx$.
+Using the property $\int_{0}^{a} h(x) dx = \int_{0}^{a} h(a-x) dx$:
+$$I = \int_{0}^{\frac{\pi}{2}} \sin^2\left(\frac{\pi}{2} - x\right) \cdot g\left(\frac{\pi}{2} - x\right) dx$$
+Since $\sin(\frac{\pi}{2} - x) = \cos x$ and $g(\frac{\pi}{2} - x) = g(x)$:
+$$I = \int_{0}^{\frac{\pi}{2}} \cos^2 x \cdot g(x) dx$$
+
+$\pmb{\text{Step 3: Add the two forms of } I}$
+
+$$2I = \int_{0}^{\frac{\pi}{2}} \sin^2 x \cdot g(x) dx + \int_{0}^{\frac{\pi}{2}} \cos^2 x \cdot g(x) dx$$
+$$2I = \int_{0}^{\frac{\pi}{2}} (\sin^2 x + \cos^2 x) g(x) dx$$
+$$2I = \int_{0}^{\frac{\pi}{2}} g(x) dx$$
+
+$\pmb{\text{Step 4: Evaluate the final expression}}$
+
+The required expression is:
+$$2 \int_{0}^{\frac{\pi}{2}} f(x)g(x) dx - \int_{0}^{\frac{\pi}{2}} g(x) dx = 2I - \int_{0}^{\frac{\pi}{2}} g(x) dx$$
+From Step 3, we know that $2I = \int_{0}^{\frac{\pi}{2}} g(x) dx$, so:
+$$\int_{0}^{\frac{\pi}{2}} g(x) dx - \int_{0}^{\frac{\pi}{2}} g(x) dx = 0$$
+
+$\pmb{\text{Conclusion:}}$
+The value of the expression is $\pmb{0.00}$.",,{}
+019d6edb-a5e6-7f12-97d1-ada0ba670546,"### Step-by-Step Solution:\n\n1.  $\pmb{\text{Define the Integral:}}$\n    Let $I = \frac{16}{\pi^3} \int_{0}^{\pi/2} \sin^2 x \sqrt{\frac{\pi x}{2} - x^2} dx$\n\n2.  $\pmb{\text{Apply the Integral Property:}}$\n    Using the property $\int_{0}^{a} h(x) dx = \int_{0}^{a} h(a-x) dx$ where $a = \frac{\pi}{2}$:\n    The term inside the square root becomes:\n    $$\frac{\pi}{2}(\frac{\pi}{2} - x) - (\frac{\pi}{2} - x)^2 = \frac{\pi^2}{4} - \frac{\pi x}{2} - (\frac{\pi^2}{4} + x^2 - \pi x) = \frac{\pi x}{2} - x^2$$\n    Notice the square root term $g(x)$ remains unchanged. The function $f(x)$ becomes $\sin^2(\frac{\pi}{2} - x) = \cos^2 x$.\n    So, $I = \frac{16}{\pi^3} \int_{0}^{\pi/2} \cos^2 x \sqrt{\frac{\pi x}{2} - x^2} dx$\n\n3.  $\pmb{\text{Sum the Two Integrals:}}$\n    Adding the original $I$ and the transformed $I$:\n    $$2I = \frac{16}{\pi^3} \int_{0}^{\pi/2} (\sin^2 x + \cos^2 x) \sqrt{\frac{\pi x}{2} - x^2} dx$$\n    Since $\sin^2 x + \cos^2 x = 1$:\n    $$2I = \frac{16}{\pi^3} \int_{0}^{\pi/2} \sqrt{\frac{\pi x}{2} - x^2} dx$$\n    $$I = \frac{8}{\pi^3} \int_{0}^{\pi/2} \sqrt{\frac{\pi x}{2} - x^2} dx$$\n\n4.  $\pmb{\text{Evaluate via Geometric Interpretation:}}$\n    Complete the square for the expression inside the square root:\n    $$\frac{\pi x}{2} - x^2 = -[x^2 - \frac{\pi x}{2}] = -[(x - \frac{\pi}{4})^2 - \frac{\pi^2}{16}] = (\frac{\pi}{4})^2 - (x - \frac{\pi}{4})^2$$\n    The integral $\int_{0}^{\pi/2} \sqrt{(\frac{\pi}{4})^2 - (x - \frac{\pi}{4})^2} dx$ represents the area of a semicircle with radius $r = \frac{\pi}{4}$ centered at $(\frac{\pi}{4}, 0)$.\n    Area $= \frac{1}{2} \pi r^2 = \frac{1}{2} \pi (\frac{\pi}{4})^2 = \frac{\pi^3}{32}$.\n\n5.  $\pmb{\text{Final Calculation:}}$\n    $$I = \frac{8}{\pi^3} \times \frac{\pi^3}{32} = \frac{8}{32} = \frac{1}{4} = 0.25$$\n\nFinal Answer: $\pmb{\text{0.25}}$",,{}
+019d6edb-a5e9-7aa6-a9ce-5ec1b3a465e0,,https://lh3.googleusercontent.com/d/1etQphgk0FBdbaFcGh-PBCYU0arHBbEHA=w1200,{}
+019d6edb-a5ea-7c56-a839-1dc7f950db8b,"$\frac{GMm}{r_0^2} = m\omega^2 r_0$
+
+$\omega = \sqrt{\frac{GM}{r_0^3}}$
+
+$T_0^2 = 4\pi^2 \left( \frac{r_0^3}{GM} \right)$ ...(1)
+
+$F = -\frac{dv_c(r)}{dr}$
+
+$F = \frac{3m\alpha}{r^4}$
+
+Net force
+
+$\frac{GMm}{r_0^2} - \frac{3m\alpha}{r_0^4} = m\omega^2 r_0$
+
+$\omega^2 = \frac{GM}{r_0^3} - \frac{3\alpha}{r_0^5}$
+
+We know $\omega = \frac{2\pi}{T_1}$
+
+$\frac{4\pi^2}{T_1^2} = \frac{GM}{r_0^3} - \frac{3\alpha}{r_0^5}$
+
+$T_1^2 = \frac{4\pi^2}{\frac{GM}{r_0^3} - \frac{3\alpha}{r_0^5}}$ ...(2)
+
+From equation (1) and (2)
+
+$\frac{T_1^2 - T_0^2}{T_1^2} = \frac{3\alpha}{GMr_0^2}$.",,{}
+019d6edb-a5ed-7d17-b601-5fa14539b721,"At equilibrium
+$ \left( m g \sin \theta\right) r=\mu B_{0} \cos \theta $
+$ \left( m g \sin \theta\right) r=\left( I \pi r^{2}\right) B_{0} \cos \theta $
+$ \tan \theta=\frac{\pi r I B_{0}}{m g} $",,{}
+019d6edb-a5ed-7f43-a2a3-c07160afc7b4,"$ \frac{\left( K \alpha \right)_{z=4 6}}{\lambda_{\mathrm{cutoff}}}=2 $ .....(1)
+$ \frac{\left( K \alpha \right)_{Z=4 1}}{\lambda_{\mathrm{cutoff}}}=x $ .....(2)
+Dividing both equation
+$ \frac{1 / \left( 4 6-1 \right)^{2}}{1 / \left( 4 1-1 \right)^{2}}=\frac{2}{x} $
+$ x=2. 5 3 $",,{}
+019d6edb-a5ef-73f3-87dd-0d6a54549c63,"(A) $ W_{\mathrm{ext}}+W_{\mathrm{g}}+W_{\mathrm{B}}=\Delta K $ $ \because $ WD by viscous force = 0
+$ W_{\mathrm{ext}}+mgh-\rho vgh=0 $
+$ W_{\mathrm{ext}}=\rho_{\ell}vgh-mgh=gh(\rho_{\mathrm{g}}v-m) $
+$ =10\times 0.7\left[ 10^{3}\times \frac{4}{3}\pi(1.5\times 10^{-2})^{3}-\pi\times 10^{-3}\right]=0.77 \mathrm{~J} $
+(B) $ W_{\mathrm{g}}+W_{\mathrm{B}}=\frac{1}{2}mv^{2}-0 $
+$ 0.77=\frac{1}{2}\left(\frac{22}{7}\times 10^{-3}\right)v^{2}\Rightarrow v=7 \mathrm{~m/s} $
+(C) $ H=\frac{v^{2}}{2g}=\frac{(7)^{2}}{2\times 10}=2.45 \mathrm{~m} $
+(D) Ratio $ =\left| \frac{\rho_{\ell}Vg-Mg}{6\pi\eta rv}\right|=\frac{500}{9} \mathrm{~J} $",,{}
+019d6edb-a5f1-7b8b-8a82-3e56671029e8,"$ x=2 R=\frac{2 m v}{q B}=\sqrt{\frac{8 m V}{q B^{2}}} $
+$ x_{1}-x_{0}=1 4 \times4-4=5 2 \mathrm{c m} $
+Minimum width w for $ A_{m}=1 9 6 \Rightarrow R=1 4 \times2=2 8 \mathrm{c m} $",,{}
+019d6edb-a5f3-7796-a45a-e4e96f072d9c,"Percentage error in Volume
+$$\frac{\Delta V}{V} \times 100 = 2 \frac{\Delta d}{d} \times 100 + \frac{\Delta h}{h} \times 100$$
+$$\Rightarrow \frac{\Delta V}{V} \times 100 = 3\%$$
+$$\left( \frac{\Delta d}{d} = \frac{\Delta h}{h} = \frac{1}{100} \right)$$",,{}
+019d6edb-a5f6-737f-acea-2365ded1c867,"$$\phi_1 = \frac{q}{\varepsilon_0} - \frac{q}{\varepsilon_0} \left( \frac{1 - \cos 30^\circ}{2} \right) \times 2 = \frac{q}{\varepsilon_0} \left[ 1 - 1 + \frac{\sqrt{3}}{2} \right] = \frac{\sqrt{3}}{2} \frac{q}{\varepsilon_0}$$
+
+$$\phi_2 = \frac{q}{\varepsilon_0} - \frac{q}{\varepsilon_0} \left( \frac{1 - \cos 60^\circ}{2} \right) \times 2 = \frac{1}{2} \frac{q}{\varepsilon_0}$$
+
+$$\frac{\phi_2}{\phi_1} = \frac{1/2}{\sqrt{3}/2} = \frac{1}{\sqrt{3}}$$
+
+$$\phi_2 = \frac{\phi_1}{\sqrt{3}} \Rightarrow N = 3$$",https://lh3.googleusercontent.com/d/12sOKJVQ_FgCgRzDanVtnViPdVeAqk7C9=w1200,{}
+019d6edb-a5f6-7731-b484-e176dd8c9f59,"$v_0 \sin 45^\circ = v_1 \sin 45^\circ$
+$v_0 \sin 60^\circ = v_2 \sin 30^\circ$
+$T_1 = \frac{L}{v_1 \cos 45^\circ + v_0 \cos 45^\circ} = \frac{L}{v_0(\sqrt{2})}$
+$\Rightarrow v_1 = v_0 \quad \dots$ (I case)
+$\Rightarrow v_2 = v_0 \sqrt{3} \quad \dots$ (II case)
+$\Rightarrow T_1^2 = \frac{L^2}{2v_0^2} = v_0 \sqrt{3}$
+
+$T_2 = \frac{L}{v_2 \cos 30^\circ + v_0 \cos 60^\circ}$
+$= \frac{L}{(v_0 \sqrt{3}) \cdot \frac{\sqrt{3}}{2} + \frac{v_0}{2}} = \frac{2L}{4v_0} = \frac{L}{2v_0}$
+$\Rightarrow T_2^2 = \frac{L^2}{4v_0^2}$
+$\left( \frac{T_1}{T_2} \right)^2 = 2$",,{}
+019d6edb-a5f8-70ca-afec-8115c50d503d,"At C, $ 1 \sin \alpha=\sqrt{3} \sin 30^{\circ} \Rightarrow \alpha=60^{\circ} $
+At B, $ \sqrt{\frac{3}{2}} \sin r_{2}=1 \sin \alpha \Rightarrow r_{2}=45^{\circ} $
+At A, $ 1 \sin \theta=\sqrt{\frac{3}{2}} \sin 15^{\circ} $
+$ \Rightarrow \theta=\sin^{-1}\left[ \sqrt{\frac{3}{2}} \sin \left( \frac{\pi}{12} \right) \right] $",https://lh3.googleusercontent.com/d/1QXiGQt6wjgB5pbSVuE9wbU9z9I21RqOi=w1200,{}
+019d6edb-a5fb-799b-9464-d3219de17ce4,"$ \left( V_{P}-V_{R} \right)_{\mathrm{line~charge}}=2 k \lambda \ln \frac{r_{R}}{r_{P}}=1 2 6 \mathrm{~V} $
+$ \left( V_{P}-V_{R} \right)_{\mathrm{sphere}}=k q \left( \frac{1}{1}-\frac{1}{r_{R}} \right)=\frac{k q}{2}=4 5 \mathrm{~V} $
+$ V_{P}-V_{R}=1 2 6+4 5=1 7 1 \mathrm{~V}. $",https://lh3.googleusercontent.com/d/1VMV6ztLNOIaRfHt-WTJQ4e2lMJ3mRrbF=w1200,{}
+019d6edb-a5fe-7e8e-a417-128f02155675,"$\pmb{\text{Step 1: Formula for the position of the } n^{th} \text{ bright fringe}}$
+
+In Young's Double Slit Experiment (YDSE), the position of the $n^{th}$ bright fringe from the central maximum is given by:
+$$y_n = \frac{n\lambda D}{d}$$
+Where:
+$\bullet$ $n = 8$ (for the $8^{th}$ bright fringe)
+$\bullet$ $\lambda = 6000 \text{ Å} = 6000 \times 10^{-10}$ m
+$\bullet$ $D = 1$ m
+$\bullet$ $d$ is the instantaneous distance between slits.
+
+
+
+$\pmb{\text{Step 2: Determine extreme values of slit separation } d}$
+
+The slit separation is given by $d = (0.8 + 0.04 \sin \omega t)$ mm.
+The extreme values occur when $\sin \omega t = \pm 1$:
+$\bullet$ $d_{max} = 0.8 + 0.04 = 0.84$ mm $= 0.84 \times 10^{-3}$ m
+$\bullet$ $d_{min} = 0.8 - 0.04 = 0.76$ mm $= 0.76 \times 10^{-3}$ m
+
+$\pmb{\text{Step 3: Calculate the extreme positions of the } 8^{th} \text{ fringe}}$
+
+$\bullet$ When $d$ is maximum, $y_8$ is minimum:
+$$y_{min} = \frac{8 \times 6000 \times 10^{-10} \times 1}{0.84 \times 10^{-3}} = \frac{4.8 \times 10^{-6}}{0.84 \times 10^{-3}} \text{ m}$$
+
+$\bullet$ When $d$ is minimum, $y_8$ is maximum:
+$$y_{max} = \frac{8 \times 6000 \times 10^{-10} \times 1}{0.76 \times 10^{-3}} = \frac{4.8 \times 10^{-6}}{0.76 \times 10^{-3}} \text{ m}$$
+
+$\pmb{\text{Step 4: Calculate the separation between extreme positions (}\Delta y\pmb{\text{)} atoms}}$
+
+$$\Delta y = y_{max} - y_{min} = 4.8 \times 10^{-3} \left( \frac{1}{0.76} - \frac{1}{0.84} \right)$$
+$$\Delta y = 4.8 \times 10^{-3} \left( \frac{0.84 - 0.76}{0.76 \times 0.84} \right) = 4.8 \times 10^{-3} \left( \frac{0.08}{0.6384} \right)$$
+$$\Delta y \approx 0.0006015 \text{ m}$$
+To convert to micrometers ($\mu m$):
+$$\Delta y = 0.0006015 \times 10^6 \, \mu m = 601.5 \, \mu m$$
+
+$\pmb{\text{Conclusion:}}$
+The separation between the two extreme positions is $\pmb{601.50 \, \mu m}$.",,{}
+019d6edb-a5fe-7f6b-aaa4-824825f7cd33,"Since 144 Pa is negligible compared to $ P_{0} $ . Therefore
+$ P_{0}\frac{4}{3}\pi r_{1}^{3}=\frac{8 P_{0}}{2 7}\left(\frac{4}{3}\pi r_{2}^{3}\right) $
+$ \Rightarrow r_{2}=\frac{3}{2} r_{1} $
+$ \Rightarrow \Delta P^{\prime}=\frac{4 T}{r_{2}}=\frac{4 T}{\frac{3}{2} r_{1}}=\frac{\Delta P_{0} \times2}{3}=9 6 \mathrm{P a} $",,{}
+019d6edb-a600-73c8-8925-efa65ecbda16,"$\pmb{\text{Step 1: Determine the position of the } 8^{th} \text{ bright fringe}}$
+
+The position $y$ of the $n^{th}$ bright fringe in a Young's double slit experiment is given by:
+$$y = \frac{n\lambda D}{d}$$
+Given:
+$\bullet$ $n = 8$
+$\bullet$ $\lambda = 6000 \text{ Å} = 6 \times 10^{-7}$ m
+$\bullet$ $D = 1$ m
+$\bullet$ $d = (0.8 + 0.04 \sin \omega t) \times 10^{-3}$ m
+
+Substituting the values:
+$$y = \frac{8 \times 6 \times 10^{-7} \times 1}{(0.8 + 0.04 \sin \omega t) \times 10^{-3}}$$
+$$y = \frac{48 \times 10^{-4}}{0.8 + 0.04 \sin \omega t}$$
+
+
+
+$\pmb{\text{Step 2: Find the velocity of the fringe}}$
+
+The speed $v$ is the rate of change of position with respect to time:
+$$v = \left| \frac{dy}{dt} \right| = \left| \frac{d}{dt} \left( \frac{48 \times 10^{-4}}{0.8 + 0.04 \sin \omega t} \right) \right|$$
+Using the chain rule:
+$$v = \left| \frac{-48 \times 10^{-4}}{(0.8 + 0.04 \sin \omega t)^2} \times (0.04 \omega \cos \omega t) \right|$$
+$$v = \frac{1.92 \times 10^{-4} \omega \cos \omega t}{(0.8 + 0.04 \sin \omega t)^2}$$
+
+$\pmb{\text{Step 3: Calculate maximum speed}}$
+
+To maximize $v$, we look at the numerator and denominator. The speed is maximum when $\cos \omega t$ is maximum ($1$) and $\sin \omega t$ is minimum ($0$ in this context, since $\sin \omega t$ and $\cos \omega t$ are out of phase). 
+Specifically, for small oscillations where $0.04 \ll 0.8$, $v$ is maximum when $\cos \omega t = \pm 1$ (which implies $\sin \omega t = 0$).
+
+$$v_{max} = \frac{1.92 \times 10^{-4} \times \omega \times 1}{(0.8 + 0)^2}$$
+Substituting $\omega = 0.08 \text{ rad s}^{-1}$:
+$$v_{max} = \frac{1.92 \times 10^{-4} \times 0.08}{0.64}$$
+$$v_{max} = \frac{0.1536 \times 10^{-4}}{0.64}$$
+$$v_{max} = 0.24 \times 10^{-4} \text{ m/s}$$
+$$v_{max} = 24 \times 10^{-6} \text{ m/s} = 24 \, \mu m/s$$
+
+$\pmb{\text{Conclusion:}}$
+The maximum speed at which the $8^{th}$ bright fringe moves is $\pmb{24} \, \mu m/s$.",,{}
+019d6edb-a602-79ff-9cca-eaf646bfd3b4,"$\pmb{\text{Step 1: Determine the velocities of particles 1 and 2 at } t_0 = 0}$ 
+
+The positions are given by:
+$x_1(t) = (x_0 + d) + a \sin \omega t$
+$x_2(t) = (x_0 - d) - a \sin \omega t$
+
+Taking the derivative with respect to time to find velocities:
+$v_1(t) = \frac{dx_1}{dt} = a\omega \cos \omega t$
+$v_2(t) = \frac{dx_2}{dt} = -a\omega \cos \omega t$
+
+At $\pmb{t_0 = 0}$:
+$v_1(0) = a\omega \cos(0) = a\omega$
+$v_2(0) = -a\omega \cos(0) = -a\omega$
+
+Given $\pmb{u_0 = a\omega/2}$, we can write $a\omega = 2u_0$. So:
+$v_1 = 2u_0$
+$v_2 = -2u_0$
+
+
+
+$\pmb{\text{Step 2: Analyze the elastic collision between particle 3 and particle 2}}$
+
+Particle 3 (mass $m$, velocity $u_0$) collides elastically with particle 2 (mass $m$, velocity $-2u_0$).
+When two identical masses undergo a $\pmb{\text{head-on elastic collision}}$, their velocities are simply $\pmb{\text{interchanged}}$.
+
+
+
+$\bullet$ Velocity of particle 3 after collision $= v_2 = -2u_0$
+$\bullet$ Velocity of particle 2 after collision $= u_0$
+
+$\pmb{\text{Step 3: Calculate the new center of mass speed } v_{cm} \text{ for particles 1 and 2}}$
+
+After the collision, the velocities of the system (particles 1 and 2) are:
+$v_1 = 2u_0$ (remains unchanged as the collision was with particle 2)
+$v_2' = u_0$ (new velocity after collision)
+
+The center of mass velocity $\pmb{v_{cm}}$ is given by:
+$$v_{cm} = \frac{mv_1 + mv_2'}{m + m} = \frac{m(2u_0) + m(u_0)}{2m} = \frac{3u_0}{2}$$
+
+$\pmb{\text{Step 4: Find the ratio } v_{cm}/(a\omega)}$
+
+Substitute $u_0 = a\omega/2$ into the expression for $v_{cm}$:
+$$v_{cm} = \frac{3}{2} \left( \frac{a\omega}{2} \right) = \frac{3}{4} a\omega$$
+$$\frac{v_{cm}}{a\omega} = \frac{3}{4} = 0.75$$
+
+$\pmb{\text{Conclusion:}}$
+The value of $v_{cm}/(a\omega)$ is $\pmb{0.75}$.",https://lh3.googleusercontent.com/d/1L_dy0aZl2nLymBaBFyPPIiaNGhfBBpMS=w1200,{}
+019d6edb-a604-76ad-8147-b732dd8b3770,"$\pmb{\text{Step 1: Determine the state of the system at the instant of collision } (t_0)}$
+
+The velocities of the particles are the time derivatives of their positions:
+$v_1(t) = \frac{dx_1}{dt} = a\omega \cos \omega t$
+$v_2(t) = \frac{dx_2}{dt} = -a\omega \cos \omega t$
+
+At the collision time $\pmb{t_0 = \frac{\pi}{2\omega}}$:
+$\omega t_0 = \frac{\pi}{2} \implies \cos(\frac{\pi}{2}) = 0$
+Thus, $\pmb{v_1(t_0) = 0}$ and $\pmb{v_2(t_0) = 0}$.
+
+At this moment, the particles are at their extreme positions relative to the center of mass. The spring is at its maximum extension, and all the energy of oscillation is stored as $\pmb{\text{potential energy}}$.
+
+
+$\pmb{\text{Step 2: Analyze the elastic collision}}$
+
+Particle 3 (mass $m$, speed $u_0$) hits particle 2 (mass $m$, speed $0$). In an elastic collision between two identical masses where one is stationary, the velocities are completely interchanged.
+$\bullet$ Velocity of particle 2 immediately after collision: $\pmb{v_2' = u_0 = \frac{a\omega}{2}}$
+$\bullet$ Velocity of particle 1 remains $\pmb{v_1' = 0}$ (collision is instantaneous).
+
+$\pmb{\text{Step 3: Energy conservation in the Center of Mass (CM) frame}}$
+
+After the collision, the new center of mass velocity of particles 1 and 2 is:
+$$v_{cm} = \frac{m(0) + m(u_0)}{2m} = \frac{u_0}{2}$$
+
+The total energy of the oscillating system ($E$) is the sum of the potential energy ($U$) already in the spring and the kinetic energy relative to the new CM ($K_{rel}$):
+$$E = U + K_{rel}$$
+
+Using $\omega = \sqrt{\frac{k}{\mu}}$ where $\mu = \frac{m}{2}$ is the reduced mass, we have the spring constant $k = \frac{m\omega^2}{2}$.
+
+
+1. $\pmb{U = \frac{1}{2} k a^2}$ (Potential energy at max amplitude $a$)
+2. $\pmb{K_{rel} = \frac{1}{2} \mu (v_{rel})^2 = \frac{1}{2} (\frac{m}{2}) (0 - u_0)^2 = \frac{1}{4} m u_0^2}$
+
+$\pmb{\text{Step 4: Solve for the new amplitude } b}$
+
+The final energy can also be expressed in terms of the new amplitude $b$ as $E = \frac{1}{2} k b^2$:
+$$\frac{1}{2} k b^2 = \frac{1}{2} k a^2 + \frac{1}{4} m u_0^2$$
+Substitute $k = \frac{m\omega^2}{2}$ and $u_0 = \frac{a\omega}{2}$:
+$$\frac{1}{2} \left( \frac{m\omega^2}{2} \right) b^2 = \frac{1}{2} \left( \frac{m\omega^2}{2} \right) a^2 + \frac{1}{4} m \left( \frac{a\omega}{2} \right)^2$$
+$$\frac{m\omega^2}{4} b^2 = \frac{m\omega^2}{4} a^2 + \frac{m a^2 \omega^2}{16}$$
+
+Multiply the entire equation by $\frac{16}{m\omega^2}$:
+$$4b^2 = 4a^2 + \frac{a^2}{4} = \frac{17a^2}{4}$$
+$$\frac{4b^2}{a^2} = \frac{17}{4} = 4.25$$
+
+$\pmb{\text{Conclusion:}}$
+The value of $\frac{4b^2}{a^2}$ is $\pmb{4.25}$.",https://lh3.googleusercontent.com/d/1gSKNWMvVVQg0POYMJM1pqzqmIXC4Afqm=w1200,{}
+019d6edb-a606-7ddd-8b02-5ea1fd9234d2,"K.E. = +13.6 $ \frac{z^{2}}{n^{2}} $ eV
+(A) n = 1 z = 1 K. E. = +13.6 eV
+(B) n = 1 z = 2 K. E. = +54.4 eV
+(C) n = 2 z = 2 K. E. = +13.6 eV
+(D) n = 2 z = 3 K. E. = +30.6 eV",,{}
+019d6edb-a607-7158-adc7-392241617a9d,,https://lh3.googleusercontent.com/d/1q3DxQTme1A_RXyA5RwFBXx6DFIWEv6gf=w1200,{}
+019d6edb-a607-7ba6-b286-a136f2500333,"$ M_{x} V_{2} O_{4} $
+$ +2 \times\frac{x}{3}+3 \times\frac{2x}{3}=+2 $
+$ x=0.75 $",,{}
+019d6edb-a60b-7928-bfe9-c7664811828e,"On fluorination of $ \mathrm{PCl}_{5} $ in polar organic solvent ionic isomers are formed, i.e.
+$ \left[ \mathrm{PCl}_{4}\right]^{+}\left[ \mathrm{PCl}_{4}\mathrm{F}_{2}\right]^{-}\rightarrow $ (Colourless crystal)
+$ \left[ \mathrm{PCl}_{4}\right]^{+}\left[ \mathrm{PF}_{6}\right]^{-}\rightarrow $ (White crystal)",,{}
+019d6edb-a60e-7203-90cf-37759f39d7b3,"At anode
+$$\text{N}_2\text{H}_4 + 4\text{OH}^- \longrightarrow \text{N}_2 + 4\text{H}_2\text{O} + 4\text{e}^-$$
+At cathode
+$$\text{O}_2 + 2\text{H}_2\text{O} + 4\text{e}^- \longrightarrow 4\text{OH}^-$$
+Overall reaction $ \text{N}_2\text{H}_4 + \text{O}_2 \longrightarrow \text{N}_2 + 2\text{H}_2\text{O} $
+$$\text{N}_2\text{H}_4 + 2\text{O}_2 \longrightarrow 2\text{NO} + 2\text{H}_2\text{O}$$
+$$\text{N}_2\text{H}_4 + 3\text{O}_2 \longrightarrow 2\text{NO}_2 + 2\text{H}_2\text{O}$$",,{}
+019d6edb-a610-70de-8bd9-4e3750be5a93,"Reagent
+(C) i) $ \mathrm{N a B H_{4}} $; ii) $ \mathrm{S n C l_{2}/H C l} $; iii) $ \mathrm{H_{3} O^{+}} $; iv) Lindlar's catalyst, $ \mathrm{H_{2}} $;
+(D) i) Lindlar's catalyst, $ \mathrm{H_{2}} $; ii) $ \mathrm{N a B H_{4}} $; iii) $ \mathrm{S n C l_{2}/H C l} $; iv) $ \mathrm{H_{3} O^{+}} $",,{}
+019d6edb-a612-7a99-b4ab-67c9f2d5f66c,"$\pmb{\text{Concept:}}$ A $\pmb{\text{peroxide linkage}}$ is an $\text{-O-O-}$ bond where oxygen is in the $-1$ oxidation state. These bonds occur in oxoacids when the calculated oxidation state of the central atom exceeds its maximum possible oxidation state (which is $+6$ for Sulfur).
+
+$\pmb{\text{Analysis of each option:}}$
+
+$\bullet$ $\pmb{\text{(A) H}_2\text{S}_2\text{O}_7\text{ (Pyrosulfuric acid/Oleum):}}$
+Calculated oxidation state of $S$: $2(+1) + 2x + 7(-2) = 0 \implies 2x = 12 \implies x = +6$. Since this equals the maximum valency, there is no peroxide bond. It contains an $\text{S-O-S}$ linkage.
+
+
+$\bullet$ $\pmb{\text{(B) H}_2\text{S}_2\text{O}_8\text{ (Marshall's acid):}}$
+Calculated oxidation state of $S$: $2(+1) + 2x + 8(-2) = 0 \implies 2x = 14 \implies x = +7$. Since $+7 > +6$, a peroxide bond must exist. The actual structure contains one $\pmb{\text{-O-O-}}$ linkage connecting two sulfur atoms ($HOSO_2\pmb{\text{-O-O-}}SO_2OH$).
+
+
+$\bullet$ $\pmb{\text{(C) H}_2\text{S}_2\text{O}_5\text{ (Disulfurous acid):}}$
+Calculated oxidation state of $S$: $2(+1) + 2x + 5(-2) = 0 \implies 2x = 8 \implies x = +4$. No peroxide bond is present; it contains an $\text{S-S}$ bond.
+
+
+$\bullet$ $\pmb{\text{(D) H}_2\text{SO}_5\text{ (Caro's acid):}}$
+Calculated oxidation state of $S$: $2(+1) + x + 5(-2) = 0 \implies x = +8$. Since $+8 > +6$, peroxide bonds are present. The structure is $HO\pmb{\text{-O-}}SO_2OH$, containing one $\pmb{\text{-O-O-}}$ linkage.
+
+
+$\pmb{\text{Conclusion:}}$ Both $\pmb{\text{H}_2\text{S}_2\text{O}_8}$ and $\pmb{\text{H}_2\text{SO}_5}$ possess peroxide linkages. Options $\pmb{B}$ and $\pmb{D}$ are correct.",,{}
+019d6edb-a616-7be1-b86a-fa0de880ce1e,"Number of moles of $ \mathrm{N a O H}=4 0 \times1 \times1 0^{-3}=4 \times1 0^{-2} $
+Number of moles of Acetic acid $ =1 0 0 \times0. 5 \times1 0^{-3}=5 \times1 0^{-2} $
+$ \therefore $ Number of moles of acetic acid adsorbed on charcoal $ =5 \times1 0^{-2}-4 \times1 0^{-2}=1 \times1 0^{-2} $
+$ \therefore $ Number of molecules of acetic acid adsorbed $ =1 \times1 0^{-2} \times N_{A} $
+$ =6 \times1 0^{2 1} $
+Total surface area adsorbed by one molecule of acetic acid $ =\frac{1. 5 \times1 0^{2}}{6 \times1 0^{2 1}}=2 5 0 0 \times1 0^{-2 3} $
+$ \therefore $ P=2500",,{}
+019d6edb-a617-702c-acca-70e9039365e3,"$$\left( \Delta T_b \right)_1 = i_1 k_f \times \frac{W_2}{M_x} \\
+\quad \left( \Delta T_b \right)_2 = i_2 k_f \times \frac{W_2}{M_y} \\
+\frac{\left( \Delta T_b \right)_1}{\left( \Delta T_b \right)_2} = \frac{i_1}{i_2} \times \frac{M_y}{M_x} = 1.2 \times \frac{1}{0.8} = 1.5
+$$
+
+$$\left( \Delta T_b \right)_1 = 1.5 \left( \Delta T_b \right)_2$$
+
+Ans. 150",,{}
+019d6edb-a618-785a-9680-ddf188cff326,"Mass = Number of moles $\times$ Molar mass
+$$\frac{(\text{Mass})P_b}{(\text{Mass})U} = \frac{n_{Pb} \times 206}{n_U \times 238} = \frac{7}{1}$$
+
+$$\frac{n_{Pb}}{n_U} = \frac{238 \times 7}{206}$$
+
+$$\ell n \left(1 + \frac{n_{Pb}}{n_U}\right) = \lambda t$$
+
+$$\ell n \left(1 + \frac{238 \times 7}{206}\right) = \frac{\ell n2}{t_{1/2}} \times t$$
+
+$$\ell n \left(\frac{206 + 1666}{206}\right) = \frac{\ell n2}{t_{1/2}} \times t$$
+
+$$\ell n(9) = \frac{\ell n2}{t_{1/2}} \times t$$
+
+$$t = \frac{\ell n9}{\ell n2} \times t_{1/2}$$
+
+$$t = \frac{2 \times 0.4771}{0.3010} \times 4.5 \times 10^9$$
+
+$$t = 14.265 \times 10^9 = 142.65 \times 10^8 \text{ years}$$
+
+$$P = 142.65$$",,{}
+019d6edb-a618-785d-81df-7b0ba9d76ff8,"Seven A, T and Six G, C pairs are there.
+Energy required $= 7\times2\times1+6\times3\times1.5=41$ kcal",,{}
+019d6edb-a61c-7917-b4fa-6dabfbe82c93,$ \left[ \mathrm{C o} \left( \mathrm{C N} \right)_{4} \right]^{4-} \rightarrow $ Tetrahedral $ \left[ \mathrm{C o} \left( \mathrm{C O} \right)_{3} \left( \mathrm{N O} \right) \right] \rightarrow $ Tetrahedral $ \mathrm{X e F}_{4} \rightarrow $ Square planar $ \left[ \mathrm{P C l}_{4} \right]^{+} \rightarrow $ Tetrahedral $ \left[ \mathrm{P d C l}_{4} \right]^{2-} \rightarrow $ Square planar $ \left[ \mathrm{I C l}_{4} \right]^{-} \rightarrow $ Square planar $ \left[ \mathrm{C u} \left( \mathrm{C N} \right)_{4} \right]^{3-} \rightarrow $ Tetrahedral $ \mathrm{P}_{4} \rightarrow $ Tetrahedral,,{}
+019d6edb-a61f-7ada-9058-6413ed3aa791,"$\pmb{\text{Step 1: Analyze Compound P and Ozonolysis Products}}$
+
+$\bullet$ $\pmb{P}$ ($C_9H_{18}O_2$) decolorizes bromine water, indicating a $\pmb{\text{C=C double bond}}$.
+$\bullet$ Ozonolysis followed by $\pmb{H_2O_2}$ (oxidative ozonolysis) cleaves the alkene into $\pmb{\text{carboxylic acids}}$ $\pmb{Q}$ and $\pmb{R}$.
+$\bullet$ $\pmb{Q}$ gives a positive iodoform test, meaning it contains a $\pmb{CH_3CH(OH)-}$ group. Given the context of $\beta$-hydroxy acids in such problems, $\pmb{Q}$ is $\pmb{\text{3-hydroxybutanoic acid}}$ ($CH_3CH(OH)CH_2COOH$).
+$\bullet$ $\pmb{R}$ gives a negative iodoform test. To satisfy the $C_9$ formula of $\pmb{P}$, $\pmb{R}$ must be $\pmb{\text{3-hydroxypentanoic acid}}$ ($CH_3CH_2CH(OH)CH_2COOH$).
+
+
+
+$\pmb{\text{Step 2: Oxidation and Decarboxylation}}$
+
+$\bullet$ $\pmb{\text{PCC Oxidation:}}$ PCC oxidizes the secondary alcohol groups in $\pmb{Q}$ and $\pmb{R}$ to ketones, forming $\pmb{\beta\text{-keto acids}}$.
+  - $\pmb{Q} \xrightarrow{PCC} CH_3COCH_2COOH$ (Acetoacetic acid)
+  - $\pmb{R} \xrightarrow{PCC} CH_3CH_2COCH_2COOH$ (3-ketopentanoic acid)
+
+$\bullet$ $\pmb{\text{Heating (Delta):}}$ $\beta$-keto acids are unstable and undergo $\pmb{\text{decarboxylation}}$ (loss of $CO_2$) upon heating.
+  - $CH_3COCH_2COOH \xrightarrow{\Delta} \pmb{CH_3COCH_3}$ (Propanone/Acetone, $\pmb{S}$)
+  - $CH_3CH_2COCH_2COOH \xrightarrow{\Delta} \pmb{CH_3CH_2COCH_3}$ (Butanone, $\pmb{T}$)
+
+
+
+$\pmb{\text{Step 3: Verification and Oxygen Count}}$
+
+$\bullet$ Both $\pmb{S}$ and $\pmb{T}$ are methyl ketones, consistent with the $\pmb{\text{positive iodoform test}}$ mentioned in the prompt.
+$\bullet$ Number of oxygen atoms in $\pmb{S}$ ($C_3H_6O$) = $1$
+$\bullet$ Number of oxygen atoms in $\pmb{T}$ ($C_4H_8O$) = $1$
+
+$$\pmb{\text{Sum of oxygen atoms}} = 1 + 1 = 2$$
+
+$\pmb{\text{Conclusion:}}$
+The sum of the number of oxygen atoms in $\pmb{S}$ and $\pmb{T}$ is $\pmb{2}$.",https://lh3.googleusercontent.com/d/1bFheG-XW2hYIKTuPPIRK1GL2TB-BuZNh=w1200,{}
+019d6edb-a61f-7c4b-af64-b7ca229a101c,Sol.,https://lh3.googleusercontent.com/d/14g7asdvRTfyhEfZGcfdhFWkoWptdhb_I=w1200,{}
+019d6edb-a61f-7c72-973c-0071138a5ea0,"$\pmb{\text{Step 1: Identify the chemical reaction and complex P}}$
+
+When potassium iodide ($KI$) reacts with potassium ferricyanide ($K_3[Fe(CN)_6]$), a redox reaction occurs. The ferricyanide ion ($Fe^{3+}$) is reduced to the ferrocyanide ion ($Fe^{2+}$), while the iodide ion ($I^-$) is oxidized to iodine ($I_2$), which then reacts with excess $I^-$ to form the triiodide ion ($I_3^-$).
+
+The balanced chemical equation is:
+$$\pmb{2K_3[Fe(CN)_6] + 3KI \rightleftharpoons 2K_4[Fe(CN)_6] + KI_3}$$
+
+Here, the complex $\pmb{P}$ is $\pmb{K_4[Fe(CN)_6]}$ (Potassium ferrocyanide).
+
+
+
+$\pmb{\text{Step 2: Relate moles of KI to moles of P}}$
+
+From the balanced stoichiometric equation, we can see the molar relationship between the reactants and products:
+$\bullet$ $\pmb{3}$ moles of $\pmb{KI}$ react to produce $\pmb{2}$ moles of $\pmb{K_4[Fe(CN)_6]}$ (complex $\pmb{P}$).
+
+$\pmb{\text{Step 3: Answer the specific question}}$
+
+The question asks for the number of moles of $\pmb{KI}$ required to produce exactly $\pmb{2}$ moles of $\pmb{P}$.
+According to the stoichiometry:
+$$\text{3 moles of KI} \rightarrow \text{2 moles of P}$$
+
+$\pmb{\text{Additional Information:}}$
+Complex $\pmb{Q}$ is formed when $\pmb{ZnCl_2}$ is added to $\pmb{P}$:
+$$2K_4[Fe(CN)_6] + 3ZnCl_2 \rightarrow K_2Zn_3[Fe(CN)_6]_2 \downarrow + 6KCl$$
+Complex $\pmb{Q}$ is $\pmb{K_2Zn_3[Fe(CN)_6]_2}$, which is a white precipitate.
+
+$\pmb{\text{Conclusion:}}$
+The number of moles of potassium iodide required is $\pmb{3}$.",,{}
+019d6edb-a61f-7e07-bea1-142fa46739f1,"$\pmb{\text{Step 1: Identify Compounds Q and R}}$
+
+Compound $\pmb{P}$ ($C_9H_{18}O_2$) has 1 degree of unsaturation (consistent with one double bond since it decolorizes $Br_2$ water). 
+$\bullet$ Oxidative ozonolysis of an alkene with $H_2O_2$ produces carboxylic acids.
+$\bullet$ $\pmb{Q}$ shows a positive iodoform test and produces $\pmb{S}$ (which also shows a positive iodoform test) after PCC oxidation and heating. This suggests $\pmb{Q}$ is a $\beta$-hydroxy acid or similar structure that can form a methyl ketone. Specifically, $\pmb{Q}$ is $\text{CH}_3\text{CH(OH)CH}_2\text{COOH}$ ($C_4H_8O_3$, Molar mass = 104 g/mol).
+$\bullet$ $\pmb{R}$ does not show a positive iodoform test initially, but its product $\pmb{T}$ does. This fits $\pmb{R}$ as $\text{CH}_3\text{CH}_2\text{CH(OH)CH}_2\text{COOH}$ ($C_5H_{10}O_3$, Molar mass = 118 g/mol).
+
+
+
+$\pmb{\text{Step 2: Copolymerization Process}}$
+
+Compounds $\pmb{Q}$ and $\pmb{R}$ are hydroxy acids. They undergo $\pmb{\text{condensation polymerization}}$ to form a polyester ($\pmb{U}$). In condensation polymerization, each linkage formed between two monomers results in the loss of one water molecule ($H_2O$).
+
+
+
+$\bullet$ Total moles of monomers = $500 \text{ (Q)} + 500 \text{ (R)} = 1000$ moles.
+$\bullet$ These 1000 moles of monomers combine to form $\pmb{1}$ mole of a single $\pmb{\text{acyclic}}$ copolymer $\pmb{U}$.
+$\bullet$ For an acyclic polymer made of $n$ monomers, the number of water molecules lost is $\pmb{n-1}$.
+$\bullet$ Number of water molecules lost = $1000 - 1 = 999$ moles of $H_2O$.
+
+$\pmb{\text{Step 3: Calculate Molecular Weight of U}}$
+
+By the Law of Conservation of Mass:
+$$\text{Mass of U} = (\text{Mass of 500 moles of Q}) + (\text{Mass of 500 moles of R}) - (\text{Mass of 999 moles of } H_2O)$$
+
+1. Mass of 500 moles of Q = $500 \times 104 = 52,000$ g
+2. Mass of 500 moles of R = $500 \times 118 = 59,000$ g
+3. Mass of 999 moles of $H_2O$ = $999 \times 18 = 17,982$ g
+
+$$\text{Molecular weight of U} = 52,000 + 59,000 - 17,982 = 93,018 \text{ g/mol}$$
+
+$\pmb{\text{Conclusion:}}$
+The molecular weight of $\pmb{U}$ is $\pmb{93018}$.",,{}
+019d6edb-a625-7cc3-a05f-81ef0a97504e,"$\pmb{\text{Step 1: Identify Complex P}}$
+
+When potassium iodide ($KI$) reacts with potassium ferricyanide ($K_3[Fe(CN)_6]$), the $Fe^{3+}$ is reduced to $Fe^{2+}$, forming $\pmb{\text{potassium ferrocyanide}}$, which is complex $\pmb{P}$:
+$$2K_3[Fe(CN)_6] + 2KI \rightleftharpoons 2K_4[Fe(CN)_6] + I_2$$
+So, $\pmb{P} = K_4[Fe(CN)_6]$.
+
+$\pmb{\text{Step 2: Analyze the formation of sparingly soluble complex Q}}$
+
+When zinc chloride ($ZnCl_2$) is added to potassium ferrocyanide ($K_4[Fe(CN)_6]$), different sparingly soluble white precipitates (complex $\pmb{Q}$) can form depending on the relative concentrations of the reactants:
+
+
+
+$\bullet$ $\pmb{\text{Case 1:}}$ If $\pmb{ZnCl_2}$ is added to an excess of $\pmb{K_4[Fe(CN)_6]}$, a mixed salt is formed:
+$$2K_4[Fe(CN)_6] + 3ZnCl_2 \rightarrow \pmb{K_2Zn_3[Fe(CN)_6]_2} \downarrow + 6KCl$$
+In this formula, the number of zinc ions is $\pmb{3}$.
+
+$\bullet$ $\pmb{\text{Case 2:}}$ Under different conditions or specific stoichiometry, simple zinc ferrocyanide can form:
+$$K_4[Fe(CN)_6] + 2ZnCl_2 \rightarrow \pmb{Zn_2[Fe(CN)_6]} \downarrow + 4KCl$$
+In this formula, the number of zinc ions is $\pmb{2}$.
+
+$\pmb{\text{Conclusion:}}$
+Both $\pmb{Zn_2[Fe(CN)_6]}$ and $\pmb{K_2Zn_3[Fe(CN)_6]_2}$ are considered valid sparingly soluble complexes for $\pmb{Q}$ in this context. Therefore, the number of zinc ions can be $\pmb{2 \text{ or } 3}$.",,{}
+019d6edb-a628-71c6-8115-b84290da1486,"since f(x) $ \neq $ g(x) for every x $ \in $ R $ \Rightarrow $ a $ _{3} $ = b $ _{3} $
+let coefficient of $ x^{3} $ = k $ \Rightarrow $ 6k = h $ ^{ \prime \prime \prime} $ (0) = f $ ^{ \prime \prime \prime} $ (1) - g $ ^{ \prime \prime \prime} $ (2)
+6k = 6(a $ _{3} $ - b $ _{3} $ - 4)
+k = - 4",,{}
+019d6edb-a62a-723c-a816-5d202192dec7,"Let $P_i$, be the probability that $S_i$ can solve the problem $\forall i = 1, 2, 3$
+$$P(U) = \frac{1}{2} = 1 - (1-P_1)(1-P_2)(1-P_3)$$
+$$= (1-P_1)(1-P_2)(1-P_3) = \frac{1}{2} \quad \ldots(\text{i})$$
+$P(\text{neither } S_2 \text{ nor } S_3 \text{ can solve}) = 1 - P(S_2 \cup S_3)$
+$$= 1 - (P_2 + P_3 - P_2P_3) = (1-P_2)(1-P_3)$$
+$P(s_i \text{ can solve given that neither } S_2 \text{ nor } S_3 \text{ can solve})$
+$$= \frac{P_1(1-P_2)(1-P_3)}{(1-P_2)(1-P_3)} = P_1 = \frac{1}{10} \quad \ldots(\text{ii})$$
+$$\Rightarrow (1-P_2)(1-P_3) = \frac{5}{9} \quad \text{(from (i))}$$
+$$P(W) = P_2(1-P_3) = \frac{1}{12} \Rightarrow \frac{1-P_2}{P_2} = \frac{5}{9} \times 12 = \frac{20}{3}$$
+$$\Rightarrow 3 = 23P_2 \Rightarrow P_2 = \frac{3}{23}$$
+$$\Rightarrow \frac{3}{23}(1-P_3) = \frac{1}{12} \Rightarrow 1-P_3 = \frac{23}{36}$$
+$$\Rightarrow P_3 = 1 - \frac{23}{36} = \frac{13}{36}$$",,{}
+019d6edb-a62b-7107-84ea-be76ca7639ab,"LHD at $ x=0 $
+$ f^{\prime}(0^{-})=\lim_{h\rightarrow0}\left(\frac{f(0)-f(0-h)}{h}\right)=\lim_{h\rightarrow0}\left(h\left(2+\sin\left(\frac{1}{h}\right)\right)\right)=0 $
+RHD at $ x=0 $
+$ f^{\prime}(0^{+})=\lim_{h\rightarrow0}\left(\frac{f(0+h)-f(0)}{h}\right)=\lim_{h\rightarrow0}\left(-h\left(2+\sin\left(\frac{1}{h}\right)\right)\right)=0 $
+where $ f^{\prime}(0^{-})\rightarrow0^{+} $
+$ f^{\prime}(0^{+})\rightarrow0^{-} $",,{}
+019d6edb-a62d-7924-a713-1e9705f98a4f,"$ Q^{-1}=Q^{\mathrm{T}} $ and $ PQ=QP \Rightarrow Q $ is orthogonal matrix.
+$ \Rightarrow P=QPQ^{-1}=QPQ^{\mathrm{T}} $
+and $ QPQ^{\mathrm{T}}=P=\operatorname{diag}(2\ 2\ 3) $
+$ \therefore Q=\left[ \begin{array}{ccc} a&0&0 \\ 0&b&0 \\ 0&0&c \end{array} \right] $ or $ \left[ \begin{array}{ccc} 0&a&0 \\ b&0&0 \\ 0&0&c \end{array} \right] $
+$ a=\pm1, b=\pm1, c=\pm1 $",,{}
+019d6edb-a630-76f4-b199-a8db8d6f206d,"Direction ratio of $L_1$
+$$\begin{vmatrix} \hat{i} & \hat{j} & \hat{k} \\ 2 & 3 & 1 \\ 1 & 2 & 1 \end{vmatrix} = \hat{i}(1) - \hat{j}(1) + \hat{k}(1)$$
+$\Rightarrow$ Direction ratio of line $L_1 = (1, -1, 1)$
+Equation of $L_2$: $\frac{x-2}{1} = \frac{y+1}{-1} = \frac{z-3}{1} = t$
+$\Rightarrow Q = (t+2, -t-1, t+3)$
+M: $2x + y - 2z = 6$
+$\Rightarrow 2(t+2) + (-t-1) - 2(t+3) = 6$
+$\Rightarrow t = -9$
+$Q = (-7, 8, -6)$
+$PQ = \sqrt{9^2 + 9^2 + 9^2} = 9\sqrt{3}$
+$PR = \frac{\left| 4-1-6-6 \right|}{3} = 3$
+$\Rightarrow QR = \sqrt{234}$
+Area $\Delta PQR = \frac{1}{2} \times 3 \times \sqrt{234} = \frac{3}{2}\sqrt{234}$
+$\cos\theta = \frac{3}{9\sqrt{3}} = \frac{1}{3\sqrt{3}} \Rightarrow \theta = \cos^{-1}\left(\frac{1}{3\sqrt{3}}\right)$",https://lh3.googleusercontent.com/d/1UbDKJp2qIsAwdEY2v_hUJWDZGZAyifAH=w1200,{}
+019d6edb-a632-7fcc-86c0-e1ebd9c8fff6,"$f(n) = \begin{cases} \frac{(n+1)}{2}, & n = \text{odd natural number}, \\ 2 - \frac{n}{2}, & n = \text{even natural number} \end{cases}$
+$\Rightarrow \frac{n+1}{2} \geq 1 \quad \forall n = \text{odd natural number}$
+$2 - \frac{n}{2} \leq 1 \quad \forall n = \text{even natural number}$
+$g(n) = 3 + 2n \geq 3 \text{ for } n \geq 0 \text{ and is odd integer}$
+
+$g(n) = -2n \geq 2 \quad \forall n < 0 \text{ and is even integer}$
+$\Rightarrow f(n) \text{ is many one and is onto function}$
+$g(n) \neq 1 \text{ hence is not onto}$
+
+$f(g(n)) = \begin{cases} \frac{3 + 2n + 1}{2} = 2 + n, & n \geq 0, \quad n \in Z \\ 2 + n, & n < 0, \quad n \in Z \end{cases}$
+
+$f(g(n)) = 2 + n, \ n \in Z \text{ is one-one.}$
+$g(f(1)) = g(1) = g(f(2)) \Rightarrow g(f(n)) \text{ is many one.}$
+since $g(n) \neq 1 \Rightarrow g(f(n)) \neq 1 \text{ hence not onto}$",,{}
+019d6edb-a634-7f88-8399-dd8e0fe70573,"$ |x+iy-z_{1}|=2|x+iy-z_{2}| $
+$ \Rightarrow|(x-1)+i(y-2)|=2|x+i(y-3)| $
+$ \Rightarrow(x-1)^{2}+(y-2)^{2}=4(x^{2}+(y-3)^{2}) $
+$ \Rightarrow3x^{2}+3y^{2}+2x-20y+31=0 $
+circle with centre $ \left(-\frac{1}{3},\frac{10}{3}\right) $ and radius $ =\sqrt{\frac{1}{9}+\frac{100}{9}-\frac{31}{3}}=\frac{2\sqrt{2}}{3} $",,{}
+019d6edb-a636-7a58-a6e8-d8685d36649c,$ \mathrm{n(S)=\frac{^{6}C_{2}.^{4}C_{2}}{2}+^{6}C_{3}.^{3}C_{1}=45+60=105} $,,{}
+019d6edb-a639-74d1-a2e8-078f3837da95,"$$\overrightarrow{SP} + 5\overrightarrow{SQ} + 6\overrightarrow{SR} = \vec{0}$$
+$$\vec{P} - \vec{S} + 5\vec{Q} - 5\vec{S} + 6\vec{R} - 6\vec{S} = \vec{0}$$
+$$\Rightarrow \vec{S} = \frac{\vec{P} + 5\vec{Q} + 6\vec{R}}{12}$$
+$$\vec{E} = \frac{\vec{P} + \vec{R}}{2}, \vec{F} = \frac{\vec{Q} + \vec{R}}{2}$$
+$$\frac{\left| \overrightarrow{EF} \right|}{\left| \overrightarrow{ES} \right|} = \frac{\left| \vec{F} - \vec{E} \right|}{\left| \vec{S} - \vec{E} \right|} = \frac{\left| \frac{\vec{Q} + \vec{R}}{2} - \frac{\vec{P} + \vec{R}}{2} \right|}{\left| \frac{\vec{P} + 5\vec{Q} + 6\vec{R}}{12} - \frac{\vec{P} + \vec{R}}{2} \right|}$$
+$$= \frac{\left| \frac{\vec{Q} - \vec{P}}{2} \right|}{\left| \frac{5\vec{Q} - 5\vec{P}}{12} \right|} = \frac{6}{5} = 1.20$$",https://lh3.googleusercontent.com/d/1IRJHkjGnMfmHAwvijU1TbpdNboJqS2Jn=w1200,{}
+019d6edb-a639-76a7-9148-f121c4012448,"Case 1: ‘0’ appears exactly twice: $ 2^{5} \times^{6} C_{2}=4 8 0 $
+Case 2: ‘1’ appears exactly twice: $ 2^{5} \times^{6} C_{1} $ (starting with 1) $ + 2^{4} \times^{6} C_{2} $ (starting with 2) = 432
+Case 3: Both ‘0’ and ‘1’ appear exactly twice: $ \frac{6!}{2!3!} $ (starting with 1) $ + \frac{6!}{2!2!2!} $ (starting with 2)
+= 60+90=150
+required number = 480+432-150=762",,{}
+019d6edb-a63c-7363-a665-75b9582f5962,"$\pmb{\text{Step 1: Expand the terms using Maclaurin series}}$
+
+We need to evaluate the limit:
+$$L = \lim_{x\rightarrow 0} \frac{1}{x^3} \left( \frac{\alpha}{2} \int_0^x \frac{1}{1-t^2} dt + \beta x \cos x \right) = 2$$
+
+First, find the series expansion for the integrand. Using the geometric series expansion:
+$$\frac{1}{1-t^2} = 1 + t^2 + t^4 + \dots$$
+Integrating term by term from $0$ to $x$:
+$$\int_0^x \frac{1}{1-t^2} dt = x + \frac{x^3}{3} + \frac{x^5}{5} + \dots$$
+
+Next, write the Maclaurin series expansion for $\cos x$:
+$$\cos x = 1 - \frac{x^2}{2!} + \frac{x^4}{4!} - \dots$$
+Multiply by $\beta x$:
+$$\beta x \cos x = \beta x \left( 1 - \frac{x^2}{2} + \dots \right) = \beta x - \frac{\beta x^3}{2} + \dots$$
+
+$\pmb{\text{Step 2: Substitute expansions into the limit expression}}$
+
+Substitute these expansions back into the numerator of our limit function:
+$$\text{Numerator} = \frac{\alpha}{2} \left( x + \frac{x^3}{3} + \dots \right) + \left( \beta x - \frac{\beta x^3}{2} + \dots \right)$$
+Group the terms by their powers of $x$:
+$$\text{Numerator} = \left( \frac{\alpha}{2} + \beta \right)x + \left( \frac{\alpha}{6} - \frac{\beta}{2} \right)x^3 + O(x^5)$$
+
+$\pmb{\text{Step 3: Apply the conditions for the limit to exist}}$
+
+For the limit $\lim_{x \to 0} \frac{\text{Numerator}}{x^3}$ to exist and equal a finite number ($2$), the coefficient of the lower-degree term ($x$) must be zero:
+$$\frac{\alpha}{2} + \beta = 0 \implies \alpha = -2\beta$$
+
+Once the $x$ term is eliminated, the $x^3$ terms divide out, and the limit evaluates to the coefficient of $x^3$:
+$$\frac{\alpha}{6} - \frac{\beta}{2} = 2$$
+
+$\pmb{\text{Step 4: Solve for } \alpha \text{ and } \beta}$
+
+Substitute $\alpha = -2\beta$ into the limit equation:
+$$\frac{-2\beta}{6} - \frac{\beta}{2} = 2$$
+$$-\frac{\beta}{3} - \frac{\beta}{2} = 2$$
+$$-\frac{5\beta}{6} = 2 \implies \beta = -\frac{12}{5}$$
+
+Now, solve for $\alpha$:
+$$\alpha = -2\left(-\frac{12}{5}\right) = \frac{24}{5}$$
+
+$\pmb{\text{Step 5: Calculate } \alpha + \beta}$
+
+$$\alpha + \beta = \frac{24}{5} - \frac{12}{5} = \frac{12}{5} = 2.4$$
+
+$\pmb{\text{Conclusion:}}$
+
+The value of $\alpha + \beta$ is $\pmb{2.4}$.",,{}
+019d6edb-a640-7d53-9c1a-70cb45ac2d78,"$f(x) = k^x, (k > 0)$
+$f(a_{31}) = k^{a + 30d}, f(a_{25}) = k^{a + 24d}$
+so, $k^{a + 30d} = 6.4.k^{a + 24d}$ or $k^{6d} = 2^6$
+$\Rightarrow k^d = 2 \quad \dots(\text{i})$
+now, $f(a_1) + f(a_2) + \dots + f(a_{50}) = 3(2^{25} + 1)$
+$\Rightarrow k^a + k^{a + d} + \dots + k^{a + 49d} = 3(2^{25} + 1)$
+$\Rightarrow \frac{k^a \left(\left(k^d\right)^{50} - 1\right)}{k^d - 1} = 3\left(2^{25} + 1\right)$
+
+from equation (i), $k^a = \frac{3\left(2^{25} + 1\right)}{2^{50} - 1} = \frac{3}{2^{25} - 1}$
+
+now, $\sum_{i=6}^{30} f(a_i) = \frac{k^{a+5d} \left(\left(k^d\right)^{25} - 1\right)}{2^{50} - 1} = \frac{3}{2^{25} - 1} \times \frac{2^5 \times \left(2^{25} - 1\right)}{2 - 1} = 96$",,{}
+019d6edb-a641-789a-af6c-cf326e2c67e5,"$$\frac{dy_1}{dx} - \sin^2 x.y_1 \Rightarrow \frac{dy_1}{y_1} = \sin^2 x \ dx \quad \ldots(\text{i})$$
+$$\frac{dy_2}{dx} = \cos^2 x.y_2 \Rightarrow \frac{dy_2}{y_2} = \cos^2 x \ dx \quad \ldots(\text{ii})$$
+$$\frac{dy_3}{dx} = \frac{2-x^3}{x^3}y_3 \Rightarrow \frac{dy_3}{y_3} = \left( \frac{2}{x^3} - 1 \right) \ dx \quad \ldots(\text{iii})$$
+from equation (i) + (ii) + (iii)
+$$\int \frac{dy_1}{y_1} + \frac{dy_2}{y_2} + \frac{dy_3}{y_3} = \int \left( \sin^2 x + \cos^2 x + \frac{2}{x^3} - 1 \right) \ dx + c$$
+$$\log_e |y_1y_2y_3| = 2 \int x^{-3} \ dx + c$$
+$$\log_e |y_1y_2y_3| = \frac{2}{-2} \times \frac{1}{x^2} + c$$
+$$|y_1y_2y_3| = e^{c-\frac{1}{x^2}}$$
+$$|y_1(x)y_2(x)y_3(x)| = c.e^{-\frac{1}{x^2}}$$
+$$|y_1(1)y_2(1)y_3(1)| = c.e^{-1}$$
+$$5 \times \frac{1}{3} \times \frac{3}{5e} = \frac{c}{e}, \ c = 1$$
+$$|y_1(x)y_2(x)y_3(x)| = e^{-\frac{1}{x^2}}$$
+$$\Rightarrow y_1(x)y_2(x)y_3(x) = e^{-\frac{1}{x^2}} \text{ or } e^{-\frac{1}{x^2}}$$
+$$\lim_{x \to 0^+} \frac{y_1(x)y_2(x)y_3(x) + 2x}{e^{3x} \sin x} = \frac{2x \pm e^{-\frac{1}{x^2}}}{e^{3x} \sin x} = 2$$",,{}
+019d6edb-a641-7aa9-b732-6d2f28eb5742,"$\pmb{\text{Step 1: Find the values of } f_1 \text{ and } f_2}$
+
+The sum of frequencies is 19:
+$$5 + f_1 + f_2 + 2 + 1 + 1 + 3 = 19 \implies f_1 + f_2 + 12 = 19 \implies f_1 + f_2 = 7$$
+
+Arrange the values in ascending order to analyze the median:
+$$\begin{array}{|c|c|c|c|c|c|c|c|} \hline \text{Value} & 4 & 5 & 6 & 8 & 9 & 11 & 12 \\ \hline \text{Frequency} & 5 & f_1 & 1 & f_2 & 2 & 3 & 1 \\ \hline \text{Cumulative Freq.} & 5 & 5+f_1 & 6+f_1 & 6+f_1+f_2 & 8+f_1+f_2 & 11+f_1+f_2 & 19 \\ \hline \end{array}$$
+
+The median for $N=19$ is the $\frac{N+1}{2} = 10^{\text{th}}$ observation. Given the median is 6, the $10^{\text{th}}$ observation must fall in the category for value 6.
+Looking at cumulative frequencies:
+$5 + f_1$ must be less than 10, and $6 + f_1$ must be at least 10.
+$$5 + f_1 < 10 \implies f_1 < 5$$
+$$6 + f_1 \geq 10 \implies f_1 \geq 4$$
+Thus, $\pmb{f_1 = 4}$. Since $f_1 + f_2 = 7$, $\pmb{f_2 = 3}$.
+
+$\pmb{\text{Step 2: Solve for List-I entries}}$
+
+$\bullet$ $\pmb{\text{(P) } 7f_1 + 9f_2:}$
+$$7(4) + 9(3) = 28 + 27 = 55 \implies \pmb{(P) \rightarrow (5)}$$
+
+$\bullet$ $\pmb{\text{Mean (}\bar{x}\pmb{\text{):}}}$
+$$\bar{x} = \frac{\sum f_i x_i}{N} = \frac{4(5) + 5(4) + 6(1) + 8(3) + 9(2) + 11(3) + 12(1)}{19} = \frac{20+20+6+24+18+33+12}{19} = \frac{133}{19} = 7$$
+
+$\bullet$ $\pmb{\text{(Q) } 19\alpha \text{ (Mean deviation about mean):}}$
+$$19\alpha = \sum f_i |x_i - \bar{x}| = 5|4-7| + 4|5-7| + 1|6-7| + 3|8-7| + 2|9-7| + 3|11-7| + 1|12-7|$$
+$$19\alpha = 5(3) + 4(2) + 1(1) + 3(1) + 2(2) + 3(4) + 1(5) = 15+8+1+3+4+12+5 = 48 \implies \pmb{(Q) \rightarrow (3)}$$
+
+$\bullet$ $\pmb{\text{(R) } 19\beta \text{ (Mean deviation about median):}}$
+$$19\beta = \sum f_i |x_i - 6| = 5|4-6| + 4|5-6| + 1|6-6| + 3|8-6| + 2|9-6| + 3|11-6| + 1|12-6|$$
+$$19\beta = 5(2) + 4(1) + 1(0) + 3(2) + 2(3) + 3(5) + 1(6) = 10+4+0+6+6+15+6 = 47 \implies \pmb{(R) \rightarrow (2)}$$
+
+$\bullet$ $\pmb{\text{(S) } 19\sigma^2 \text{ (Variance):}}$
+$$19\sigma^2 = \sum f_i x_i^2 - 19(\bar{x})^2 = (5 \cdot 16 + 4 \cdot 25 + 1 \cdot 36 + 3 \cdot 64 + 2 \cdot 81 + 3 \cdot 121 + 1 \cdot 144) - 19(49)$$
+$$19\sigma^2 = (80 + 100 + 36 + 192 + 162 + 363 + 144) - 931 = 1077 - 931 = 146 \implies \pmb{(S) \rightarrow (1)}$$
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (5), (\text{Q}) \rightarrow (3), (\text{R}) \rightarrow (2), (\text{S}) \rightarrow (1)$, which is $\pmb{\text{Option C}}$.",,{}
+019d6edb-a644-7f96-973d-de4ef59cb44f,"$\pmb{\text{Step 1: Determine Relationships Between } \vec{u}, \vec{v}, \text{ and } \vec{w}}$
+
+Given $\vec{u} \times \vec{v} = \vec{w}$ and $\vec{v} \times \vec{w} = \vec{u}$:
+$\bullet$ From $\vec{u} \times \vec{v} = \vec{w}$, we know $\vec{w} \perp \vec{u}$ and $\vec{w} \perp \vec{v}$.
+$\bullet$ From $\vec{v} \times \vec{w} = \vec{u}$, we know $\vec{u} \perp \vec{v}$ and $\vec{u} \perp \vec{w}$.
+Thus, $\vec{u}, \vec{v}, \vec{w}$ are $\pmb{\text{mutually perpendicular}}$.
+
+
+
+Taking magnitudes of $\vec{u} \times \vec{v} = \vec{w}$:
+$$|\vec{u}||\vec{v}| \sin(90^\circ) = |\vec{w}| \implies |\vec{u}||\vec{v}| = \sqrt{1^2+1^2+(-2)^2} = \sqrt{6} \quad \dots (1)$$
+Taking magnitudes of $\vec{v} \times \vec{w} = \vec{u}$:
+$$|\vec{v}||\vec{w}| = |\vec{u}| \implies |\vec{v}|\sqrt{6} = |\vec{u}| \quad \dots (2)$$
+Substitute (2) into (1): $(|\vec{v}|\sqrt{6})|\vec{v}| = \sqrt{6} \implies |\vec{v}|^2 = 1 \implies \pmb{|\vec{v}| = 1}$.
+Then $|\vec{u}| = (1)\sqrt{6} = \sqrt{6}$. 
+Thus, $\pmb{(P) \rightarrow (2)}$.
+
+$\pmb{\text{Step 2: Solve the Linear System for } t}$
+
+For a non-trivial solution $(\alpha, \beta, \gamma)$ to the system of equations, the determinant must be zero:
+$$\begin{vmatrix} -t & 1 & 1 \\ 1 & -t & 1 \\ 1 & 1 & -t \end{vmatrix} = 0 \implies -t(t^2-1) - 1(-t-1) + 1(1+t) = 0$$
+$$(t+1)(-t^2+t+1+1) = 0 \implies (t+1)(t^2-t-2) = 0 \implies (t+1)^2(t-2) = 0$$
+So, $\pmb{t = -1}$ or $\pmb{t = 2}$.
+
+$\pmb{\text{Step 3: Analyze Case 1 (} t = -1 \pmb{\text{)}}}$
+
+The equation becomes $\alpha + \beta + \gamma = 0$. Since $\vec{u} \perp \vec{w}$, $\vec{u} \cdot \vec{w} = 0$:
+$$\alpha + \beta - 2\gamma = 0$$
+Subtracting the two equations: $3\gamma = 0 \implies \pmb{\gamma = 0}$ and $\pmb{\beta = -\alpha}$.
+If $\alpha = \sqrt{3}$, then $\gamma^2 = 0$ and $(\beta + \gamma)^2 = (-\sqrt{3} + 0)^2 = 3$.
+This matches $\pmb{(Q) \rightarrow (1)}$ and $\pmb{(R) \rightarrow (4)}$.
+
+$\pmb{\text{Step 4: Analyze Case 2 (} t = 2 \pmb{\text{)}}}$
+
+The equations lead to $\alpha = \beta = \gamma$. Using $\vec{u} \cdot \vec{w} = 0$:
+$$\alpha + \alpha - 2\alpha = 0 \implies 0=0 \text{ (Satisfied for all } \alpha \text{)}$$
+Since $|\vec{u}|^2 = 6$, $\alpha^2 + \alpha^2 + \alpha^2 = 6 \implies 3\alpha^2 = 6 \implies \alpha^2 = 2$.
+If $\pmb{\alpha = \sqrt{2}}$, then $\pmb{t = 2}$. Thus $t + 3 = 5$. 
+So, $\pmb{(S) \rightarrow (5)}$.
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (2), (\text{Q}) \rightarrow (1), (\text{R}) \rightarrow (4), (\text{S}) \rightarrow (5)$, which is $\pmb{\text{Option A}}$.",,{}
+019d6edb-a648-7726-aa91-3b0b6020b074,"$V_{\mathrm{cm}} = \frac{2mV_{\mathrm{o}}}{3m} = \frac{2V_{0}}{3}, V_{1}\mathrm{cm} = \frac{V_{0}}{3}, V_{2}\mathrm{cm} = -\frac{2V_{0}}{3}$
+In COM frame momentum is zero and in elastic collision of kinetic energy before and after remains same from cm frame, vector diagram of 2m from ground frame
+$\vec{V}_{1} = \vec{V}_{1,\mathrm{cm}} + \vec{V}_{\mathrm{cm}}$
+$\sin\theta_{\mathrm{max}} = \frac{V_{\mathrm{o}} / 3}{2V_{\mathrm{o}} / 3} = \frac{1}{2}$
+$\theta_{\mathrm{max}} = \frac{\pi}{6}$",https://lh3.googleusercontent.com/d/1qB-5JGbCibYHRIIhU41ZLadgIkc1Kbj4=w1200,{}
+019d6edb-a648-7975-894a-4cd5f7f7dc96,"$\pmb{\text{Step 1: Set up the Geometry and Constraint Equations}}$
+
+Let $\theta$ be the angular displacement of the center of the disk from the vertical equilibrium position. The distance moved by the center of mass of the disk is $s = (R-r)\theta$.
+
+Because the disk rolls without slipping, the angle of rotation of the disk about its own center, $\phi$, is related to $\theta$ by the arc length equality:
+$r\phi = R\theta$. However, relative to the normal, the rotation $\beta$ is such that $r\beta = (R-r)\theta$. 
+
+
+
+$\pmb{\text{Step 2: Energy of the System}}$
+
+The total energy $E$ of the system for a small displacement $\theta$ is the sum of translational kinetic energy, rotational kinetic energy, gravitational potential energy, and elastic potential energy:
+
+1. $\pmb{\text{Translational KE:}}$ $\frac{1}{2}m v_{cm}^2 = \frac{1}{2}m [(R-r)\dot{\theta}]^2$
+2. $\pmb{\text{Rotational KE:}}$ $\frac{1}{2}I_{cm} \omega_{disk}^2 = \frac{1}{2}(\frac{1}{2}mr^2) [\frac{(R-r)\dot{\theta}}{r}]^2 = \frac{1}{4}m(R-r)^2\dot{\theta}^2$
+3. $\pmb{\text{Gravitational PE:}}$ $mg(R-r)(1 - \cos\theta) \approx \frac{1}{2}mg(R-r)\theta^2$
+4. $\pmb{\text{Spring PE:}}$ $\frac{1}{2}k x^2 = \frac{1}{2}k [(R-r)\theta]^2$
+
+Total Energy $E = \frac{3}{4}m(R-r)^2\dot{\theta}^2 + \frac{1}{2}mg(R-r)\theta^2 + \frac{1}{2}k(R-r)^2\theta^2$
+
+$\pmb{\text{Step 3: Differentiate to find the Equation of Motion}}$
+
+Since energy is conserved, $\frac{dE}{dt} = 0$:
+$$\frac{3}{4}m(R-r)^2(2\dot{\theta}\ddot{\theta}) + mg(R-r)(\theta\dot{\theta}) + k(R-r)^2(\theta\dot{\theta}) = 0$$
+Dividing by $(R-r)\dot{\theta}$:
+$$\frac{3}{2}m(R-r)\ddot{\theta} + (mg + k(R-r))\theta = 0$$
+$$\ddot{\theta} + \frac{mg + k(R-r)}{\frac{3}{2}m(R-r)}\theta = 0$$
+$$\ddot{\theta} + \frac{2}{3} \left( \frac{g}{R-r} + \frac{k}{m} \right) \theta = 0$$
+
+$\pmb{\text{Step 4: Identify } \omega}$
+
+Comparing this to the standard SHM equation $\ddot{\theta} + \omega^2\theta = 0$, we find:
+$$\omega = \sqrt{\frac{2}{3} \left( \frac{g}{R-r} + \frac{k}{m} \right)}$$
+
+$\pmb{\text{Conclusion:}}$
+The correct expression is given in $\pmb{\text{Option A}}$.",https://lh3.googleusercontent.com/d/1uZBjmnqPC95PczSyx7NVe6LIw5gnoCY7=w1200,{}
+019d6edb-a64a-770b-8517-51519235f82a,"$ \phi=(B_{0}\cos\omega t)a.\sin\omega t=\frac{B_{0}a^{2}}{2}\sin 2\omega t $
+$ \xi=-\frac{d\phi}{dt}=-\frac{B a^{2}}{2}.2\omega\cos 2\omega t $
+$ \xi=-B\omega a^{2}\cos 2\omega t $ $ 0<t\leq\frac{\pi}{\omega} $
+$ \xi=0\frac{\pi}{\omega}<t\leq\frac{2\pi}{\omega} $",https://lh3.googleusercontent.com/d/1eXeoK6V7lygV7vX4IQ67RhoZeiPfHFur=w1200,{}
+019d6edb-a64c-7c69-952f-c12ef8e8b609,"10VSD = 7MSD and 1MSD = $ \frac{1}{10} $ cm
+1VSD $ = \frac{7}{10} \times\frac{1}{10} $ cm = .07 cm
+LC = 1 MSD-1 VSD
+$ = \frac{1}{10}-\frac{.7}{10}=\frac{.3}{10} $ cm
+reading of D $ = \frac{1}{10}+1\times\frac{.3}{10}=\frac{1.3}{10}=0.13 $ cm",,{}
+019d6edb-a64e-7f0f-b776-bb060a1c0214,"$\pmb{\text{Step 1: Determine the equation of motion}}$
+
+When the loop is partially inside the field (at distance $y$ into the field), the motional EMF induced is $\mathcal{E} = B_0Lv$, and the current is $i = \frac{B_0Lv}{R}$. The magnetic force resisting the motion is:
+$$F = iLB_0 = \frac{B_0^2L^2v}{R}$$
+Using Newton's Second Law ($F = M a$):
+$$M \frac{dv}{dt} = -\frac{B_0^2L^2v}{R} \implies \frac{dv}{dt} = -Kv \quad \text{where } K = \frac{B_0^2L^2}{RM}$$
+Integrating this gives the velocity as a function of time: $\pmb{v(t) = v_0 e^{-Kt}}$.
+
+
+
+$\pmb{\text{Step 2: Relate distance entered (y) to velocity}}$
+
+We can write $a = v \frac{dv}{dy}$:
+$$v \frac{dv}{dy} = -Kv \implies dv = -K dy$$
+Integrating from $y=0$ (at $v=v_0$) to $y=L$ (full entry):
+$$v_{final} - v_0 = -KL \implies v_{final} = v_0 - KL$$
+
+$\pmb{\text{Step 3: Evaluate the options}}$
+
+$\bullet$ $\pmb{\text{Option (A):}}$ If $v_0 = 1.5 KL$, then $v_{final} = 1.5 KL - KL = 0.5 KL$. Since $v_{final} > 0$, the loop enters completely and does not stop before. $\pmb{\text{(Incorrect)}}$
+
+$\bullet$ $\pmb{\text{Option (B):}}$ When the loop is fully inside, EMF is induced in both leading and trailing edges of equal magnitude but opposite directions. The net EMF is zero, net current is zero, and thus net force is zero. $\pmb{\text{(Correct)}}$
+
+$\bullet$ $\pmb{\text{Option (C):}}$ If $v_0 = KL/10$, the loop will stop when $y_{stop} = v_0/K = L/10$. However, the time to come to rest in this exponential decay model is $t \to \infty$. $\pmb{\text{(Incorrect)}}$
+
+$\bullet$ $\pmb{\text{Option (D):}}$ If $v_0 = 3 KL$, find time $t$ to reach $y = L$. 
+Distance $y(t) = \int_0^t v_0 e^{-K\tau} d\tau = \frac{v_0}{K}(1 - e^{-Kt})$.
+Set $y(t) = L$:
+$$L = \frac{3KL}{K}(1 - e^{-Kt}) \implies 1 = 3(1 - e^{-Kt}) \implies \frac{1}{3} = 1 - e^{-Kt} \implies e^{-Kt} = \frac{2}{3}$$
+$$Kt = \ln\left(\frac{3}{2}\right) \implies t = \frac{1}{K} \ln\left(\frac{3}{2}\right) \quad \text{\textbf{(Correct)}}$$
+
+$\pmb{\text{Conclusion:}}$
+
+Statements $\pmb{B}$ and $\pmb{D}$ are correct.",https://lh3.googleusercontent.com/d/1d6mZVVK61k_EXvabJe0tjB6dly2nCvRO=w1200,{}
+019d6edb-a651-71ad-b4e9-6133182d154d,"Concept:
+(a) No phase change during transmission
+(b) Phase changes by $ \pi $ due to reflection from dense medium.
+(c) $ \omega $ will not change when medium changes
+(d) $ \lambda $ will change by a factor v changes when medium changes.
+(e) $ v=\sqrt{\frac{T}{\mu}} $
+Hence correct option is A, D.",,{}
+019d6edb-a651-7b9e-aced-5a53cb10e994,"$ \ell=10.5 $ cm
+$ b=0.05 $ mm $ =0.005 $ cm
+$ h=6.0 \times10^{-4} $ cm
+$ \mathrm{v o l u m e}=\underbrace{10.5}_{3\mathrm{S F}} \times\underbrace{0.005}_{1\mathrm{S F}} \times\underbrace{6.0}_{2\mathrm{S F}} \times10^{-4} $ cm
+$ =\underbrace{3}_{1\mathrm{S F}} \times10^{-5} \mathrm{c m}^{3} $",,{}
+019d6edb-a651-7c72-a6f0-8087fde1cd50,"$ N_{1}=mg-m\omega^{2}A $
+$ T=40\pi $
+$ \omega=\frac{2\pi}{T}=\frac{2\pi}{40\pi} $
+$ \omega=\frac{1}{20} $
+$ N_{2}=mg+m\omega^{2}A $
+$ \Delta N_{\mathrm{max}}=2\omega^{2}A=2\times 50\times \frac{1}{20}\times \frac{1}{20}\times 8=2N $",https://lh3.googleusercontent.com/d/11f9XsGcKhBLUuAy5m6KLQpU0-0-PAs9d=w1200,{}
+019d6edb-a658-7650-8cee-209197b1175e,"Stefan's Law:
+$$W_0 = \sigma \left( T_P^4 - T_Q^4 \right)$$
+$$\frac{W_0}{\sigma} = \left( T_P^4 - T_Q^4 \right) \quad \dots(\text{A})$$
+Rate of flow of heat will be same.
+$$\frac{W_S}{\sigma} = \left( T_P^4 - T_1^4 \right) \quad \dots(\text{i})$$
+$$\frac{W_S}{\sigma} = \left( T_1^4 - T_2^4 \right) \quad \dots(\text{ii})$$
+$$\frac{W_S}{\sigma} = \left( T_2^4 - T_Q^4 \right) \quad \dots(\text{iii})$$
+Adding (i), (ii) and (iii)
+$$T_P^4 - T_Q^4 = \frac{3W_S}{\sigma} \quad \dots(\text{B})$$
+Equ. (A) and (B)
+$$W_0 = 3W_S \Rightarrow \frac{W_0}{W_S} = 3$$",,{}
+019d6edb-a658-7ebb-8f8f-601eb814e6c7,"$N = 35 \times 10^7 \quad f = 10^5 \text{ Hz}$
+$E = \text{Nhf} = 35 \times 10^7 \times 6 \times 10^{-34} \times 10^{15} = 210 \times 10^{-12} \text{ Hz}$
+$u = \frac{E}{v} = \frac{210 \times 10^{-12}}{1} \frac{J}{m^3}$
+$u = \frac{B_0^2}{2\mu_0} = 210 \times 10^{-12} \Rightarrow B_0 = \sqrt{2 \times 4\pi \times 10^{-7} \times 210 \times 10^{-12}}$
+$= \sqrt{2 \times 4 \times \frac{22}{7} \times 10^{-19} \times 210 \times 10^{-12}}$
+$= \sqrt{2 \times 4 \times 2 \times 10^{-19} \times 30}$
+$= \sqrt{528} \times 10^{-9} \approx 22.98 \times 10^{-9} \text{T}$",,{}
+019d6edb-a65a-7520-b8cf-d7c7a69e09cf,"Using snell’s law
+$$\sqrt{3} \sin \alpha = 1 \times \sin 60^{\circ}$$
+$$\sin \alpha = \frac{1}{2}$$
+$$\Rightarrow \alpha = 30^{\circ}$$
+In $ \Delta $OAB
+$$\frac{\sin 120^{\circ}}{R} = \frac{\sin \theta}{\sqrt{3}R/2}$$
+$$\sin \theta = \frac{3}{4} = 0.75$$",https://lh3.googleusercontent.com/d/1HfSFapxVMVZGbAoLHxvWSxINppIiFPXG=w1200,{}
+019d6edb-a65c-7722-813d-9755f5b5a149,"$bd = mD\lambda$
+$lnb + lnd = lnm + lnD + ln\lambda$
+$\frac{\Delta b}{b} + \frac{\Delta d}{d} = 0 + \frac{\Delta D}{D} + 0$
+$\Delta b = b\left[\frac{\Delta D}{D} - \frac{\Delta d}{d}\right]$
+$\Delta b = 36 \times 10^{-5}\left[\frac{1}{100} + \frac{1 \times 20}{5 \times 20}\right]$
+$\Delta b = (36 \times 10^{-5}) \times \frac{21}{100}$
+$= 36 \times 21 \times 10^{-7} = 756 \times 10^{-7}$
+$\Delta b = 75.6 \times 10^{-6} = 75.6 \mu m$",,{}
+019d6edb-a65f-744e-98db-b1706bce5498,"$\lambda_n = \lambda_e \Rightarrow \frac{h}{\sqrt{2m}k_n} = \frac{h}{m_e v}$
+
+$\frac{h}{\sqrt{2m_n k_B T}} = \frac{h}{(m_e) v}$
+
+$\Rightarrow (m_e) v = \sqrt{2m_n k_B T} \quad \dots(\text{i})$
+
+$(m_e v) r = \frac{nh}{2\pi} \quad \dots(\text{ii})$
+
+Solving Equation (ii) and (i)
+
+$r = \frac{nh / 2\pi}{\sqrt{2m_n k_B T}}$
+
+$r^2 = \frac{n^2 h^2}{4\pi^2} \cdot \frac{1}{2m_n k_B T} \Rightarrow T = \frac{n^2 h^2}{8\pi^2 m_n k_B r^2} \text{ and } r = a_0 \frac{n^2}{z}$
+
+$T = \frac{n^2 h^2}{8\pi^2 m_n k_B} \times \frac{z^2}{a_0^2 n^4} \Rightarrow T = \frac{z^2 h^2}{8\pi^2 m_n k_B a_0^2 n^2}$
+
+$n = 3$
+
+$T = \frac{z^2 h^2}{72\pi^2 m_n k_B a_0^2}$",,{}
+019d6edb-a662-71c1-a2d9-f09ed27eae42,"$\pmb{\text{General Principles:}}$
+For an ideal dipole with dipole moment $\vec{p}$ located at the origin, the electric field $\vec{E}$ at a position $\vec{r}$ is given by:
+$$\vec{E} = \frac{1}{4\pi\epsilon_0 r^3} [3(\vec{p} \cdot \hat{r})\hat{r} - \vec{p}]$$
+$\bullet$ At a point on the $\pmb{\text{equatorial line}}$ (perpendicular to $\vec{p}$): $\vec{E} = -\frac{\vec{p}}{4\pi\epsilon_0 r^3}$
+$\bullet$ At a point on the $\pmb{\text{axial line}}$ (along $\vec{p}$): $\vec{E} = \frac{2\vec{p}}{4\pi\epsilon_0 r^3}$
+
+
+
+In all cases, point $X$ is at a distance $r$ from each dipole.
+
+$\pmb{\text{(P) Both dipoles are } p\hat{j}:}$
+Point $X$ is on the equatorial line for both. 
+$\vec{E}_1 = -\frac{p\hat{j}}{4\pi\epsilon_0 r^3}$ and $\vec{E}_2 = -\frac{p\hat{j}}{4\pi\epsilon_0 r^3}$
+$\vec{E}_{total} = \vec{E}_1 + \vec{E}_2 = -\frac{2p\hat{j}}{4\pi\epsilon_0 r^3} = -\frac{p}{2\pi\epsilon_0 r^3}\hat{j}$
+$\pmb{\text{Matches (2).}}$
+
+$\pmb{\text{(Q) Dipoles are } p\hat{j} \text{ and } -p\hat{j}:}$
+Point $X$ is on the equatorial line for both. 
+$\vec{E}_1 = -\frac{p\hat{j}}{4\pi\epsilon_0 r^3}$ and $\vec{E}_2 = -\frac{(-p\hat{j})}{4\pi\epsilon_0 r^3} = \frac{p\hat{j}}{4\pi\epsilon_0 r^3}$
+$\vec{E}_{total} = \vec{E}_1 + \vec{E}_2 = 0$
+$\pmb{\text{Matches (1).}}$
+
+$\pmb{\text{(R) Dipoles are } p\hat{j} \text{ and } p\hat{i}:}$
+For the left dipole ($p\hat{j}$), $X$ is equatorial: $\vec{E}_1 = -\frac{p\hat{j}}{4\pi\epsilon_0 r^3}$
+For the right dipole ($p\hat{i}$), $X$ is axial: $\vec{E}_2 = \frac{2(p\hat{i})}{4\pi\epsilon_0 r^3}$
+Note: Axial field for the right dipole points toward $-x$ because the dipole is at $(r,0)$ and $X$ is at $(0,0)$, so $\vec{r} = -r\hat{i}$. However, looking at the orientation, the axial field direction is opposite to the dipole moment if $X$ is behind it. 
+Actually, $\vec{E}_{axial} = \frac{2\vec{p}}{4\pi\epsilon_0 r^3}$. If $\vec{p} = p\hat{i}$, $\vec{E}_2 = \frac{2p\hat{i}}{4\pi\epsilon_0 r^3}$.
+Summing gives $\vec{E}_{total} = \frac{p}{4\pi\epsilon_0 r^3}(2\hat{i} - \hat{j})$.
+$\pmb{\text{Matches (4).}}$
+
+$\pmb{\text{(S) Both dipoles are } p\hat{i}:}$
+Point $X$ is on the axial line for both. 
+For the left dipole: $\vec{E}_1 = \frac{2p\hat{i}}{4\pi\epsilon_0 r^3}$
+For the right dipole: $\vec{E}_2 = \frac{2p\hat{i}}{4\pi\epsilon_0 r^3}$
+$\vec{E}_{total} = \frac{4p\hat{i}}{4\pi\epsilon_0 r^3} = \frac{p}{\pi\epsilon_0 r^3}\hat{i}$
+$\pmb{\text{Matches (5).}}$
+
+$\pmb{\text{Conclusion:}}$
+Matching is $\text{P} \rightarrow 2, \text{Q} \rightarrow 1, \text{R} \rightarrow 4, \text{S} \rightarrow 5$, which is $\pmb{\text{Option C}}$.",,{}
+019d6edb-a662-7605-b7b9-494fbeb778f7,"$\pmb{\text{General Setup:}}$
+The source voltage is $V(t) = V_0 \sin(\omega t)$, with $V_0 = 300$ V and $\omega = 400$ rad/s. The current is given by $i(t) = I_0 \sin(\omega t - \phi)$, where $I_0 = \frac{V_0}{|Z|}$ and $\phi$ is the phase angle.
+
+$\pmb{\text{(P) Pure Resistor (30 } \Omega\pmb{\text{):}}}$
+$\bullet$ $|Z| = R = 30 \Omega$.
+$\bullet$ $I_0 = \frac{300}{30} = 10$ A.
+$\bullet$ $\phi = 0$ (In phase). $i(t) = 10 \sin(400t)$.
+$\pmb{\text{Matches Graph (3):}}$ Peak at 10, passes through origin with positive slope.
+
+$\pmb{\text{(Q) R-L Circuit (30 } \Omega, \text{ 100 mH):}}$
+$\bullet$ $X_L = \omega L = 400 \times 0.1 = 40 \Omega$.
+$\bullet$ $|Z| = \sqrt{30^2 + 40^2} = 50 \Omega$.
+$\bullet$ $I_0 = \frac{300}{50} = 6$ A.
+$\bullet$ $\tan \phi = \frac{X_L}{R} = \frac{40}{30} = \frac{4}{3} \implies \phi = 53^{\circ}$ (Current lags voltage).
+$\pmb{\text{Matches Graph (5):}}$ Peak is slightly above 5 (it is 6), and starts with a negative value at $400t = 0$.
+
+
+
+$\pmb{\text{(R) R-L-C Circuit (30 } \Omega, \text{ 50 } \mu\text{F, 25 mH):}}$
+$\bullet$ $X_L = 400 \times 0.025 = 10 \Omega$.
+$\bullet$ $X_C = \frac{1}{\omega C} = \frac{1}{400 \times 50 \times 10^{-6}} = 50 \Omega$.
+$\bullet$ $X_{net} = X_L - X_C = -40 \Omega$ (Capacitive).
+$\bullet$ $|Z| = \sqrt{30^2 + (-40)^2} = 50 \Omega$.
+$\bullet$ $I_0 = \frac{300}{50} = 6$ A.
+$\bullet$ $\tan \phi = \frac{-40}{30} = -\frac{4}{3} \implies \phi = -53^{\circ}$ (Current leads voltage).
+$\pmb{\text{Matches Graph (2):}}$ Peak at 6, and starts with a positive value at $400t = 0$.
+
+
+
+$\pmb{\text{(S) R-L-C Circuit (60 } \Omega, \text{ 50 } \mu\text{F, 125 mH):}}$
+$\bullet$ $X_L = 400 \times 0.125 = 50 \Omega$.
+$\bullet$ $X_C = 50 \Omega$ (from previous calc).
+$\bullet$ $X_{net} = 0$ (Resonance).
+$\bullet$ $|Z| = R = 60 \Omega$.
+$\bullet$ $I_0 = \frac{300}{60} = 5$ A.
+$\bullet$ $\phi = 0$ (In phase). $i(t) = 5 \sin(400t)$.
+$\pmb{\text{Matches Graph (1):}}$ Peak at 5, passes through origin with positive slope.
+
+$\pmb{\text{Conclusion:}}$
+The matching is $\text{P} \rightarrow 3, \text{Q} \rightarrow 5, \text{R} \rightarrow 2, \text{S} \rightarrow 1$, which corresponds to $\pmb{\text{Option A}}$.",,{}
+019d6edb-a662-7fd0-b707-4d80675d8d4f,"$\pmb{\text{Step 1: Evaluate (P) Energy of hydrogen-like atoms}}$
+
+According to the Bohr model, the energy of an electron in the $n^{\text{th}}$ orbit of a hydrogen-like atom (or the energy of radiation emitted during a transition) is given by:
+$$E_n = -13.6 \frac{Z^2}{n^2} \text{ eV} \implies E \propto Z^2$$
+Thus, $\pmb{(P) \rightarrow (5)}$.
+
+
+
+$\pmb{\text{Step 2: Evaluate (Q) Energy of characteristic X-rays}}$
+
+Characteristic X-rays follow Moseley's Law. For $K_{\alpha}$ transitions, the energy is proportional to $(Z-b)^2$, where $b$ is the screening constant (usually $b \approx 1$ for $K$-series transitions):
+$$E \propto (Z-1)^2$$
+Thus, $\pmb{(Q) \rightarrow (1)}$.
+
+
+
+$\pmb{\text{Step 3: Evaluate (R) Electrostatic nuclear binding energy}}$
+
+The electrostatic (Coulomb) part of the binding energy in the Liquid Drop Model is due to the repulsion between $Z$ protons. The number of pairs of interacting protons is $\frac{Z(Z-1)}{2}$. The energy is given by:
+$$E_c = a_c \frac{Z(Z-1)}{A^{1/3}} \implies E \propto Z(Z-1)$$
+Thus, $\pmb{(R) \rightarrow (2)}$.
+
+$\pmb{\text{Step 4: Evaluate (S) Binding energy per nucleon}}$
+
+For stable nuclei with mass numbers in the range of 30 to 170, the nuclear force is saturated. As a result, the average binding energy per nucleon is nearly constant (""practically independent of Z""), staying around 8.0 to 8.5 MeV.
+Thus, $\pmb{(S) \rightarrow (4)}$.
+
+
+
+$\pmb{\text{Conclusion:}}$
+
+The correct matching is $(\text{P}) \rightarrow (5), (\text{Q}) \rightarrow (1), (\text{R}) \rightarrow (2), (\text{S}) \rightarrow (4)$, which is $\pmb{\text{Option C}}$.",,{}
+019d6edb-a667-7d8a-94ed-bbec7750e3a4,"$ \mathrm{N H_{4} N O_{2} (s)} \xrightarrow{6 0-7 0^{\circ} \mathrm{C}} \mathrm{N_{2}}+2 \mathrm{H_{2} O(\ell)} $
+$ \mathrm{N H_{4} N O_{3} (s)} \xrightarrow{2 0 0-2 5 0^{\circ} \mathrm{C}} \mathrm{N_{2} O}+2 \mathrm{H_{2} O(g)} $",,{}
+019d6edb-a668-7820-85df-a275e8765f51,"$ C \overline{N} > N H_{3} > H_{2} O > C \overline{\ell} $ , (Decreasing ligand strength order.), Strong field ligands cause larger splitting and absorb shorter wave length.",,{}
+019d6edb-a66b-7341-91dc-9e4ba5c918b9,$ 2 \mathrm{M n O}_{4}^{-}+ \mathrm{H}_{2} \mathrm{O}+ \mathrm{I}^{-} \rightarrow 2 \mathrm{M n O}_{2}+ 2 \mathrm{O H}^{-}+ \mathrm{I O}_{3}^{-} $,,{}
+019d6edb-a66b-7c32-8381-637d06604db6,Sol.,https://lh3.googleusercontent.com/d/1v4Wv7srW0L9N89k9CZYt7xCX2Wnano1C=w1200,{}
+019d6edb-a66e-75f8-a295-aaca7126196c,"$(\text{B}) \rightarrow F_2 = \sigma 1s^2, \sigma 1s^{2^*}, \sigma 2s^2, \sigma 2s^{2^*}, \sigma 2p_x^2 \begin{vmatrix} \pi 2p_y^2 \\ \pi 2p_z^2 \end{vmatrix} \begin{vmatrix} \pi 2p_y^{2^*} \\ \pi 2p_z^{2^*} \end{vmatrix} \sigma 2p_x^*$
+
+HOMO of $F_2$ is $\pi$-type
+
+$(\text{C}) \rightarrow O_2 = \sigma 1s^2, \sigma 1s^{2^*}, \sigma 2s^2, \sigma 2s^{2^*}, \sigma 2p_x^2 \begin{vmatrix} \pi 2p_y^2 \\ \pi 2p_z^2 \end{vmatrix} \begin{vmatrix} \pi 2p_y^{1^*} \\ \pi 2p_z^{1^*} \end{vmatrix} \sigma 2p_x^*$
+
+$B \cdot O \cdot = \frac{1}{2} |10 - 6| = 2$
+
+$O_2^+ = \sigma 1s^2, \sigma 1s^{2^*}, \sigma 2s^2, \sigma 2s^{2^*}, \sigma 2p_x^2 \begin{vmatrix} \pi 2p_y^2 \\ \pi 2p_z^2 \end{vmatrix} \begin{vmatrix} \pi 2p_y^{1^*} \\ \pi 2p_z^{1^*} \end{vmatrix} \sigma 2p_x^*$
+
+$B \cdot O \cdot = \frac{1}{2} |10 - 5| = 2.5$
+
+Bond energy of $O_2^+ >$ Bond energy of $O_2$
+
+$\rightarrow \text{Li}_2$ and $B_2$ has same bond order, but $B_2$ has smaller atomic size so it has smaller bond length",,{}
+019d6edb-a66e-7b0e-b177-8b5f86ee6e95,"$\pmb{\text{Concept:}}$ A species is diamagnetic if it has no unpaired electrons. In lanthanides, this typically occurs when the $4f$ subshell is either completely empty ($4f^0$) or completely filled ($4f^{14}$).
+
+
+
+$\pmb{\text{Step-by-step analysis:}}$
+
+$\bullet$ $\pmb{\text{Option (A):}}$
+- $\text{La}^{3+}$: Lanthanum ($Z=57$) has configuration $[\text{Xe}] 5d^1 6s^2$. $\text{La}^{3+}$ is $[\text{Xe}]$, which is $4f^0$. No unpaired electrons (Diamagnetic).
+- $\text{Ce}^{4+}$: Cerium ($Z=58$) has configuration $[\text{Xe}] 4f^1 5d^1 6s^2$. $\text{Ce}^{4+}$ is $[\text{Xe}]$, which is $4f^0$. No unpaired electrons (Diamagnetic).
+
+$\bullet$ $\pmb{\text{Option (B):}}$
+- $\text{Yb}^{2+}$: Ytterbium ($Z=70$) has configuration $[\text{Xe}] 4f^{14} 6s^2$. $\text{Yb}^{2+}$ is $[\text{Xe}] 4f^{14}$. Fully filled $f$-orbital (Diamagnetic).
+- $\text{Lu}^{3+}$: Lutetium ($Z=71$) has configuration $[\text{Xe}] 4f^{14} 5d^1 6s^2$. $\text{Lu}^{3+}$ is $[\text{Xe}] 4f^{14}$. Fully filled $f$-orbital (Diamagnetic).
+
+$\bullet$ $\pmb{\text{Option (C):}}$
+- $\text{La}^{2+}$ is $[\text{Xe}] 5d^1$ (Paramagnetic).
+- $\text{Ce}^{3+}$ is $[\text{Xe}] 4f^1$ (Paramagnetic).
+
+$\bullet$ $\pmb{\text{Option (D):}}$
+- $\text{Yb}^{3+}$ is $[\text{Xe}] 4f^{13}$ (Paramagnetic).
+- $\text{Lu}^{2+}$ is $[\text{Xe}] 4f^{14} 5d^1$ (Paramagnetic).
+
+$\pmb{\text{Conclusion:}}$ Pairs in options $\pmb{A}$ and $\pmb{B}$ are diamagnetic.",,{}
+019d6edb-a672-72d8-b5fd-8ce087583db3,,https://lh3.googleusercontent.com/d/1vCsIJWdCChEbsvtjwSx4vqCaOz5q7rYg=w1200,{}
+019d6edb-a672-77a2-b1b8-9b5fb5cbad29,"$ \mathrm{C r_{2} O_{7}^{-}+1 4 H^{+}+6 e^{-}\rightarrow 2 C r^{+ 3}+7 H_{2} O} $
+2 mole $ \mathrm{C r^{+ 3}} $ is produced by = 6 mole $ \mathrm{e^{-}} $
+1 mole $ \mathrm{C r^{+ 3}} $ is produced by = 3 mole $ \mathrm{e^{-}} $
+Charge = i $ \times $ t
+$ 3 \times9 6 5 0 0=i \times4 8. 2 5 \times6 0 $
+i = 100 amp",,{}
+019d6edb-a672-7c89-98d3-426a615b4ed2,"$HA \rightleftharpoons H^+ + A^-$
+$10^{-3}$ $0$ $0$
+$(10^{-3} - x)$ $(x+y)$ $x$
+$H_2O \rightleftharpoons H^+ + OH^-$
+— $(y+x)$ $y$
+$Ka = \frac{[H^+][A^-]}{[HA]} = \frac{(x+y) \cdot x}{(10^{-3} - x)}$
+$4 \times 10^{-11} = \frac{(x+y)x}{10^{-3}}, [x << 10^{-3}]$
+
+or $x(x+y) = 4 \times 10^{-14}$ (I)
+
+also $y(x+y) = 1 \times 10^{-14}$ (II)
+
+On solving $x = 1.788 \times 10^{-7}$
+$y = 0.447 \times 10^{-7}$
+$\therefore x+y = 2.235 \times 10^{-7}$
+$[H^+]_T = 2.24 \times 10^{-7}$
+$x = 2.24$",,{}
+019d6edb-a679-7791-9823-70d83674cc62,"$ \left( P+\frac{a}{V_{m}^{2}} \right)\left( V_{m}-b \right)=RT $ , (For 1 mole)
+$ PV_{m}-Pb+\frac{a}{V_{m}}-\frac{ab}{V_{m}^{2}}-RT=0 $
+$ PV_{m}^{3}-V_{m}^{2}Pb+aV_{m}-ab-RTV_{m}^{2}=0 $
+$ PV_{m}^{3}-V_{m}^{2}\left( Pb+RT \right)+V_{m}a-ab=0 $
+Ratio $ =\frac{-\left( Pb+RT \right)}{a}=\frac{\left( 300\times0.06+0.082\times300 \right)}{6} $
+$ =-7.1 $",,{}
+019d6edb-a67a-7120-a208-89b9efc817b7,"Electrolysis of $ \mathrm{H_{2}O} $
+At anode $ \rightarrow \mathrm{H_{2}O(\ell)} \rightarrow 2 \mathrm{H}^{+}+\frac{1}{2} \mathrm{O_{2}}+2 \mathrm{e}^{-} $
+At cathode $ \rightarrow 2 \mathrm{H_{2}O(\ell)}+2 \mathrm{e}^{-} \rightarrow \mathrm{H_{2}}+2 \mathrm{OH}^{-} $
+
+$ \mathrm{H_{2}O(\ell)} \rightarrow \mathrm{H_{2}}+\frac{1}{2} \mathrm{O_{2}} $
+8 mole $ \mathrm{H_{2}O} $ will provide $ = 8 $ mole $ \mathrm{H_{2}} $ & 4 mole $ \mathrm{O_{2}} $ , total moles of gases produced = 12 mole
+Work done $ = - P_{\mathrm{ext}} \times \Delta V $
+$ = - \Delta n_{\mathrm{g}} R T $
+$ = - 1 2 \times 8. 3 \times 3 0 0 $
+$ = 2 9 8 8 0 \mathrm{J} $
+Or 29.880 KJ",,{}
+019d6edb-a67a-7a8f-9603-0d8614e0b25d,,https://lh3.googleusercontent.com/d/1DX16deaT9zr9d2ER0EubFyMp0eBbPxPQ=w1200,{}
+019d6edb-a67c-7199-af4e-8a920f83e3ca,Sol.,https://lh3.googleusercontent.com/d/1mPkuNnf6ycvDt-hMMgd1yPfVADK8RuX5=w1200,{}
+019d6edb-a680-7da9-be83-5e864d4f406f,"$\pmb{\text{Concept:}}$ Qualitative inorganic analysis involves separating cations into different groups based on their solubility products ($K_{sp}$) and the specific reagents that cause them to precipitate.
+
+$\pmb{\text{Analysis of each entry:}}$
+
+$\bullet$ $\pmb{\text{(P) Passing H}_2\text{S in the presence of NH}_4\text{OH:}}$ This is the group reagent for $\pmb{\text{Group IV}}$. In alkaline medium, the concentration of sulfide ions ($S^{2-}$) is high enough to exceed the $K_{sp}$ of Group IV metal sulfides like $\pmb{\text{MnS}}$. 
+Thus, $\pmb{(P) \rightarrow (3)}$.
+
+$\bullet$ $\pmb{\text{(Q) (NH}_4)_2\text{CO}_3 \text{ in the presence of NH}_4\text{OH:}}$ This is the group reagent for $\pmb{\text{Group V}}$. It precipitates alkaline earth metals as carbonates, such as $\pmb{BaCO_3}$.
+Thus, $\pmb{(Q) \rightarrow (4)}$.
+
+$\bullet$ $\pmb{\text{(R) NH}_4\text{OH in the presence of NH}_4\text{Cl:}}$ This is the group reagent for $\pmb{\text{Group III}}$. The presence of NH$_4$Cl suppresses the ionization of NH$_4$OH (common ion effect), providing just enough OH$^-$ to precipitate Group III metal hydroxides like $\pmb{Al(OH)_3}$ but not higher groups.
+Thus, $\pmb{(R) \rightarrow (2)}$.
+
+$\bullet$ $\pmb{\text{(S) Passing H}_2\text{S in the presence of dilute HCl:}}$ This is the group reagent for $\pmb{\text{Group II}}$. In acidic medium, the ionization of H$_2$S is suppressed (common ion effect), keeping the sulfide ion concentration low. Only Group II metals with very low $K_{sp}$ values, such as $\pmb{\text{CuS}}$, will precipitate.
+Thus, $\pmb{(S) \rightarrow (1)}$.
+
+$\pmb{\text{Conclusion:}}$
+Matching: (P) $\rightarrow$ 3, (Q) $\rightarrow$ 4, (R) $\rightarrow$ 2, (S) $\rightarrow$ 1, which corresponds to $\pmb{\text{Option A}}$.",,{}
+019d6edb-a683-70ef-9392-663927a5e1e5,"$\alpha = 3$
+
+$$\lim_{x \to x_0} \left| \frac{g(x) + e^{x_0}}{x - x_0} \right|$$
+
+$$\lim_{x \to x_0} \left| \frac{\frac{3xe^x + 3x - 3e^x - 3x}{3(e^x + 1)} + e^{x_0}}{x - x_0} \right|$$
+
+$$\lim_{x \to x_0} \left| \frac{3xe^x + 3x - 3e^x - 3x - 3x_0e^x + 3e^{x_0}}{3(e^x + 1)(x - x_0)} \right|$$
+
+$$\lim_{x \to x_0} \left| \frac{3e^x(x - x_0) - 3e^{x_0}(e^{x-x_0} - 1)}{3(e^x + 1)(x - x_0)} \right|$$
+
+$$\lim_{x \to x_0} \left| \frac{e^x - e^{x_0}}{(e^x + 1)} \right| = 0$$",,{}
+019d6edb-a683-7ce8-8706-b1b9c4e4061d,"$\pmb{\text{Analysis of Reactions in List-II:}}$
+
+$\bullet$ $\pmb{\text{(1)}}$ Toluene undergoes Etard reaction to form $\pmb{\text{Benzaldehyde}}$. Benzaldehyde is a reactant for the $\pmb{\text{Cannizzaro reaction}}$ (as it lacks $\alpha$-hydrogens). 
+Thus, $\pmb{(S) \rightarrow (1)}$.
+
+$\bullet$ $\pmb{\text{(2)}}$ Benzoic acid + $\text{PCl}_5 \rightarrow$ Benzoyl chloride. Benzoyl chloride + $\text{NH}_3 \rightarrow$ Benzamide. Benzamide + $\text{P}_4\text{O}_{10} + \Delta \rightarrow$ $\pmb{\text{Benzonitrile}}$ (Phenyl cyanide). Nitriles are reactants for the $\pmb{\text{Stephen reaction}}$ (reduction to aldehydes).
+Thus, $\pmb{(P) \rightarrow (2)}$.
+
+
+
+$\bullet$ $\pmb{\text{(3)}}$ Nitrobenzene is reduced by $\text{Fe/HCl}$ to Aniline. Aniline + $\text{NaNO}_2 + \text{HCl}$ at $273-278\text{ K}$ forms $\pmb{\text{Benzene diazonium chloride}}$. Diazonium salts are the starting materials for the $\pmb{\text{Sandmeyer reaction}}$.
+Thus, $\pmb{(Q) \rightarrow (3)}$.
+
+
+
+$\bullet$ $\pmb{\text{(4)}}$ Toluene + $\text{Cl}_2/h\nu$ followed by hydrolysis gives Benzaldehyde. Benzaldehyde + Tollen's reagent $\rightarrow$ Benzoic acid. Benzoic acid + $\text{SOCl}_2 \rightarrow$ Benzoyl chloride. Benzoyl chloride + $\text{NH}_3 \rightarrow$ $\pmb{\text{Benzamide}}$. Amides are reactants for the $\pmb{\text{Hoffmann bromamide degradation reaction}}$.
+Thus, $\pmb{(R) \rightarrow (4)}$.
+
+
+
+$\bullet$ $\pmb{\text{(5)}}$ Aniline is acetylated to protect the amino group, nitrated at the para position, and then hydrolyzed to give $\pmb{\text{p-Nitroaniline}}$. This does not directly correspond to the named reactions in List-I as uniquely as the others.
+
+$\pmb{\text{Conclusion:}}$
+The correct match is $\text{P} \rightarrow 2, \text{Q} \rightarrow 3, \text{R} \rightarrow 4, \text{S} \rightarrow 1$, which is $\pmb{\text{Option B}}$.",https://lh3.googleusercontent.com/d/15LSdRFt-09fql8TnWO5EB0dJeOh3C8bX=w1200,{}
+019d6edb-a683-7e0c-b8ca-0cdb874e8b12,"$\pmb{\text{Analysis of Compound (P):}}$
+Compound (P) is a dipeptide derivative containing a $\pmb{free -NH_2}$ group and a $\pmb{\text{phenolic -\text{OH} group}}$. 
+$\bullet$ The free amino group reacts with $\pmb{\text{ninhydrin}}$ to give a characteristic $\pmb{\text{purple color}}$ (Ruhemann's purple).
+$\bullet$ The phenolic group reacts with neutral $\pmb{FeCl_3}$ to give a $\pmb{\text{violet color}}$.
+Thus, $\pmb{(P) \rightarrow (2)}$.
+
+
+
+$\pmb{\text{Analysis of Compound (Q):}}$
+Compound (Q) has its amino group protected as an amide (acetylated). Upon $\pmb{\text{complete hydrolysis}}$, it releases free amino acids (phenylglycine and valine derivatives). 
+$\bullet$ These free amino acids will then give a positive $\pmb{\text{ninhydrin test}}$.
+$\bullet$ Since it lacks a phenolic group (unlike P), it $\pmb{\text{DOES NOT}}$ give a positive phthalein dye test (which requires phenols).
+Thus, $\pmb{(Q) \rightarrow (5)}$.
+
+$\pmb{\text{Analysis of Compound (R):}}$
+Compound (R) is aniline hydrochloride. In situ, it can form a diazonium salt, but as an aromatic amine (aniline derivative), it can undergo a $\pmb{\text{coupling reaction}}$ with phenyl diazonium salts to form an azo compound, typically a $\pmb{\text{yellow dye}}$.
+Thus, $\pmb{(R) \rightarrow (1)}$.
+
+
+
+$\pmb{\text{Analysis of Compound (S):}}$
+Compound (S) is a substituted phenylhydrazine (2,4,6-trimethylphenylhydrazine). 
+$\bullet$ $\pmb{\text{Hydrazines}}$ react with the carbonyl group of sugars like $\pmb{\text{glucose}}$ to form the corresponding $\pmb{\text{hydrazone}}$ (or osazone).
+Thus, $\pmb{(S) \rightarrow (3)}$.
+
+$\pmb{\text{Conclusion:}}$
+The correct matching is $\text{P} \rightarrow 2, \text{Q} \rightarrow 5, \text{R} \rightarrow 1, \text{S} \rightarrow 3$, which is $\pmb{\text{Option B}}$.",https://lh3.googleusercontent.com/d/1QfjPKyrB6LSh5sGJ8DRkF8Y4ZiMhMIP3=w1200,{}
+019d6edb-a687-7f4b-8c88-22a2ca298102,"$x > 0, y > \frac{1}{x}, 5x - 4y - 1 > 0, 4x + 4y - 17 < 0$
+$B\left(2, \frac{9}{4}\right), A(1, 1), C\left(4, \frac{1}{4}\right)$
+Required area
+$= \frac{1}{2}\left(1 + \frac{9}{4}\right) \times 1 - \int_{1}^{4} \frac{1}{x} dx + \frac{1}{2}\left(\frac{9}{4} + \frac{1}{4}\right) \times 2 = \frac{33}{8} - \ln 4$",https://lh3.googleusercontent.com/d/1ZzuHlMu6JGHQDzzgokbRzxO61t-QbrTB=w1200,{}
+019d6edb-a68a-7d92-9ec0-1eb85e4d4072,"$\theta = \tan^{-1}(2\tan\theta) - \frac{1}{2}\sin^{-1}\left(\frac{6\tan\theta}{9 + \tan^2\theta}\right)$
+
+$= \tan^{-1}(2\tan\theta) - \frac{1}{2}\sin^{-1}\left(\frac{2\left(\frac{\tan\theta}{3}\right)}{1 + \left(\frac{\tan\theta}{3}\right)^2}\right)$
+
+Let $\frac{\tan\theta}{3} = \tan\alpha$
+
+$= \tan^{-1}(2\tan\theta) - \frac{1}{2}\sin^{-1}\left(\frac{2\tan\alpha}{1 + \tan^2\alpha}\right)$
+
+$= \tan^{-1}(2\tan\theta) - \frac{1}{2}\sin^{-1}(\sin 2\alpha)$
+
+$= \tan^{-1}(2\tan\theta) - \tan^{-1}\left(\frac{\tan\theta}{3}\right)$
+
+$\tan\theta = \frac{2\tan\theta - \frac{\tan\theta}{3}}{1 + \frac{2\tan^2\theta}{3}} = \frac{5\tan\theta}{3 + 2\tan^2\theta}$
+
+so $\tan\theta = 0$ or $\tan^2\theta = 1$
+
+$\theta = 0, \frac{\pi}{4}$ and $-\frac{\pi}{4}$
+
+In another case we did not get any solution.",,{}
+019d6edb-a68c-7154-9241-75be01a6d43c,"$4x - 3y = 12\alpha$ ...(1)
+$4\alpha x + 3\alpha y = 12$
+$4x + 3y = \frac{12}{\alpha}$ ...(2)
+$16x^2 - 9y^2 = 144 \Rightarrow \frac{x^2}{9} - \frac{y^2}{16} = 1$
+$y = mx \pm \sqrt{9m^2 - 16}$
+Now $q > 0$
+$\Rightarrow y = mx + \sqrt{9m^2 - 16}, m = \frac{4\sqrt{2}}{3}$
+Hence $pq = \left( -\frac{\sqrt{9m^2 - 16}}{m} \right)\left( \sqrt{9m^2 - 16} \right) = -\frac{9m^2 - 16}{m} = -6\sqrt{2}$",,{}
+019d6edb-a68d-7287-bd41-7e919103e350,"$QR = RP$
+$QR - 2R = RP - 2R$
+$(Q - 2I) R = R(P - 2I) = R \begin{pmatrix} 0 & 0 \\ 0 & 1 \end{pmatrix}$
+$|(Q - 2I) R| = |R| |P - 2I| = 0$
+For this to be true for all $R \Rightarrow |Q - 2I| = 0$
+(A) is correct.
+$QR = RP$
+$QR - 3R = RP - 3R$
+$(Q - 3I) R = R(P - 3I) = R \begin{pmatrix} -1 & 0 \\ 0 & 0 \end{pmatrix}$
+$|Q - 3I| = 0$
+$|Q - 2I| = 0$
+$\Rightarrow 2(x - 2) = yz$
+$|Q - 3I| = 0 \Rightarrow x - 3 = yz$
+
+Hence $x = 1, yz = -2$",,{}
+019d6edb-a68f-7e03-9c6f-551cea50ae94,"$2h = t_1^2 + t_2^2 \Rightarrow t_1t_2 = 2k^2 - h$
+$2k = t_1 + t_2$
+Required area
+$= \frac{1}{2}\left(t_1^2 + t_2^2\right)\left(t_1 - t_2\right) - \frac{1}{3}\left(t_1^3 - t_2^3\right) = \frac{4}{3}$
+$\Rightarrow 3\left(t_1^2 + t_2^2\right)\left(t_1 - t_2\right) - 2\left(t_1^3 - t_2^3\right) = 8$
+$\Rightarrow (t_1 - t_2)\left[t_1 - t_2\right]^2 = 8$
+$\Rightarrow (t_1 - t_2)^2 = t_1^2 + t_2^2 - 2t_1t_2$
+$= 2h - (4k^2 - 2h)$
+$4 = 4(h - k^2)$
+$y^2 = x - 1$
+Required area
+$= \int_1^4 \left(\sqrt{x} - \sqrt{x-1}\right)dx$
+$= \frac{2}{3}\left[x^{3/2} - (x-1)^{3/2}\right]_1^4 = \frac{14}{3} - 2\sqrt{3}$",https://lh3.googleusercontent.com/d/1UyHbhtk4924dWixtFQ__sy0eac0SxoI0=w1200,{}
+019d6edb-a691-777a-9ce0-855a2574bef2,"Coordinate of $P: \left( \frac{3\sqrt{3}}{2}, 1 \right), R: \left( \frac{3\sqrt{3}}{2}, \frac{3}{2} \right)$
+$Q: \left( \frac{3}{2}, \sqrt{3} \right), S: \left( \frac{3}{2}, \frac{3\sqrt{3}}{2} \right)$
+Equation of line $PQ: y - \sqrt{3} = \frac{1 - \sqrt{3}}{\frac{3\sqrt{3}}{2} - \frac{3}{2}} \left( x - \frac{3}{2} \right)$
+$\Rightarrow 2x + 3y = 3 \left( 1 + \sqrt{3} \right)$
+$\frac{N_2Q}{N_2S} = \frac{\sqrt{3}}{3 \frac{\sqrt{3}}{2}} = \frac{2}{3}$
+Also $\frac{N_1P}{N_1R} = \frac{1}{3/2} = \frac{2}{3}$",https://lh3.googleusercontent.com/d/1aERVKTYMa9hBglbwSbkm36kTfWGxz8o2=w1200,{}
+019d6edb-a694-762b-8357-f875855b89c4,"$x^2 \frac{dy}{dx} + xy = x^2 + y^2, x > \frac{1}{e}$ also $y(1) = 0$
+
+$\Rightarrow \frac{dy}{dx} = \frac{x^2 + y^2 - xy}{x^2}$
+Put $y = vx$
+
+$\Rightarrow v + x \frac{dv}{dx} = v^2 - v + 1$
+
+$\Rightarrow \frac{dv}{(v - 1)^2} = \frac{dx}{x}$
+
+After integration
+
+$\Rightarrow \frac{-1}{v - 1} = \ln x + c$
+
+$\Rightarrow \frac{-x}{y - x} = \ln x + c$
+
+Now it is given $y(1) = 0$
+
+$\Rightarrow c = 1$
+
+$\Rightarrow \frac{-x}{y - x} = \ln x + 1$
+
+$\Rightarrow y = \frac{x \ln x}{1 + \ln x}$
+
+$\Rightarrow \frac{2(y(e))^2}{y(e^2)} = \frac{3}{4} = 0.75$",,{}
+019d6edb-a694-7cc7-9b5d-7a3c409093c0,"$f(x) = \frac{6x + \sin x}{2x + \sin x}, x \neq 0$
+$\frac{7}{3}, x \neq 0$
+$f'(x) = \frac{4\sin x - 4x\cos x}{(2x + \sin x)^2}, x \neq 0$
+$= \frac{4\cos x(\tan x - x)}{(2x + \sin x)^2}, x \neq 0$
+
+Now to check $x = 0$ is point of local maxima or minima
+$f'(0^-) < 0$ and $f'0^+) > 0$
+$\Rightarrow x = 0$ is point of local minima.
+From the graph, we can say in the interval $[\pi, 6\pi]$ there is three point of local maxima and in the interval $[2\pi, 4\pi]$ there is one point of local minima.",https://lh3.googleusercontent.com/d/18d8VmV3_AtJc1QLPCBu5NiBlV6x-MKOh=w1200,{}
+019d6edb-a697-7a1d-979d-1c9490b13e05,"$a_0, a_1, \dots, a_{23}$ are real numbers and $\left(1 + \frac{2}{5}x\right)^{23} = \sum_{i=0}^{23} a_1x^i$
+
+$a_r$ be the largest among the numbers $a_j$, $0 \leq j \leq 23$
+$\Rightarrow$ we have to find numerically greatest term.
+
+$m = \frac{n+1}{1 + \left|\frac{5}{2x}\right|} = \frac{48}{7} = 6.85$
+
+$([m] + 1)^{th}$ term is numerically greatest.
+$\Rightarrow 7^{th}$ term is numerically greatest
+$\Rightarrow r = 6$",,{}
+019d6edb-a69a-7d0f-ba8a-5a0e178e8d6f,"Let $E_1$: Bulb is produced by $M_1$
+$E_2$: Bulb is produced by $M_2$
+$E_3$: Bulb is produced by $M_3$
+A: produced bulb is defective
+By using
+$$P(A) = \sum_{i=1}^{3} P(E_i) P\left(\frac{A}{E_i}\right)$$
+$$= P(E_1) P\left(\frac{A}{E_1}\right) + P(E_2) P\left(\frac{A}{E_2}\right) + P(E_3) P\left(\frac{A}{E_3}\right)$$
+$$\frac{20}{100} = \frac{2}{5} \cdot \frac{15}{100} + \frac{2}{5} P\left(\frac{A}{E_2}\right) + \frac{1}{5} P\left(\frac{A}{E_3}\right)$$
+$$\Rightarrow \frac{7}{10} = 2P\left(\frac{A}{E_2}\right) + P\left(\frac{A}{E_3}\right) \quad \dots(1)$$
+
+Also, $P\left(\frac{E_2}{A}\right) = \frac{2}{5}$
+$$\Rightarrow \frac{P(E_2 \cap A)}{P(A)} = \frac{2}{5}$$
+$$\Rightarrow \frac{P(E_2) P\left(\frac{A}{E_2}\right)}{P(A)} = \frac{2}{5}$$
+$$\Rightarrow P\left(\frac{A}{E_2}\right) = \frac{2}{5} \frac{P(A)}{P(E_2)} = \frac{1}{5} \quad \dots(2)$$
+From eqn(1) and (2)
+$$P\left(\frac{A}{E_3}\right) = \frac{3}{10}$$
+$$\Rightarrow \text{required probability} = 0.30$$",,{}
+019d6edb-a69d-7684-92db-a7bf210fae3b,"$[\vec{X} \vec{Y} \vec{Z}] = 0$
+$\Rightarrow [\vec{x} \vec{y} \vec{z}] \left| \begin{array}{ccc} \alpha & \beta & -1 \\ -1 & \alpha & \beta \\ \beta & -1 & \alpha \end{array} \right| = 0$
+$\Rightarrow \left| \begin{array}{ccc} 1 & 2 & 3 \\ 2 & 3 & 1 \\ 3 & 1 & 2 \end{array} \right| \left| \begin{array}{ccc} \alpha & \beta & -1 \\ -1 & \alpha & \beta \\ \beta & -1 & \alpha \end{array} \right| = 0$
+$- 18(\alpha(\alpha^2 + \beta) - \beta(-\alpha - \beta^2) - (1 - \alpha \beta)) = 0$
+$\Rightarrow \alpha^3 + \beta^3 - 1 + 3\alpha\beta = 0$
+since $\alpha \neq \beta$
+$\Rightarrow \alpha + \beta + (-1) = 0$
+So, $\alpha + \beta - 3 = -2$.",,{}
+019d6edb-a69d-7ff0-aee3-43ef77afeff4,"$-\pi < \arg z \leq \pi$
+$0 < \arg w < \pi$
+
+$$\alpha = \arg \left( \sum_{n=1}^{2025} (-\omega)^n \right)$$
+
+Now, $$\sum_{n=1}^{2025} = -\omega \left( \frac{(-\omega)^{2025} - 1}{-\omega - 1} \right)$$
+$$= \frac{-2\omega}{1 + \omega} = 2\omega^2$$
+$$= 2 \left( -\frac{1}{2} - \frac{\sqrt{3}}{2} i \right) = -1 - \sqrt{3} i$$
+
+$$\alpha = (-1 - \sqrt{3} i) = \frac{-2\pi}{3}$$
+
+$$\Rightarrow \frac{3\alpha}{\pi} = -2$$",,{}
+019d6edb-a6a0-7719-9e92-92bbc171c5e4,"$\alpha = \frac{1}{\sin 60^\circ \sin 61^\circ} + \frac{1}{\sin 62^\circ \sin 63^\circ} + \dots + \frac{1}{\sin 118^\circ \sin 119^\circ}$
+$= (\tan 30^\circ - \tan 29^\circ)$
+$+ (\tan 28^\circ - \tan 27^\circ)$
+$+ (\tan 0^\circ - \tan 1^\circ)$
+$+ (-\tan 26^\circ + \tan 27^\circ)$
+$\Rightarrow (-\tan 28^\circ + \tan 29^\circ)$
+$\alpha = \frac{\tan 30^\circ}{\sin 1^\circ} = \frac{1}{\sqrt{3}} \cos 21^\circ$
+$\Rightarrow \left( \frac{\cos 21^\circ}{\alpha} \right)^2 = 3$",,{}
+019d6edb-a6a0-7e8a-948e-c456c0d56922,"Assume $g^{-1}(x) = h(x)$
+$h : (0, 4) \rightarrow R$
+$h(x) = -\frac{1}{2}\left[\log(4-x) - \log x\right]$
+$f(h) = \log(h^2 + 2h + 4) \forall 0 < h < 4$
+$f'(h(x)) = \frac{1\left(2h(x) + 2\right)h'(x)}{h^2(x) + 2h(x) + 4}$
+$f'(h(2)) = \frac{\left(2h(2) + 2\right)h'(2)}{\left(h^2(2) + 2h(2) + 4\right)}$
+Here $h(2) = 0$ and $h'(2) = \frac{1}{2}$
+$\Rightarrow f'(g^{-1}(x))$ at $x = 2 = \frac{\frac{1}{2}(2)}{4} = 0.25$",,{}
+019d6edb-a6a4-737f-b7a2-67b6dc9a9a0c,"$$\mathrm{d}\phi_1 = \left( \frac{\lambda}{2\pi\varepsilon_0 K} \right) (\mathrm{d}y) \ell \cos \theta$$
+
+$$= \frac{\lambda \ell}{10\pi\varepsilon_0 r} (\mathrm{d}y) \frac{R}{r} = \frac{\lambda \ell R}{10\pi\varepsilon_0} \int_R^{\sqrt{3} R} \frac{\mathrm{d}y}{(R^2 + y^2)}$$
+
+$$\phi_1 = \frac{\lambda \ell R}{10\pi\varepsilon_0} \cdot \frac{1}{R} \tan^{-1} \left( \frac{y}{R} \right) \bigg|_R^{\sqrt{3} R}$$
+
+$$= \frac{\lambda \ell}{10\pi\varepsilon_0} \times \left[ \tan^{-1}(\sqrt{3}) - \tan^{-1}(1) \right]$$
+
+$$= \frac{\lambda \ell}{10\pi\varepsilon_0} \times \left( \frac{\pi}{3} - \frac{\pi}{4} \right) = \frac{\lambda \ell}{120\varepsilon_0} = \frac{Q}{120\varepsilon_0}$$
+
+Total flux $= 2 \times \phi_1 = \frac{Q}{60\varepsilon_0}$",https://lh3.googleusercontent.com/d/1H1vf6kQVtgzq6zty9VSh6dmp-5izil5z=w1200,{}
+019d6edb-a6a4-75f1-b405-484e90a419ec,"$$\alpha = \int_{1/2}^{2} \frac{\tan^{-1} x}{2x^2 - 3x + 2} \, dx$$
+
+Put $z = \frac{1}{x}$
+
+$$\alpha = \int_{2}^{1/2} \frac{\cot^{-1} z (-dz)}{2z^2 - 3z + 2}$$
+
+$$\alpha = \int_{1/2}^{2} \frac{\left(\frac{\pi}{2}\right) - \tan^{-1}(z)}{2z^2 - 3z + 2}$$
+
+$$2\alpha = \frac{\pi}{2} \int_{1/2}^{2} \frac{1}{2z^2 - 3z + 2}$$
+
+$$2\alpha = \frac{\pi}{2} \times \frac{1}{2} \int_{1/2}^{2} \frac{1 \cdot dz}{\left(z - \frac{3}{4}\right)^2 + \left(\frac{\sqrt{7}}{4}\right)^2}$$
+
+$$\Rightarrow \text{Now using } \int \frac{1}{x^2 + a^2} \, dx$$
+
+$$= \frac{1}{a} \tan^{-1} \frac{x}{a} + c$$
+
+We have
+
+$$2\alpha = \frac{\pi}{\sqrt{7}} \left[ \tan^{-1} \frac{5}{\sqrt{7}} + \tan^{-1} \frac{1}{\sqrt{7}} \right]$$
+
+$$\Rightarrow \frac{2\alpha \sqrt{7}}{\pi} = \tan^{-1} \left(3 \times \sqrt{7}\right)$$
+
+$$\tan \left( \frac{2\alpha \sqrt{7}}{\pi} \right) = 3 \times \sqrt{7}$$
+
+Now, $\sqrt{7} \tan \left( \frac{2\alpha \sqrt{7}}{\pi} \right) = 21$$",,{}
+019d6edb-a6a4-76df-8cc4-3ae3d8b3872d,"$$S = \frac{emf}{T}$$
+
+$$R = \frac{1}{\sigma} \cdot \frac{L}{A}$$
+
+$$\sigma = \frac{LI}{A \cdot emf}$$
+
+$$\frac{J}{sec} = KA \frac{\Delta T}{L}$$
+
+$$k = \frac{JL}{A \cdot \Delta T sec}$$
+
+$$z = \frac{s^2 \sigma}{k}$$
+
+$$= \frac{(emf)^2}{T^2} \cdot \frac{LI}{A(emf)} \times \frac{A(\Delta T)sec}{J.L}$$
+
+$$= emf \cdot \frac{l(sec)}{T \cdot J}$$
+
+$$= \frac{J}{lsec} \cdot \frac{l \cdot sec}{T.J}$$
+
+Dimensional formula of $Z = [M^0 L^0 T^0 I^0 K^{-1}]$",,{}
+019d6edb-a6ab-7117-877c-b3a94ee4bb5f,"Case I: Restoring torque (When rod is rotated by $\theta$)
+$$\tau = k\ell\theta \cdot \ell + \left( k \frac{\ell}{2} \theta \right) \frac{\ell}{2} = \frac{5}{4} k\ell^2\theta$$
+$$\tau = -\frac{m\ell^2}{3}\alpha$$
+$$\Rightarrow \alpha = \frac{-15k}{4m}\theta$$
+$$\Rightarrow f_1 = \frac{1}{2\pi} \sqrt{\frac{15k}{4m}} \quad \dots(\text{i})$$
+
+Case II: Restoring torque (When rod is rotated by $\theta$)
+$$\tau = \left( 2k \frac{\ell}{2} \theta \right) \frac{\ell}{2} = \frac{k\ell^2\theta}{2}$$
+$$\Rightarrow \frac{k\ell^2}{2}\theta = -l_0\alpha = -\frac{m\ell^2}{3}\alpha$$
+$$\Rightarrow \alpha = -\frac{3k}{2m}\theta$$
+$$f_2 = \frac{1}{2\pi} \sqrt{\frac{3k}{2m}} \quad \dots(\text{ii})$$
+$$\Rightarrow \frac{f_1}{f_2} = \sqrt{\frac{5}{2}}$$",,{}
+019d6edb-a6ac-74f9-b7a6-42701aa838ff,"Conserving angular momentum of
+$m_2v_0r = \text{constant}$
+$m_2\sqrt{\frac{Gm_1}{r}} \cdot r = \text{constant}$
+Or $m_2^2r = \text{constant}$
+Differentiating $2m_2\frac{dm_2}{dt}r + m_2^2\frac{dr}{dt} = 0$
+$2m_2(-\gamma)r + m_2^2\frac{dr}{dt} = 0 \Rightarrow \frac{1}{r}\frac{dr}{dt} = \frac{2\gamma}{m_2}$",,{}
+019d6edb-a6ae-72da-921c-880279dca8d2,"Before grounding, potential at centre,
+$$v_{C}=\frac{kq}{r}=\frac{9 \times 10^{9} \times 10^{-8}}{0.2}=45 \times 10=450 \mathrm{~V}$$
+After grounding, potential of sphere becomes zero. Let charge on sphere is $Q$
+$$\frac{kQ}{0.1}+\frac{k \times 10^{-8}}{0.2}=0$$
+$$Q+\frac{10^{-8}}{2}=0$$
+$$\Rightarrow$$ charge of sphere, $Q=-5 \times 10^{-9}$
+Final potential of sphere,
+$$= \frac{9 \times 10^{9} \times(-5 \times 10^{-19})}{0.1}+\frac{9 \times 10^{9} \times 10^{-8}}{0.3}$$
+$$=-450+300=-150 \mathrm{~V}$$",https://lh3.googleusercontent.com/d/1H6BBG4T-pVdBDDgL7Fn8VB-Q8MKY6jis=w1200,{}
+019d6edb-a6ae-7724-8d82-f6772b7a1a6c,"Shift in position of object due to refraction at surface of sheet $= \frac{t}{2}\left(1-\frac{1}{n_0}\right)$
+
+To make image at object itself $O'$ must be at common focal point or common centre of curvature
+$\Rightarrow$ distance between mirrors
+$d_1 = f + f + 2 OO' = 2f + 2 \cdot \frac{t}{2}\left(1-\frac{1}{n_0}\right)$
+$= 2f + t\left(1-\frac{1}{n_0}\right)$
+$d_2 = 2f + 2f + 2 OO'$
+$= 4f + t\left(1-\frac{1}{n_0}\right)$",https://lh3.googleusercontent.com/d/11yk9KPWeJtH-BB-341YJlDOL3B1A8ORZ=w1200,{}
+019d6edb-a6b2-70c0-a1ab-b8de5e6e528b,"In region -4 of configuration-I
+
+$$\vec{E}_4 = \frac{\sigma_0}{2\varepsilon_0} - \frac{\sigma_0}{2\varepsilon_0} + \frac{\sigma_0}{2\varepsilon_0} - \frac{\sigma_0}{2\varepsilon_0} - \frac{\sigma_0}{2\varepsilon_0} + \frac{\sigma_0}{2\varepsilon_0} = 0$$
+
+In region -3 of configuration -II
+
+$$E'_3 = \frac{\sigma_0 / 2}{2\varepsilon_0} + \frac{\sigma_0 / 2}{2\varepsilon_0} = \frac{\sigma_0}{2\varepsilon_0}$$
+
+In configuration -I
+
+$$V_A = \frac{2\sigma_0}{2\varepsilon_0} \times d - \frac{2\sigma_0}{2\varepsilon_0} \times d - \frac{2\sigma_0}{2\varepsilon_0} \times d = V_F$$
+
+$$V_A - V_F = \frac{6\sigma_0}{2\varepsilon_0} \times d = \frac{6 \times 9 \times 10^{-6}}{2 \times 9 \times 10^{-12}} \times 10^{-6} = 3 \text{ volt}$$
+
+In configuration -II
+
+$$E'_1 = \frac{\sigma_0}{4\varepsilon_0} \times 2 = \frac{\sigma_0}{2\varepsilon_0}$$
+
+$$E'_2 = -\frac{2\sigma_0}{2\varepsilon_0} + 2 \cdot \frac{\sigma_0 / 2}{2\varepsilon_0} = -\frac{\sigma_0}{2\varepsilon_0}$$
+
+$$E'_3 = \frac{\sigma_0}{4\varepsilon_0} \times 2 = \frac{\sigma_0}{2\varepsilon_0}$$
+
+$$E'_4 = -\frac{2\sigma_0}{2\varepsilon_0} + \frac{2\sigma_0 / 2}{2\varepsilon_0} = -\frac{\sigma_0}{2\varepsilon_0}$$
+
+$$E'_5 = \frac{\sigma_0}{2\varepsilon_0}$$
+
+$$V_A' - \frac{\sigma_0}{2\varepsilon_0} d + \frac{\sigma_0}{2\varepsilon_0} d - \frac{\sigma_0}{2\varepsilon_0} d + \frac{\sigma_0}{2\varepsilon_0} d - \frac{\sigma_0}{2\varepsilon_0} d = V_F'$$
+
+$$\Rightarrow V_A' - \frac{\sigma_0}{2\varepsilon_0} d = V_F'$$
+
+$$V_A' - V_F' = \frac{\sigma_0}{2\varepsilon_0} d = \frac{9 \times 10^{-6}}{2 \times 9 \times 10^{-12}} \times 10^{-6} = \frac{1}{2} \text{ Volts}$$",,{}
+019d6edb-a6b5-72b7-ba10-cea175c8e1ee,"Temperature of hot reservoir, $T_1 = 1000 \text{ K}$
+$$\because e = 1 - \frac{T_2}{T_1}$$
+$$0.4 = 1 - \frac{T_2}{1000}$$
+$$\Rightarrow \frac{T_2}{1000} = 0.6 \text{ or } T_2 = 600 \text{ K}$$
+Also $e = \frac{W}{Q_1} \Rightarrow 0.4 = \frac{W}{150}$
+Or $W = 60 \text{ J}$
+Coefficient of performance
+$$\beta = \frac{Q'_2}{W} = \frac{1}{e} - 1$$
+$$10 = \frac{1}{e} - 1$$
+$$e = \frac{1}{11}$$
+$$\Rightarrow \text{Heat given to hot reservoir}$$
+$$Q'_1 = Q'_2 + W = 600 + 60 = 660 \text{ J}$$
+$$e = 1 - \frac{T_2'}{T_1'}$$
+$$\frac{1}{11} = 1 - \frac{T_2'}{300}$$
+$$T_2' = 272.22 \text{K} \approx 270 \text{K}$$",,{}
+019d6edb-a6b5-7881-8a13-9855fb77a441,"$h v_{1} = (10 + 13.6) \mathrm{eV} = 23.6 \mathrm{eV}$ ...(i)
+$\frac{1}{2} m v_{e}^{2} = 10 \mathrm{eV}$ ...(ii)
+$\Rightarrow$ Total energy of positronium
+$E = \frac{1}{2} 2 m \left( \frac{v_{e}}{2} \right)^{2} + \left\{ \frac{1}{2} m \left( \frac{v_{e}}{2} \right)^{2} + \frac{1}{2} 2 m \left( \frac{v_{e}}{2} \right)^{2} - \frac{9 \times 10^{9} \times e.e}{r} \right\}$
+$= (5 - 6.8) \mathrm{eV}$ (using Bohr’s hypothesis)
+$10 = 5 - 6.8 + h v_{2}$
+$h v_{2} = 11.8 \mathrm{eV}$
+$h v_{1} - h v_{2} = 23.6 \mathrm{eV} - 11.8 \mathrm{eV} = 11.8 \mathrm{eV}$",,{}
+019d6edb-a6b5-7f38-a2c8-0d49d2062aa2,"In case of shell
+$$\frac{\text{magnetic moment}}{\text{Angular momentum}} = \frac{Q}{2M}$$
+
+$$\frac{\mu}{L} = \frac{Q}{2M}$$
+
+Or $\mu = \frac{Q}{2M} \times \frac{2}{3} \text{MR}^2$ ...(i)
+
+For solid conducting sphere, $\mu = \frac{Q}{2M} \cdot \frac{2}{3} \text{MR}^2$
+
+$$L = \frac{2}{5} \text{MR}^2$$
+
+$$\frac{\mu}{L} = \frac{\frac{Q}{2M} \times \frac{2}{3} \text{MR}^2}{\frac{2}{5} \text{MR}^2} = \frac{5}{3} \left( \frac{Q}{2M} \right)$$
+
+$$\Rightarrow \alpha = \frac{5}{3} = 1.67$$",,{}
+019d6edb-a6bb-750c-8491-32b7a7159a21,"Given $V_w = 64 \text{ cm}^3$
+$V_x = 125 \text{ cm}^3$
+$V_y = 250 \text{ cm}^3$
+Process WX is adiabatic
+$T_W(64)^{\frac{5}{3}-1} = T_X(125)^{\frac{5}{3}-1}$
+$\Rightarrow T_X = \frac{16}{25} T_W$
+Process XY is isobaric
+$\Rightarrow \frac{V_X}{V_y} = \frac{T_X}{T_y}$
+$\frac{125}{250} = \frac{T_X}{T_Y}$
+$T_Y = 2 T_X$
+$T_Y = \frac{32}{25} T_W$
+Heat absorbed in XY process
+$Q_{XY} = n C_P \Delta T = n \frac{5}{2} R(T_Y - T_X) = \frac{5}{2} n R \left( \frac{32}{25} T_W - \frac{16}{25} T_W \right) = \frac{8}{5} n R T_W = \frac{8}{5} J$",,{}
+019d6edb-a6bc-74df-a5c8-906e999686e4,"$ \because T \propto r^{3/2} $
+Time period of geostationary satellite is 24 hours
+$$\frac{T_1}{T_2} = \frac{r_1^{3/2}}{r_2^{3/2}} \Rightarrow \frac{T_1}{T_2} = 1.331$$
+Let $t$ is time period of second w.r.t first
+$$\frac{2\pi}{T_1} \cdot t = \theta \quad \dots(\text{i})$$
+$$\frac{2\pi}{T_2} \cdot t = 2\pi - \theta \quad \dots(\text{ii})$$
+$$\Rightarrow \frac{T_1}{T_2} = \frac{2\pi - \theta}{\theta}$$
+
+$$1.331 = \frac{2\pi}{\theta} - 1$$
+$$\Rightarrow \frac{2\pi}{\theta} = 2.331$$
+
+From (i) $ t = T_1 \left( \frac{\theta}{2\pi} \right) = \frac{24}{2.331}$
+$P = 2.33$",https://lh3.googleusercontent.com/d/10sjwsB597vHlXOFvMQWMuGW6nnJRYCT_=w1200,{}
+019d6edb-a6bf-7d9a-89ff-d756bff876cb,"In equilibrium
+$$P_2A + kx = P_1A$$
+$$kx = (P_1 - P_2)A = \left( \frac{3}{2} \frac{RT}{V_0} - \frac{RT}{V_0} \right) A = \frac{RT}{2V_0} A$$
+$$\because P_2V_0 = 1(RT)$$
+$$P_2 = \frac{RT}{V_0} = \frac{2kx}{A}$$
+$$= \frac{2k}{A}[0.5L - 0.4L] = \frac{kL}{5A}$$
+
+Comparing $ \alpha = 1/5 = 0.2 $",https://lh3.googleusercontent.com/d/1aXwpuOrB1gVDe6dW0skH8M3I3VQMf_us=w1200,{}
+019d6edb-a6c0-70cc-a5e5-2ff224c72d9a,"**
+
+$$\tan \theta = \frac{t_1}{\ell} = \frac{t_2}{L - \ell}$$
+
+$$L = d + 2\ell = 2 + 2 = 4 \text{ mm}$$
+
+$$\Rightarrow \frac{t_1}{1} = \frac{t_2}{3} \Rightarrow t_2 = 3t_1$$
+
+$$\because t_1 + t_2 = 12\mu \text{m}$$
+
+$$\Rightarrow 4t_1 = 12$$
+
+$$\Rightarrow t_1 = 3\mu \text{m} \text{ and } t_2 = 9\mu \text{m}$$
+
+Optical length of ray from $S_1$ reaching at $P$
+
+$$L_1 = S_1P + t_1(n_B - 1) + t_2(n_A - 1)$$
+
+Optical length of ray reaching at $P$ from $S_2$
+
+$$L_2 = S_2P + t_2(n_B - 1) + t_1(n_A - 1)$$
+
+$$\Delta x = L_2 - L_1$$
+
+$$= S_2P - S_1P + t_2(n_B - n_A) + t_1(n_A - n_B)$$
+
+For central maxima, $\Delta x = 0$
+
+$$0 = \sin \theta + (n_A - n_B)(t_1 - t_2)$$
+
+$$= d \frac{y}{D} + (1.7 - 1.5)(3 - 9) \times 10^{-6}$$
+
+$$\Rightarrow \frac{2 \times 10^{-3}}{2} y = 0.2 \times 6 \times 10^{-6}$$
+
+$$y = \frac{1.2 \times 10^{-6}}{10^{-3}} = 1.2 \times 10^{-3} \text{ m} = 1.2 \text{ mm}$$",https://lh3.googleusercontent.com/d/16IyzkEjnBrlo48xkZ_1dk7hcPh-GHs5f=w1200,{}
+019d6edb-a6c3-7591-a67d-65417cd50f46,"$m \frac{d^2x}{dt^2} = -c \frac{dx}{dt}$
+$\frac{d}{dt}\left(\frac{dx}{dt}\right) = -\frac{d}{dt}\left(\frac{c}{m}x\right)$
+$\Rightarrow \frac{dx}{dt} = -\frac{c}{m}x + k$
+At $x = 0, v_x = \frac{v_0}{2}$
+$\Rightarrow \frac{dx}{dt} = \frac{v_0}{2} - \frac{c}{m}x$
+$2 \int_0^x \frac{dx}{v_0 - x} = \int_0^2 dt$
+$2\ln|v_0 - x|_0^x = -2$
+$\Rightarrow \ell n \left|\frac{v_0 - x}{v_0}\right| = -1$
+$v_0 - x = \frac{v_0}{e}$
+$x = v_0 - \frac{v_0}{e} = 270 - 100 = 170\text{ m}$",https://lh3.googleusercontent.com/d/1kzuu7jw4pxQF5M2d8JccjgvufpAAd35G=w1200,{}
+019d6edb-a6c5-7173-9f0f-0101fc705d11,"$ \frac{1}{2}mv^{2}=mg(L-L\cos\theta) $
+$ v=\sqrt{2gL(1-\cos\theta)} $
+$ \Rightarrow v=\sqrt{2\times10\times8(1-0.9)}=\sqrt{16}=4\mathrm{m/s} $
+$ f=f_{O}\left(\frac{v-v_{O}}{v-v_{S}}\right) $
+$ f_{\mathrm{max}}=660\left(\frac{330+4}{330-4}\right)=676.20\mathrm{Hz} $
+$ f_{\mathrm{min}}=660\left(\frac{330-4}{330+4}\right)=644.19\mathrm{Hz} $
+Maximum variation $ =676.20-644.19=32.01\mathrm{Hz} $",,{}
+019d6edb-a6c6-7723-b85b-5ffc30d79025,"$$\text{ICI} + \text{H}_2\text{O} \rightarrow \text{HOI} + \text{HCl}$$
+$$\text{H}^+ + \text{IO}^-$$
+$$\text{ClF}_3 + 2\text{H}_2\text{O} \rightarrow \text{HClO}_2 + 3\text{HF}$$
+$$\text{H}^+ + \text{ClO}_2^-$$
+$$\text{BrF}_5 + 3\text{H}_2\text{O} \rightarrow \text{HBrO}_3 + 5\text{HF}$$
+$$\text{H}^+ + \text{BrO}_3^-$$",,{}
+019d6edb-a6c6-7d8b-bac5-7f2a22dc746d,$ S^{2-} + [Fe(CN)_{5}NO]^{2-} \rightarrow [Fe(CN)_{5}(NOS)]^{4-} $ (violet),,{}
+019d6edb-a6c9-7d14-aba5-326646645380,,https://lh3.googleusercontent.com/d/1otisZcuwSWd8N446DYdlWtVMd4UsGCeA=w1200,{}
+019d6edb-a6cc-7c29-b80f-5b1c6e3d7738,(A),https://lh3.googleusercontent.com/d/11BBauwEexiU_2vza7xa_NR449CkzFwS2=w1200,{}
+019d6edb-a6ce-76a3-8989-68df96035353,"(A) $ \mathrm{Ion-Ion} \propto\frac{1}{r} $
+$ \mathrm{Ion-dipole} \propto\frac{1}{r^{2}} $
+(B) $ F \propto\frac{1}{r^{6}} $ (For rotating polar molecules)
+(C) As $ T\uparrow\Rightarrow $ Energy $ \downarrow $
+(D) London forces or dispersion forces are the force of attraction between the non-polar molecules.",,{}
+019d6edb-a6cf-7b94-9d86-50cd32a3da8e,,https://lh3.googleusercontent.com/d/1tgBwu358zvjRnq5GcxHndGAF7YLg482N=w1200,{}
+019d6edb-a6cf-7e0d-a44b-0efbf091b119,(A),https://lh3.googleusercontent.com/d/1ZSisLlSDtf9Wj-m73DBiZVcnL8Peh0UI=w1200,{}
+019d6edb-a6d2-7b5c-ac9d-26f3e16a36bd,,https://lh3.googleusercontent.com/d/1-T13BQWD6uOxomjwrU8Rs02lAh77g6j4=w1200,{}
+019d6edb-a6d6-7283-a97f-db9079498813,"$ \mathrm{B a(NO_{3})_{2}} $ $ + $ $ 2 \mathrm{N a I O_{3}} \longrightarrow \mathrm{B a(IO_{3})_{2}} \downarrow $ $ + 2 \mathrm{N a N O_{3}} $
+$ 2 0 0 \times0. 0 1 0 $ $ 1 0 0 \times0. 1 0 $ $ - $ $ - $
+= 2 milimol $ = 1 0 \mathrm{m i l i m o l} $
+- $ 6 \mathrm{m i l i m o l} $ $ 2 \mathrm{m i l i m o l} $ $ 4 \mathrm{m i l i m o l} $
+$ \therefore\left[ \mathrm{I O}_{3}^{-} \right]=\frac{6}{2 0 0+1 0 0}=\frac{1}{5 0} \mathrm{M} $
+$ \left[ \mathrm{B a}^{++} \right]=\frac{K_{\mathrm{s p}}}{\left[ \mathrm{I O}_{3}^{-} \right]^{2}}=\frac{1. 5 8 \times1 0^{-9}}{\frac{1}{5 0} \times\frac{1}{5 0}} $
+$ \left[ \mathrm{B a}^{++} \right]=1. 5 8 \times2. 5 \times1 0^{-6} $
+$ \therefore $ Solubility $ = \left[ \mathrm{B a}^{++} \right] = 3. 9 5 \times1 0^{-6} \mathrm{M} $",,{}
+019d6edb-a6d6-773a-9e0b-d78bbeec0a54,"For ccp, $Z=4$, $M=105.6 \text{ g mol}^{-1}$
+$N_A=6 \times 10^{23} \text{ mol}^{-1}$
+$a=400 \text{ pm}=4 \times 10^{-8} \text{ cm}$
+$\therefore d=\frac{ZM}{a^3N_A}=\frac{4 \times 105.6}{\left(4 \times 10^{-8}\right)^3 \times 6 \times 10^{23}}$
+$d=\frac{4 \times 105.6}{64 \times 6 \times 10^{-24} \times 10^{23}}$
+$d=\frac{1056}{96}=11 \text{ cm}^{-3}$",,{}
+019d6edb-a6d8-733b-8fec-fb649fcadd87,"$\frac{x}{m} = K C^{1/n}$
+
+$C = 10 \text{ mg } g^{-1} \Rightarrow \frac{x}{m} = 4 \text{ mg } g^{-1}$
+
+$C = 16 \text{ mg } g^{-1} \Rightarrow \frac{x}{m} = 10 \text{ mg } g^{-1}$
+
+$\Rightarrow 4 = K(10)^{1/n}$ (1)
+$10 = K(16)^{1/n}$ (2)
+
+$\Rightarrow \frac{4}{10} = \left( \frac{10}{16} \right)^{1/N}$
+
+$\Rightarrow \log 4 - \log 10 = \frac{1}{n} \left[ \log 10 - \log 16 \right]$
+
+$\Rightarrow n = \frac{1 - 4 \times .30}{2 \times .30 - 1} = \frac{0.2}{0.4} \Rightarrow n = \frac{1}{2}$
+
+Now $\frac{x}{m} = K(20)^{\frac{1}{x}}$ (3)
+
+Dividing (3) by (1)
+
+$\frac{x/m}{4} = \left( \frac{20}{10} \right)^{\frac{1}{x}} = 4$
+
+$\frac{x}{m} = 16 \text{ mg } g^{-1}$",,{}
+019d6edb-a6da-7138-848c-249075c635d6,"Let $ [A_{0}] = 1 \mathrm{M}, \ [R_{0}] = 10 \mathrm{M} $
+Considering pseudo first order reaction $ r=k^{\prime} [A] $ , on 40% completion
+or $ r_{1}=k[10][0.6]\Rightarrow r_{1}=6 \mathrm{K} $ ... (1)
+Considering second order reaction $ r=k[R][A] $ , on 40% completion
+$ r_{2}=k[9.6][0.6]\Rightarrow r_{2}=5.76 \mathrm{K} $ ... (2)
+$ \therefore $ From (1) and (2)
+Relative error $ = \frac{6 \mathrm{K}-5.76 \mathrm{K}}{5.76 \mathrm{K}}\times100 $
+$ = \frac{.24}{5.76}\times100=\frac{100}{24}=4.166 $
+$ \cong4.17\% $",,{}
+019d6edb-a6dd-7bfc-abf1-7930f38b2249,"Osmotic pressure $ \Pi $ = hdg
+$ = 2 \times 10^{-2} \mathrm{~m} \times \frac{1 \mathrm{~kg}}{\mathrm{~m}^{3}} \times \frac{10 \mathrm{~m}}{\mathrm{~s}^{2}} $
+$ = 0.2 \mathrm{~Pa} $
+
+Now $ 0.2 = \mathrm{CRT} $
+$ \Rightarrow $ $ 0.2 = 8.3 \times 300 \times \frac{2} {M} $
+$ \Rightarrow $ $ M = 8.3 \times 3000 $
+$ \Rightarrow $ $ M = 24900.0 = 2.49 \times 10^{4} \mathrm{~g} \mathrm{~mol}^{-1} $",,{}
+019d6edb-a6de-737f-b2fd-6c87bea155bf,"$ \left[ \mathrm{M n B r}_{6} \right]^{3-} \Rightarrow \mathrm{M n}^{3+} \Rightarrow 3 \mathrm{d}^{4} \Rightarrow n=4 $ , since $ \mathrm{B r}^{-} $ is a weak field ligand.
+$ \left[ \mathrm{M n} \left( \mathrm{C N} \right)_{6} \right]^{3-} \Rightarrow \mathrm{M n}^{3+} \Rightarrow 3 \mathrm{d}^{4} \Rightarrow n=2 $ , since $ \mathrm{C N}^{-} $ is a strong field ligand.
+$ \therefore \mu_{\mathrm{s}} \left( \mathrm{t o t a l} \right)=\sqrt{4 \left( 4+2 \right)}+\sqrt{2 \left( 2+2 \right)} $
+$ =\sqrt{2 4}+\sqrt{8} $
+$ =4. 9 0+2. 8 2 $
+$ \therefore \mu_{\mathrm{s}} \left( \mathrm{t o t a l} \right)=7. 7 2 \mathrm{B M} $",,{}
+019d6edb-a6de-7507-89d8-0a93c44ce9dc,"$C_4H_{10}(g) + \frac{13}{2}O_2(g) \rightarrow 4CO_2(g) + 5H_2O(\ell)$
+
+$\Delta_r G^0 = 4 \times (-394) + 5 \times (-237) - (1 \times -18)$
+
+$\Delta rG^\circ = -1576 - 1185 + 18$
+
+$\Delta rG^\circ = -1558 - 1185 = -2743 \text{ KJ mol}^{-1}$
+
+$H \xrightarrow{+4} 4CO_2$
+
+No. of $e^-$(s) exchanged (lost)
+
+$= 2 \times [4 - (-3)] + 2 \times [4 - (-2)]$
+
+$= 14 + 12 = 26$
+
+$\Delta G = -nF E_{\text{cell}}$
+
+$-2743 \times 10^3 = -26 \times F \times E_{\text{cell}}$
+
+$E_{\text{cell}} = \frac{2743}{26F} \times 10^3 = \frac{105.5}{F} \times 10^3$
+
+$X = 105.50$",,{}
+019d6edb-a6e0-73b5-9021-166d9e3398b2,"$$\text{Octasaccharide} \xrightarrow{+7\text{H}_2\text{O}} \text{Ribose} + 2\text{-deoxyribose} + \text{Glucose}$$
+
+$$1024 \text{ g} \quad 126 \text{ g}$$
+
+$$58.26\%$$
+
+$$\frac{(1024 + 126) \times 58.26}{100}$$
+
+$= 670 \text{ g}$ i.e. 5 units of 2-deoxyribose.
+
+$$\therefore \text{mass of Ribose} + \text{mass of Glucose} = 1150 - 670 = 480 \text{ g}$$
+
+$$150 \text{x} \quad 180 \text{y}$$
+
+i.e. $150 \text{x} + 180 \text{y} = 480$
+
+$$\Rightarrow x = 2, y = 1$$
+
+$$\therefore \text{Number of ribose unit (s)} = 2$$",,{}
+019d77ae-3732-7d6c-b689-e483384a00c3,"$\pmb{\text{Step 1: Analyze the Electric Field (E)}}$
+
+To determine if the dipole oscillates, we must find the electric field produced by the shell at distance $r$:
+
+[Image of electric field of a uniformly charged spherical shell]
+
+$\bullet$ $\pmb{\text{Inside the shell (r < R):}}$ According to Gauss's Law, the electric field inside a uniformly charged spherical shell is $\pmb{E = 0}$. Since there is no field, there is no torque on the dipole, and it will not oscillate.
+$\bullet$ $\pmb{\text{Outside the shell (r > R):}}$ The shell behaves as a point charge $\pmb{Q}$ located at its center. The total charge is $Q = \sigma(4\pi R^2)$. The electric field is:
+$$E = \frac{1}{4\pi\epsilon_0} \frac{Q}{r^2} = \frac{\sigma(4\pi R^2)}{4\pi\epsilon_0 r^2} = \frac{\sigma R^2}{\epsilon_0 r^2}$$
+This confirms that oscillations only occur when $\pmb{r > R}$. Thus, $\pmb{\text{Option (B) is correct}}$.
+
+$\pmb{\text{Step 2: Determine the Torque (}\tau\pmb{\text{) and Equation of Motion}}}$
+
+When the dipole is tilted by a small angle $\theta$ in an external field $\vec{E}$, it experiences a restoring torque:
+$$\vec{\tau} = \vec{p}_0 \times \vec{E} \implies \tau = -p_0 E \sin\theta$$
+For small angles, $\sin\theta \approx \theta$. Using the rotational form of Newton's second law ($I\alpha = \tau$):
+$$I \frac{d^2\theta}{dt^2} = -p_0 E \theta \implies \frac{d^2\theta}{dt^2} = -\left(\frac{p_0 E}{I}\right) \theta$$
+$\pmb{\text{Step 3: Calculate the Angular Frequency (}\omega\pmb{\text{)}}}$
+
+The equation represents Simple Harmonic Motion (SHM) with $\omega^2 = \frac{p_0 E}{I}$. Substituting the expression for $E$:
+$$\omega = \sqrt{\frac{p_0 \sigma R^2}{\epsilon_0 r^2 I}}$$
+
+$\pmb{\text{Step 4: Evaluate Specific Cases}}$
+
+$\bullet$ $\pmb{\text{At r = 2R:}}$
+$$\omega = \sqrt{\frac{\sigma p_0 R^2}{\epsilon_0 (2R)^2 I}} = \sqrt{\frac{\sigma p_0 R^2}{4\epsilon_0 R^2 I}} = \sqrt{\frac{\sigma p_0}{4\epsilon_0 I}}$$
+(Option C is incorrect).
+
+$\bullet$ $\pmb{\text{At r = 10R:}}$
+$$\omega = \sqrt{\frac{\sigma p_0 R^2}{\epsilon_0 (10R)^2 I}} = \sqrt{\frac{\sigma p_0 R^2}{100\epsilon_0 R^2 I}} = \sqrt{\frac{\sigma p_0}{100\epsilon_0 I}}$$
+Thus, $\pmb{\text{Option (D) is correct}}$.
+
+$\pmb{\text{Conclusion:}}$ The correct statements are $\pmb{\text{B}}$ and $\pmb{\text{D}}$.",,{}
+019d77b7-c12e-76af-9765-d5454bb4efab,"$\pmb{\text{Step-by-Step Analysis:}}$
+
+$\bullet$ $\pmb{\text{(P):}}$ Let $t(x) = 10x^3 - 45x^2 + 60x + 35$. To find its range in $[1, 2]$, we find $t'(x) = 30x^2 - 90x + 60 = 30(x-1)(x-2)$. 
+In $[1, 2]$, $t(1) = 60$ and $t(2) = 55$. Since $t'(x) \leq 0$ in $[1, 2]$, the function is decreasing, and its range is $[55, 60]$. 
+For $f(x) = [t(x)/n]$ to be continuous, the expression $t(x)/n$ must not cross any integer value. 
+The difference between the max and min is $60/n - 55/n = 5/n$. 
+If $5/n < 1$, then $f(x)$ can be continuous (constant). This requires $n > 5$. 
+Checking for continuity at endpoints, if $n=9$, $[55/9, 60/9] = [6.11, 6.66]$, so $[t(x)/9] = 6$ throughout $[1, 2]$. 
+Thus, the minimum value of $n$ is $\pmb{9}$. $\pmb{(P) \rightarrow (2)}$.
+
+$\bullet$ $\pmb{\text{(Q):}}$ $g'(x) = (2n^2 - 13n - 15)(3x^2 + 3)$. For $g(x)$ to be increasing on $\mathbb{R}$, we need $g'(x) > 0$ for all $x$. 
+Since $3x^2 + 3 > 0$, we need $2n^2 - 13n - 15 > 0 \implies (2n - 15)(n + 1) > 0$. 
+Since $n$ is a natural number, $n > 15/2 = 7.5$. The minimum natural number $n$ is $\pmb{8}$. $\pmb{(Q) \rightarrow (1)}$.
+
+$\bullet$ $\pmb{\text{(R):}}$ $h(x) = (x^2 - 9)^n(x^2 + 2x + 3) = (x-3)^n(x+3)^n((x+1)^2 + 2)$. 
+For $x=3$ to be a point of local minima, the first non-zero derivative at $x=3$ must be of even order and positive. This occurs when $n$ is $\pmb{\text{even}}$. 
+Given $n > 5$ and $n$ must be even, the smallest such natural number is $\pmb{6}$. $\pmb{(R) \rightarrow (4)}$.
+
+$\bullet$ $\pmb{\text{(S):}}$ The function $l(x)$ involves sums of terms like $\sin|x-k|$ and $\cos|x-k+1/2|$. 
+The function $\sin|x-k|$ is non-differentiable at $x=k$. For $k \in \{0, 1, 2, 3, 4\}$, these are 5 points. 
+The function $\cos|x-k+1/2|$ is differentiable everywhere because the cosine function is even, making $\cos|u| = \cos(u)$ which is smooth. 
+Thus, $l(x)$ is non-differentiable at $\pmb{\text{5}}$ points $\{0, 1, 2, 3, 4\}$. $\pmb{(S) \rightarrow (3)}$.
+
+
+
+$\pmb{\text{Conclusion:}}$ Matching results in (P) $\rightarrow$ 2, (Q) $\rightarrow$ 1, (R) $\rightarrow$ 4, (S) $\rightarrow$ 3, which is $\pmb{\text{Option B}}$.",,{}
