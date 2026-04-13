@@ -9,7 +9,7 @@ GET  /api/v1/question-sets/{set_id}/url     → single set's source URL
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, HTTPException, status
-from pydantic import BaseModel
+from pydantic import BaseModel, field_validator
 
 from app.services.supabase_client import sb_select
 
@@ -20,9 +20,40 @@ class SetConfigOut(BaseModel):
     set_id: str
     url: Optional[str] = None
     tier: Optional[str] = None
-    exam_types: Optional[Any] = None
-    visibility: Optional[str] = None
+    # Supabase text[] comes through PostgREST as a JSON array; null → empty list (universal set).
+    exam_types: List[str] = []
+    # Supabase boolean; coerce from any truthy/falsy value.
+    visibility: bool = False
     subjects: Optional[Any] = None
+
+    @field_validator("exam_types", mode="before")
+    @classmethod
+    def coerce_exam_types(cls, v: Any) -> List[str]:
+        """Accept null, empty, or a list; always return List[str]."""
+        if v is None:
+            return []
+        if isinstance(v, list):
+            return [str(e).strip().upper() for e in v if e]
+        # Defensive: handle a plain string like "JEE" or JSON-encoded array
+        if isinstance(v, str):
+            import json
+            try:
+                parsed = json.loads(v)
+                if isinstance(parsed, list):
+                    return [str(e).strip().upper() for e in parsed if e]
+            except (json.JSONDecodeError, ValueError):
+                pass
+            return [v.strip().upper()] if v.strip() else []
+        return []
+
+    @field_validator("visibility", mode="before")
+    @classmethod
+    def coerce_visibility(cls, v: Any) -> bool:
+        if isinstance(v, bool):
+            return v
+        if isinstance(v, str):
+            return v.lower() in ("true", "1", "yes")
+        return bool(v)
 
 
 class SetUrlOut(BaseModel):
