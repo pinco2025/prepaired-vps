@@ -846,6 +846,63 @@ async def get_jeea_test(
     )
 
 
+async def get_questions_by_uuids(
+    db: AsyncSession,
+    *,
+    uuids: List[str],
+) -> QuestionSetOut:
+    """
+    Fetch questions by a list of UUIDs (matched against id or legacy_id).
+    Returns questions in the same order as the input UUID list.
+    Always fully revealed (isPaid=True) — caller is responsible for ensuring the
+    user has the required tier before calling this function.
+    """
+    if not uuids:
+        return QuestionSetOut(questions=[], solutions={}, totalCount=0, isPaid=True)
+
+    stmt = (
+        select(Question)
+        .options(selectinload(Question.solution))
+        .where(
+            (Question.id.in_(uuids)) | (Question.legacy_id.in_(uuids))
+        )
+        .where(Question.verification_status == "verified")
+    )
+    result = await db.execute(stmt)
+    rows: List[Question] = list(result.scalars().all())
+
+    # Preserve caller's order: build index keyed by both id and legacy_id
+    index: Dict[str, Question] = {}
+    for q in rows:
+        index[q.id] = q
+        if q.legacy_id:
+            index[q.legacy_id] = q
+
+    # Re-order according to the input uuid list (skip missing ones silently)
+    ordered: List[Question] = []
+    seen_ids: set = set()
+    for uuid in uuids:
+        q = index.get(uuid)
+        if q and q.id not in seen_ids:
+            ordered.append(q)
+            seen_ids.add(q.id)
+
+    questions_out = [_orm_to_question_out(q, expose_answer=True) for q in ordered]
+
+    solutions_out: Dict[str, SolutionOut] = {}
+    for q in ordered:
+        sol = _orm_to_solution_out(q.solution)
+        if sol:
+            solutions_out[q.legacy_id or q.id] = sol
+
+    return QuestionSetOut(
+        questions=questions_out,
+        solutions=solutions_out,
+        totalCount=len(ordered),
+        isPaid=True,
+    )
+
+
 async def get_diagnostic_questions(
     db: AsyncSession,
     *,

@@ -28,6 +28,7 @@ from app.services.question_service import (
     get_set_test,
     get_question_by_id,
     get_mcq_set,
+    get_questions_by_uuids,
 )
 from app.services.supabase_client import sb_select
 
@@ -102,6 +103,7 @@ async def list_questions(
     subject: Optional[str] = Query(None),
     chapterCode: Optional[str] = Query(None),
     chapterCodes: Optional[str] = Query(None, description="Comma-separated chapter codes for section-level fetch"),
+    uuids: Optional[str] = Query(None, description="Comma-separated question UUIDs for revision/bookmark fetch"),
     check: Optional[int] = Query(None, description="Set to 1 for existence-only check"),
     db: AsyncSession = Depends(get_db),
     user: Optional[TokenPayload] = Depends(get_optional_user),
@@ -113,8 +115,14 @@ async def list_questions(
 
     Pass either setId or testId — both are matched 1-to-1 against the used_in TEXT[] column.
     Use chapterCodes (comma-separated) to filter by multiple chapters (e.g. section-level practice).
+    Use uuids (comma-separated) to fetch specific questions by UUID — used by the Revision Box feature.
     """
     _set_dynamic_cache_headers(response)
+
+    # UUID-based fetch for Revision Box — bypass set/chapter logic entirely
+    if uuids:
+        uuid_list = [u.strip() for u in uuids.split(",") if u.strip()]
+        return await get_questions_by_uuids(db, uuids=uuid_list)
 
     # Chapter existence check (lightweight, no full data fetch)
     if check == 1:
