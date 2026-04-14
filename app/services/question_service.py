@@ -863,9 +863,7 @@ async def get_questions_by_uuids(
     stmt = (
         select(Question)
         .options(selectinload(Question.solution))
-        .where(
-            (Question.id.in_(uuids)) | (Question.legacy_id.in_(uuids))
-        )
+        .where(Question.legacy_id.in_(uuids))
         .where(Question.verification_status == "verified")
     )
     result = await db.execute(stmt)
