@@ -56,3 +56,14 @@ class QuestionRequestIn(BaseModel):
     subject: Optional[str] = None
     chapter: Optional[str] = None
     details: str = ""
+
+
+# ── Marked questions ───────────────────────────────────────────────────────────
+
+class MarkedQuestionIn(BaseModel):
+    question_uuid: str
+    subject: str
+
+
+class MarkedCountsOut(BaseModel):
+    counts: Dict[str, int]

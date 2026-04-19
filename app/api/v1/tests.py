@@ -10,7 +10,7 @@ GET    /api/v1/tests/attempts/{testId}    — user's past attempts
 GET    /api/v1/tests/result/{submissionId}
 """
 
-from typing import Optional
+from typing import Any, Dict, Optional
 
 from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 
@@ -29,6 +29,7 @@ from app.schemas.test import (
     TestsByPrefixOut,
 )
 from app.services import test_service
+from app.services.supabase_client import sb_select
 
 router = APIRouter(prefix="/tests", tags=["tests"])
 
@@ -133,3 +134,20 @@ async def get_meta(
     if not meta:
         raise HTTPException(status.HTTP_404_NOT_FOUND, "Test metadata not found")
     return meta
+
+
+@router.get("/{test_id}/detail", response_model=Dict[str, Any])
+async def get_test_detail(
+    test_id: str,
+    user: TokenPayload = Depends(get_current_user),
+):
+    """Fetch full test row from the Supabase `tests` table by testID."""
+    rows = await sb_select(
+        "tests",
+        {"testID": f"eq.{test_id}"},
+        select_cols="*",
+        limit=1,
+    )
+    if not rows:
+        raise HTTPException(status.HTTP_404_NOT_FOUND, "Test not found")
+    return rows[0]

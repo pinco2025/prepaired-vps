@@ -101,7 +101,7 @@ def _matches(user_ans: Any, correct_ans: str, q_type: Optional[str]) -> bool:
         return user_set == correct_set
 
     # MCQ / Integer / Numerical — exact string comparison
-    return str(user_ans).strip() == str(correct_ans).strip()
+    return str(user_ans).strip().lower() == str(correct_ans).strip().lower()
 
 
 async def submit_session(

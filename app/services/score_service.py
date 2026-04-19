@@ -164,7 +164,7 @@ class ScoreService:
             else:
                 # div1 (MCQ) and div2 (Integer): exact string comparison
                 if user_ans is not None:
-                    if str(user_ans).strip() == str(correct_ans).strip():
+                    if str(user_ans).strip().lower() == str(correct_ans).strip().lower():
                         status = 'Correct'
                         marks = section_cfg['positive']
                     else:

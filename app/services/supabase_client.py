@@ -75,6 +75,22 @@ async def sb_insert(table: str, data: Dict[str, Any]) -> Dict[str, Any]:
     return rows[0] if isinstance(rows, list) else rows
 
 
+async def sb_upsert(
+    table: str,
+    data: Dict[str, Any],
+    *,
+    on_conflict: str,
+) -> Dict[str, Any]:
+    extra_headers = {"Prefer": "resolution=merge-duplicates,return=representation"}
+    rows = await _request(
+        "POST", table,
+        params={"on_conflict": on_conflict},
+        body=data,
+        extra_headers=extra_headers,
+    )
+    return rows[0] if isinstance(rows, list) else rows
+
+
 async def sb_update(
     table: str,
     filters: Dict[str, str],
