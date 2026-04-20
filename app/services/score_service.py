@@ -249,6 +249,8 @@ class ScoreService:
 
         section_order = {s.get('name'): i for i, s in enumerate(ppt_data.get('sections', []))}
         attempt_comparison.sort(key=lambda x: section_order.get(x['section'], 999))
+        for i, entry in enumerate(attempt_comparison, 1):
+            entry['question_number'] = i
 
         output["attempt_comparison"] = attempt_comparison
         output["section_scores"] = section_scores
