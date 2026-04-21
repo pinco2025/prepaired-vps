@@ -103,6 +103,7 @@ async def list_questions(
     subject: Optional[str] = Query(None),
     chapterCode: Optional[str] = Query(None),
     chapterCodes: Optional[str] = Query(None, description="Comma-separated chapter codes for section-level fetch"),
+    types: Optional[str] = Query(None, description="Comma-separated Question.type values for PYQ fetch (e.g. JMPYQ,APYQ,NPYQ). OR semantics."),
     uuids: Optional[str] = Query(None, description="Comma-separated question UUIDs for revision/bookmark fetch"),
     check: Optional[int] = Query(None, description="Set to 1 for existence-only check"),
     db: AsyncSession = Depends(get_db),
@@ -134,9 +135,10 @@ async def list_questions(
         raise HTTPException(status_code=404, detail="Chapter not found")
 
     chapter_codes_list = [c.strip() for c in chapterCodes.split(',')] if chapterCodes else None
+    types_list = [t.strip() for t in types.split(',')] if types else None
 
-    if not setId and not testId and not chapterCode and not chapter_codes_list:
-        raise HTTPException(status_code=400, detail="Provide setId, testId, chapterCode, or chapterCodes")
+    if not setId and not testId and not chapterCode and not chapter_codes_list and not types_list:
+        raise HTTPException(status_code=400, detail="Provide setId, testId, chapterCode, chapterCodes, or types")
 
     group_id = setId or testId
     # Fetch user tier and set tier in parallel — no extra latency vs. the old single lookup
@@ -153,8 +155,9 @@ async def list_questions(
         set_tier,
         paid,
     )
-    # Chapter-only queries (no setId) return MCQ div1 questions only
-    chapter_only = bool((chapterCode or chapter_codes_list) and not setId and not testId)
+    # Chapter-only queries (no setId/testId) return MCQ div1 questions only,
+    # except when a types filter is provided (PYQ path) — PYQs include both MCQ and Integer.
+    chapter_only = bool((chapterCode or chapter_codes_list) and not setId and not testId and not types_list)
 
     result = await get_mcq_set(
         db,
@@ -162,6 +165,7 @@ async def list_questions(
         subject=subject,
         chapter_code=chapterCode,
         chapter_codes=chapter_codes_list,
+        question_types=types_list,
         is_paid=paid,
         div1_only=chapter_only,
     )

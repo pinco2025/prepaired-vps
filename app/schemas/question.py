@@ -72,6 +72,7 @@ class QuestionOut(BaseModel):
     flags: Optional[Flags] = None
     source_info: Optional[SourceInfo] = None
     paragraph_id: Optional[str] = None         # non-null for div5 questions once grouped
+    cluster_assignment: Optional[str] = None
 
 
 class QuestionSetOut(BaseModel):

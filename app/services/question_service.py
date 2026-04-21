@@ -69,6 +69,7 @@ def _orm_to_question_out(q: Question, expose_answer: bool = False) -> QuestionOu
         flags=Flags(**(q.flags or {})) if q.flags else None,
         source_info=SourceInfo(**(q.source_info or {})) if q.source_info else None,
         paragraph_id=q.paragraph_id,
+        cluster_assignment=q.cluster_assignment,
     )
 
 
@@ -158,6 +159,7 @@ async def get_mcq_set(
     subject: Optional[str] = None,
     chapter_code: Optional[str] = None,
     chapter_codes: Optional[List[str]] = None,
+    question_types: Optional[List[str]] = None,
     is_paid: bool = False,
     div1_only: bool = False,
 ) -> QuestionSetOut:
@@ -187,6 +189,8 @@ async def get_mcq_set(
         stmt = stmt.where(Question.chapter == chapter_code)
     if subject:
         stmt = stmt.where(Question.subject == subject.lower())
+    if question_types:
+        stmt = stmt.where(Question.type.in_(question_types))
 
     # Only serve questions that passed verification
     stmt = stmt.where(Question.verification_status == "verified")
