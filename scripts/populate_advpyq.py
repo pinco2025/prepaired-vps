@@ -99,6 +99,11 @@ def _parse_ts(raw: str | None):
     return datetime.fromisoformat(raw)
 
 
+def _normalise_image_url(url) -> str | None:
+    """Coerce empty strings to None so the DB stores null, not ''."""
+    return url if url else None
+
+
 def transform_question(row: dict, subject_map: dict) -> tuple:
     attrs = json.loads(row["attributes"] or "{}")
     meta  = json.loads(row["metadata"]   or "{}")
@@ -106,6 +111,14 @@ def transform_question(row: dict, subject_map: dict) -> tuple:
     stats = json.loads(row["stats"]      or "{}")
     question_json = json.loads(row["question"] or "{}")
     options_json  = json.loads(row["options"]  or "{}")
+
+    # Normalise image_url fields: CSV stores "" for no image; DB/API expects null.
+    question_json["image_url"] = _normalise_image_url(question_json.get("image_url"))
+    for key in ("A", "B", "C", "D"):
+        if key in options_json:
+            options_json[key]["image_url"] = _normalise_image_url(
+                options_json[key].get("image_url")
+            )
 
     source_info = {
         "source_code":  attrs.get("additional_param") or None,
@@ -127,7 +140,7 @@ def transform_question(row: dict, subject_map: dict) -> tuple:
         json.dumps(question_json),
         json.dumps(options_json),
         row["answer"],
-        row["type"] or None,
+        "APYQ",
         year,
         chapter,
         subject,
@@ -136,7 +149,7 @@ def transform_question(row: dict, subject_map: dict) -> tuple:
         json.dumps(flags),
         json.dumps(stats),
         row["links"] or None,
-        row["verification_status"] or "pending",
+        "verified",
         False,
         [],
         _parse_ts(row.get("created_at")),
@@ -171,7 +184,7 @@ QUESTION_INSERT = """
 """
 
 SOLUTION_INSERT = """
-    INSERT INTO solutions (id, explanation, solution_image_url, metadata)
+    INSERT INTO solutions (id, explanation, solution_image_url, additional_data)
     VALUES ($1, $2, $3, $4::jsonb)
     ON CONFLICT (id) DO NOTHING
 """
