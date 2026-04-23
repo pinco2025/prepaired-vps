@@ -1,6 +1,7 @@
 from fastapi import APIRouter
 
 from app.api.v1 import (
+    analytics,
     diagnostic,
     feedback,
     marked_questions,
@@ -23,3 +24,4 @@ api_router.include_router(diagnostic.router)
 api_router.include_router(question_sets.router)
 api_router.include_router(marked_questions.router)
 api_router.include_router(misc.router)
+api_router.include_router(analytics.router)

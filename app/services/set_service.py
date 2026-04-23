@@ -119,7 +119,7 @@ async def submit_session(
     rows = await sb_select(
         "student_sets",
         {"id": f"eq.{session_id}", "user_id": f"eq.{user_id}"},
-        select_cols="id,answers,submitted_at",
+        select_cols="id,answers,submitted_at,time_elapsed,created_at",
         limit=1,
     )
     if not rows:
@@ -176,6 +176,22 @@ async def submit_session(
         {"answers": merged, "submitted_at": submitted_at},
         prefer_minimal=True,
     )
+
+    # Record analytics session (best-effort — never fails the submit)
+    try:
+        duration_sec = max(0, rows[0].get("time_elapsed") or 0)
+        await sb_insert("study_sessions", {
+            "user_id": user_id,
+            "source": "set",
+            "duration_sec": duration_sec,
+            "correct_count": correct,
+            "incorrect_count": incorrect,
+            "skipped_count": unattempted,
+            "started_at": rows[0].get("created_at", submitted_at),
+            "ended_at": submitted_at,
+        })
+    except Exception:
+        pass
 
     return SetSubmitOut(
         session_id=session_id,

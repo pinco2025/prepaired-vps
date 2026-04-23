@@ -75,6 +75,13 @@ async def sb_insert(table: str, data: Dict[str, Any]) -> Dict[str, Any]:
     return rows[0] if isinstance(rows, list) else rows
 
 
+async def sb_bulk_insert(table: str, rows: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+    if not rows:
+        return []
+    result = await _request("POST", table, body=rows)  # type: ignore[arg-type]
+    return result if isinstance(result, list) else []
+
+
 async def sb_upsert(
     table: str,
     data: Dict[str, Any],
