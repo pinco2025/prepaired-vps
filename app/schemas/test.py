@@ -50,6 +50,12 @@ class SubmissionSummary(BaseModel):
     submitted_at: Optional[str] = None
 
 
+# LEGACY — remove once prepaired-web migrates to /tests/visible
+class TestsAndSubmissionsOut(BaseModel):
+    tests: List[Dict[str, Any]]
+    submissions: List[SubmissionSummary]
+
+
 class StudentTestByIdOut(BaseModel):
     id: str
     test_id: str

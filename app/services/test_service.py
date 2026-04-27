@@ -183,6 +183,74 @@ async def get_meta(test_id: str) -> Optional[TestMetaOut]:
     return TestMetaOut(percentile_99=rows[0].get("99ile"))
 
 
+# ── LEGACY endpoints — remove once prepaired-web migrates to get_visible_tests ──
+
+async def get_tests_and_submissions(user_id: str) -> TestsByPrefixOut:
+    """LEGACY: used by GET /tests/submissions (prepaired-web Tests.tsx)."""
+    import asyncio
+    from app.schemas.test import TestsAndSubmissionsOut  # noqa: F401 — kept for symmetry
+
+    tests_task = sb_select("tests", {}, order="testID")
+    subs_task = sb_select(
+        "student_tests",
+        {
+            "user_id": f"eq.{user_id}",
+            "submitted_at": "not.is.null",
+        },
+        select_cols="id,test_id,result_url,submitted_at",
+        order="submitted_at.desc",
+    )
+    tests_rows, subs_rows = await asyncio.gather(tests_task, subs_task)
+    return TestsByPrefixOut(
+        tests=tests_rows,
+        submissions=[SubmissionSummary(**r) for r in subs_rows],
+    )
+
+
+async def get_tests_by_prefix(prefix: str, user_id: Optional[str]) -> TestsByPrefixOut:
+    """LEGACY: used by GET /tests/by-prefix (prepaired-web Pyq2026.tsx)."""
+    tests_rows = await sb_select("tests", {"testID": f"ilike.{prefix}"}, order="testID")
+
+    submissions: List[SubmissionSummary] = []
+    if user_id and tests_rows:
+        ids_csv = ",".join(str(t["testID"]) for t in tests_rows)
+        subs_rows = await sb_select(
+            "student_tests",
+            {
+                "user_id": f"eq.{user_id}",
+                "test_id": f"in.({ids_csv})",
+                "submitted_at": "not.is.null",
+            },
+            select_cols="id,test_id,result_url,submitted_at",
+        )
+        submissions = [SubmissionSummary(**r) for r in subs_rows]
+
+    return TestsByPrefixOut(tests=tests_rows, submissions=submissions)
+
+
+async def get_tests_by_exam(exam: str, user_id: Optional[str]) -> TestsByPrefixOut:
+    """LEGACY: used by GET /tests/by-exam (prepaired-web AIPTPage.tsx)."""
+    tests_rows = await sb_select("tests", {"exam": f"eq.{exam}"}, order="testID")
+
+    submissions: List[SubmissionSummary] = []
+    if user_id and tests_rows:
+        ids_csv = ",".join(str(t["testID"]) for t in tests_rows)
+        subs_rows = await sb_select(
+            "student_tests",
+            {
+                "user_id": f"eq.{user_id}",
+                "test_id": f"in.({ids_csv})",
+                "submitted_at": "not.is.null",
+            },
+            select_cols="id,test_id,result_url,submitted_at",
+        )
+        submissions = [SubmissionSummary(**r) for r in subs_rows]
+
+    return TestsByPrefixOut(tests=tests_rows, submissions=submissions)
+
+
+# ── End legacy ────────────────────────────────────────────────────────────────
+
 async def get_student_tests_by_ids(ids: List[str]) -> List[StudentTestByIdOut]:
     """Batch-fetch student_test records by a list of IDs."""
     if not ids:

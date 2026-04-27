@@ -23,7 +23,7 @@ from fastapi import APIRouter, Body, Depends, HTTPException, Query, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.core.database import get_db
-from app.core.deps import get_current_user
+from app.core.deps import get_current_user, get_optional_user
 from app.core.security import TokenPayload
 from app.schemas.test import (
     AttemptOut,
@@ -37,6 +37,7 @@ from app.schemas.test import (
     TestMetaOut,
     TestResultOut,
     TestsByPrefixOut,
+    TestsAndSubmissionsOut,
 )
 from app.services import generated_test_service, test_service, test_resolver
 
@@ -62,6 +63,36 @@ async def get_visible(
     """
     return await test_service.get_visible_tests(user.sub, prefix=prefix)
 
+
+# ── LEGACY routes — remove once prepaired-web migrates to /tests/visible ────
+
+@router.get("/submissions", response_model=TestsAndSubmissionsOut)
+async def legacy_get_submissions(
+    user: TokenPayload = Depends(get_current_user),
+):
+    """LEGACY: used by prepaired-web Tests.tsx. Migrate callers to GET /tests/visible."""
+    return await test_service.get_tests_and_submissions(user.sub)
+
+
+@router.get("/by-prefix", response_model=TestsByPrefixOut)
+async def legacy_get_by_prefix(
+    prefix: str = Query(..., description="PostgREST ilike pattern, e.g. 'APYQ-%'"),
+    user: Optional[TokenPayload] = Depends(get_optional_user),
+):
+    """LEGACY: used by prepaired-web Pyq2026.tsx. Migrate callers to GET /tests/visible?prefix=..."""
+    return await test_service.get_tests_by_prefix(prefix, user.sub if user else None)
+
+
+@router.get("/by-exam", response_model=TestsByPrefixOut)
+async def legacy_get_by_exam(
+    exam: str = Query(..., description="Exam type, e.g. 'JEE', 'NEET'"),
+    user: Optional[TokenPayload] = Depends(get_optional_user),
+):
+    """LEGACY: used by prepaired-web AIPTPage.tsx. Migrate callers to GET /tests/visible."""
+    return await test_service.get_tests_by_exam(exam.upper(), user.sub if user else None)
+
+
+# ── End legacy ────────────────────────────────────────────────────────────────
 
 @router.post("/generate", response_model=GenerateTestOut)
 async def generate_test(
