@@ -20,6 +20,7 @@ from app.core.subscription_access import (
     user_can_access_tier,
 )
 from app.schemas.question import JEEMTestOut, QuestionDetailOut, QuestionSetOut
+from app.services import generated_test_service, test_resolver
 from app.services.question_service import (
     check_chapter_exists,
     get_jeem_test,
@@ -208,6 +209,18 @@ async def get_structured_test(
         )
 
     if output_type == "JEEM":
+        try:
+            resolution = await test_resolver.resolve_test(test_id)
+        except test_resolver.TestNotFound:
+            raise HTTPException(status_code=404, detail=f"Test '{test_id}' not found")
+        if resolution.meta.type == "generated":
+            return await generated_test_service.fetch_jeem_from_resolution(
+                db,
+                resolution,
+                test_title=title,
+                duration=duration,
+                include_solutions=include_solutions,
+            )
         return await get_jeem_test(
             db,
             test_id=test_id,

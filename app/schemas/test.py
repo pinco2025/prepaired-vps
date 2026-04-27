@@ -50,11 +50,6 @@ class SubmissionSummary(BaseModel):
     submitted_at: Optional[str] = None
 
 
-class TestsAndSubmissionsOut(BaseModel):
-    tests: List[Dict[str, Any]]
-    submissions: List[SubmissionSummary]
-
-
 class StudentTestByIdOut(BaseModel):
     id: str
     test_id: str
@@ -63,3 +58,12 @@ class StudentTestByIdOut(BaseModel):
 class TestsByPrefixOut(BaseModel):
     tests: List[Dict[str, Any]]
     submissions: List[SubmissionSummary]
+
+
+class GenerateTestIn(BaseModel):
+    exam: str  # "JEEM" — only supported value in v1
+
+
+class GenerateTestOut(BaseModel):
+    test_id: str
+    exam: str

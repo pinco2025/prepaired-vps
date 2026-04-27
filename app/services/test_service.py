@@ -1,9 +1,9 @@
 """
-Test session service — thin wrapper over Supabase REST (student_tests table).
+Test session service — thin wrapper over Supabase REST (student_tests / tests tables).
 All business logic lives here so the router stays clean.
 """
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from app.schemas.test import (
     AttemptOut,
@@ -13,11 +13,76 @@ from app.schemas.test import (
     SubmissionSummary,
     TestMetaOut,
     TestResultOut,
-    TestsAndSubmissionsOut,
     TestsByPrefixOut,
 )
 from app.services.supabase_client import sb_insert, sb_select, sb_update
 
+
+# ── Visibility filter ─────────────────────────────────────────────────────────
+
+def _build_visibility_filter(user_tags: List[str]) -> Dict[str, str]:
+    """
+    Returns a PostgREST `and` filter param that:
+      1. Excludes tests with type = 'archive' (including NULL-safe check).
+      2. Scopes tests to the user's audience tags, or shows all non-archived
+         tests when the user has no tags (fresh/unonboarded account).
+
+    Usage: merge the returned dict into the sb_select filters argument.
+    """
+    archive_clause = "or(type.is.null,type.neq.archive)"
+
+    if user_tags:
+        tags_csv = ",".join(user_tags)
+        audience_clause = f"or(audience_tags.is.null,audience_tags.ov.{{{tags_csv}}})"
+        return {"and": f"({archive_clause},{audience_clause})"}
+
+    # No profile yet — show all non-archived tests (no audience restriction).
+    return {"and": f"({archive_clause})"}
+
+
+# ── Visible test listing ──────────────────────────────────────────────────────
+
+async def get_visible_tests(
+    user_id: str,
+    prefix: Optional[str] = None,
+) -> TestsByPrefixOut:
+    """
+    Returns the personalised, archive-free list of tests for a user.
+
+    Server derives audience tags from the user's onboarding profile so the
+    client needs no exam/level params.  An optional `prefix` narrows by testID
+    ilike pattern (e.g. 'AIPT%') for screens that show a specific series.
+    """
+    import asyncio
+    from app.core.audience import get_user_audience_tags
+
+    user_tags = await get_user_audience_tags(user_id)
+    tests_filter = _build_visibility_filter(user_tags)
+
+    if prefix:
+        tests_filter["testID"] = f"ilike.{prefix}"
+
+    tests_rows = await sb_select("tests", tests_filter, order="testID")
+
+    submissions: List[SubmissionSummary] = []
+    if tests_rows:
+        test_ids = [str(t["testID"]) for t in tests_rows]
+        ids_csv = ",".join(test_ids)
+        subs_rows = await sb_select(
+            "student_tests",
+            {
+                "user_id": f"eq.{user_id}",
+                "test_id": f"in.({ids_csv})",
+                "submitted_at": "not.is.null",
+            },
+            select_cols="id,test_id,result_url,submitted_at",
+        )
+        submissions = [SubmissionSummary(**r) for r in subs_rows]
+
+    return TestsByPrefixOut(tests=tests_rows, submissions=submissions)
+
+
+# ── Session management ────────────────────────────────────────────────────────
 
 async def start_or_resume(
     test_id: str, user_id: str, *, is_reattempt: bool = False
@@ -64,9 +129,7 @@ async def save_answers(student_test_id: str, answers: dict) -> None:
     )
 
 
-async def submit_test(
-    student_test_id: str, answers: dict
-) -> SubmitTestOut:
+async def submit_test(student_test_id: str, answers: dict) -> SubmitTestOut:
     from datetime import datetime, timezone
     await sb_update(
         "student_tests",
@@ -92,7 +155,6 @@ async def get_attempts(test_id: str, user_id: str) -> List[AttemptOut]:
 
 
 async def get_result(submission_id: str) -> Optional[TestResultOut]:
-    import asyncio
     rows = await sb_select(
         "student_tests",
         {"id": f"eq.{submission_id}"},
@@ -102,15 +164,10 @@ async def get_result(submission_id: str) -> Optional[TestResultOut]:
         return None
     record = rows[0]
 
-    # Fetch exam/type from tests table in parallel to avoid extra round-trip latency
-    test_rows = await sb_select(
-        "tests",
-        {"testID": f"eq.{record['test_id']}"},
-        select_cols="exam,type",
-        limit=1,
-    )
-    if test_rows:
-        record = {**record, "exam": test_rows[0].get("exam"), "type": test_rows[0].get("type")}
+    from app.services.test_resolver import try_resolve_test
+    resolution = await try_resolve_test(record["test_id"])
+    if resolution:
+        record = {**record, "exam": resolution.meta.exam, "type": resolution.meta.type}
 
     return TestResultOut(**record)
 
@@ -124,80 +181,6 @@ async def get_meta(test_id: str) -> Optional[TestMetaOut]:
     if not rows:
         return None
     return TestMetaOut(percentile_99=rows[0].get("99ile"))
-
-
-async def get_tests_and_submissions(user_id: str) -> TestsAndSubmissionsOut:
-    """Parallel fetch: all tests (ordered by testID) + user's submitted student_tests."""
-    import asyncio
-
-    tests_task = sb_select("tests", {}, order="testID")
-    subs_task = sb_select(
-        "student_tests",
-        {
-            "user_id": f"eq.{user_id}",
-            "submitted_at": "not.is.null",
-        },
-        select_cols="id,test_id,result_url,submitted_at",
-        order="submitted_at.desc",
-    )
-    tests_rows, subs_rows = await asyncio.gather(tests_task, subs_task)
-
-    return TestsAndSubmissionsOut(
-        tests=tests_rows,
-        submissions=[SubmissionSummary(**r) for r in subs_rows],
-    )
-
-
-async def get_tests_by_prefix(prefix: str, user_id: Optional[str]) -> TestsByPrefixOut:
-    """Tests whose testID matches the ilike pattern, plus user's submissions for those tests."""
-    tests_rows = await sb_select(
-        "tests",
-        {"testID": f"ilike.{prefix}"},
-        order="testID",
-    )
-
-    submissions: List[SubmissionSummary] = []
-    if user_id and tests_rows:
-        test_ids = [str(t["testID"]) for t in tests_rows]
-        ids_csv = ",".join(test_ids)
-        subs_rows = await sb_select(
-            "student_tests",
-            {
-                "user_id": f"eq.{user_id}",
-                "test_id": f"in.({ids_csv})",
-                "submitted_at": "not.is.null",
-            },
-            select_cols="id,test_id,result_url,submitted_at",
-        )
-        submissions = [SubmissionSummary(**r) for r in subs_rows]
-
-    return TestsByPrefixOut(tests=tests_rows, submissions=submissions)
-
-
-async def get_tests_by_exam(exam: str, user_id: Optional[str]) -> TestsByPrefixOut:
-    """Tests whose exam column matches the given exam type, ordered by testID (the -XX suffix drives order)."""
-    tests_rows = await sb_select(
-        "tests",
-        {"exam": f"eq.{exam}"},
-        order="testID",
-    )
-
-    submissions: List[SubmissionSummary] = []
-    if user_id and tests_rows:
-        test_ids = [str(t["testID"]) for t in tests_rows]
-        ids_csv = ",".join(test_ids)
-        subs_rows = await sb_select(
-            "student_tests",
-            {
-                "user_id": f"eq.{user_id}",
-                "test_id": f"in.({ids_csv})",
-                "submitted_at": "not.is.null",
-            },
-            select_cols="id,test_id,result_url,submitted_at",
-        )
-        submissions = [SubmissionSummary(**r) for r in subs_rows]
-
-    return TestsByPrefixOut(tests=tests_rows, submissions=submissions)
 
 
 async def get_student_tests_by_ids(ids: List[str]) -> List[StudentTestByIdOut]:
