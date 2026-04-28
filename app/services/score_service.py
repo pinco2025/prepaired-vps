@@ -7,11 +7,50 @@ import logging
 import base64
 import httpx
 from pathlib import Path
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 
 from app.core.config import settings
 
 logger = logging.getLogger(__name__)
+
+
+def _evaluate_answer(user_ans_str: str, correct_ans: str) -> bool:
+    """
+    Evaluate a user's answer against the correct answer.
+
+    Formats supported:
+    - Direct: "5.00" or "B" → case-insensitive exact match
+    - Range:  "[a,b]"       → user_ans in [a, b] inclusive
+    - Multi-range: "[a,b;c,d]" → user_ans in [a,b] OR [c,d]
+    """
+    correct = str(correct_ans).strip()
+    user = str(user_ans_str).strip()
+
+    if correct.startswith('[') and correct.endswith(']'):
+        inner = correct[1:-1].strip()
+        range_parts = [r.strip() for r in inner.split(';') if r.strip()]
+        try:
+            user_val = float(user)
+            for rng in range_parts:
+                bounds = [b.strip() for b in rng.split(',')]
+                if len(bounds) == 2:
+                    lo, hi = float(bounds[0]), float(bounds[1])
+                    if lo <= user_val <= hi:
+                        return True
+                elif len(bounds) == 1:
+                    if float(bounds[0]) == user_val:
+                        return True
+            return False
+        except ValueError:
+            return user.lower() == correct.lower()
+
+    # For direct (non-bracket) answers, try numeric comparison first so that
+    # "5" == "5.0" == "5.00" — then fall back to case-insensitive string match.
+    try:
+        return float(user) == float(correct)
+    except ValueError:
+        return user.lower() == correct.lower()
+
 
 class ScoreService:
     def __init__(self):
@@ -162,9 +201,9 @@ class ScoreService:
                     status = 'Partial'
                     marks = len(user_set & correct_set)
             else:
-                # div1 (MCQ) and div2 (Integer): exact string comparison
+                # div1 (MCQ), div2 (Integer), div3 (Decimal/range): compare via _evaluate_answer
                 if user_ans is not None:
-                    if str(user_ans).strip().lower() == str(correct_ans).strip().lower():
+                    if _evaluate_answer(str(user_ans), str(correct_ans)):
                         status = 'Correct'
                         marks = section_cfg['positive']
                     else:
