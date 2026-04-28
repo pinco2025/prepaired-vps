@@ -117,9 +117,10 @@ class ScoreService:
 
         # New metadata stats structure
         metadata_stats = {
-            "correct": {"difficulty": {}, "relevance": {}, "scary": {}, "lengthy": {}, "topics": {}},
-            "incorrect": {"difficulty": {}, "relevance": {}, "scary": {}, "lengthy": {}, "topics": {}},
-            "unattempted": {"difficulty": {}, "relevance": {}, "scary": {}, "lengthy": {}, "topics": {}}
+            "correct":     {"difficulty": {}, "relevance": {}, "scary": {}, "lengthy": {}, "topics": {}},
+            "incorrect":   {"difficulty": {}, "relevance": {}, "scary": {}, "lengthy": {}, "topics": {}},
+            "unattempted": {"difficulty": {}, "relevance": {}, "scary": {}, "lengthy": {}, "topics": {}},
+            "partial":     {"difficulty": {}, "relevance": {}, "scary": {}, "lengthy": {}, "topics": {}},
         }
 
         # Initialize score aggregators
