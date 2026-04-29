@@ -12,6 +12,7 @@ from pydantic import BaseModel
 
 from app.core.deps import get_current_user
 from app.core.security import TokenPayload
+from app.core.subscription_access import get_user_subscription_tier
 from app.services.score_service import score_service
 from app.services.supabase_client import sb_select, SupabaseError
 
@@ -41,9 +42,11 @@ async def calculate_score(
             raise HTTPException(status_code=404, detail="Student test not found")
         student_test = student_tests[0]
 
-        # 2. Verify user ownership
+        # 2. Verify user ownership (admins may calculate scores for any user)
         if student_test.get("user_id") != user.sub:
-            raise HTTPException(status_code=403, detail="Not authorized to access this test")
+            requester_tier = await get_user_subscription_tier(user.sub)
+            if requester_tier != "admin":
+                raise HTTPException(status_code=403, detail="Not authorized to access this test")
 
         # 3. Return existing if already calculated (unless force recompute requested)
         existing_result_url = student_test.get("result_url")
