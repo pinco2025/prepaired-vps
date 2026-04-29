@@ -107,6 +107,7 @@ async def list_questions(
     types: Optional[str] = Query(None, description="Comma-separated Question.type values for PYQ fetch (e.g. JMPYQ,APYQ,NPYQ). OR semantics."),
     uuids: Optional[str] = Query(None, description="Comma-separated question UUIDs for revision/bookmark fetch"),
     check: Optional[int] = Query(None, description="Set to 1 for existence-only check"),
+    no_limit: bool = Query(False, description="Skip free-tier question cap. Only honoured for filter-based (non-set) fetches."),
     db: AsyncSession = Depends(get_db),
     user: Optional[TokenPayload] = Depends(get_optional_user),
 ):
@@ -160,6 +161,10 @@ async def list_questions(
     # except when a types filter is provided (PYQ path) — PYQs include both MCQ and Integer.
     chapter_only = bool((chapterCode or chapter_codes_list) and not setId and not testId and not types_list)
 
+    # no_limit is only honoured for filter-based fetches (PYQ chapterwise) — never for
+    # setId/testId-scoped sets, which always go through subscription gating.
+    bypass_limit = no_limit and not group_id
+
     result = await get_mcq_set(
         db,
         group_id=group_id,
@@ -169,6 +174,7 @@ async def list_questions(
         question_types=types_list,
         is_paid=paid,
         div1_only=chapter_only,
+        bypass_limit=bypass_limit,
     )
     return result
 

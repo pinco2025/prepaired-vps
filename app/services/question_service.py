@@ -162,6 +162,7 @@ async def get_mcq_set(
     question_types: Optional[List[str]] = None,
     is_paid: bool = False,
     div1_only: bool = False,
+    bypass_limit: bool = False,
 ) -> QuestionSetOut:
     """
     Fetch MCQ-type questions (and their solutions) for the given group/subject/chapter
@@ -174,6 +175,9 @@ async def get_mcq_set(
                    Takes precedence over chapter_code when both are provided.
     div1_only    — when True, strips div2 (Integer) questions by checking
                    source_info.section_type; used for chapter-based practice sets.
+    bypass_limit — when True, returns all questions in insertion order without the
+                   free-tier slice. Used for PYQ chapterwise fetch where all questions
+                   are always accessible regardless of subscription.
     """
     stmt = (
         select(Question)
@@ -211,7 +215,10 @@ async def get_mcq_set(
     total_count = len(all_questions)
 
     # ── Tier enforcement ───────────────────────────────────────────────────────
-    if is_paid:
+    if bypass_limit:
+        # PYQ chapterwise: all questions in insertion order, no subscription gate
+        selected = all_questions
+    elif is_paid:
         selected = _shuffle_preserving_paragraphs(all_questions)
     else:
         # Slice to free limit, but extend to include the complete last paragraph group
