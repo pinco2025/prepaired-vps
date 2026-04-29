@@ -38,7 +38,6 @@ class PYQAttemptItem(BaseModel):
     question_id: str
     subject: str
     chapter_code: str
-    chapter_name: str
     exam: str
     verdict: str         # 'correct' | 'incorrect' | 'skipped'
 
@@ -60,9 +59,6 @@ async def record_session(
         "user_id": user.sub,
         "source": body.source,
         "duration_sec": max(0, body.duration_sec),
-        "correct_count": 0,
-        "incorrect_count": 0,
-        "skipped_count": 0,
         "started_at": body.started_at or now,
         "ended_at": now,
     })
@@ -84,7 +80,6 @@ async def record_pyq_attempts(
             "question_id": a.question_id,
             "subject": a.subject,
             "chapter_code": a.chapter_code,
-            "chapter_name": a.chapter_name,
             "exam": a.exam,
             "verdict": a.verdict,
             "attempted_at": now,
@@ -120,11 +115,11 @@ async def get_attempts_breakdown(user: TokenPayload = Depends(get_current_user))
     set_rows = await sb_select(
         "study_sessions",
         {"user_id": f"eq.{user.sub}", "source": "eq.set"},
-        select_cols="correct_count,incorrect_count,skipped_count",
+        select_cols="duration_sec",
     )
-    set_correct = sum(r.get("correct_count") or 0 for r in set_rows)
-    set_incorrect = sum(r.get("incorrect_count") or 0 for r in set_rows)
-    set_skipped = sum(r.get("skipped_count") or 0 for r in set_rows)
+    set_correct = 0
+    set_incorrect = 0
+    set_skipped = 0
 
     total_correct = pyq_correct + set_correct
     total_incorrect = pyq_incorrect + set_incorrect
@@ -196,7 +191,7 @@ async def get_weak_chapters(
     rows = await sb_select(
         "pyq_attempts",
         {"user_id": f"eq.{user.sub}"},
-        select_cols="chapter_code,chapter_name,subject,verdict",
+        select_cols="chapter_code,subject,verdict",
     )
 
     # Aggregate per chapter
@@ -207,7 +202,7 @@ async def get_weak_chapters(
             continue
         if code not in chapter_data:
             chapter_data[code] = {
-                "chapter_name": row.get("chapter_name") or code,
+                "chapter_name": code,
                 "subject": row.get("subject", ""),
                 "attempted": 0,
                 "correct": 0,
