@@ -9,9 +9,49 @@ import httpx
 from pathlib import Path
 from typing import Any, Dict, Optional
 
+from sqlalchemy import text
+
 from app.core.config import settings
+from app.core.database import AsyncSessionLocal
+from app.services.supabase_client import sb_select, sb_update, SupabaseError
 
 logger = logging.getLogger(__name__)
+
+
+def _normalise_div(raw: Optional[str]) -> Optional[str]:
+    """Map raw section_type DB values to canonical div keys (div1–div8)."""
+    if not raw:
+        return None
+    v = raw.strip().lower()
+    if v in ("div1", "d1", "section_a", "sec_a", "sectiona",
+             "mcq", "single", "single_correct", "sc", "sca", "singlechoice", "single_choice"):
+        return "div1"
+    if v in ("div2", "d2", "section_b", "sec_b", "sectionb",
+             "integer", "int", "integer_type", "integertype"):
+        return "div2"
+    if v in ("div3", "d3", "decimal", "numerical", "section_c", "sec_c", "dec", "numeric"):
+        return "div3"
+    if v in ("div4", "d4", "matrix", "matrix_match", "matrix_matching", "matching",
+             "matrixmatch", "match"):
+        return "div4"
+    if v in ("div5", "d5", "paragraph", "comprehension", "para", "passage", "reading", "rc"):
+        return "div5"
+    if v in ("div8", "d8", "multi_correct", "multicorrect", "multiple_correct",
+             "multi", "mc", "msq", "multiple", "multiple_choice", "multiplechoice"):
+        return "div8"
+    if v.startswith("div1") or v.startswith("d1"):
+        return "div1"
+    if v.startswith("div2") or v.startswith("d2"):
+        return "div2"
+    if v.startswith("div3") or v.startswith("d3"):
+        return "div3"
+    if v.startswith("div4") or v.startswith("d4"):
+        return "div4"
+    if v.startswith("div5") or v.startswith("d5"):
+        return "div5"
+    if v.startswith("div8") or v.startswith("d8"):
+        return "div8"
+    return v
 
 
 def _evaluate_answer(user_ans_str: str, correct_ans: str) -> bool:
@@ -351,5 +391,101 @@ class ScoreService:
 
             resp_data = response.json()
             return resp_data.get("content", {}).get("download_url")
+
+    async def compute_and_persist_score(
+        self,
+        student_test_id: str,
+        test_id: str,
+        answers: Dict[str, Any],
+    ) -> str:
+        """
+        Full pipeline: fetch test config + questions → calculate → push to GitHub
+        → update student_tests.result_url → return github_url.
+
+        Raises ValueError for missing config, SupabaseError for DB issues,
+        and Exception for GitHub/scoring failures — callers decide HTTP mapping.
+        """
+        # 1. Fetch section_config
+        tests = await sb_select("tests", {"testID": f"eq.{test_id}"})
+        if not tests:
+            raise ValueError(f"Test definition not found for test_id={test_id}")
+        raw_config = tests[0].get("section_config") or {}
+        section_config: Dict[str, Any] = {k.lower(): v for k, v in raw_config.items()}
+        if not section_config:
+            raise ValueError(f"section_config not configured for test_id={test_id}")
+
+        # 2. Fetch questions from Postgres
+        answer_keys_set = set(answers.keys())
+        async with AsyncSessionLocal() as db:
+            rows = await db.execute(
+                text("""
+                    SELECT
+                        id::text                            AS db_id,
+                        legacy_id,
+                        answer,
+                        chapter,
+                        type                                AS question_type,
+                        subject,
+                        source_info->>'section_type'        AS section_type,
+                        source_info->>'difficulty'          AS difficulty,
+                        flags->>'scary'                     AS scary
+                    FROM questions
+                    WHERE :test_id = ANY(used_in)
+                      AND verification_status = 'verified'
+                """),
+                {"test_id": test_id},
+            )
+            q_rows = rows.fetchall()
+
+        # 3. Build ppt_data
+        sections_map: Dict[str, Any] = {}
+        questions_out = []
+        for r in q_rows:
+            answer_key = r.legacy_id if (r.legacy_id and r.legacy_id in answer_keys_set) else r.db_id
+            norm_div = _normalise_div(r.section_type) or (r.section_type or "")
+            section_key = (
+                f"{r.subject.lower()}-{norm_div}"
+                if r.subject and norm_div
+                else (norm_div or "unknown")
+            )
+            sec = section_config.get(section_key, {})
+            section_name = sec.get("name", section_key)
+            if section_name not in sections_map:
+                sections_map[section_name] = {
+                    "name": section_name,
+                    "marksPerQuestion": float(sec.get("pos", 0)),
+                    "negativeMarksPerQuestion": float(sec.get("neg", 0)),
+                }
+            questions_out.append({
+                "uuid": answer_key,
+                "id": answer_key,
+                "section": section_name,
+                "correctAnswer": r.answer,
+                "chapterCode": r.chapter,
+                "questionType": r.question_type,
+                "difficulty": r.difficulty,
+                "scary": r.scary,
+            })
+
+        ppt_data = {"sections": list(sections_map.values()), "questions": questions_out}
+
+        # 4. Calculate scores
+        result = self.calculate_score(ppt_data, answers)
+
+        # 5. Push to GitHub
+        github_url = await self.push_to_github(result, f"{student_test_id}.json")
+
+        # 6. Persist result_url
+        try:
+            await sb_update(
+                "student_tests",
+                {"id": f"eq.{student_test_id}"},
+                {"result_url": github_url},
+            )
+        except SupabaseError as e:
+            logger.error("Failed to persist result_url for %s: %s", student_test_id, e)
+
+        return github_url
+
 
 score_service = ScoreService()

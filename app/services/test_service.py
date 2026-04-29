@@ -3,7 +3,10 @@ Test session service — thin wrapper over Supabase REST (student_tests / tests 
 All business logic lives here so the router stays clean.
 """
 
+import logging
 from typing import Dict, List, Optional
+
+logger = logging.getLogger(__name__)
 
 from app.schemas.test import (
     AttemptOut,
@@ -158,11 +161,27 @@ async def get_result(submission_id: str) -> Optional[TestResultOut]:
     rows = await sb_select(
         "student_tests",
         {"id": f"eq.{submission_id}"},
-        select_cols="id,test_id,submitted_at,started_at,result_url",
+        select_cols="id,test_id,submitted_at,started_at,result_url,answers",
     )
     if not rows:
         return None
     record = rows[0]
+
+    # Backfill result_url if the test was submitted but never scored
+    if record.get("submitted_at") and not record.get("result_url"):
+        try:
+            from app.services.score_service import score_service
+            github_url = await score_service.compute_and_persist_score(
+                submission_id,
+                record["test_id"],
+                record.get("answers") or {},
+            )
+            record = {**record, "result_url": github_url}
+        except Exception as exc:
+            logger.warning("result_url backfill failed for %s: %s", submission_id, exc)
+
+    # Strip answers — not part of TestResultOut schema
+    record = {k: v for k, v in record.items() if k != "answers"}
 
     from app.services.test_resolver import try_resolve_test
     resolution = await try_resolve_test(record["test_id"])
