@@ -411,7 +411,7 @@ def _orm_to_jeem_question_out(
             tag1=source_info.get("source_code", "") or "",
             tag2=q.chapter or "",          # score_service reads tags.tag2 for chapter breakdown
             tag3="",
-            tag4=source_info.get("source_q_no", "") or "",
+            tag4=str(source_info.get("source_q_no") or ""),
             type=question_type,
             year=str(q.year or ""),
         ),
