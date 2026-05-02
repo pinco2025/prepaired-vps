@@ -23,23 +23,39 @@ from app.services.supabase_client import sb_insert, sb_select, sb_update
 
 # ── Visibility filter ─────────────────────────────────────────────────────────
 
-def _build_visibility_filter(user_tags: List[str]) -> Dict[str, str]:
+def _build_visibility_filter(
+    user_tags: List[str],
+    exam_type: Optional[str] = None,
+) -> Dict[str, str]:
     """
     Returns a PostgREST `and` filter param that:
       1. Excludes tests with type = 'archive' (including NULL-safe check).
-      2. Scopes tests to the user's audience tags, or shows all non-archived
-         tests when the user has no tags (fresh/unonboarded account).
+      2. Scopes tests to the user's exam when exam_type is known:
+         - tests where exam IS NULL or exam = 'Normal' are always included
+         - tests whose exam matches the user's exam_type are included
+         - additionally, tests matched by audience_tags overlap are included
+         This means a JEE user never sees exam='NEET' rows (unless audience_tags
+         explicitly target them, which in practice won't happen).
+      3. Falls back to showing all non-archived tests for unonboarded users.
 
     Usage: merge the returned dict into the sb_select filters argument.
     """
     archive_clause = "or(type.is.null,type.neq.archive)"
 
-    if user_tags:
-        tags_csv = ",".join(user_tags)
-        audience_clause = f"or(audience_tags.is.null,audience_tags.ov.{{{tags_csv}}})"
-        return {"and": f"({archive_clause},{audience_clause})"}
+    if exam_type in ("JEE", "NEET"):
+        # Rows with no exam or exam=Normal are generic — always include them.
+        # Rows whose exam matches the user's exam are included.
+        # Rows matched via audience_tags overlap are also included (for newer rows).
+        exam_clause = f"or(exam.is.null,exam.eq.Normal,exam.eq.{exam_type})"
+        if user_tags:
+            tags_csv = ",".join(user_tags)
+            audience_clause = f"audience_tags.ov.{{{tags_csv}}}"
+            scope_clause = f"or({exam_clause},{audience_clause})"
+        else:
+            scope_clause = exam_clause
+        return {"and": f"({archive_clause},{scope_clause})"}
 
-    # No profile yet — show all non-archived tests (no audience restriction).
+    # Unonboarded user — preserve prior behavior (show all non-archived tests).
     return {"and": f"({archive_clause})"}
 
 
@@ -56,11 +72,10 @@ async def get_visible_tests(
     client needs no exam/level params.  An optional `prefix` narrows by testID
     ilike pattern (e.g. 'AIPT%') for screens that show a specific series.
     """
-    import asyncio
-    from app.core.audience import get_user_audience_tags
+    from app.core.audience import get_user_profile
 
-    user_tags = await get_user_audience_tags(user_id)
-    tests_filter = _build_visibility_filter(user_tags)
+    exam_type, user_tags = await get_user_profile(user_id)
+    tests_filter = _build_visibility_filter(user_tags, exam_type)
 
     if prefix:
         tests_filter["testID"] = f"ilike.{prefix}"

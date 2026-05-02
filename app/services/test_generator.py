@@ -140,17 +140,27 @@ async def _fetch_chapter_pool(
     db: AsyncSession,
     subject: str,
     div: str,
+    *,
+    chapter_whitelist: Optional[List[str]] = None,
 ) -> Dict[str, List[str]]:
     """
     Return {chapter_code: [question_id, ...]} for globally_open verified questions
     matching (subject, div).
+
+    When chapter_whitelist is provided, only those chapter codes are included.
     """
     aliases = _DIV_TO_RAW.get(div, [div])
-    # Build parameterised SQL — SQLAlchemy text() for a raw async query
     alias_placeholders = ", ".join(f":alias_{i}" for i in range(len(aliases)))
     params: Dict[str, object] = {"subject": subject}
     for i, alias in enumerate(aliases):
         params[f"alias_{i}"] = alias
+
+    chapter_filter = ""
+    if chapter_whitelist:
+        ch_placeholders = ", ".join(f":ch_{i}" for i in range(len(chapter_whitelist)))
+        chapter_filter = f"AND chapter IN ({ch_placeholders})"
+        for i, ch in enumerate(chapter_whitelist):
+            params[f"ch_{i}"] = ch
 
     sql = text(f"""
         SELECT chapter, id
@@ -160,6 +170,7 @@ async def _fetch_chapter_pool(
           AND verification_status = 'verified'
           AND source_info->>'section_type' IN ({alias_placeholders})
           AND chapter IS NOT NULL
+          {chapter_filter}
     """)
     result = await db.execute(sql, params)
     rows = result.fetchall()
@@ -243,6 +254,7 @@ async def generate(
     blueprint: ExamBlueprint,
     *,
     seed: Optional[int] = None,
+    chapter_whitelists: Optional[Dict[str, List[str]]] = None,
 ) -> GeneratedManifest:
     """
     Assemble a question manifest for the given blueprint.
@@ -252,6 +264,9 @@ async def generate(
       2. Apply chapter weights + largest-remainder distribution.
       3. Random-sample within each chapter slot using the seeded RNG.
       4. Return a GeneratedManifest (no DB writes).
+
+    chapter_whitelists: optional {subject_lower: [chapter_code, ...]} to hard-restrict
+    the SQL pool to only those chapters (used for custom single-subject tests).
     """
     if seed is None:
         seed = int(time.time() * 1000) & 0xFFFF_FFFF
@@ -262,9 +277,12 @@ async def generate(
     # Pre-fetch pools per (subject, div) in one pass per combination
     subj_div_pool: Dict[tuple, Dict[str, List[str]]] = {}
     for sb in blueprint.subjects:
+        whitelist = (chapter_whitelists or {}).get(sb.subject)
         for quota in sb.quotas:
             key = (sb.subject, quota.div)
-            subj_div_pool[key] = await _fetch_chapter_pool(db, sb.subject, quota.div)
+            subj_div_pool[key] = await _fetch_chapter_pool(
+                db, sb.subject, quota.div, chapter_whitelist=whitelist
+            )
 
     # Build section manifests in blueprint-defined order
     sections_map: Dict[tuple, SectionManifest] = {}

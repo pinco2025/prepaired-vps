@@ -1,8 +1,8 @@
 """Pydantic schemas for test sessions (student_tests table via Supabase REST)."""
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Literal, Optional
 
-from pydantic import BaseModel
+from pydantic import BaseModel, model_validator
 
 
 class StartTestOut(BaseModel):
@@ -68,8 +68,27 @@ class TestsByPrefixOut(BaseModel):
 
 class GenerateTestIn(BaseModel):
     exam: str  # "JEEM" — only supported value in v1
+    mode: Literal["full", "custom"] = "full"
+    subject: Optional[str] = None       # required when mode=custom
+    chapters: Optional[List[str]] = None  # chapter codes; min 4 when mode=custom
+
+    @model_validator(mode="after")
+    def _validate_custom(self) -> "GenerateTestIn":
+        if self.mode == "custom":
+            if not self.subject:
+                raise ValueError("subject is required when mode=custom")
+            if not self.chapters or len(self.chapters) < 4:
+                raise ValueError("at least 4 chapter codes are required when mode=custom")
+        return self
 
 
 class GenerateTestOut(BaseModel):
     test_id: str
     exam: str
+
+
+class GenerationQuotaOut(BaseModel):
+    used: int
+    limit: Optional[int]      # None = unlimited
+    resets_at: Optional[str]  # ISO-8601 UTC datetime string
+    tier: str

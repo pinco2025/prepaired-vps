@@ -29,6 +29,7 @@ from app.schemas.test import (
     AttemptOut,
     GenerateTestIn,
     GenerateTestOut,
+    GenerationQuotaOut,
     SaveAnswersIn,
     StartTestOut,
     StudentTestByIdOut,
@@ -94,6 +95,18 @@ async def legacy_get_by_exam(
 
 # ── End legacy ────────────────────────────────────────────────────────────────
 
+@router.get("/generation-quota", response_model=GenerationQuotaOut)
+async def get_generation_quota(
+    user: TokenPayload = Depends(get_current_user),
+):
+    """
+    Returns the current user's test-generation quota state.
+    limit=null means unlimited; limit=0 means fully blocked (free tier).
+    """
+    state = await generated_test_service.get_generation_quota_state(user.sub)
+    return GenerationQuotaOut(**state)
+
+
 @router.post("/generate", response_model=GenerateTestOut)
 async def generate_test(
     body: GenerateTestIn,
@@ -103,8 +116,11 @@ async def generate_test(
     """
     Dynamically assemble a test paper from the globally_open question pool.
 
-    Currently supports exam="JEEM" (75 questions: 20 MCQ + 5 Integer per subject).
-    Returns a test_id that can be used with all existing test endpoints:
+    mode=full  — full JEEM paper (75 Q across 3 subjects).
+    mode=custom — single-subject, 25 Q (20 MCQ + 5 Integer) from selected chapters.
+                  Requires subject and at least 4 chapter codes.
+
+    Returns a test_id usable with all existing test endpoints:
       GET  /api/v1/questions/test/{test_id}?output_type=JEEM
       POST /api/v1/tests/{test_id}/start
       POST /api/v1/tests/{student_test_id}/save
@@ -118,7 +134,11 @@ async def generate_test(
         )
     try:
         test_id = await generated_test_service.create_generated_test(
-            db, exam=body.exam.upper(), user_id=user.sub,
+            db,
+            exam=body.exam.upper(),
+            user_id=user.sub,
+            subject=body.subject if body.mode == "custom" else None,
+            chapters=body.chapters if body.mode == "custom" else None,
         )
     except ValueError as exc:
         raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail=str(exc))

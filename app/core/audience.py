@@ -11,7 +11,7 @@ Onboarding fields (stored in Supabase `users` table):
   onboarding_prefs — JSONB blob from OnboardingScreen.tsx
 """
 
-from typing import Any, Dict, List, Optional
+from typing import Any, Dict, List, Optional, Tuple
 import logging
 
 from app.services.supabase_client import sb_select, SupabaseError
@@ -70,6 +70,15 @@ def derive_audience_tags(profile: Dict[str, Any]) -> List[str]:
 
 async def get_user_audience_tags(user_id: str) -> List[str]:
     """Fetches the user's profile from Supabase and derives their audience tags."""
+    _, tags = await get_user_profile(user_id)
+    return tags
+
+
+async def get_user_profile(user_id: str) -> Tuple[Optional[str], List[str]]:
+    """
+    Returns (exam_type, audience_tags) for the user in a single Supabase query.
+    exam_type is 'JEE' | 'NEET' | None.
+    """
     try:
         rows = await sb_select(
             "users",
@@ -79,17 +88,20 @@ async def get_user_audience_tags(user_id: str) -> List[str]:
         )
     except SupabaseError as exc:
         logger.warning(
-            "get_user_audience_tags: Supabase error for user_id=%s (status=%s). "
-            "Falling back to empty tag list.",
+            "get_user_profile: Supabase error for user_id=%s (status=%s). "
+            "Falling back to empty profile.",
             user_id, exc.status,
         )
-        return []
+        return None, []
 
     if not rows:
         logger.warning(
-            "get_user_audience_tags: no users row for user_id=%s — treating as untagged",
+            "get_user_profile: no users row for user_id=%s — treating as untagged",
             user_id,
         )
-        return []
+        return None, []
 
-    return derive_audience_tags(rows[0])
+    profile = rows[0]
+    exam_type = (profile.get("exam_type") or "").strip().upper() or None
+    tags = derive_audience_tags(profile)
+    return exam_type, tags
