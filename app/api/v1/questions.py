@@ -106,6 +106,7 @@ async def list_questions(
     chapterCodes: Optional[str] = Query(None, description="Comma-separated chapter codes for section-level fetch"),
     types: Optional[str] = Query(None, description="Comma-separated Question.type values for PYQ fetch (e.g. JMPYQ,APYQ,NPYQ). OR semantics."),
     uuids: Optional[str] = Query(None, description="Comma-separated question UUIDs for revision/bookmark fetch"),
+    usedIn: Optional[str] = Query(None, description="Comma-separated used_in tags. Refines results to questions tagged with any of these (Postgres array overlap). Must be combined with chapterCode/types — not a standalone filter."),
     check: Optional[int] = Query(None, description="Set to 1 for existence-only check"),
     no_limit: bool = Query(False, description="Skip free-tier question cap. Only honoured for filter-based (non-set) fetches."),
     db: AsyncSession = Depends(get_db),
@@ -138,6 +139,7 @@ async def list_questions(
 
     chapter_codes_list = [c.strip() for c in chapterCodes.split(',')] if chapterCodes else None
     types_list = [t.strip() for t in types.split(',')] if types else None
+    used_in_list = [u.strip() for u in usedIn.split(',') if u.strip()] if usedIn else None
 
     if not setId and not testId and not chapterCode and not chapter_codes_list and not types_list:
         raise HTTPException(status_code=400, detail="Provide setId, testId, chapterCode, chapterCodes, or types")
@@ -172,6 +174,7 @@ async def list_questions(
         chapter_code=chapterCode,
         chapter_codes=chapter_codes_list,
         question_types=types_list,
+        used_in_tags=used_in_list,
         is_paid=paid,
         div1_only=chapter_only,
         bypass_limit=bypass_limit,

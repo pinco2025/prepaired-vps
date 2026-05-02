@@ -160,6 +160,7 @@ async def get_mcq_set(
     chapter_code: Optional[str] = None,
     chapter_codes: Optional[List[str]] = None,
     question_types: Optional[List[str]] = None,
+    used_in_tags: Optional[List[str]] = None,
     is_paid: bool = False,
     div1_only: bool = False,
     bypass_limit: bool = False,
@@ -173,6 +174,8 @@ async def get_mcq_set(
                    using array containment (used_in @> ARRAY[group_id]).
     chapter_codes — list of chapter codes for section-level practice (e.g. ADV sections).
                    Takes precedence over chapter_code when both are provided.
+    used_in_tags — optional list of tags; retains only questions whose used_in[] overlaps
+                   any of these (Postgres &&). Used for "recommended" mode to filter to MIN.
     div1_only    — when True, strips div2 (Integer) questions by checking
                    source_info.section_type; used for chapter-based practice sets.
     bypass_limit — when True, returns all questions in insertion order without the
@@ -195,6 +198,8 @@ async def get_mcq_set(
         stmt = stmt.where(Question.subject == subject.lower())
     if question_types:
         stmt = stmt.where(Question.type.in_(question_types))
+    if used_in_tags:
+        stmt = stmt.where(Question.used_in.overlap(used_in_tags))
 
     # Only serve questions that passed verification
     stmt = stmt.where(Question.verification_status == "verified")
