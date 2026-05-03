@@ -41,6 +41,10 @@ from app.schemas.test import (
     TestsAndSubmissionsOut,
 )
 from app.services import generated_test_service, test_service, test_resolver
+from app.services.supabase_client import SupabaseError
+
+import logging
+logger = logging.getLogger(__name__)
 
 router = APIRouter(prefix="/tests", tags=["tests"])
 
@@ -163,9 +167,17 @@ async def start_test(
     is_reattempt: bool = Body(default=False, embed=True),
     user: TokenPayload = Depends(get_current_user),
 ):
-    result = await test_service.start_or_resume(
-        test_id, user.sub, is_reattempt=is_reattempt
-    )
+    try:
+        result = await test_service.start_or_resume(
+            test_id, user.sub, is_reattempt=is_reattempt
+        )
+    except SupabaseError as exc:
+        logger.error("start_test: Supabase error for test_id=%s user=%s: status=%s detail=%s",
+                     test_id, user.sub, exc.status, exc.detail)
+        raise HTTPException(
+            status.HTTP_502_BAD_GATEWAY,
+            f"Database error starting test session (Supabase {exc.status})",
+        )
     if not result:
         raise HTTPException(status.HTTP_500_INTERNAL_SERVER_ERROR, "Failed to start test")
     return result

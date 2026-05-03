@@ -18,7 +18,7 @@ from app.schemas.test import (
     TestResultOut,
     TestsByPrefixOut,
 )
-from app.services.supabase_client import sb_insert, sb_select, sb_update
+from app.services.supabase_client import SupabaseError, sb_insert, sb_select, sb_update, sb_upsert
 
 
 # ── Visibility filter ─────────────────────────────────────────────────────────
@@ -102,10 +102,46 @@ async def get_visible_tests(
 
 # ── Session management ────────────────────────────────────────────────────────
 
+async def _ensure_jmpyq_registered(test_id: str, user_id: str) -> None:
+    """Upsert a stub row into dynamic_tests for a jmpyq_ test_id.
+
+    student_tests.test_id has a FK that must resolve to either tests.testID or
+    dynamic_tests.id. JMPYQ tests exist in neither, so we register a stub here
+    before inserting the student_test row.
+    """
+    from app.services.jmpyq_shift_service import JMPYQ_PREFIX, build_synthetic_meta
+    source_code = test_id[len(JMPYQ_PREFIX):]
+    meta = build_synthetic_meta(source_code)
+    if meta is None:
+        return
+    try:
+        await sb_upsert(
+            "dynamic_tests",
+            {
+                "id": test_id,
+                "exam": meta.get("exam", "JEE"),
+                "title": meta.get("title", f"JEE Main PYQ"),
+                "duration": meta.get("duration", 10800),
+                "total_marks": meta.get("total_marks", 300),
+                "blueprint_version": "jmpyq-v1",
+                "seed": 0,
+                "created_by": user_id,
+                "manifest": {},
+            },
+            on_conflict="id",
+        )
+    except SupabaseError as exc:
+        logger.warning("_ensure_jmpyq_registered: upsert failed for %s: %s", test_id, exc)
+
+
 async def start_or_resume(
     test_id: str, user_id: str, *, is_reattempt: bool = False
 ) -> Optional[StartTestOut]:
     """Find an existing unsubmitted session or create a new one."""
+    from app.services.jmpyq_shift_service import JMPYQ_PREFIX
+    if test_id.startswith(JMPYQ_PREFIX):
+        await _ensure_jmpyq_registered(test_id, user_id)
+
     if not is_reattempt:
         rows = await sb_select(
             "student_tests",
