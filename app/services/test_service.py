@@ -103,11 +103,12 @@ async def get_visible_tests(
 # ── Session management ────────────────────────────────────────────────────────
 
 async def _ensure_jmpyq_registered(test_id: str, user_id: str) -> None:
-    """Upsert a stub row into dynamic_tests for a jmpyq_ test_id.
+    """Upsert a stub row into tests for a jmpyq_ test_id.
 
-    student_tests.test_id has a FK that must resolve to either tests.testID or
-    dynamic_tests.id. JMPYQ tests exist in neither, so we register a stub here
-    before inserting the student_test row.
+    student_tests.test_id FK references tests.testID.  JMPYQ tests are built
+    dynamically from the questions table and have no row in tests, so we
+    register a lightweight stub here before inserting the student_test row.
+    The stub uses type='jmpyq' so it never surfaces in regular test listings.
     """
     from app.services.jmpyq_shift_service import JMPYQ_PREFIX, build_synthetic_meta
     source_code = test_id[len(JMPYQ_PREFIX):]
@@ -116,21 +117,24 @@ async def _ensure_jmpyq_registered(test_id: str, user_id: str) -> None:
         return
     try:
         await sb_upsert(
-            "dynamic_tests",
+            "tests",
             {
-                "id": test_id,
-                "exam": "JEEM",          # matches generated-test convention; "JEE" may violate a CHECK
+                "testID": test_id,
                 "title": meta.get("title", "JEE Main PYQ"),
+                "description": "",
                 "duration": meta.get("duration", 10800),
-                "total_marks": meta.get("total_marks", 300),
-                "blueprint_version": "jmpyq-v1",
-                "seed": 0,
-                "created_by": None,      # null avoids FK issues if column refs a users table
-                "manifest": {},
+                "totalQuestions": 75,
+                "markingScheme": "+4 / -1",
+                "instructions": "JEEM",
+                "url": "",
+                "exam": "JEE",
+                "type": "jmpyq",
+                "tier": "free",
+                "maximum_marks": meta.get("total_marks", 300),
             },
-            on_conflict="id",
+            on_conflict="testID",
         )
-        logger.debug("_ensure_jmpyq_registered: registered %s in dynamic_tests", test_id)
+        logger.debug("_ensure_jmpyq_registered: registered %s in tests", test_id)
     except SupabaseError as exc:
         logger.error(
             "_ensure_jmpyq_registered: upsert FAILED for %s — Supabase %s: %s",
