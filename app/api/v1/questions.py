@@ -21,6 +21,7 @@ from app.core.subscription_access import (
 )
 from app.schemas.question import JEEMTestOut, QuestionDetailOut, QuestionSetOut
 from app.services import generated_test_service, test_resolver
+from app.services import jmpyq_shift_service
 from app.services.question_service import (
     check_chapter_exists,
     get_jeem_test,
@@ -182,6 +183,25 @@ async def list_questions(
     return result
 
 
+@router.get("/jmpyq/years")
+async def get_jmpyq_years(
+    db: AsyncSession = Depends(get_db),
+) -> dict:
+    """Return distinct years (descending) that have JMPYQ questions."""
+    years = await jmpyq_shift_service.list_years(db)
+    return {"years": years}
+
+
+@router.get("/jmpyq/shifts")
+async def get_jmpyq_shifts(
+    year: int = Query(..., description="JEE year, e.g. 2024"),
+    db: AsyncSession = Depends(get_db),
+) -> dict:
+    """Return all shifts for the given year, sorted chronologically."""
+    shifts = await jmpyq_shift_service.list_shifts(db, year)
+    return {"shifts": shifts}
+
+
 _SUPPORTED_OUTPUT_TYPES = {"JEEM", "NEET", "SET", "JEEA"}
 
 
@@ -218,6 +238,13 @@ async def get_structured_test(
         )
 
     if output_type == "JEEM":
+        if test_id.startswith(jmpyq_shift_service.JMPYQ_PREFIX):
+            source_code = test_id[len(jmpyq_shift_service.JMPYQ_PREFIX):]
+            if jmpyq_shift_service.parse_source_code(source_code) is None:
+                raise HTTPException(status_code=404, detail=f"Invalid JMPYQ shift id: '{test_id}'")
+            return await jmpyq_shift_service.build_jeem_test_payload(
+                db, source_code, include_solutions=include_solutions
+            )
         try:
             resolution = await test_resolver.resolve_test(test_id)
         except test_resolver.TestNotFound:

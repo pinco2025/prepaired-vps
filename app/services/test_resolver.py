@@ -20,6 +20,7 @@ from app.services.supabase_client import sb_select
 logger = logging.getLogger(__name__)
 
 _GEN_PREFIX = "gen_"
+_JMPYQ_PREFIX = "jmpyq_"
 
 
 # ── In-process LRU cache for generated test manifests ────────────────────────
@@ -77,11 +78,12 @@ async def resolve_test(test_id: str) -> TestResolution:
     """
     Route test_id to the correct Supabase table and return a TestResolution.
 
-    - gen_* → dynamic_tests (with in-process LRU cache)
+    - gen_*    → dynamic_tests (with in-process LRU cache)
+    - jmpyq_*  → synthetic meta built from source_code (no Supabase round-trip)
     - anything else → tests
 
     Raises TestNotFound if the row doesn't exist.
-    Exactly one Supabase round-trip per cache miss.
+    Exactly one Supabase round-trip per cache miss for curated/generated tests.
     """
     if test_id.startswith(_GEN_PREFIX):
         cached = _dynamic_cache.get(test_id)
@@ -94,6 +96,14 @@ async def resolve_test(test_id: str) -> TestResolution:
             raise TestNotFound(f"Generated test '{test_id}' not found in dynamic_tests")
         _dynamic_cache.put(test_id, rows[0])
         return _resolution_from_dynamic(rows[0])
+
+    if test_id.startswith(_JMPYQ_PREFIX):
+        from app.services.jmpyq_shift_service import build_synthetic_meta
+        source_code = test_id[len(_JMPYQ_PREFIX):]
+        meta_row = build_synthetic_meta(source_code)
+        if meta_row is None:
+            raise TestNotFound(f"Invalid JMPYQ shift id: '{test_id}'")
+        return _resolution_from_curated(meta_row)
 
     rows = await sb_select("tests", {"testID": f"eq.{test_id}"}, limit=1)
     if not rows:

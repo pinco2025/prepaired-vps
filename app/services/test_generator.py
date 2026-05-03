@@ -13,7 +13,13 @@ Quota distribution algorithm (per subject, per div):
      (proportional to weights, capped by pool size, each picked chapter gets ≥ min_per_chapter).
   5. If eligible chapters < min_chapters, log a warning and continue with what's available.
   6. If total available < quota, partially fill and log a warning.
-  7. Random-sample within each chapter slot using a seeded RNG (reproducible).
+  7. Within each chapter slot, apply cluster-first / year-spread selection:
+       a) Group questions by cluster_assignment (NULL → singleton per question).
+       b) Shuffle cluster order and intra-cluster lists with the seeded RNG.
+       c) Round-robin across clusters; within each cluster, pick the question
+          whose year is least represented in the subject paper so far (tiebreak
+          by shuffle order, so deterministic for a given seed).
+       d) year_counts is maintained subject-wide across all divs.
 """
 
 from __future__ import annotations
@@ -22,6 +28,7 @@ import logging
 import math
 import random
 import time
+from collections import Counter
 from dataclasses import dataclass, field
 from typing import Dict, List, Optional
 
@@ -142,10 +149,10 @@ async def _fetch_chapter_pool(
     div: str,
     *,
     chapter_whitelist: Optional[List[str]] = None,
-) -> Dict[str, List[str]]:
+) -> Dict[str, List[tuple]]:
     """
-    Return {chapter_code: [question_id, ...]} for globally_open verified questions
-    matching (subject, div).
+    Return {chapter_code: [(qid, cluster_assignment, year), ...]} for globally_open
+    verified questions matching (subject, div).
 
     When chapter_whitelist is provided, only those chapter codes are included.
     """
@@ -163,7 +170,7 @@ async def _fetch_chapter_pool(
             params[f"ch_{i}"] = ch
 
     sql = text(f"""
-        SELECT chapter, id
+        SELECT chapter, id, cluster_assignment, year
         FROM questions
         WHERE subject = :subject
           AND globally_open IS TRUE
@@ -175,26 +182,30 @@ async def _fetch_chapter_pool(
     result = await db.execute(sql, params)
     rows = result.fetchall()
 
-    chapter_pool: Dict[str, List[str]] = {}
-    for chapter, qid in rows:
-        chapter_pool.setdefault(chapter, []).append(qid)
+    chapter_pool: Dict[str, List[tuple]] = {}
+    for chapter, qid, cluster, year in rows:
+        chapter_pool.setdefault(chapter, []).append((qid, cluster, year))
     return chapter_pool
 
 
 def _pick_questions(
-    chapter_pool: Dict[str, List[str]],
+    chapter_pool: Dict[str, List[tuple]],
     quota: DivQuota,
     weights: Dict[str, float],
     rng: random.Random,
+    year_counts: Counter,
 ) -> tuple[List[str], List[str]]:
     """
-    Select `quota.count` question IDs from chapter_pool applying weights and
-    min-chapter / min-per-chapter constraints.
+    Select `quota.count` question IDs using cluster-first, year-spread-tiebreak
+    selection within each chapter, with largest-remainder chapter allocation.
+
+    year_counts is a subject-wide Counter({year: n}) shared across all divs of
+    the same subject; it is mutated in-place as questions are picked.
 
     Returns (selected_ids, warnings).
     """
     warnings: List[str] = []
-    eligible = {ch: ids for ch, ids in chapter_pool.items() if ids}
+    eligible = {ch: list(entries) for ch, entries in chapter_pool.items() if entries}
 
     if len(eligible) < quota.min_chapters:
         warnings.append(
@@ -213,12 +224,42 @@ def _pick_questions(
     allocs = _largest_remainder(w, quota.count, caps, quota.min_per_chapter)
 
     selected: List[str] = []
+
     for ch, alloc in zip(chapters, allocs):
         if alloc <= 0:
             continue
-        pool = eligible[ch]
-        rng.shuffle(pool)
-        selected.extend(pool[:alloc])
+
+        # Group by cluster; NULL cluster → singleton bucket per question
+        buckets: Dict[str, List[tuple]] = {}
+        for entry in eligible[ch]:
+            qid, cluster, _year = entry
+            key = cluster if cluster is not None else f"_null_{qid}"
+            buckets.setdefault(key, []).append(entry)
+
+        # Seeded-shuffle cluster order and intra-cluster lists
+        cluster_order = list(buckets.keys())
+        rng.shuffle(cluster_order)
+        for cid in cluster_order:
+            rng.shuffle(buckets[cid])
+
+        # Round-robin across clusters; within a cluster prefer the least-seen year
+        picked_ch: List[str] = []
+        i = 0
+        while len(picked_ch) < alloc:
+            if all(not buckets[c] for c in cluster_order):
+                break
+            cid = cluster_order[i % len(cluster_order)]
+            if buckets[cid]:
+                # Pick the question whose year is least represented subject-wide;
+                # ties broken by shuffle order (stable min → first in list)
+                best = min(buckets[cid], key=lambda e: year_counts[e[2]])
+                buckets[cid].remove(best)
+                qid, _cluster, year = best
+                picked_ch.append(qid)
+                year_counts[year] += 1
+            i += 1
+
+        selected.extend(picked_ch)
 
     if len(selected) < quota.count:
         warnings.append(
@@ -275,7 +316,7 @@ async def generate(
     all_warnings: List[str] = []
 
     # Pre-fetch pools per (subject, div) in one pass per combination
-    subj_div_pool: Dict[tuple, Dict[str, List[str]]] = {}
+    subj_div_pool: Dict[tuple, Dict[str, List[tuple]]] = {}
     for sb in blueprint.subjects:
         whitelist = (chapter_whitelists or {}).get(sb.subject)
         for quota in sb.quotas:
@@ -288,10 +329,11 @@ async def generate(
     sections_map: Dict[tuple, SectionManifest] = {}
     for sb in blueprint.subjects:
         label = _SUBJECT_LABELS.get(sb.subject, sb.subject.capitalize())
+        year_counts: Counter = Counter()  # shared across divs for this subject
         for quota in sb.quotas:
             key = (sb.subject, quota.div)
             pool = subj_div_pool[key]
-            ids, warns = _pick_questions(pool, quota, sb.chapter_weights, rng)
+            ids, warns = _pick_questions(pool, quota, sb.chapter_weights, rng, year_counts)
             for w in warns:
                 all_warnings.append(f"[{sb.subject}] {w}")
                 logger.warning("test_generator [%s/%s]: %s", sb.subject, quota.div, w)

@@ -405,37 +405,67 @@ class ScoreService:
         Raises ValueError for missing config, SupabaseError for DB issues,
         and Exception for GitHub/scoring failures — callers decide HTTP mapping.
         """
-        # 1. Fetch section_config
-        tests = await sb_select("tests", {"testID": f"eq.{test_id}"})
-        if not tests:
-            raise ValueError(f"Test definition not found for test_id={test_id}")
-        raw_config = tests[0].get("section_config") or {}
-        section_config: Dict[str, Any] = {k.lower(): v for k, v in raw_config.items()}
-        if not section_config:
-            raise ValueError(f"section_config not configured for test_id={test_id}")
+        from app.services.jmpyq_shift_service import JMPYQ_PREFIX, JMPYQ_SECTION_CONFIG
 
-        # 2. Fetch questions from Postgres
+        is_jmpyq = test_id.startswith(JMPYQ_PREFIX)
         answer_keys_set = set(answers.keys())
-        async with AsyncSessionLocal() as db:
-            rows = await db.execute(
-                text("""
-                    SELECT
-                        id::text                            AS db_id,
-                        legacy_id,
-                        answer,
-                        chapter,
-                        type                                AS question_type,
-                        subject,
-                        source_info->>'section_type'        AS section_type,
-                        source_info->>'difficulty'          AS difficulty,
-                        flags->>'scary'                     AS scary
-                    FROM questions
-                    WHERE :test_id = ANY(used_in)
-                      AND verification_status = 'verified'
-                """),
-                {"test_id": test_id},
-            )
-            q_rows = rows.fetchall()
+
+        if is_jmpyq:
+            # JMPYQ shifts: use hardcoded section config and fetch by source_code
+            section_config = JMPYQ_SECTION_CONFIG
+            source_code = test_id[len(JMPYQ_PREFIX):]
+            async with AsyncSessionLocal() as db:
+                rows = await db.execute(
+                    text("""
+                        SELECT
+                            id::text                            AS db_id,
+                            legacy_id,
+                            answer,
+                            chapter,
+                            type                                AS question_type,
+                            subject,
+                            source_info->>'section_type'        AS section_type,
+                            source_info->>'difficulty'          AS difficulty,
+                            flags->>'scary'                     AS scary
+                        FROM questions
+                        WHERE type = 'JMPYQ'
+                          AND source_info->>'source_code' = :source_code
+                          AND verification_status = 'verified'
+                    """),
+                    {"source_code": source_code},
+                )
+                q_rows = rows.fetchall()
+        else:
+            # 1. Fetch section_config from curated tests table
+            tests = await sb_select("tests", {"testID": f"eq.{test_id}"})
+            if not tests:
+                raise ValueError(f"Test definition not found for test_id={test_id}")
+            raw_config = tests[0].get("section_config") or {}
+            section_config = {k.lower(): v for k, v in raw_config.items()}
+            if not section_config:
+                raise ValueError(f"section_config not configured for test_id={test_id}")
+
+            # 2. Fetch questions from Postgres
+            async with AsyncSessionLocal() as db:
+                rows = await db.execute(
+                    text("""
+                        SELECT
+                            id::text                            AS db_id,
+                            legacy_id,
+                            answer,
+                            chapter,
+                            type                                AS question_type,
+                            subject,
+                            source_info->>'section_type'        AS section_type,
+                            source_info->>'difficulty'          AS difficulty,
+                            flags->>'scary'                     AS scary
+                        FROM questions
+                        WHERE :test_id = ANY(used_in)
+                          AND verification_status = 'verified'
+                    """),
+                    {"test_id": test_id},
+                )
+                q_rows = rows.fetchall()
 
         # 3. Build ppt_data
         sections_map: Dict[str, Any] = {}
