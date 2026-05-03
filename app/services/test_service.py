@@ -119,19 +119,23 @@ async def _ensure_jmpyq_registered(test_id: str, user_id: str) -> None:
             "dynamic_tests",
             {
                 "id": test_id,
-                "exam": meta.get("exam", "JEE"),
-                "title": meta.get("title", f"JEE Main PYQ"),
+                "exam": "JEEM",          # matches generated-test convention; "JEE" may violate a CHECK
+                "title": meta.get("title", "JEE Main PYQ"),
                 "duration": meta.get("duration", 10800),
                 "total_marks": meta.get("total_marks", 300),
                 "blueprint_version": "jmpyq-v1",
                 "seed": 0,
-                "created_by": user_id,
+                "created_by": None,      # null avoids FK issues if column refs a users table
                 "manifest": {},
             },
             on_conflict="id",
         )
+        logger.debug("_ensure_jmpyq_registered: registered %s in dynamic_tests", test_id)
     except SupabaseError as exc:
-        logger.warning("_ensure_jmpyq_registered: upsert failed for %s: %s", test_id, exc)
+        logger.error(
+            "_ensure_jmpyq_registered: upsert FAILED for %s — Supabase %s: %s",
+            test_id, exc.status, exc.detail,
+        )
 
 
 async def start_or_resume(
