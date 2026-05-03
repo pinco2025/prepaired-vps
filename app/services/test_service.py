@@ -130,7 +130,6 @@ async def _ensure_jmpyq_registered(test_id: str, user_id: str) -> None:
                 "exam": "JEE",
                 "type": "jmpyq",
                 "tier": "free",
-                "maximum_marks": meta.get("total_marks", 300),
             },
             on_conflict="testID",
         )
